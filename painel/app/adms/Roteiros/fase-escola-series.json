@@ -1,0 +1,41 @@
+{
+ "titulo": "Os segmentos, as séries e as disciplinas",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "cursos/listar",
+ "rotas": [
+  "cursos/listar",
+  "matriz/listar",
+  "escola/index"
+ ],
+ "passos": [
+  {
+   "p": "^cursos/listar",
+   "a": ".page-body",
+   "t": "Os segmentos",
+   "x": "Na escola, cada segmento é cadastrado aqui: o Ensino Fundamental (anos finais) e o Ensino Médio.",
+   "aviso": "Cadastre o **segmento** (Novo)."
+  },
+  {
+   "p": "^matriz/listar",
+   "a": ".page-body",
+   "t": "A matriz e as séries",
+   "x": "Cada segmento tem uma matriz; cada série (6º ano, 7º ano… 1ª série…) é uma parte da matriz, com as disciplinas e a carga horária do ano.",
+   "aviso": "Monte a **matriz** com as séries e as disciplinas."
+  },
+  {
+   "p": "^escola/index",
+   "a": "#explicacaoEstrutura",
+   "t": "Conferir",
+   "x": "A Estrutura da escola mostra cada segmento, as séries e as disciplinas de cada série.",
+   "confere": [
+    [
+     "existe",
+     ".vc-serie",
+     null,
+     "Cadastre ao menos uma série com as disciplinas."
+    ]
+   ]
+  }
+ ]
+}

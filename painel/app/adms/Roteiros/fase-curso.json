@@ -1,0 +1,257 @@
+{
+ "titulo": "O primeiro curso, com a grade e as disciplinas",
+ "guia": "montar-a-matriz",
+ "fim": "primeiros-passos/index",
+ "inicio": "materias/cadastrar",
+ "rotas": [
+  "materias/cadastrar",
+  "materias/listar",
+  "cursos/cadastrar",
+  "cursos/listar",
+  "cursos/visualizar",
+  "matriz/cadastrar-grade",
+  "matriz/visualizar",
+  "matriz/adicionar-disciplina"
+ ],
+ "passos": [
+  {
+   "p": "^materias/cadastrar",
+   "a": "#nome",
+   "t": "A matéria",
+   "x": "As matérias são o catálogo das disciplinas: o nome e a carga horária.",
+   "aviso": "Escreva o **nome** e a **carga horária** da matéria.",
+   "faz": [
+    [
+     "preencher",
+     "#nome",
+     "Metodologia Científica"
+    ],
+    [
+     "preencher",
+     "#carga_horaria",
+     "40"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nome",
+     null,
+     "Escreva o **nome**."
+    ],
+    [
+     "valor",
+     "#carga_horaria",
+     null,
+     "Escreva a **carga horária**."
+    ]
+   ]
+  },
+  {
+   "p": "^materias/cadastrar",
+   "a": "input[name=\"CadMaterias\"]",
+   "t": "Salvar a matéria",
+   "x": "A matéria entra no catálogo.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava a matéria.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadMaterias\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^materias/listar",
+   "a": "table",
+   "t": "Agora, o curso",
+   "x": "A matéria está no catálogo. O próximo passo é criar o curso.",
+   "aviso": "Clique em **Avançar**: abrimos o cadastro do curso.",
+   "faz": [
+    [
+     "ir",
+     "cursos/cadastrar"
+    ]
+   ]
+  },
+  {
+   "p": "^cursos/cadastrar",
+   "a": "#nome",
+   "t": "O curso",
+   "x": "O nome do curso e a identidade que sai nos documentos: o nível, a sigla, o nome por extenso e a linha do cabeçalho. O polo é a Sede, que a instalação já traz (outros polos se cadastram em Configurações → Polos).",
+   "aviso": "Preencha o **nome**, o **nível**, a **sigla**, o **nome por extenso** e o **cabeçalho**.",
+   "faz": [
+    [
+     "preencher",
+     "#nome",
+     "Especialização em Educação de Exemplo"
+    ],
+    [
+     "preencher",
+     "#nivel",
+     "Especialização"
+    ],
+    [
+     "preencher",
+     "#abreviatura",
+     "EEE"
+    ],
+    [
+     "preencher",
+     "#nome_extenso",
+     "Educação de Exemplo"
+    ],
+    [
+     "preencher",
+     "#cabecalho_documento",
+     "Curso de Especialização em Educação de Exemplo"
+    ],
+    [
+     "escolher",
+     "#localidade",
+     "{primeira}"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nome",
+     null,
+     "Escreva o **nome** do curso."
+    ],
+    [
+     "valor",
+     "#localidade",
+     null,
+     "Escolha o **polo padrão**."
+    ]
+   ]
+  },
+  {
+   "p": "^cursos/cadastrar",
+   "a": "input[name=\"CadCurso\"]",
+   "t": "Salvar o curso",
+   "x": "O curso é criado.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava o curso.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadCurso\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^cursos/listar",
+   "a": "a[href*=\"cursos/visualizar/\"]",
+   "t": "Abrir o curso",
+   "x": "Na tela do curso ficam a grade e os coordenadores.",
+   "aviso": "Abra o curso.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"cursos/visualizar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^cursos/visualizar",
+   "a": "a[href*=\"matriz/cadastrar-grade\"]",
+   "t": "A grade",
+   "x": "A grade (a matriz) organiza as disciplinas do curso.",
+   "aviso": "Clique em **Nova grade**.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"matriz/cadastrar-grade\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^matriz/cadastrar-grade",
+   "a": "#versao",
+   "t": "A versão da grade",
+   "x": "A primeira grade do curso é a versão 1.",
+   "aviso": "Escreva a **versão** (1).",
+   "faz": [
+    [
+     "preencher",
+     "#versao",
+     "1"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#versao",
+     null,
+     "Escreva a **versão**."
+    ]
+   ]
+  },
+  {
+   "p": "^matriz/cadastrar-grade",
+   "a": "input[name=\"SalvarGrade\"]",
+   "t": "Salvar a grade",
+   "x": "A grade é criada, ainda sem disciplinas.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava a grade.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"SalvarGrade\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^matriz/visualizar",
+   "a": "#materia_id",
+   "t": "As disciplinas da grade",
+   "x": "Escolha uma matéria do catálogo; a carga horária vem dela, se você não mudar.",
+   "aviso": "Escolha a **matéria**.",
+   "faz": [
+    [
+     "escolher",
+     "#materia_id",
+     "{primeira}"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#materia_id",
+     null,
+     "Escolha a **matéria**."
+    ]
+   ]
+  },
+  {
+   "p": "^matriz/visualizar",
+   "a": "form[action*=\"matriz/adicionar-disciplina\"] button[type=\"submit\"]",
+   "t": "Incluir",
+   "x": "A disciplina entra na grade. Repita para as demais quando quiser.",
+   "aviso": "Clique em **Incluir**.",
+   "atencao": "Este passo grava a disciplina na grade.",
+   "faz": [
+    [
+     "clicar",
+     "form[action*=\"matriz/adicionar-disciplina\"] button[type=\"submit\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Clique em **Incluir**."
+    ]
+   ]
+  },
+  {
+   "p": "^matriz/visualizar",
+   "a": "#quadroSituacao",
+   "t": "Pronto",
+   "x": "O curso tem a grade e a primeira disciplina. Quando a grade estiver completa, finalize-a no quadro da situação."
+  }
+ ]
+}

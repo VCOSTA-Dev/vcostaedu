@@ -1,0 +1,32 @@
+<?php if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); } ?>
+<h2>Para que serve</h2>
+<p>Na escola, a avaliação é por nota, de 0 a 10, em todas as séries (do 1º ano do Ensino Fundamental ao Médio). A média é calculada em dois níveis:</p>
+<ol>
+<li><strong>A média da etapa</strong> (bimestre ou trimestre): a regra de média da disciplina, sobre as atividades daquela etapa. A atividade pertence à etapa da data final dela.</li>
+<li><strong>A recuperação:</strong> quem fecha a etapa abaixo da média mínima (6, o padrão) fica em recuperação. Com a nota da recuperação lançada, a nota da etapa é a <strong>maior</strong> entre a média e a recuperação (o padrão) — por exemplo, 4,0 com recuperação 5,0 dá 5,0; 4,5 com recuperação 4,0 continua 4,5. A escola pode escolher, em vez disso, a média das duas, ou a maior com teto na média mínima.</li>
+<li><strong>A média anual:</strong> a média simples das notas das etapas (o padrão), ou com um peso para cada etapa.</li>
+<li><strong>A situação:</strong> aprovado; reprovado por nota; reprovado por falta (a frequência mínima, 75%, no total de horas do ano letivo); ou aprovado pelo conselho de classe.</li>
+<li><strong>As faltas:</strong> lançadas por etapa, na tela das etapas da disciplina (o padrão), ou pela chamada por aula, na disciplina — a escola escolhe em <strong>Ensino → Regras da escola</strong>, &quot;De onde vêm as faltas&quot;. Com a chamada, a falta da etapa é a soma das chamadas com data naquela etapa; o total do ano segue a mesma regra.</li>
+</ol>
+<h2>Antes de começar</h2>
+<ul>
+<li>O ano letivo aberto com as etapas e as turmas criadas (veja o guia &quot;Organizar a escola&quot;).</li>
+<li>As regras ficam em <strong>Configurações → Regras da escola</strong>: a média mínima, a regra da recuperação, a média anual (simples ou com pesos) e a frequência. O padrão já vem preenchido.</li>
+</ul>
+<h2>Passo a passo</h2>
+<ol>
+<li><strong>As notas das atividades:</strong> como sempre, na tela das atividades da disciplina. A data final da atividade decide a etapa.</li>
+<li><strong>As etapas da disciplina:</strong> na tela da turma, clique em <strong>Etapas e notas</strong> na disciplina; o professor chega lá pela aba <strong>Etapas</strong> da tela da disciplina ou pela ação <strong>Etapas</strong> em <strong>Minhas disciplinas</strong>. Na tela da etapa, cada atividade da etapa tem uma coluna com as notas dos alunos (só para ler); clique no nome da atividade para lançar as notas dela. Na recuperação, digite a nota e aperte <strong>Enter</strong>: grava na hora, a nota da etapa da linha se atualiza e o cursor vai ao próximo aluno em recuperação. Uma aba por etapa (a etapa atual em destaque). Na etapa escolhida: a média de cada aluno, a nota da recuperação (o campo aparece só para quem está em recuperação), a nota da etapa e as faltas da etapa. Clique em <strong>Gravar</strong>: a recuperação e as faltas da etapa gravam de uma vez (só o que mudou). Se uma delas é recusada, a tela diz o motivo e o que foi digitado continua nos campos. O total de faltas da disciplina é a soma das etapas. Cada aba diz o estado da etapa: <strong>aberta</strong>, <strong>fechada</strong> ou <strong>liberada para a família</strong>.</li>
+<li><strong>A conta de cada aluno:</strong> abaixo do quadro do ano, em <strong>A conta de cada aluno</strong>, clique no nome do aluno: a conta de cada etapa (a média, a recuperação e a nota da etapa), a média anual e a frequência, passo a passo.</li>
+<li><strong>Fechar a etapa:</strong> o professor fecha a etapa das disciplinas dele (a secretaria, a supervisão de secretaria e o administrador também fecham). <strong>Fechar a etapa</strong> pede a confirmação na janela do sistema e guarda as notas da etapa de cada aluno, com a regra copiada. Depois de fechada, a etapa fica travada: os campos de nota (também na tela de notas da atividade), de falta e de recuperação aparecem travados, com o aviso no alto. Para corrigir, a <strong>supervisão de secretaria</strong>, a <strong>direção acadêmica</strong> ou o <strong>administrador</strong> clica em <strong>Reabrir a etapa</strong>, com o motivo (ao menos 10 letras); o fechamento anterior fica guardado e a reabertura aparece no relatório <strong>Reaberturas</strong>, com o motivo. O professor não reabre: pede a reabertura. As etapas fecham na ordem.</li>
+<li><strong>O conselho de classe:</strong> na tela da turma, <strong>Conselho de classe</strong> mostra cada aluno com a média anual e a situação de cada disciplina, e abre na etapa em andamento. O conselho registra a observação de cada etapa e, no fim do ano, pode <strong>aprovar</strong> quem ficou reprovado — a observação é obrigatória; a nota não muda, a situação passa a &quot;Aprovado pelo conselho&quot;, e o registro guarda quem decidiu e quando. Quem registrou (ou a direção acadêmica) pode <strong>corrigir</strong> ou <strong>retirar</strong> a observação, em &quot;corrigir ou retirar&quot;: nada é apagado, o texto de antes fica no histórico, e a aprovação retirada deixa de valer.</li>
+<li><strong>O fim do ano:</strong> com todas as etapas fechadas, encerre a disciplina como sempre (na tela da disciplina). A média anual e a situação ficam guardadas.</li>
+<li><strong>O boletim:</strong> o boletim do aluno mostra as etapas em colunas (com &quot;R&quot; quando houve recuperação; passe o mouse sobre o &quot;R&quot; para ver a média e a recuperação), a média anual, as faltas, a frequência e a situação — na tela, no PDF e no portal. O que o portal mostra é a escola que decide, em <strong>Ensino → Liberação do boletim</strong> (veja o guia &quot;Liberar o boletim no portal&quot;): cada etapa, a média final e a situação final, cada uma com a liberação dela. A tela <strong>Notas</strong> do portal mostra também a nota da recuperação, em tempo real.</li>
+</ol>
+<h2>O que pode dar errado</h2>
+<ul>
+<li><strong>&quot;O 3º bimestre está fechado&quot;:</strong> a nota, a falta ou a recuperação é de uma etapa já fechada. Quem reabre (a supervisão de secretaria, a direção acadêmica ou o administrador) reabre a etapa, com o motivo, se for preciso corrigir.</li>
+<li><strong>A disciplina não encerra:</strong> &quot;Feche antes as etapas&quot; — o ano só fecha com todas as etapas fechadas.</li>
+<li><strong>O aluno não aparece em recuperação:</strong> a média dele na etapa não está abaixo da média mínima, ou a etapa ainda não tem nota.</li>
+<li><strong>O conselho não oferece &quot;Aprovar&quot;:</strong> o aluno não está reprovado em nenhuma disciplina.</li>
+</ul>

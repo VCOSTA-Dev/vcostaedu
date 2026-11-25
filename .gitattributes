@@ -1,0 +1,66 @@
+# =============================================================================
+# NORMALIZAÇÃO DE FIM DE LINHA
+#
+# Herdado do `.gitattributes` do sistema escolar em Tabler, que é o único dos três projetos da
+# casa que tem um. Três divergências, listadas no fim.
+#
+#   text=auto   o git decide o que é texto e guarda SEMPRE com LF no repositório
+#   eol=lf      e entrega LF também no diretório de trabalho, inclusive no Windows
+#
+# Por que `eol=lf` e não só `text=auto`: o projeto vai rodar em Linux, e um
+# shebang terminado em CRLF faz o kernel procurar o interpretador `/usr/bin/php\r`
+# e falhar com "bad interpreter: No such file or directory" — erro que não diz o
+# que está errado e custa horas para achar. É defeito medido na casa, não teoria.
+#
+# E por que isto nasce agora, no começo: o repositório vai a público. Sem a
+# regra, o primeiro contribuinte em Linux abre um pull request em que todo
+# arquivo aparece inteiro no diff, e ninguém consegue revisar o que de fato mudou.
+# =============================================================================
+
+* text=auto eol=lf
+
+# =============================================================================
+# BINÁRIOS — nunca tocar
+#
+# Sem estas linhas o `text=auto` acerta quase sempre, e o "quase" é o problema:
+# um binário classificado como texto tem os bytes 0x0A reescritos, e o arquivo
+# corrompe em silêncio.
+# =============================================================================
+
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.docx  binary
+*.xlsx  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.zip   binary
+*.gz    binary
+
+# SVG é TEXTO, e a exceção é deliberada: é XML, o diff dele é legível e útil.
+# Marcá-lo como binário esconderia mudança de ícone atrás de "Binary files
+# differ".
+*.svg text eol=lf
+
+# =============================================================================
+# AS TRÊS DIVERGÊNCIAS EM RELAÇÃO AO SISTEMA ESCOLAR EM TABLER
+#
+# 1. `*.zip` e `*.gz` entraram. Lá não existem, e a razão é boa: aquele projeto
+#    não versiona nem produz arquivo comprimido. Aqui a régua é outra — o
+#    repositório é público e recebe anexo de terceiro.
+#
+# 2. O comentário sobre renormalização é o OPOSTO do de lá. O sistema escolar em Tabler
+#    registra que NÃO renormalizou de propósito, porque `git add --renormalize .`
+#    reescreveria milhares de arquivos de legado num commit único e poluiria o
+#    blame. Aqui o repositório tem seis arquivos e uma semana de vida: a
+#    renormalização é gratuita e foi feita junto com este arquivo. Nascer
+#    normalizado é o que aquele projeto não pôde ter.
+#
+# 3. O `.gitattributes` de lá nasceu no meio da vida do projeto; este nasce
+#    antes do primeiro arquivo-fonte. Não há legado a preservar.
+# =============================================================================

@@ -1,0 +1,18 @@
+{
+ "titulo": "Os alunos",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "academicos/listar",
+ "rotas": [
+  "academicos/listar"
+ ],
+ "passos": [
+  {
+   "p": "^academicos/listar",
+   "a": ".page-body",
+   "t": "Os alunos",
+   "x": "Cadastre os alunos (ou traga-os por planilha, em Importar alunos, com a coluna da turma) e vincule cada um ao segmento.",
+   "aviso": "Cadastre os **alunos** e o **vínculo** de cada um."
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+[
+  { "nome": "piloto-1-disciplinas-listar", "rota": "painel/disciplinas/listar", "perfil": "secretaria.demo", "area": "Ensino" },
+  { "nome": "piloto-2-curso-visualizar", "rota": "painel/cursos/visualizar/1", "perfil": "administrador", "area": "Ensino" },
+  { "nome": "piloto-3-faltas-disciplina-aberta", "rota": "painel/faltas/visualizar/5", "perfil": "secretaria.demo", "area": "Ensino" },
+  { "nome": "piloto-3-faltas-disciplina-encerrada", "rota": "painel/faltas/visualizar/1", "perfil": "secretaria.demo", "area": "Ensino" },
+  { "nome": "piloto-4-modelo-historico-editar", "rota": "painel/historico-modelos/editar/1", "perfil": "administrador", "area": "Configurações" }
+]

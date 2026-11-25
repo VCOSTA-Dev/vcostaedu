@@ -1,0 +1,507 @@
+[
+    {
+        "decisao": "D-86",
+        "acao": "troca",
+        "tabela": "rm_cursos_periodos",
+        "motivo": "A grafia do turno 2 corrigida de propósito (migration 0048): Verspertino → Vespertino.",
+        "onde": {
+            "id": 2,
+            "nome": "Verspertino"
+        },
+        "fica": {
+            "nome": "Vespertino"
+        }
+    },
+    {
+        "decisao": "D-86",
+        "acao": "inclui",
+        "tipo": "escola",
+        "tabela": "rm_professores_horario_aula",
+        "motivo": "O horário padrão de aulas (D-71) nasce só na escola: as 16 aulas do dia dos três turnos (core/HorarioPadrao.php).",
+        "linhas": [
+            {
+                "id": 1,
+                "nome": "1ª aula",
+                "periodo": 1,
+                "inicio": "07:00:00",
+                "termino": "07:50:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 2,
+                "nome": "2ª aula",
+                "periodo": 1,
+                "inicio": "07:50:00",
+                "termino": "08:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 3,
+                "nome": "3ª aula",
+                "periodo": 1,
+                "inicio": "08:40:00",
+                "termino": "09:30:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 4,
+                "nome": "4ª aula",
+                "periodo": 1,
+                "inicio": "09:50:00",
+                "termino": "10:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 5,
+                "nome": "5ª aula",
+                "periodo": 1,
+                "inicio": "10:40:00",
+                "termino": "11:30:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 6,
+                "nome": "6ª aula",
+                "periodo": 1,
+                "inicio": "11:30:00",
+                "termino": "12:20:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 7,
+                "nome": "1ª aula",
+                "periodo": 2,
+                "inicio": "13:00:00",
+                "termino": "13:50:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 8,
+                "nome": "2ª aula",
+                "periodo": 2,
+                "inicio": "13:50:00",
+                "termino": "14:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 9,
+                "nome": "3ª aula",
+                "periodo": 2,
+                "inicio": "14:40:00",
+                "termino": "15:30:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 10,
+                "nome": "4ª aula",
+                "periodo": 2,
+                "inicio": "15:50:00",
+                "termino": "16:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 11,
+                "nome": "5ª aula",
+                "periodo": 2,
+                "inicio": "16:40:00",
+                "termino": "17:30:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 12,
+                "nome": "6ª aula",
+                "periodo": 2,
+                "inicio": "17:30:00",
+                "termino": "18:20:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 13,
+                "nome": "1ª aula",
+                "periodo": 3,
+                "inicio": "19:00:00",
+                "termino": "19:50:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 14,
+                "nome": "2ª aula",
+                "periodo": 3,
+                "inicio": "19:50:00",
+                "termino": "20:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 15,
+                "nome": "3ª aula",
+                "periodo": 3,
+                "inicio": "20:50:00",
+                "termino": "21:40:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            },
+            {
+                "id": 16,
+                "nome": "4ª aula",
+                "periodo": 3,
+                "inicio": "21:40:00",
+                "termino": "22:30:00",
+                "situacao": 1,
+                "usuario_cre": 1,
+                "usuario_mod": null
+            }
+        ]
+    },
+    {
+        "decisao": "D-98",
+        "acao": "inclui",
+        "tabela": "fin_regras",
+        "motivo": "O financeiro (Onda 8, Parte 1): as regras financeiras nascem com a linha do padrão (2% de multa, 1% de juros ao mês, sem desconto; migration 0072), nos dois tipos de instituição. Só na referência de antes do financeiro (sem a tabela): numa referência que já a tem, compara como está.",
+        "linhas": [
+            {
+                "id": 1,
+                "multa_bp": 200,
+                "juros_mes_bp": 100,
+                "desconto_bp": 0,
+                "atualizado_por": null
+            }
+        ],
+        "so_sem_a_tabela": true
+    },
+    {
+        "decisao": "D-99",
+        "acao": "inclui",
+        "tabela": "fin_sequencias",
+        "motivo": "O financeiro refeito (Onda 8, Parte 1; migration 0080): o número do recibo nasce com a linha \"recibo\" no zero, nos dois tipos de instituição. Só na referência de antes do recibo (sem a tabela): numa referência que já a tem, compara como está.",
+        "linhas": [
+            {
+                "nome": "recibo",
+                "ultimo": 0
+            }
+        ],
+        "so_sem_a_tabela": true
+    },
+    {
+        "decisao": "D-99",
+        "acao": "inclui",
+        "tabela": "fin_bandeiras",
+        "motivo": "O financeiro refeito (Onda 8, Parte 1; migration 0080): as bandeiras de cartão nascem com a lista padrão, nos dois tipos de instituição. Só na referência de antes do recibo (sem a tabela): numa referência que já a tem, compara como está.",
+        "linhas": [
+            {
+                "id": 1,
+                "nome": "Visa",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 2,
+                "nome": "Mastercard",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 3,
+                "nome": "Elo",
+                "situacao": 1,
+                "ordem": 3
+            },
+            {
+                "id": 4,
+                "nome": "American Express",
+                "situacao": 1,
+                "ordem": 4
+            },
+            {
+                "id": 5,
+                "nome": "Hipercard",
+                "situacao": 1,
+                "ordem": 5
+            },
+            {
+                "id": 6,
+                "nome": "Outra",
+                "situacao": 1,
+                "ordem": 6
+            }
+        ],
+        "so_sem_a_tabela": true
+    },
+    {
+        "decisao": "D-99",
+        "acao": "inclui",
+        "tabela": "fin_motivos",
+        "motivo": "O financeiro refeito (Onda 8, Parte 1; migration 0080): os motivos de cada operação nascem com a lista padrão, nos dois tipos de instituição. Só na referência de antes do recibo (sem a tabela): numa referência que já a tem, compara como está.",
+        "linhas": [
+            {
+                "id": 1,
+                "operacao": "desfazer_recebimento",
+                "nome": "Recebimento lançado em duplicidade",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 2,
+                "operacao": "desfazer_recebimento",
+                "nome": "Valor, data ou forma registrados errado",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 3,
+                "operacao": "desfazer_recebimento",
+                "nome": "Título errado",
+                "situacao": 1,
+                "ordem": 3
+            },
+            {
+                "id": 4,
+                "operacao": "desfazer_recebimento",
+                "nome": "Pagamento não compensado (cartão ou Pix)",
+                "situacao": 1,
+                "ordem": 4
+            },
+            {
+                "id": 5,
+                "operacao": "desfazer_recebimento",
+                "nome": "Devolução do valor ao responsável",
+                "situacao": 1,
+                "ordem": 5
+            },
+            {
+                "id": 6,
+                "operacao": "desfazer_recebimento",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 11,
+                "operacao": "baixar",
+                "nome": "Bolsa integral concedida",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 12,
+                "operacao": "baixar",
+                "nome": "Acordo com a direção",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 13,
+                "operacao": "baixar",
+                "nome": "Débito de valor pequeno",
+                "situacao": 1,
+                "ordem": 3
+            },
+            {
+                "id": 14,
+                "operacao": "baixar",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 21,
+                "operacao": "cancelar",
+                "nome": "Lançado por engano",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 22,
+                "operacao": "cancelar",
+                "nome": "Desistência antes do início das aulas",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 23,
+                "operacao": "cancelar",
+                "nome": "Desconto concedido",
+                "situacao": 1,
+                "ordem": 3
+            },
+            {
+                "id": 24,
+                "operacao": "cancelar",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 31,
+                "operacao": "prescrever",
+                "nome": "Prazo de cobrança encerrado",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 32,
+                "operacao": "prescrever",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 41,
+                "operacao": "renegociar",
+                "nome": "Dificuldade financeira da família",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 42,
+                "operacao": "renegociar",
+                "nome": "Acordo para a rematrícula",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 43,
+                "operacao": "renegociar",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 51,
+                "operacao": "desfazer_baixa",
+                "nome": "Feito por engano",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 52,
+                "operacao": "desfazer_baixa",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 61,
+                "operacao": "desfazer_cancelamento",
+                "nome": "Feito por engano",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 62,
+                "operacao": "desfazer_cancelamento",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 71,
+                "operacao": "desfazer_prescricao",
+                "nome": "Feito por engano",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 72,
+                "operacao": "desfazer_prescricao",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            },
+            {
+                "id": 81,
+                "operacao": "desfazer_renegociacao",
+                "nome": "Acordo não cumprido",
+                "situacao": 1,
+                "ordem": 1
+            },
+            {
+                "id": 82,
+                "operacao": "desfazer_renegociacao",
+                "nome": "Feito por engano",
+                "situacao": 1,
+                "ordem": 2
+            },
+            {
+                "id": 83,
+                "operacao": "desfazer_renegociacao",
+                "nome": "Outro",
+                "situacao": 1,
+                "ordem": 99
+            }
+        ],
+        "so_sem_a_tabela": true
+    },
+    {
+        "decisao": "D-100",
+        "acao": "colunas",
+        "tabela": "esc_conselho",
+        "motivo": "O conselho de classe com a correção e a retirada (a correção da escola, Parte 1; migration 0081): as colunas novas nascem \"valida\" e sem quem alterou, em cada registro que já existia.",
+        "valores": {
+            "situacao": "valida",
+            "alterado_por": null
+        }
+    },
+    {
+        "decisao": "D-100",
+        "acao": "deriva",
+        "tabela": "esc_boletim_liberacao",
+        "motivo": "A liberação do boletim por ano letivo (migration 0081): a tabela nova nasce com as liberações da antiga (cada etapa, com quem liberou) e, no ano com todas as etapas liberadas, a média e a situação finais à vista (a regra de antes). A régua confere que é exatamente isso, linha a linha."
+    },
+    {
+        "decisao": "D-102",
+        "acao": "colunas",
+        "tabela": "rm_historico_modelos",
+        "depois_de": "nome",
+        "motivo": "O modelo de documento marcado para um tipo de instituição (a correção da escola, Parte 3; migration 0083): a coluna nova nasce vazia (o modelo vale nos dois tipos) em cada modelo que já existia.",
+        "valores": {
+            "tipo_instituicao": null
+        }
+    },
+    {
+        "decisao": "D-102",
+        "acao": "atestado_escola",
+        "motivo": "Na escola, o modelo \"Atestado de matrícula — escola\" e a versão 1 dele (a migration 0083, ou a escolha do tipo na instalação nova): entram na referência só se forem exatamente o que o código cria (VcAtestadoEscola). No ensino superior, nada."
+    },
+    {
+        "decisao": "D-105",
+        "acao": "inclui",
+        "tabela": "fin_sequencias",
+        "motivo": "Renegociar (o financeiro refeito, Parte 2; migration 0086): o número do acordo nasce com a linha \"acordo\" no zero, nos dois tipos de instituição. Só entra na referência que não tem nenhuma linha \"acordo\" (a chave); qualquer outro valor continua diferente.",
+        "chave": "nome",
+        "linhas": [
+            {
+                "nome": "acordo",
+                "ultimo": 0
+            }
+        ]
+    }
+]

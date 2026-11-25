@@ -1,0 +1,2 @@
+# 1.9.1: código comum (core/Requisicao.php), só incluído pelo PHP. Nada aqui é servido pela web.
+Require all denied

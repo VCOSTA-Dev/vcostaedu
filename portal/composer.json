@@ -1,0 +1,18 @@
+{
+    "description": "VCOSTAEDU — portal",
+    "license": "AGPL-3.0-only",
+    "authors": [
+        {
+            "name": "VCOSTA"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
+}

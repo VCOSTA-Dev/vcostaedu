@@ -1,0 +1,80 @@
+[
+  {
+    "nome": "entrada-raiz",
+    "rota": "",
+    "area": "Acesso",
+    "layout": "acesso"
+  },
+  {
+    "nome": "acesso-login",
+    "rota": "painel/login/acesso",
+    "area": "Acesso",
+    "layout": "acesso"
+  },
+  {
+    "nome": "acesso-esqueci-a-senha",
+    "rota": "painel/login/esqueceu-senha",
+    "area": "Acesso",
+    "layout": "acesso"
+  },
+  {
+    "nome": "acesso-definir-senha",
+    "rota": "painel/login/definir-senha",
+    "area": "Acesso",
+    "layout": "acesso"
+  },
+  {
+    "nome": "inicio-administrador",
+    "rota": "painel/home/index",
+    "perfil": "administrador",
+    "area": "Início"
+  },
+  {
+    "nome": "inicio-secretaria",
+    "rota": "painel/home/index",
+    "perfil": "secretaria.demo",
+    "area": "Início"
+  },
+  {
+    "nome": "inicio-professor",
+    "rota": "painel/home/index",
+    "perfil": "prof.laura.demo",
+    "area": "Início"
+  },
+  {
+    "nome": "usuarios-listar",
+    "rota": "painel/usuarios/listar",
+    "perfil": "administrador",
+    "area": "Equipe"
+  },
+  {
+    "nome": "usuarios-cadastrar",
+    "rota": "painel/usuarios/cadastrar",
+    "perfil": "administrador",
+    "area": "Equipe"
+  },
+  {
+    "nome": "usuarios-editar",
+    "rota": "painel/usuarios/editar/3",
+    "perfil": "administrador",
+    "area": "Equipe"
+  },
+  {
+    "nome": "usuarios-visualizar",
+    "rota": "painel/usuarios/visualizar/3",
+    "perfil": "administrador",
+    "area": "Equipe"
+  },
+  {
+    "nome": "perfil-visualizar",
+    "rota": "painel/perfil/visualizar",
+    "perfil": "administrador",
+    "area": "Equipe"
+  },
+  {
+    "nome": "perfil-editar",
+    "rota": "painel/perfil/editar",
+    "perfil": "administrador",
+    "area": "Equipe"
+  }
+]

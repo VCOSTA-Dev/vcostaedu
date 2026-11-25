@@ -1,0 +1,46 @@
+{
+ "titulo": "O ano letivo e as etapas",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "escola-anos/index",
+ "rotas": [
+  "escola-anos/index"
+ ],
+ "passos": [
+  {
+   "p": "^escola-anos/index",
+   "a": ".vc-ano",
+   "t": "O ano letivo",
+   "x": "Cada ano letivo cadastrado aparece aqui. Se a lista estiver vazia, cadastre antes o ano em Ensino → Anos letivos."
+  },
+  {
+   "p": "^escola-anos/index",
+   "a": ".vc-abrir select",
+   "t": "O modelo das etapas",
+   "x": "Quatro bimestres (o padrão) ou três trimestres. Depois que houver nota ou falta lançada no ano, o modelo não muda.",
+   "aviso": "Escolha o **modelo** e clique em **Abrir o ano**.",
+   "atencao": "Este passo grava as etapas do ano.",
+   "faz": [
+    [
+     "clicar",
+     ".vc-abrir button[type=\"submit\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^escola-anos/index",
+   "a": ".vc-etapas table",
+   "t": "As datas",
+   "x": "As etapas nascem com datas sugeridas, de fevereiro a meados de dezembro. Ajuste o início, o fim e a data do conselho de classe de cada uma.",
+   "aviso": "Confira as **datas** e clique em **Salvar as etapas**.",
+   "confere": [
+    [
+     "existe",
+     ".vc-etapas",
+     null,
+     "Abra o ano letivo com o modelo das etapas."
+    ]
+   ]
+  }
+ ]
+}

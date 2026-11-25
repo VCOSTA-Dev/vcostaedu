@@ -1,0 +1,6 @@
+[
+ { "nome": "demonstracao-comecar", "rota": "painel/demonstracao/comecar", "perfil": "administrador", "area": "Primeiros passos" },
+ { "nome": "demonstracao-instituicao", "rota": "painel/demonstracao/instituicao", "perfil": "administrador", "area": "Primeiros passos" },
+ { "nome": "primeiros-passos", "rota": "painel/primeiros-passos/index", "perfil": "administrador", "area": "Primeiros passos" },
+ { "nome": "home-conheca-o-sistema", "rota": "painel/home/index", "perfil": "administrador", "area": "Primeiros passos" }
+]

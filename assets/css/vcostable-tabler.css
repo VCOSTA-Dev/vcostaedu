@@ -1,0 +1,937 @@
+/* ===================================================================
+   VCOSTABLE — identidade visual sobre o Tabler (Onda 1 da migração)
+   Camada fina por cima do tabler.min.css: só variáveis de cor/tipografia
+   e o rail de marca. Nunca carrega na mesma página que vcostable-chat.css
+   (AdminLTE) — ver core/ConfigView.php (parâmetro 'layout').
+=================================================================== */
+
+:root, [data-bs-theme="light"] {
+  /* Root FICA em 16px (padrão do navegador) — nunca escalar isso. Escalar o
+     root escalaria também as dimensões estruturais fixas (largura do sidebar,
+     ícones, avatar, teto de largura), que são proporção de layout, não
+     tipografia — e quebraria a proporção entre texto e caixa (foi exatamente
+     o bug da tentativa anterior). A alavanca certa é o TOKEN de tamanho base
+     que o Tabler já usa nos componentes (body, table, .fs-base): era 0.875rem
+     (14px) — deliberadamente compacto — subo pra 1rem (16px, igual ao
+     Bootstrap 4/AdminLTE antigo, que nunca mexia no root). */
+  font-size: 16px;
+  --tblr-body-font-size: 1rem;
+
+  /* Paleta VCOSTA — proposta, a confirmar (ver plano de migração) */
+  --vc-navy: #0F2A43;
+  --vc-navy-600: #173C5E;
+  --vc-teal: #0FA3A3;
+  --vc-teal-600: #0C8585;
+  --vc-ink: #3D3D3D;
+  --vc-muted: #6B7280;
+  --vc-bg: #F4F6F9;
+  --vc-surface: #FFFFFF;
+  --vc-border: #E3E7EE;
+
+  /* Reaproveita os tokens de estado já usados no restante da plataforma */
+  --vc-success: #1F9D55;
+  --vc-warning: #C98B00;
+  --vc-danger: #D63B3B;
+
+  /* Amarra a paleta VCOSTA nas variáveis que o Tabler/Bootstrap 5 usam de verdade */
+  --tblr-primary: var(--vc-navy);
+  --tblr-primary-rgb: 15, 42, 67;
+  --tblr-body-bg: var(--vc-bg);
+  --tblr-body-color: var(--vc-ink);
+  --tblr-border-color: var(--vc-border);
+  --tblr-success: var(--vc-success);
+  --tblr-warning: var(--vc-warning);
+  --tblr-danger: var(--vc-danger);
+}
+
+[data-bs-theme="dark"] {
+  /* Modo escuro: não é a paleta clara invertida — navy vira o fundo estrutural
+     (rail/header ficam mais escuros que o conteúdo, dando profundidade) e o
+     teal ganha um tom mais claro pra manter contraste sobre fundo escuro. */
+  --vc-navy: #0A1929;
+  --vc-teal: #2DD4D4;
+  --vc-teal-600: #22B8B8;
+  --vc-ink: #E7EAF0;
+  --vc-muted: #9AA5B4;
+  --vc-bg: #12161F;
+  --vc-surface: #1A2030;
+  --vc-border: #2A3244;
+
+  --tblr-primary: var(--vc-teal);
+  --tblr-primary-rgb: 45, 212, 212;
+  --tblr-body-bg: var(--vc-bg);
+  --tblr-body-color: var(--vc-ink);
+  --tblr-border-color: var(--vc-border);
+}
+
+/* --tblr-body-font-size cobre só 3 regras no tabler.min.css: body, table e
+   .fs-base — form-control/form-label/form-select/.page-pretitle são valores
+   fixos (.875rem/.75rem) escritos direto na regra, sem token por trás (só
+   .btn tem token próprio: --tblr-btn-font-size). Pra esses, sobrescrevo a
+   classe puxada, mesmo princípio (nunca o root), só que sem token disponível. */
+.form-control, .form-label, .form-select { font-size: 1rem; }
+.page-pretitle { font-size: 0.875rem; } /* era .75rem (12px) — usado no _page_header.php */
+
+/* A integração dataTables.bootstrap5 aplica form-control-sm/form-select-sm
+   de fábrica na busca e no "Mostrar N" — bate com a convenção "nunca -sm"
+   (a escala do Tabler assume 14px pro -sm; a nossa base é 16px). Aceitar
+   criaria uma ilha inconsistente: só o campo de busca do DataTables menor
+   que todo o resto da plataforma. Correção mora no NOSSO CSS, não no
+   plugin — nunca editar os arquivos vendorizados.
+   Especificidade calculada antes de escrever: a regra real do Tabler é
+   ".form-control-sm{font-size:.75rem;...}" / ".form-select-sm{...}" — um
+   seletor de UMA classe (0-1-0) cada. Bastava então compor com MAIS uma
+   classe pra vencer garantido, sem depender de ordem de carregamento —
+   ".dataTables_wrapper .form-control-sm" (0-2-0). Valores replicados são
+   os mesmos da regra base .form-control/.form-select (não-sm), pra ficar
+   idêntico a qualquer outro campo da tela. */
+.dataTables_wrapper .form-control-sm {
+  font-size: 1rem;
+  padding: .5625rem 1rem;
+  height: auto;
+  min-height: 0;
+  border-radius: var(--tblr-border-radius);
+}
+.dataTables_wrapper .form-select-sm {
+  font-size: 1rem;
+  padding: .5625rem 3rem .5625rem 1rem;
+  height: auto;
+  min-height: 0;
+  border-radius: var(--tblr-border-radius);
+}
+
+/* O plugin Buttons sempre embrulha o(s) botão(ões) num .btn-group, mesmo
+   com um único botão (nosso caso: só "Exportar Excel"). A regra real do
+   Tabler ".btn-group>.btn{flex:1 1 auto}" (combinador de filho, 0-2-0)
+   estica esse botão único pra ocupar toda a largura livre da linha — vira
+   uma faixa larga em vez de um botão de ícone. Precisa de MAIS uma classe
+   pra vencer garantido: ".dataTables_wrapper .dt-buttons.btn-group>.btn"
+   (0-3-0), restaurando o tamanho natural do botão de ícone. */
+.dataTables_wrapper .dt-buttons.btn-group > .btn {
+  flex: 0 0 auto;
+}
+
+/* "Meu desempenho" — reforço visual discreto ao contador subir (sem
+   confete, sem som). Duplicado de .vc-desemp-pulso (vcostable-chat.css,
+   AdminLTE) — não movido de lá porque outras telas AdminLTE ainda podem
+   usar aquele arquivo; aqui a cor usa o token do tema (--tblr-primary-rgb)
+   em vez de um azul fixo, pra funcionar igual no escuro. */
+@keyframes vc-desemp-brilho {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--tblr-primary-rgb), .35); }
+  60%  { box-shadow: 0 0 0 8px rgba(var(--tblr-primary-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--tblr-primary-rgb), 0); }
+}
+.vc-desemp-pulso { animation: vc-desemp-brilho .7s ease-out; }
+
+/* ---- Tipografia — Barlow (corpo) + Barlow Condensed (títulos/display) ---- */
+body {
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Medido: 22.857px no Tabler vs 24px no AdminLTE (1.5) — alinhado aqui. */
+  line-height: 1.5;
+}
+
+/* .btn-sm sobrescreve --tblr-btn-font-size pra 0.75rem (12px) — por isso o
+   "Salvar" media 12px/28px contra 14px/31px do AdminLTE (única divergência
+   real da comparação medida). Restaura o tamanho do botão base. */
+.btn {
+  --tblr-btn-font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+h1, h2, h3, h4, h5, h6,
+.vc-t-display, .card-title, .page-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+.vc-t-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 0.8125rem; /* 13px @ root de 16px — era 11.5px, tamanho novo deliberado */
+  color: var(--vc-muted);
+}
+
+/* ---- Estrutura da página: a estrutura REAL do Tabler ----------------------
+   .page > aside.navbar.navbar-vertical + .page-wrapper > .page-header/.page-body
+   (cada um com seu próprio .container-xl, que já tem teto e centraliza).
+   5ª causa raiz da mesma família: um .vc-app/.vc-content flex customizado
+   (nosso, não do Tabler) fazia o container-xl centralizado parecer quebrado
+   dentro de um flex-item — daí vieram 3 tentativas de reinventar o teto
+   (1600px, 1100px, .vc-form-page). Nenhuma era necessária: container-xl do
+   próprio Tabler já resolve, desde que a página use a estrutura real dele.
+   Nada disso precisa de CSS nosso — só o sidebar (abaixo) e o respiro do
+   cabeçalho continuam custom. */
+.page-header { margin-bottom: 1.5rem; }
+
+/* ---- Alerta com titulo: empilha, e o titulo volta a parecer titulo --------
+   MEDIDO no CSS vendorizado: ".alert" deste Tabler e
+   "display:flex; flex-direction:row; gap:1rem". Titulo e corpo, sendo IRMAOS,
+   viram duas COLUNAS — e o titulo cai numa coluna estreita que quebra uma
+   palavra por linha. Foi o que apareceu na tela final do instalador como
+   "Um / ultimo / cuidado: / apague / a / pasta".
+
+   Medido tambem que a classe ".alert-title" NAO EXISTE neste Tabler: ele
+   renomeou para ".alert-heading". Ou seja, os 24 titulos do projeto estavam
+   sem estilo nenhum ALEM de virarem coluna.
+
+   A regra fica aqui, e nao reescrita em 24 blocos, porque o problema e de
+   CONVENCAO e nao de um bloco: todo alerta deste projeto escreve titulo e
+   corpo como irmaos, e e isso que as 24 chamadas querem dizer. Uma regra nao
+   sai do lugar; 24 blocos saem, e a proxima tela nasceria com o defeito de
+   volta.
+
+   Conferido antes de escrever: nenhuma tela usa ".alert-icon", que e o unico
+   caso em que a linha do Tabler seria a disposicao certa. */
+.alert { flex-direction: column; gap: 0; }
+.alert-title {
+  color: inherit;
+  margin-bottom: .25rem;
+  font-size: 1rem;
+  font-weight: var(--tblr-font-weight-medium, 500);
+}
+
+/* ---- .page-center: centrar sem tornar o topo inalcancavel ----------------
+   MEDIDO neste projeto, na tela 7 do instalador, em janela de 1280x600:
+   conteudo de 1474px dentro de um .page de 598px, com o topo do conteudo em
+   -436px. O documento rolava (scrollHeight 1038 > clientHeight 600), mas
+   rolar para cima NAO alcancava os 436px de cima — a pessoa nao chegava ao
+   fim da propria instalacao.
+
+   O mecanismo, isolado na medicao (tela 7, 1280x600):
+
+     1. o <body> do instalador tem "d-flex flex-column", e o Tabler ja lhe da
+        "height:100%" — entao a .page vira item flex ESTICADO ate a altura da
+        janela: 598px;
+     2. a regra ".page-center{justify-content:center}" centra 1474px dentro
+        desses 598px. Centralizar transborda pelos DOIS lados, e o transbordo
+        do lado do INICIO fica fora da area rolavel.
+
+   Conferido tirando cada peca: com "d-flex" removido a .page volta a medir
+   1474px e nao corta; com a margem automatica no lugar do justify-content ela
+   segue com 598px e tambem nao corta. Sao duas causas em serie, e a que se
+   corrige e a segunda — centralizar so pode valer enquanto sobrar espaco.
+
+   O defeito nao aparece enquanto o conteudo couber: por isso atravessou sete
+   telas, e so a mais longa o revelou. Medido depois em TODAS as sete, em
+   380x520: as sete cortavam.
+
+   A correcao e centrar com MARGEM AUTOMATICA em vez de justify-content:
+   margem automatica vira zero quando nao ha espaco livre, entao o conteudo
+   encosta no topo e a rolagem alcanca tudo. "justify-content: safe center"
+   resolveria o mesmo, mas e ignorado inteiro onde nao ha suporte — e ai o
+   defeito volta em silencio. Margem automatica funciona em qualquer
+   navegador que entenda flexbox.
+
+   Vale para as duas telas que usam .page-center: o instalador e o login. */
+.page.page-center { justify-content: flex-start; }
+.page.page-center > * { margin-top: auto; margin-bottom: auto; }
+
+/* ===================================================================
+   CONVENÇÃO DE GRID — Onda 1 (vale pra toda tela migrada daqui pra frente)
+   ===================================================================
+   Causa raiz (5ª rodada da mesma família de bug): markup herdado do AdminLTE/
+   BS3 usava col-md-* pra TODO campo, inclusive os de largura natural (hora,
+   data, timezone). No BS5, col-md-* significa "cresça até essa fração da
+   grade" — um col-md-4 num container de 1100px vira 366px, e o .form-control
+   (width:100% por padrão do Bootstrap) estica até lá. Resultado: campo de
+   hora com 366px de largura, lendo como "errado" mesmo com fonte correta.
+
+   Regra:
+   - col-auto SEMPRE que o campo tem largura natural própria (hora, data,
+     select curto, número de telefone, timezone) — a coluna acomoda o campo,
+     nunca o contrário.
+   - col-md-* (ou só "col", que ocupa o restante) SÓ pro que deve mesmo
+     crescer: textarea, campo de texto livre/descrição longa.
+   - Tabelas SEMPRE com largura de coluna declarada no <thead> (atributo
+     width="1%" nas colunas de conteúdo curto — checkbox, hora, badge, ação —
+     deixa a coluna de texto principal absorver o resto; sem isso o navegador
+     distribui as colunas por igual, e "Domingo" fica do tamanho de "--:--").
+   - Nunca variantes -sm (btn-sm/form-control-sm/form-select-sm) — o Tabler
+     redefine o tamanho de fonte nelas, e nenhuma correção de token/root passa
+     por cima disso. Se o campo precisa ser menor, use uma classe de largura
+     (abaixo), não uma variante de densidade do Bootstrap.
+
+   ===================================================================
+   CONVENÇÃO — TODA TELA NASCE RESPONSIVA (não é correção posterior)
+   ===================================================================
+   Causa raiz do bug do mobile (channel_config, 400px): "col-auto" sozinho
+   NUNCA estampa, e "col-md-4"/"col-md-auto" sozinho (sem o "col-12" de base)
+   não empilha abaixo do breakpoint — o Bootstrap só aplica a largura dessas
+   classes A PARTIR do prefixo (md/lg/etc.), sem definir nada abaixo disso,
+   então as colunas ficam lado a lado, encolhidas ao conteúdo, e estouram a
+   viewport. Some a isso as classes de largura fixa abaixo (width:8/11/18rem)
+   e o campo simplesmente não cabe: "Comportamento fora do horário" ficou
+   espremido numa coluna de ~40px, quebrando letra por letra.
+
+   Regra (obrigatória em toda tela migrada, não é ajuste fino):
+   - SEMPRE "col-12 col-md-*" (ou "col-12 col-md-auto"/"col-12 col-md") pra
+     TODA coluna de formulário — nunca "col-md-*"/"col-auto"/"col" soltos.
+     No mobile (<768px) tudo empilha em 100% de largura; a partir de md
+     (>=768px) a grade normal assume.
+   - As classes de largura abaixo (.vc-w-hora etc.) são "width:100%" por
+     padrão (preenchem a coluna empilhada no mobile) e só viram "max-width"
+     fixo dentro de "@media (min-width:768px)" — o mesmo breakpoint do
+     "col-md", de propósito: o campo só ganha teto de largura exatamente
+     quando a coluna deixa de ser 100% (senão sobra um intervalo 768-991px
+     com coluna estreita e campo sem teto, ou o oposto).
+   - Tabelas sempre dentro de ".table-responsive" (rolagem horizontal
+     isolada) — os utilitários "w-1" continuam valendo em qualquer largura,
+     já que ".table-responsive" contém o overflow sem estourar a página.
+   - Validação obrigatória em 4 viewports — 400/768/1152/1536px — claro e
+     escuro, com "document.documentElement.scrollWidth === clientWidth"
+     conferido em todos (zero overflow horizontal na página). Nenhuma tela
+     é considerada pronta sem essa bateria completa.
+
+   Vocabulário de largura (aplicado no INPUT/SELECT, nunca na coluna nem via
+   style inline — assim a próxima tela já nasce usando a classe certa): */
+.vc-w-hora, .vc-w-data, .vc-w-campo { width: 100%; }
+@media (min-width: 768px) {
+  /* "width" aqui, não só "max-width": medido que dentro de uma coluna
+     col-auto (shrink-to-fit), max-width sozinho não é o alvo — o navegador
+     usa o tamanho intrínseco do input (~215px) e só respeita o teto se o
+     conteúdo o ultrapassar, então o campo ficava menor que o combinado nas
+     rodadas anteriores (288/176/128px). width fixo replica exatamente o
+     tamanho já aprovado no desktop; só o mobile (regra acima) usa 100%. */
+  .vc-w-hora { width: 8rem; max-width: 8rem; }
+  .vc-w-data { width: 11rem; max-width: 11rem; }
+  .vc-w-campo { width: 18rem; max-width: 18rem; }
+}
+
+/* ---- Sidebar: aside.navbar.navbar-vertical REAL do Tabler + identidade VCOSTA
+   O Tabler fornece width/position:fixed/scroll (.navbar-vertical.navbar-expand-lg)
+   e o .page-wrapper{margin-left:15rem} que compensa. Aqui só entra cor (navy/
+   teal) e o recurso NOSSO de recolher pra só-ícone (não nativo do Tabler). */
+.navbar-vertical.vc-side {
+  background: var(--vc-navy);
+  border-right: none;
+}
+.navbar-vertical.vc-side .navbar-brand { color: #fff; padding: 0.875rem 0; }
+
+/* ---- Cabeçalho da sidebar: as DUAS marcas (v1.24)
+   Era um badge "VC" + o texto com o nome do projeto de referência. Agora é a plataforma (VCOSTA:
+   brasão + nome, lado a lado) em cima e o cliente embaixo — a mesma
+   hierarquia da tela de login. O .vc-side-topo é a linha que também abriga o
+   hambúrguer do mobile, por isso a marca precisa poder encolher (min-width:0
+   num filho flex, senão ele nunca desce do tamanho intrínseco da imagem). */
+/* O recuo de 1rem é o MESMO gutter do resto do menu — medido, não estimado:
+   .nav-link e .vc-side-grupo-titulo têm padding-left:16px, enquanto o
+   .container-fluid da <aside> tem padding 0. Sem isto a marca nasce colada em
+   x=0 e a do cliente parece cortada pela borda, desalinhada dos ícones. */
+.vc-side-topo {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0 1rem;
+}
+/* Badge e cliente num EIXO HORIZONTAL comum — align-items:center resolve o
+   alinhamento entre dois elementos de alturas diferentes sem number magic. */
+.navbar-vertical.vc-side .vc-side-marca {
+  display: flex; flex-direction: row; align-items: center;
+  gap: 0.75rem; min-width: 0; max-width: 100%;
+}
+
+/* O BADGE: o mesmo verde e os mesmos cantos do antigo "VC" (var(--vc-teal),
+   border-radius 8px), agora como MOLDURA da marca da plataforma. O padding é
+   o que o mantém "bloco" e não "faixa": ele encosta no conteúdo, não estica
+   pela coluna. */
+.navbar-vertical.vc-side .vc-side-badge {
+  /* O verde é o MESMO do badge "VC" — var(--vc-teal), que dentro da <aside>
+     (sempre data-bs-theme="dark") resolve para #2DD4D4. Ele pede marca
+     ESCURA em cima, e é o que o sistema já faz: .nav-link.active usa este
+     fundo com color:#0A1929. A marca aqui é o arquivo PRETO, então o par
+     está certo por construção — 8.9:1 de contraste, medido. */
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--vc-teal); border-radius: 8px;
+  padding: 0.375rem; flex-shrink: 0;
+}
+/* UM arquivo: VCOSTA_preto.png já traz o brasão sobre o nome, na proporção
+   que o designer fixou. A altura é o que define o badge — como a marca é
+   vertical (1400x1550), o bloco sai praticamente quadrado, que é a forma do
+   badge antigo. */
+.navbar-vertical.vc-side .vc-side-vcosta { height: 32px; width: auto; flex-shrink: 0; }
+/* O cliente vive FORA do badge, e um pouco mais baixo que ele — a hierarquia
+   "plataforma contém, cliente acompanha" se sustenta na moldura, não no
+   tamanho, então a marca do cliente pode crescer até quase a altura do badge sem
+   disputar com ele. A 26px ela parecia miúda ao lado do bloco verde; 36px
+   equilibra as duas massas e ainda deixa o badge como o elemento mais alto.
+   O nome do cliente tem ~22px de letra aqui — o mesmo peso ótico da marca dentro do
+   badge, que é o que faz as duas conversarem. */
+.navbar-vertical.vc-side .vc-side-cliente { height: 36px; width: auto; min-width: 0; object-fit: contain; }
+
+/* ---- O badge do vcostaedu, e o espaco reservado do logo -------------------
+   O arquivo de marca ainda NAO existe (pendencia do Item 1c). Enquanto ele nao
+   entra em assets/marca/, o badge mostra as letras — mesmo verde, mesmos
+   cantos, mesma caixa. Nada muda de layout no dia em que o arquivo aparecer: o
+   <img> ocupa exatamente o lugar do texto, com a mesma altura de 32px.
+
+   As letras nao sao um logo. Sao o mesmo espaco reservado que a casa ja usou
+   antes de a identidade ficar pronta, e somem sozinhas. */
+.navbar-vertical.vc-side .vc-side-badge-texto {
+  display: block; height: 32px; line-height: 32px; padding: 0 0.25rem;
+  font-weight: 700; font-size: 1rem; letter-spacing: .02em;
+  color: #0A1929;
+}
+/* O nome da plataforma ao lado do badge. E TEXTO, e nao imagem, porque o nome
+   e o que a D17 protege junto com o logo — e texto acompanha o tema, o zoom e
+   o leitor de tela sem arquivo nenhum. */
+.navbar-vertical.vc-side .vc-side-nome {
+  font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em;
+  color: #fff; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- A linha da versao, no pe da coluna ----------------------------------
+   Discreta de proposito: e informacao que se procura, nao que se anuncia. Mas
+   e LINK, porque a tela de versao existe e ate aqui nao tinha porta nenhuma
+   para quatro dos cinco perfis. */
+.navbar-vertical.vc-side .vc-side-versao {
+  display: block; padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.8125rem; color: rgba(255,255,255,.45);
+  text-decoration: none;
+}
+.navbar-vertical.vc-side .vc-side-versao:hover { color: rgba(255,255,255,.8); }
+
+/* A alca carrega duas linhas (nome e perfil) — o .nav-link-title do Tabler e
+   uma linha so, entao aqui ele volta a ser bloco. */
+.navbar-vertical.vc-side .vc-side-alca .nav-link-title { min-width: 0; text-align: left; }
+.navbar-vertical.vc-side .vc-side-alca .nav-link-title > span {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* RECOLHIDO / estreito: só o badge sobrevive.
+   O badge é autocontido — sozinho continua sendo uma identidade legível,
+   enquanto a marca do cliente sem a da plataforma ao lado perderia a leitura
+   "de quem é esta plataforma". Por isso é a marca do cliente que sai. */
+@media (max-width: 575.98px) {
+  .navbar-vertical.vc-side .vc-side-cliente { display: none; }
+}
+
+.navbar-vertical.vc-side .nav-link { color: rgba(255,255,255,.68); font-size: 0.9375rem; }
+.navbar-vertical.vc-side .nav-link:hover { color: #fff; background: rgba(255,255,255,.08); border-radius: 8px; }
+.navbar-vertical.vc-side .nav-link.active { background: var(--vc-teal); color: #0A1929; font-weight: 600; border-radius: 8px; }
+/* flex-shrink:0 — o Tabler não define isso em .nav-link-icon (fica no valor
+   inicial, 1). Dentro da coluna estreita (48px de conteúdo útil no recolhido)
+   o item flex encolhia: ícone de 20px virava 15px, e o avatar (mesma classe,
+   com width/height:28px fixados) achatava só na horizontal — 28×28 virava
+   16×28, oval em vez de círculo. Medido via getComputedStyle antes de mexer:
+   width diferente de height nos dois estados confirmava o encolhimento. */
+.navbar-vertical.vc-side .nav-link-icon { color: inherit; flex-shrink: 0; }
+
+/* ---- Os GRUPOS do menu (v1.24): rótulo que virou botão de abrir/fechar.
+   Era um <li> de texto (.vc-side-grupo-titulo) e uma lista corrida de 25 itens
+   embaixo. Agora cada grupo é um <ul> próprio que colapsa — a coluna passou de
+   30 linhas sempre visíveis para 7 cabeçalhos e o grupo do contexto atual. */
+.vc-side-grupo { list-style: none; }
+.vc-side-grupo-toggle {
+  width: 100%; display: flex; align-items: center; gap: 0.5rem;
+  background: none; border: none; cursor: pointer;
+  padding: 0.75rem 1rem 0.5rem;
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: .06em;
+  color: rgba(255,255,255,.66); /* Onda 3, Etapa 10: .38 dava 3,5:1 sobre o navy; .66 passa de 4,5:1 */
+  transition: color .15s ease;
+}
+.vc-side-grupo-toggle:hover { color: rgba(255,255,255,.85); }
+/* O grupo do contexto atual fica mais claro que os outros: com todos fechados,
+   é o único sinal de "onde estou" quando o item ativo está fora de vista. */
+.vc-side-grupo-toggle.tem-ativo { color: rgba(255,255,255,.72); }
+.vc-side-grupo-icone { flex-shrink: 0; width: 1rem; text-align: center; }
+.vc-side-grupo-nome {
+  flex: 1; text-align: left;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vc-side-grupo-seta { font-size: 0.6875rem; opacity: .45; transition: transform .22s ease; }
+.vc-side-grupo-toggle[aria-expanded="true"] .vc-side-grupo-seta { transform: rotate(180deg); opacity: .8; }
+
+/* Fechado por padrão. O `max-height` real é escrito pelo JS a partir do
+   scrollHeight; o `none` daqui é o fallback de quem abre a página sem JS —
+   melhor um menu inteiro aberto que um menu inacessível. */
+.vc-side-grupo-itens {
+  max-height: 0; overflow: hidden;
+  transition: max-height .26s ease;
+}
+.vc-side-grupo-itens.aberta { max-height: none; }
+@media (prefers-reduced-motion: reduce) {
+  .vc-side-grupo-itens, .vc-side-grupo-seta { transition: none; }
+}
+
+/* O botão de recolher (mini sidebar, ícone «) SAIU na v1.24 — não funcionava,
+   e as regras dele (.vc-side-toggle e todo o estado .vc-side-collapsed) foram
+   removidas junto, aqui e no bloco de 992px. O único recolher que resta é o
+   hambúrguer nativo do Tabler, que só existe no mobile. */
+
+.vc-side-rodape { margin-top: auto; padding: 0.625rem 0; border-top: 1px solid rgba(255,255,255,.08); }
+.vc-tema-toggle { width: 100%; text-align: left; background: none; border: none; cursor: pointer; }
+
+/* A ALÇA do usuário e as ações que ela abre (v1.24).
+   A lista vem ANTES da alça no markup e cresce no fluxo, então o menu abre
+   para cima sem posicionamento absoluto — dentro de uma coluna com overflow
+   escondido, um popup flutuante seria recortado. */
+.vc-side-alca {
+  width: 100%; display: flex; align-items: center;
+  background: none; border: none; cursor: pointer; text-align: left;
+  /* O padding da direita espelha o gutter de 16px do resto do menu. Sem ele o
+     `margin-left:auto` da seta a prende na borda da coluna, encostada no
+     limite da <aside> — e é isso que lia como "jogada no canto". */
+  padding-right: 1rem;
+}
+.vc-side-alca-seta {
+  margin-left: auto; font-size: 0.75rem; opacity: .5;
+  transition: transform .22s ease, opacity .22s ease;
+}
+.vc-side-alca:hover .vc-side-alca-seta { opacity: .85; }
+.vc-side-alca[aria-expanded="true"] .vc-side-alca-seta { transform: rotate(180deg); opacity: .9; }
+
+/* A ABERTURA É ANIMADA, e não um `hidden` que liga e desliga.
+   O atributo `hidden` não tem estado intermediário: a lista surgia inteira num
+   quadro e o rodapé pulava de altura junto — o que se lê como falha, não como
+   transição. Aqui a lista existe sempre e o que muda é a altura máxima, com
+   opacidade e um deslocamento curto para dar direção ao movimento (ela vem de
+   baixo, de dentro da alça).
+
+   `max-height` em vez de `height` porque a altura real depende do conteúdo, e
+   height:auto não anima. O teto é folgado o bastante para caber os três itens
+   e apertado o bastante para o fim da transição não ficar "parado". */
+.vc-side-acoes {
+  max-height: 0; opacity: 0; overflow: hidden;
+  transform: translateY(6px);
+  padding-bottom: 0; margin-bottom: 0;
+  /* A borda entra pela ESPESSURA, não pela cor. Uma borda de 1px transparente
+     continua ocupando 1px: fechada, a lista media 1px de altura e o rodapé
+     carregava um fio fantasma. Medido — era o que sobrava depois do
+     max-height:0. */
+  border-bottom: 0 solid rgba(255,255,255,.08);
+  transition: max-height .24s ease, opacity .18s ease,
+              transform .24s ease, border-bottom-width .24s ease,
+              padding-bottom .24s ease, margin-bottom .24s ease;
+}
+/* O TETO acompanha o número de itens da alça.
+   Eram 170px para três ações + a linha da versão. A tela de Atualizações e
+   avisos (D-76) entrou como quarto item e o conteúdo passou a medir 204px — a
+   `alca.js` acusou o recorte na mesma execução em que ele apareceu. 260px dá a
+   folga do próximo item sem que a lista aberta engula o rodapé.
+   `max-height` continua sendo um TETO, e não a altura: quem tem menos itens
+   segue medindo o que os itens medem, e a transição continua animando. */
+.vc-side-acoes.aberta {
+  max-height: 260px; opacity: 1; transform: none;
+  padding-bottom: 0.25rem; margin-bottom: 0.25rem;
+  border-bottom-width: 1px;
+}
+/* Quem pediu menos movimento no sistema recebe a troca sem animação — o
+   estado final é o mesmo. */
+@media (prefers-reduced-motion: reduce) {
+  .vc-side-acoes, .vc-side-alca-seta { transition: none; }
+}
+.vc-side-user-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--vc-teal) !important;
+  color: #0A1929; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.8125rem;
+}
+
+/* ===================================================================
+   Mini sidebar / coluna fixa em desktop — TUDO isolado a partir de 992px
+   ===================================================================
+   992px = o MESMO breakpoint que ".navbar-expand-lg" já usa (o Tabler só
+   fixa a <aside>/posiciona/roda a coluna a partir daí — abaixo disso ela é
+   um <nav> normal em fluxo, e o .navbar-collapse é o collapse padrão do
+   Bootstrap, escondido até o clique no hambúrguer). Mini sidebar (recolher
+   pra só-ícone, 64/240px, hover-expand) é recurso NOSSO, e só faz sentido
+   em desktop — nada disso pode vazar pro mobile, senão o menu nativo do
+   Tabler (off-canvas via .collapse) quebra: foi exatamente o bug relatado
+   (menu sumindo, coluna de 64px sobrando numa tela de 400px). Abaixo de
+   992px, zero regra deste bloco se aplica — o comportamento é 100% nativo
+   do Tabler (hambúrguer -> .navbar-collapse.show, sem fixed, sem margin). */
+@media (min-width: 992px) {
+  /* Estrutura interna em coluna: cabeçalho (fixo) + nav (rola) + rodapé
+     (fixo). O Tabler NÃO faz isso sozinho — a regra dele pra .navbar-
+     vertical.navbar-expand-lg é "overflow-y:scroll" na própria <aside>
+     (rolagem única, sem rodapé fixo à parte). Aqui construímos a coluna. */
+  .navbar-vertical.vc-side { overflow-y: hidden; }
+  .navbar-vertical.vc-side .vc-side-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  /* O rodapé mora DENTRO do .navbar-collapse no markup (rail.php) — no
+     mobile isso é o que faz ele sumir/aparecer junto com o menu (o
+     Bootstrap já cuida disso via .collapse, de graça). Aqui em desktop,
+     ".navbar-collapse" vira a coluna flex que separa nav (rola) de rodapé
+     (fixo) — sem isso os dois ficariam lado a lado (flex-direction:row é
+     o padrão do Bootstrap pra esse elemento; só o .navbar-nav interno é
+     que o Tabler já vira coluna). ".navbar-collapse{flex:1 1 auto}" já
+     vem do próprio Tabler (mesma media query) — só adicionamos a direção. */
+  .navbar-vertical.vc-side .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  /* .navbar-nav-scroll do Tabler é "max-height:75vh" (pensado pra um menu
+     curto dentro de uma página comum, não pra ocupar o resto da coluna) —
+     aqui vira a área flexível que rola sozinha, sem empurrar o rodapé. */
+  .navbar-vertical.vc-side .navbar-nav-scroll {
+    max-height: none;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .navbar-vertical.vc-side .vc-side-rodape { flex-shrink: 0; margin-top: 0; }
+
+  /* Alinhamento dos itens do menu — o Tabler já resolve isso sozinho quando
+     o markup segue a estrutura real dele: a regra que alinha à esquerda,
+     ".navbar-vertical.navbar-expand-lg .navbar-collapse .navbar-nav
+     .nav-link{justify-content:flex-start}" (0-5-0), só casa se existir um
+     ancestral ".navbar-collapse" — por isso o rail.php envolve a <ul>
+     nesse wrapper. Nenhum CSS nosso é necessário para isso.
+
+     O que resta aqui é o RODAPÉ (tema/sair): ele não herda aquela regra
+     porque não é filho do ".navbar-nav" daquele .navbar-collapse (é outro
+     <ul class="navbar-nav"> à parte, irmão do primeiro).
+
+     O estado RECOLHIDO saiu na v1.24 junto com o botão de recolher — com
+     ele foram embora as regras de 64px/hover-expand, a centralização dos
+     ícones e o margin-left:64px do .page-wrapper. O .page-wrapper volta a
+     depender só do seletor nativo do Tabler
+     (".navbar-expand-lg.navbar-vertical ~ .page-wrapper{margin-left:15rem}"),
+     que continua valendo por si nesta mesma media query. */
+  .navbar-vertical.vc-side .vc-side-rodape .nav-link { justify-content: flex-start; }
+}
+
+.page-wrapper { transition: margin-left .18s ease; }
+
+/* =============================================================================
+   A COLUNA RECOLHIDA — 64px de icones, expande no hover
+
+   MEDIDO ANTES DE ESCREVER, e a medida anterior estava incompleta: eu havia
+   registrado que as regras do `vc-side-mini` "nao existem na origem". Existem —
+   no CSS do projeto de referência, um SEGUNDO arquivo de estilo daquele projeto
+   que nunca foi copiado para ca. Sao 118 linhas, todas dentro de uma media
+   query, e nenhuma delas depende de coisa que este projeto nao tenha.
+
+   O desenho e o de la, escrito aqui sobre as classes que temos:
+
+     - TUDO vive dentro de "@media (min-width: 992px)". Abaixo disso nao existe
+       uma regra sequer, e o menu continua sendo o off-canvas nativo do Tabler.
+       Sem isso, o telefone ficaria com uma faixa de 64px numa tela de 400px;
+     - a pagina inteira ganha ".vc-side-mini" — uma classe so, num lugar so;
+     - expandir no hover NAO empurra o conteudo: a coluna sobe por cima
+       (z-index) e o margin-left do wrapper fica nos 64px. Empurrar faria a
+       pagina inteira dancar a cada passagem do mouse.
+
+   O SLIDE: "width" e "margin-left" com a mesma curva e a mesma duracao, para
+   coluna e conteudo se moverem juntos. Os rotulos entram por "opacity" —
+   "display" nao anima, e sem a opacidade o texto apareceria de supetao no meio
+   do movimento da largura.
+   ========================================================================== */
+@media (min-width: 992px) {
+  .navbar-vertical.vc-side { transition: width .2s ease; }
+
+  /* Recolhida: so a faixa dos icones. */
+  .vc-side-mini .navbar-vertical.vc-side { width: 64px; }
+  .vc-side-mini .navbar-vertical.vc-side ~ .page-wrapper { margin-left: 64px; }
+
+  /* Expandida no hover, POR CIMA do conteudo. */
+  .vc-side-mini .navbar-vertical.vc-side:hover {
+    width: 15rem;
+    z-index: 1040;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, .35);
+  }
+  /* O conteudo NAO se mexe quando a coluna expande — so quando o modo muda. */
+  .vc-side-mini .navbar-vertical.vc-side:hover ~ .page-wrapper { margin-left: 64px; }
+
+  /* Os rotulos: somem quando recolhida, voltam com fade ao expandir.
+     `.vc-side-nome` e nosso — e o "vcostaedu" ao lado do badge. Sem ele nesta
+     lista, o nome ficaria espremido na faixa de 64px e so o monograma deveria
+     aparecer. */
+  .vc-side-mini .navbar-vertical.vc-side .nav-link-title,
+  .vc-side-mini .navbar-vertical.vc-side .vc-side-grupo-nome,
+  .vc-side-mini .navbar-vertical.vc-side .vc-side-grupo-seta,
+  .vc-side-mini .navbar-vertical.vc-side .vc-side-alca-seta,
+  .vc-side-mini .navbar-vertical.vc-side .vc-side-nome {
+    opacity: 0;
+    transition: opacity .12s ease;
+  }
+  .vc-side-mini .navbar-vertical.vc-side:hover .nav-link-title,
+  .vc-side-mini .navbar-vertical.vc-side:hover .vc-side-grupo-nome,
+  .vc-side-mini .navbar-vertical.vc-side:hover .vc-side-grupo-seta,
+  .vc-side-mini .navbar-vertical.vc-side:hover .vc-side-alca-seta,
+  .vc-side-mini .navbar-vertical.vc-side:hover .vc-side-nome {
+    opacity: 1;
+    /* O texto so aparece depois que a largura ja abriu — senao ele nasce
+       espremido e "escorrega" para o lugar. */
+    transition: opacity .16s ease .1s;
+  }
+  /* Recolhida, nada de texto ocupa espaco nem captura clique. */
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .nav-link-title,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-grupo-nome,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-grupo-seta,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-alca-seta,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-nome {
+    display: none;
+  }
+
+  /* Icones centrados na faixa estreita. */
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .nav-link,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-grupo-toggle,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-alca,
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-marca {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-topo { padding: 0 .5rem; }
+
+  /* GRUPO RECOLHIDO NAO ABRE LISTA dentro de 64px: os itens dele so existem com
+     a coluna expandida. Sem isto, um grupo aberto empurraria icones sem rotulo
+     e ninguem saberia de que grupo sao. O estado do grupo nao se perde — ele
+     volta como estava assim que a coluna abre. */
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-grupo-itens { display: none; }
+
+  /* A ALCA ABERTA tambem nao cabe em 64px. */
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-acoes { display: none; }
+
+  /* O BOTAO «: no canto do cabecalho, discreto, e gira ao recolher. */
+  .vc-side-recolher {
+    position: absolute;
+    top: .75rem; right: .5rem; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    width: 1.75rem; height: 1.75rem; padding: 0;
+    border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, .08);
+    color: rgba(255, 255, 255, .65);
+    transition: background .15s ease, color .15s ease, transform .2s ease;
+  }
+  .vc-side-recolher:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+  .vc-side-mini .vc-side-recolher { transform: rotate(180deg); }
+
+  /* Recolhida e sem o mouse em cima, o botao some: ele ocuparia metade da faixa
+     de 64px e disputaria espaco com o badge da marca. */
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-recolher {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Quem pediu menos movimento recebe a troca sem deslizar. */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-vertical.vc-side,
+  .page-wrapper,
+  .vc-side-recolher { transition: none; }
+}
+
+/* Abaixo de 992px o botao nao existe — o menu e o off-canvas nativo do Tabler,
+   e uma faixa de 64px numa tela de telefone seria a coluna comendo a tela. */
+@media (max-width: 991.98px) {
+  .vc-side-recolher { display: none !important; }
+}
+
+
+/* ===================================================================
+   Listagem paginada reutilizável (templates hoje, campanhas depois)
+   =================================================================== */
+
+/* Toggle grade/lista — puramente client-side (vc-listing-view.js). Padrão
+   ANTES do JS rodar é grade visível / lista escondida (fallback seguro caso
+   o JS falhe ou ainda não tenha executado — nunca os dois juntos, nunca os
+   dois escondidos). O JS só adiciona/troca a classe no container. */
+.vc-listing-list-block { display: none; }
+.vc-view-list .vc-listing-list-block { display: block; }
+.vc-view-list .vc-listing-grid-block { display: none; }
+
+/* ---- Card de template (grade) -----------------------------------------
+   Hierarquia: prévia domina (bolha), nome é etiqueta, metadados são rodapé
+   discreto, ação (só "Ver preview" existe hoje) aparece no hover — exceto em
+   touch/mobile (sem hover), onde fica sempre visível mas discreta. */
+.vc-tmpl-card { height: 100%; }
+.vc-tmpl-card .card-body { display: flex; flex-direction: column; gap: .625rem; }
+
+.vc-tmpl-card-topo { display: flex; align-items: center; gap: .5rem; }
+.vc-tmpl-status { flex-shrink: 0; font-size: .875rem; line-height: 1; }
+.vc-tmpl-card-nome {
+  flex: 1 1 auto; min-width: 0; font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.vc-tmpl-card-acao {
+  flex-shrink: 0; background: none; border: none; color: var(--vc-muted); cursor: pointer;
+  padding: .25rem .375rem; border-radius: 6px; line-height: 1;
+}
+.vc-tmpl-card-acao:hover, .vc-tmpl-card-acao:focus-visible { color: var(--vc-ink); background: var(--vc-bg); }
+@media (hover: hover) and (pointer: fine) {
+  /* Grade em repouso fica limpa — a ação só aparece ao passar o mouse no
+     card. Em touch (sem hover) a regra abaixo não se aplica: o ícone segue
+     sempre visível (só um pouco discreto), porque não há como "passar o
+     mouse" pra revelar. */
+  .vc-tmpl-card-acao { opacity: 0; transition: opacity .12s ease; }
+  .vc-tmpl-card:hover .vc-tmpl-card-acao,
+  .vc-tmpl-card-acao:focus-visible { opacity: 1; }
+}
+
+/* Bolha da prévia — lê como "mensagem", sem imitar o WhatsApp literalmente
+   (sem papel de parede, sem cauda, sem timestamp falso — isso continua só
+   no modal "Ver preview" completo, via .vc-wa-bubble existente). */
+.vc-tmpl-bubble {
+  background: var(--vc-bg); border: 1px solid var(--vc-border); border-radius: 10px;
+  padding: .75rem .875rem; font-size: .875rem; line-height: 1.45; color: var(--vc-ink);
+  min-height: 5.5rem;
+}
+.vc-tmpl-bubble-header-text { font-weight: 600; margin-bottom: .25rem; }
+.vc-tmpl-bubble-header-img {
+  width: 100%; height: 70px; background: var(--vc-border); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; color: var(--vc-muted);
+  margin-bottom: .5rem;
+}
+.vc-tmpl-bubble-body {
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+  overflow: hidden; white-space: pre-wrap; word-break: break-word;
+}
+
+.vc-tmpl-meta { display: flex; align-items: center; gap: .5rem; font-size: .8125rem; color: var(--vc-muted); }
+.vc-tmpl-meta-texto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------------------------------------------------------------------
+   Preview de template estilo WhatsApp (modal "Ver preview") — DUPLICADO
+   de propósito de vcostable-chat.css, não movido pra lá: o picker do chat
+   (fora da janela de 24h) ainda é AdminLTE (Onda 2) e carrega só chat.css;
+   esta tela já é Tabler e carrega só este arquivo. Os dois arquivos vivem
+   em paralelo até o chat migrar — nesse ponto, remover a cópia de lá.
+   Já é aqui, e só aqui, que a ousadia da tela se gasta (GUIA_FRONTEND_
+   DESIGN.md): o card fica quieto, a bolha do modal é o elemento memorável.
+   --------------------------------------------------------------------- */
+.vc-wa-preview {
+  background-color: #e5ddd5;
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.025) 0 2px, transparent 2px 40px);
+  border-radius: 8px;
+  padding: 18px 14px;
+  min-height: 160px;
+  display: flex;
+  align-items: flex-start;
+}
+.vc-wa-bubble {
+  background: #fff;
+  border-radius: 7.5px;
+  padding: 6px 7px 8px;
+  max-width: 100%;
+  width: 100%;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,.13);
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #111b21;
+}
+.vc-wa-bubble-header-img {
+  width: 100%;
+  height: 120px;
+  background: #d1cdc5;
+  border-radius: 6px 6px 0 0;
+  margin: -6px -7px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b96a8;
+  font-size: 12px;
+}
+.vc-wa-bubble-header-text { font-weight: 600; margin-bottom: 4px; }
+.vc-wa-bubble-body { white-space: pre-wrap; word-break: break-word; }
+.vc-wa-bubble-body strong { font-weight: 700; }
+.vc-wa-bubble-body em { font-style: italic; }
+.vc-wa-bubble-body s { text-decoration: line-through; }
+.vc-wa-bubble-body code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  background: rgba(0,0,0,.045); border-radius: 3px; padding: 0 3px; font-size: .92em;
+}
+.vc-wa-var {
+  background: rgba(0,150,136,.12); color: #007a6c; border-radius: 3px;
+  padding: 0 3px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: .9em; font-weight: 600;
+}
+.vc-wa-bubble-footer { color: #667781; font-size: 12.5px; margin-top: 6px; }
+.vc-wa-bubble-time {
+  text-align: right; color: #8696a0; font-size: 11px; margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.vc-wa-buttons { width: 100%; margin-top: 1px; }
+.vc-wa-button {
+  background: #fff;
+  border-top: 1px solid #eef0f1;
+  text-align: center;
+  padding: 8px 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #00a5f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.vc-wa-button:last-child { border-radius: 0 0 7.5px 7.5px; }
+.vc-wa-button i { font-size: 12px; }
+.vc-wa-wrap { display: flex; flex-direction: column; width: 100%; gap: 1px; border-radius: 7.5px; overflow: hidden; box-shadow: 0 1px 0.5px rgba(0,0,0,.13); }
+.vc-wa-wrap .vc-wa-bubble { box-shadow: none; }
+
+/* ---------------------------------------------------------------------
+   Campanhas — modo card (mobile). O modo lista (desktop) usa só as
+   classes utilitárias do Tabler (text-end, text-secondary, badge, w-1),
+   sem CSS próprio — o card é o único modo que precisa de layout custom.
+   --------------------------------------------------------------------- */
+.vc-camp-nome {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: 500;
+}
+.vc-camp-numeros {
+  display: flex; gap: 1rem; font-size: 0.8125rem; color: var(--vc-muted);
+}
+.vc-camp-numeros i { margin-right: .25rem; }
+
+/* Modal "Nova campanha" — os 4 botões de opção (ícone + rótulo de 2-3
+   palavras) reaproveitam .btn, mas o .btn nativo do Tabler é
+   display:inline-flex + white-space:nowrap (pensado pra rótulo curto de
+   1 linha, ex. "Salvar") — com texto mais longo ("Banco de dados
+   Permanência") isso não quebra linha e vaza pros dois lados do botão
+   (medido via getBoundingClientRect: texto ~43px além de cada borda).
+   Aqui a intenção é empilhar ícone/rótulo e deixar o texto quebrar. */
+.vc-modal-opcao {
+  flex-direction: column;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+/* Mesmo problema do .vc-modal-opcao (icone + rótulo de 2-3 palavras dentro
+   de um .btn nativo do Tabler, que é nowrap por padrão) — aqui no switcher
+   de tipo de audiência (campanha/audiencia). Duplicado em vez de reusar
+   .vc-modal-opcao pra não acoplar duas telas por um nome de classe que
+   descreve "modal" numa tela sem modal nenhum. */
+.vc-audiencia-tipo {
+  flex-direction: column;
+  white-space: normal;
+  line-height: 1.3;
+}
+.vc-audiencia-tipo i { font-size: 1.5rem; margin-bottom: .25rem; }
+
+/* ======================================================================================================================
+   O CONTRASTE NOS DOIS TEMAS (Onda 3, Etapa 10): texto com no mínimo 4,5:1 (a varredura tests/tabler/onda3/
+   varrer_contraste.js mede tela a tela). Os cinzas e as cores de estado do Tabler ficavam pouco abaixo no claro
+   (o cinza #6b7280 dava 4,47:1 sobre o fundo #f4f6f9; o amarelo, o azul-claro e o verde, menos) e muito abaixo no
+   escuro (as cores pensadas para fundo claro). Os valores abaixo foram medidos (a razão ao lado).
+   ====================================================================================================================== */
+:root, [data-bs-theme="light"] {
+  --vc-muted: #5C6370;                                                   /* 5,58:1 sobre #f4f6f9 */
+  --tblr-secondary: #5C6370; --tblr-secondary-rgb: 92, 99, 112; --tblr-secondary-color: #5C6370; --tblr-muted: #5C6370;
+  --tblr-warning-fg: #1D273B;                                            /* o texto do botão amarelo: 5,11:1 */
+  --tblr-info: #1C6FB5; --tblr-info-rgb: 28, 111, 181;                   /* branco sobre ele e ele sobre branco: 5,26:1 */
+  --tblr-success: #17803D; --tblr-success-rgb: 23, 128, 61;              /* 5,01:1 sobre branco */
+  --tblr-danger: #C42B2B; --tblr-danger-rgb: 196, 43, 43;                /* branco sobre ele: 5,63:1 */
+}
+.btn-outline-warning { --tblr-btn-color: #8A5A00; }                    /* 5,93:1 sobre branco */
+.text-warning { color: #8A5A00 !important; }
+[data-bs-theme="dark"] {
+  --vc-muted: #A3ADBB;                                                   /* 6,47:1 sobre o cartão #1f2937 */
+  --tblr-secondary: #A3ADBB; --tblr-secondary-rgb: 163, 173, 187; --tblr-secondary-color: #A3ADBB; --tblr-muted: #A3ADBB;
+  --tblr-secondary-fg: #111827;                                          /* o botão cinza: texto escuro sobre o cinza claro */
+  --tblr-primary-fg: #0A1929;                                            /* o botão primário (o teal): 9,7:1 */
+  --tblr-success: #4ADE80; --tblr-success-rgb: 74, 222, 128; --tblr-success-fg: #0A1929;
+  --tblr-warning: #F2C879; --tblr-warning-rgb: 242, 200, 121; --tblr-warning-fg: #1D273B;
+  --tblr-danger: #F5A3A3; --tblr-danger-rgb: 245, 163, 163; --tblr-danger-fg: #1D273B;
+  --tblr-info: #8CC8F0; --tblr-info-rgb: 140, 200, 240; --tblr-info-fg: #0A1929;
+}
+[data-bs-theme="dark"] .btn-outline-warning { --tblr-btn-color: #F2C879; }
+[data-bs-theme="dark"] .text-warning { color: #F2C879 !important; }
+[data-bs-theme="dark"] .btn-outline-dark { --tblr-btn-color: #E7EAF0; --tblr-btn-border-color: #5B6578; --tblr-btn-hover-color: #0A1929; --tblr-btn-hover-bg: #E7EAF0; }
+[data-bs-theme="dark"] .btn-dark { --tblr-btn-bg: #E7EAF0; --tblr-btn-color: #0A1929; }

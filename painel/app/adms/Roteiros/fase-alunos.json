@@ -1,0 +1,152 @@
+{
+ "titulo": "Os alunos",
+ "guia": "cadastrar-aluno-e-enviar-link",
+ "fim": "primeiros-passos/index",
+ "inicio": "academicos/cadastrar",
+ "rotas": [
+  "academicos/cadastrar",
+  "academicos/visualizar",
+  "academicos/vincular"
+ ],
+ "passos": [
+  {
+   "p": "^academicos/cadastrar",
+   "a": "#rm",
+   "t": "O aluno",
+   "x": "O RA (o número de matrícula), o nome e o gênero são obrigatórios; os demais dados podem vir depois. Muitos alunos de uma vez? Use a importação por planilha ou a integração por API.",
+   "aviso": "Preencha o **RA**, o **nome** e o **gênero**.",
+   "faz": [
+    [
+     "preencher",
+     "#rm",
+     "100001"
+    ],
+    [
+     "preencher",
+     "#nome",
+     "Aluna Exemplo da Silva"
+    ],
+    [
+     "escolher",
+     "#genero_id",
+     "1"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#rm",
+     null,
+     "Escreva o **RA**."
+    ],
+    [
+     "valor",
+     "#nome",
+     null,
+     "Escreva o **nome**."
+    ],
+    [
+     "valor",
+     "#genero_id",
+     null,
+     "Escolha o **gênero**."
+    ]
+   ]
+  },
+  {
+   "p": "^academicos/cadastrar",
+   "a": "input[name=\"CadUsuarioAcad\"]",
+   "t": "Salvar o aluno",
+   "x": "O aluno é cadastrado.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava o aluno.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadUsuarioAcad\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^academicos/visualizar",
+   "a": "a#tabeMatricula-tab",
+   "t": "O vínculo com o curso",
+   "x": "Na aba da matrícula, o aluno é vinculado ao curso e à grade.",
+   "aviso": "Abra a aba da **matrícula**.",
+   "faz": [
+    [
+     "clicar",
+     "a#tabeMatricula-tab"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     "#vModulo",
+     null,
+     "Abra a aba da **matrícula**."
+    ]
+   ]
+  },
+  {
+   "p": "^academicos/visualizar",
+   "a": "#vModulo",
+   "t": "O curso e a grade",
+   "x": "Escolha o curso e a grade, o ano, a forma de ingresso e a data.",
+   "aviso": "Escolha o **curso**, o **ano** e a **forma de ingresso**.",
+   "faz": [
+    [
+     "escolher",
+     "#vModulo",
+     "{primeira}"
+    ],
+    [
+     "escolher",
+     "#vAno",
+     "{primeira}"
+    ],
+    [
+     "escolher",
+     "#vForma",
+     "{primeira}"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#vModulo",
+     null,
+     "Escolha o **curso**."
+    ]
+   ]
+  },
+  {
+   "p": "^academicos/visualizar",
+   "a": "form[action*=\"academicos/vincular\"] button[type=\"submit\"]",
+   "t": "Vincular",
+   "x": "O aluno passa a ser do curso.",
+   "aviso": "Clique em **Vincular**.",
+   "atencao": "Este passo grava o vínculo.",
+   "faz": [
+    [
+     "clicar",
+     "form[action*=\"academicos/vincular\"] button[type=\"submit\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Clique em **Vincular**."
+    ]
+   ]
+  },
+  {
+   "p": "^academicos/visualizar",
+   "a": ".alert-success",
+   "t": "Pronto",
+   "x": "O aluno está vinculado ao curso. Nos Primeiros passos, a fase aparece concluída."
+  }
+ ]
+}

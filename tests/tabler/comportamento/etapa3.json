@@ -1,0 +1,6 @@
+[
+  { "nome": "usuarios-lista", "tipo": "lista", "rota": "painel/usuarios/listar", "perfil": "administrador", "busca": "Sônia", "esperaTexto": "Sônia", "coluna": 1 },
+  { "nome": "usuarios-modal-apagar", "tipo": "modal", "rota": "painel/usuarios/listar", "perfil": "administrador", "botao": "button[data-bs-target=\"#apagarItem\"]", "modal": "#apagarItem", "contem": "Tem certeza de que deseja excluir o usuário" },
+  { "nome": "usuarios-editar-grava", "tipo": "form", "rota": "painel/usuarios/editar/3", "perfil": "administrador", "preencher": { "input[name=\"celular\"]": "61999990000" }, "enviar": "[name=\"EditUsuario\"]", "mensagem": "Usuário editado com sucesso" },
+  { "nome": "perfil-editar-grava", "tipo": "form", "rota": "painel/perfil/editar", "perfil": "administrador", "preencher": { "input[name=\"celular\"]": "61988880000" }, "enviar": "[name=\"EditPerfil\"]", "mensagem": "Perfil editado com sucesso" }
+]

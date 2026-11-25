@@ -1,0 +1,28 @@
+{
+    "source sans pro": {
+        "italic": "source_sans_pro_italic_cac41251f15b9a4aee7427d48e782d57",
+        "300": "source_sans_pro_300_e6f8860060566bc31122c3e5b926afcc",
+        "normal": "source_sans_pro_normal_527fd880e5f0616c5c6e47172134b1e2",
+        "bold": "source_sans_pro_bold_766695022bdb54b97f188041e36a8119"
+    },
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_8bafc584735e85d1d0b000932c3d0698"
+    },
+    "font awesome 6 free": {
+        "normal": "font_awesome_6_free_normal_a1fe45e005842ae54a087fdb9d87fdc0",
+        "900": "font_awesome_6_free_900_f010f4efdee7896dc31bb0740a755288"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_8bafc584735e85d1d0b000932c3d0698"
+    },
+    "font awesome 5 free": {
+        "900": "font_awesome_5_free_900_f010f4efdee7896dc31bb0740a755288",
+        "normal": "font_awesome_5_free_normal_a1fe45e005842ae54a087fdb9d87fdc0"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_ac61cf9388733d1de25ee5a129f70411"
+    },
+    "ionicons": {
+        "normal": "ionicons_normal_1b2b773bb3197b577cecee8d68579952"
+    }
+}

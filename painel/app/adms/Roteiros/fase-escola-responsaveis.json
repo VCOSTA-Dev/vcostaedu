@@ -1,0 +1,39 @@
+{
+ "titulo": "Os responsáveis e o convite",
+ "guia": "convidar-um-responsavel",
+ "fim": "primeiros-passos/index",
+ "inicio": "responsaveis/listar",
+ "rotas": [
+  "responsaveis/listar",
+  "responsaveis/ver"
+ ],
+ "passos": [
+  {
+   "p": "^responsaveis/listar",
+   "a": "#tabelaResponsaveis",
+   "t": "O responsável",
+   "x": "Cada pessoa aparece uma vez, com os alunos de que é responsável. Quem ainda não está aqui entra por Novo responsável; o papel (o financeiro, o titular) se designa na tela do aluno.",
+   "aviso": "Clique no **nome do responsável**."
+  },
+  {
+   "p": "^responsaveis/ver",
+   "a": "#situacaoAcesso",
+   "t": "O acesso ao portal",
+   "x": "Aqui fica a situação do acesso: sem convite, convite pendente, com a senha criada ou bloqueado."
+  },
+  {
+   "p": "^responsaveis/ver",
+   "a": "#gerarConvite",
+   "t": "Gerar o convite",
+   "x": "O convite é um link de uso único, com prazo. Depois de gerar, envie por e-mail, copie o link ou abra o WhatsApp com a mensagem pronta.",
+   "aviso": "Clique em **Gerar convite**.",
+   "atencao": "Este passo gera o convite (um anterior, se houver, deixa de valer).",
+   "faz": [
+    [
+     "clicar",
+     "#gerarConvite"
+    ]
+   ]
+  }
+ ]
+}

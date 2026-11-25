@@ -1,0 +1,61 @@
+# VCOSTAEDU — o que não entra no repositório.
+# Base: o .gitignore do sistema de origem (1.18.4) e o do vcostaedu (regra 13: credencial nunca versionada).
+
+# 1. Arquivo de configuração com credencial, por NOME, em qualquer pasta.
+#    Os moldes versionados se chamam Config.example.php.
+Config.php
+
+# 2. Armazenamento em tempo de execução (o instalador cria a pasta, com o .htaccess que nega a web)
+/storage/
+
+# 3. Logo da instituição (enviado pela tela) e vídeos dos guias (gerados pelo gravador)
+/assets/instituicao/
+/assets/videos/
+
+# 4. Uploads de pessoa (as pastas nascem pelo sistema; o conteúdo nunca é versionado)
+/painel/assets/img/usuario/*/
+/portal/assets/img/academicos/*/
+/painel/assets/img/academicos/*/
+/painel/assets/docs/alunos/*
+!/painel/assets/docs/alunos/.gitkeep
+
+# 5. Provas desta onda (prints, galeria): ficam na máquina, fora do git
+/provas/
+
+# 6. Testes: dependências, configuração local e saídas
+node_modules/
+/tests/jornada/config.local.json
+/tests/jornada/saida/
+/tests/videos/config.local.json
+/tests/videos/saida/
+/tests/tabler/saida/
+/tests/tabler/config.local.json
+
+# 7. Documento de trabalho que não é do produto
+/docs/PLANO_PALESTRA_26NOV_VCOSTAEDU.md
+
+# 8. Pasta de trabalho dos arquivos de marca (os oficiais ficam em assets/marca/)
+/logos/
+
+# 9. Ambiente, dumps, logs e lixo
+*.env
+.env*
+*.sql.gz
+*.dump
+/database/dumps/
+error_log
+**/error_log
+*.log
+*.bak
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+.idea/
+.vscode/
+.claude/settings.local.json
+**/graphify-out/
+
+# 7. Os exemplos de integração: a configuração de cada um (com a chave da API) fica fora do git; vai só o modelo
+/exemplos/*/config.local.php
+/exemplos/*/dados/

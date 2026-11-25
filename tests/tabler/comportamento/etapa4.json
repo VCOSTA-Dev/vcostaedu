@@ -1,0 +1,78 @@
+[
+  {
+    "nome": "piloto-1-lista-disciplinas",
+    "tipo": "lista",
+    "rota": "painel/disciplinas/listar",
+    "perfil": "secretaria.demo",
+    "busca": "Liderança",
+    "esperaTexto": "Liderança de Equipes",
+    "coluna": 1
+  },
+  {
+    "nome": "piloto-1-modal-professores",
+    "tipo": "modal",
+    "rota": "painel/disciplinas/listar",
+    "perfil": "secretaria.demo",
+    "botao": "button[data-bs-target=\"#adicionarProfessor\"]",
+    "modal": "#adicionarProfessor",
+    "contem": "Professor"
+  },
+  {
+    "nome": "piloto-2-modal-coordenador",
+    "tipo": "modal",
+    "rota": "painel/cursos/visualizar/1",
+    "perfil": "administrador",
+    "botao": "button[data-bs-target=\"#addCoordenadorCurso\"]",
+    "modal": "#addCoordenadorCurso",
+    "contem": "Adicionar coordenador"
+  },
+  {
+    "nome": "piloto-2-form-regra-do-curso",
+    "tipo": "form",
+    "rota": "painel/cursos/visualizar/1",
+    "perfil": "administrador",
+    "preencher": {},
+    "enviar": "#salvarRegraCurso",
+    "mensagem": "salva"
+  },
+  {
+    "nome": "piloto-3-modal-compensar",
+    "tipo": "modal",
+    "rota": "painel/faltas/visualizar/5",
+    "perfil": "secretaria.demo",
+    "botao": "button[data-bs-target=\"#modalCompensar\"]",
+    "modal": "#modalCompensar",
+    "contem": "Ana Beatriz"
+  },
+  {
+    "nome": "piloto-3-form-salvar-faltas",
+    "tipo": "form",
+    "rota": "painel/faltas/visualizar/5",
+    "perfil": "secretaria.demo",
+    "preencher": {},
+    "enviar": "button[type=\"submit\"]:has-text(\"Salvar faltas\")",
+    "mensagem": ""
+  },
+  {
+    "nome": "piloto-4-editor-modelo",
+    "tipo": "editor",
+    "rota": "painel/historico-modelos/editar/1",
+    "perfil": "administrador",
+    "enviar": "[name=\"SalvarModelo\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "piloto-3-acao-desabilitada",
+    "tipo": "desabilitada",
+    "rota": "painel/faltas/visualizar/5",
+    "perfil": "secretaria.demo",
+    "seletor": ".acao-desabilitada"
+  },
+  {
+    "nome": "piloto-1-acao-desabilitada",
+    "tipo": "desabilitada",
+    "rota": "painel/disciplinas/listar",
+    "perfil": "secretaria.demo",
+    "seletor": ".acao-desabilitada"
+  }
+]

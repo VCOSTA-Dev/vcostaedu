@@ -1,0 +1,51 @@
+/*
+ * O "FAÇA COMIGO" (Onda 2, Etapa 4) — a janela de narração e o destaque, do tour guiado de um projeto de referência. As cores
+ * e a letra do Tabler (claro e escuro sem regra própria); a borda na cor da marca. No celular, a janela ocupa a
+ * largura. A janela FOGE DO ALVO: o motor põe a classe do canto livre (vc-tour-ie, vc-tour-sd, vc-tour-se).
+ */
+#vc-tour { position: fixed; right: 1rem; bottom: 1rem; width: 380px; max-width: calc(100% - 2rem); z-index: 2100;
+  background: var(--tblr-bg-surface, #fff); color: var(--tblr-body-color, #1d273b); border: 1px solid var(--tblr-border-color, #e3e7ee);
+  border-left: 4px solid var(--vc-teal, #0FA3A3); border-radius: .5rem; box-shadow: 0 .75rem 2rem rgba(15, 42, 67, .28);
+  padding: .85rem 1rem; font: 400 .9375rem/1.5 var(--tblr-font-sans-serif, system-ui), sans-serif; }
+#vc-tour.vc-tour-ie { right: auto; left: 1rem; }
+#vc-tour.vc-tour-sd { bottom: auto; top: calc(var(--vc-faixa-treino, 0px) + 1rem); }
+#vc-tour.vc-tour-se { bottom: auto; right: auto; left: 1rem; top: calc(var(--vc-faixa-treino, 0px) + 1rem); }
+#vc-tour .vc-tour-topo { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; font-size: .75rem;
+  color: var(--tblr-secondary, #6b7280); text-transform: uppercase; letter-spacing: .03em; }
+#vc-tour .vc-tour-guia { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#vc-tour .vc-tour-titulo { font-family: var(--tblr-font-sans-serif, system-ui), sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1.25; margin-bottom: .25rem; }
+#vc-tour .vc-tour-texto { line-height: 1.5; overflow-wrap: anywhere; }
+#vc-tour .vc-tour-aviso { margin-top: .6rem; padding: .4rem .6rem; border-radius: .35rem; background: rgba(var(--tblr-primary-rgb, 15, 42, 67), .08); font-size: .875rem; }
+#vc-tour .vc-tour-fazendo { background: rgba(15, 163, 163, .14); }
+#vc-tour .vc-tour-erro-texto { margin-top: .6rem; padding: .4rem .6rem; border-radius: .35rem; font-size: .875rem;
+  background: rgba(214, 59, 59, .1); color: var(--vc-danger, #D63B3B); border-left: 3px solid var(--vc-danger, #D63B3B); }
+#vc-tour .vc-tour-espera { margin-top: .6rem; font-size: .875rem; color: var(--tblr-secondary, #6b7280); }
+#vc-tour .vc-tour-botoes { display: flex; justify-content: flex-end; gap: .4rem; margin-top: .75rem; flex-wrap: wrap; }
+.vc-tour-alvo { outline: 3px solid var(--vc-teal, #0FA3A3) !important; outline-offset: 3px; border-radius: .35rem; animation: vc-tour-pulso 1.6s ease-in-out 2; }
+.vc-tour-erro { outline: 3px solid var(--vc-danger, #D63B3B) !important; outline-offset: 3px; border-radius: .35rem; }
+@keyframes vc-tour-pulso { 50% { outline-color: rgba(15, 163, 163, .35); } }
+
+/* A gravação em 720p (?gravar=1, PARTE 4): a janela é a narração, e a letra sobe para ser lida no vídeo. */
+#vc-tour.vc-tour-gravar { width: 420px; font-size: 1.0625rem; }
+#vc-tour.vc-tour-gravar .vc-tour-titulo { font-size: 1.4rem; }
+
+@media (max-width: 575.98px) {
+  #vc-tour, #vc-tour.vc-tour-ie, #vc-tour.vc-tour-sd, #vc-tour.vc-tour-se { right: .5rem; left: .5rem; width: auto; max-width: none; }
+  #vc-tour { bottom: .5rem; top: auto; }
+  #vc-tour.vc-tour-sd, #vc-tour.vc-tour-se { top: calc(var(--vc-faixa-treino, 0px) + .5rem); bottom: auto; }
+}
+
+/* O "FAÇA COMIGO" (onda 8g): no canto superior direito do cabeçalho das telas com tour, e no guia. No celular, o
+   cabeçalho fica só com os ícones (o texto continua no title e no aria-label). */
+.vc-faca-comigo .vc-fc-rotulo { margin-left: .4rem; }
+@media (max-width: 575.98px) {
+  #vcFacaComigo .vc-fc-rotulo { display: none; }
+  #vcFacaComigo .btn { padding-left: .6rem; padding-right: .6rem; }
+}
+
+/* No sistema real: o passo que salva, envia ou revoga DE VERDADE avisa antes, em destaque. */
+#vc-tour .vc-tour-atencao { margin-top: .6rem; padding: .4rem .6rem; border-radius: .35rem; font-size: .875rem; font-weight: 600;
+  background: rgba(247, 103, 7, .12); border-left: 3px solid var(--tblr-orange, #f76707); }
+/* "Prefere treinar sem mexer em dados reais?" — discreto, no primeiro passo (só onde o treino está configurado). */
+#vc-tour .vc-tour-treinar { margin-top: .5rem; font-size: .85em; }
+#vc-tour .vc-tour-treinar a { color: inherit; text-decoration: underline; }

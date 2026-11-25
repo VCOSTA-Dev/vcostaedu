@@ -1,0 +1,34 @@
+{
+ "titulo": "O professor de cada disciplina",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "turmas/listar",
+ "rotas": [
+  "turmas/listar",
+  "turmas/ver",
+  "disciplinas/visualizar"
+ ],
+ "passos": [
+  {
+   "p": "^turmas/listar",
+   "a": "#tabelaTurmas",
+   "t": "As turmas",
+   "x": "Abra a turma.",
+   "aviso": "Clique no **nome da turma**."
+  },
+  {
+   "p": "^turmas/ver",
+   "a": "#ofertasTurma",
+   "t": "As disciplinas",
+   "x": "Cada disciplina da turma é uma oferta, com o seu professor. Clique na disciplina para indicar o professor.",
+   "aviso": "Clique numa **disciplina**."
+  },
+  {
+   "p": "^disciplinas/visualizar",
+   "a": ".page-body",
+   "t": "O professor",
+   "x": "Na tela da disciplina, indique o professor. Ele passa a ver só as turmas e as disciplinas dele.",
+   "aviso": "Indique o **professor**."
+  }
+ ]
+}

@@ -1,0 +1,224 @@
+{
+  "superior": {
+    "titulo": "Do zero à sala de aula — ensino superior",
+    "arquivo": "palestra-superior.mp4",
+    "poster": "palestra-superior.jpg",
+    "legenda": "palestra-superior.vtt",
+    "capitulos_vtt": "palestra-superior.capitulos.vtt",
+    "duracao": 283.5,
+    "tamanho": 7801520,
+    "gravado_em": "2026-11-17",
+    "capitulos": [
+      {
+        "inicio": 2,
+        "titulo": "1. Instalar pelo navegador"
+      },
+      {
+        "inicio": 51,
+        "titulo": "2. Conhecer com os dados de demonstração"
+      },
+      {
+        "inicio": 75.5,
+        "titulo": "3. Conectar ao Moodle"
+      },
+      {
+        "inicio": 142.6,
+        "titulo": "4. Criar uma disciplina e vê-la no Moodle"
+      },
+      {
+        "inicio": 162.7,
+        "titulo": "5. Cadastrar um aluno e enturmar"
+      },
+      {
+        "inicio": 194.4,
+        "titulo": "6. Acompanhar em Envios ao Moodle"
+      },
+      {
+        "inicio": 205,
+        "titulo": "7. O aluno abre a disciplina no Moodle, sem senha"
+      },
+      {
+        "inicio": 223.5,
+        "titulo": "8. O portal de matrícula de exemplo"
+      }
+    ],
+    "partes": [
+      {
+        "titulo": "1. Instalar pelo navegador",
+        "arquivo": "palestra-superior-01.mp4",
+        "poster": "palestra-superior-01.jpg",
+        "legenda": "palestra-superior-01.vtt",
+        "duracao": 49,
+        "tamanho": 903533
+      },
+      {
+        "titulo": "2. Conhecer com os dados de demonstração",
+        "arquivo": "palestra-superior-02.mp4",
+        "poster": "palestra-superior-02.jpg",
+        "legenda": "palestra-superior-02.vtt",
+        "duracao": 24.5,
+        "tamanho": 1079571
+      },
+      {
+        "titulo": "3. Conectar ao Moodle",
+        "arquivo": "palestra-superior-03.mp4",
+        "poster": "palestra-superior-03.jpg",
+        "legenda": "palestra-superior-03.vtt",
+        "duracao": 67,
+        "tamanho": 2874454
+      },
+      {
+        "titulo": "4. Criar uma disciplina e vê-la no Moodle",
+        "arquivo": "palestra-superior-04.mp4",
+        "poster": "palestra-superior-04.jpg",
+        "legenda": "palestra-superior-04.vtt",
+        "duracao": 20.1,
+        "tamanho": 452547
+      },
+      {
+        "titulo": "5. Cadastrar um aluno e enturmar",
+        "arquivo": "palestra-superior-05.mp4",
+        "poster": "palestra-superior-05.jpg",
+        "legenda": "palestra-superior-05.vtt",
+        "duracao": 31.7,
+        "tamanho": 874829
+      },
+      {
+        "titulo": "6. Acompanhar em Envios ao Moodle",
+        "arquivo": "palestra-superior-06.mp4",
+        "poster": "palestra-superior-06.jpg",
+        "legenda": "palestra-superior-06.vtt",
+        "duracao": 10.6,
+        "tamanho": 308886
+      },
+      {
+        "titulo": "7. O aluno abre a disciplina no Moodle, sem senha",
+        "arquivo": "palestra-superior-07.mp4",
+        "poster": "palestra-superior-07.jpg",
+        "legenda": "palestra-superior-07.vtt",
+        "duracao": 18.5,
+        "tamanho": 284288
+      },
+      {
+        "titulo": "8. O portal de matrícula de exemplo",
+        "arquivo": "palestra-superior-08.mp4",
+        "poster": "palestra-superior-08.jpg",
+        "legenda": "palestra-superior-08.vtt",
+        "duracao": 59.9,
+        "tamanho": 1202323
+      }
+    ],
+    "transcricao": "Requisitos do servidor. O endereço do sistema, sem nada configurado, abre o instalador. Primeiro, ele confere o servidor.\nO banco de dados. O banco de dados vazio que a hospedagem criou: o servidor, o nome, o usuário e a senha.\n✓ A conexão com o banco deu certo.\nA configuração. Com a conexão testada, o instalador grava a configuração e confere que ela não fica à mostra na internet.\nAs tabelas. As tabelas do sistema são criadas de uma vez, numa tela só.\n✓ As tabelas foram criadas.\nA conta de administrador. A conta de quem administra o sistema: o usuário, o nome, o e-mail e uma senha forte.\nO tipo de instituição. Cada instalação é de um tipo. Aqui, o ensino superior: cursos, módulos e disciplinas.\n✓ Instalado, como ensino superior.\nComo começar. Para conhecer antes de cadastrar a própria instituição, o sistema monta uma demonstração com dados fictícios.\nA demonstração. A Faculdade Horizonte, fictícia: cursos, disciplinas, professores, alunos, notas e documentos.\nA montagem em passos. A montagem vai em passos curtos, numa janela que mostra o andamento. Se a página fechar, ela continua de onde parou.\n✓ A demonstração foi montada.\nDemonstração ligada. Pronto. Uma faixa no alto lembra que os dados são fictícios, e cada perfil tem a sua conta para conhecer.\nAntes: o plugin no Moodle. O Moodle precisa do plugin do VCOSTAEDU. Ele cria, no Moodle, a página \"Conectar ao VCOSTAEDU\", com o endereço e a chave. Agora: Se o plugin ainda não está instalado, siga estes 4 passos no Moodle. Depois, clique em Avançar.\nO endereço do Moodle. A página inicial do Moodle, com https://. Agora: Cole o endereço que o Moodle mostrou em \"Conectar ao VCOSTAEDU\".\nA chave. A chave fica cifrada no banco e não aparece mais inteira em lugar nenhum. Se já existe uma guardada, deixe em branco para mantê-la. Agora: Cole a chave que o Moodle mostrou (ou deixe em branco para manter a guardada).\nAs escolhas da instituição. O que acontece com as disciplinas, com o trancamento e com o professor. Cada opção diz o que faz. Agora: Confira as escolhas (os padrões servem para a maioria das instituições) e a categoria onde as disciplinas são criadas.\nSalvar. O endereço, a chave e as escolhas são gravados. Agora: Clique em Salvar.\nTestar a conexão. O VCOSTAEDU chama o Moodle e mostra o nome e a versão do site e se as 17 funções do serviço estão lá. Os envios só começam depois de um teste que deu certo. Agora: Clique em Testar conexão. Se der errado, a tela diz o que fazer.\nA categoria. O teste deu certo: o nome do site e as funções do serviço. Falta a categoria onde as disciplinas são criadas.\n✓ Conectado ao Moodle, com a categoria das disciplinas.\nNova disciplina. Uma disciplina nova do ano: a linha da matriz, a turma, o polo, as datas e o professor.\n✓ A disciplina foi criada.\nA disciplina no Moodle. Com o professor, a disciplina já foi criada no Moodle, na categoria escolhida: \"Ligada ao Moodle\".\nCadastrar o aluno. O aluno novo: o número de matrícula, o nome, o sexo e o e-mail (é por ele que o aluno chega ao Moodle).\n✓ O aluno foi cadastrado.\nA matrícula. Na ficha, a matrícula no curso: o ano, o curso e a forma de ingresso.\n✓ O aluno foi matriculado.\nEnturmar. A enturmação: as disciplinas abertas do ano. Aqui, a disciplina nova.\n✓ O aluno está na disciplina, e o pedido de inscrição foi ao Moodle.\nEnviar o que falta. O que ainda falta ir ao Moodle vai em passos, num botão.\nOs envios. Cada envio, com a situação: enviado, na fila ou com falha. A falha diz o que fazer e tem \"Tentar de novo\".\n✓ O aluno e a disciplina chegaram ao Moodle.\nEntrar no portal. O aluno entra no portal com o número de matrícula e a senha que escolheu pelo link do e-mail.\nA disciplina no Moodle. No portal, as disciplinas do aluno. O botão do Moodle abre a disciplina lá, sem pedir outra senha.\nNo Moodle. Dentro do Moodle, na disciplina, já identificado. Nenhuma senha do Moodle foi digitada.\nA chave do site de inscrições. O site de inscrições da instituição fala com o VCOSTAEDU por uma chave de API, com o limite do que ela pode fazer.\n✓ A chave foi criada. Ela aparece uma vez só e vai para o servidor do site de inscrições, nunca para o navegador.\nA inscrição. O site de inscrições de exemplo: quem é de fora preenche o nome, o e-mail e o CPF.\nO andamento. O andamento: o aluno no sistema, a matrícula, a enturmação, o envio ao Moodle e o acesso pronto.\n✓ Inscrito, com a matrícula nº 970366.\nO aluno no painel. No painel, o aluno que se inscreveu de fora já tem a ficha, a matrícula e as disciplinas.\nO aluno no Moodle. E em Envios ao Moodle, a conta dele e as inscrições nas disciplinas, enviadas."
+  },
+  "escola": {
+    "titulo": "Do zero à sala de aula — escola",
+    "arquivo": "palestra-escola.mp4",
+    "poster": "palestra-escola.jpg",
+    "legenda": "palestra-escola.vtt",
+    "capitulos_vtt": "palestra-escola.capitulos.vtt",
+    "duracao": 292,
+    "tamanho": 8044737,
+    "gravado_em": "2026-11-17",
+    "capitulos": [
+      {
+        "inicio": 2,
+        "titulo": "1. Instalar pelo navegador"
+      },
+      {
+        "inicio": 53.7,
+        "titulo": "2. Conhecer com os dados de demonstração"
+      },
+      {
+        "inicio": 79,
+        "titulo": "3. Conectar ao Moodle"
+      },
+      {
+        "inicio": 145.2,
+        "titulo": "4. Criar a turma e ver as disciplinas no Moodle"
+      },
+      {
+        "inicio": 156.8,
+        "titulo": "5. Cadastrar um aluno e enturmar a turma"
+      },
+      {
+        "inicio": 195.5,
+        "titulo": "6. Acompanhar em Envios ao Moodle"
+      },
+      {
+        "inicio": 204.3,
+        "titulo": "7. O aluno abre a disciplina no Moodle, sem senha"
+      },
+      {
+        "inicio": 225.9,
+        "titulo": "8. O portal de matrícula de exemplo"
+      }
+    ],
+    "partes": [
+      {
+        "titulo": "1. Instalar pelo navegador",
+        "arquivo": "palestra-escola-01.mp4",
+        "poster": "palestra-escola-01.jpg",
+        "legenda": "palestra-escola-01.vtt",
+        "duracao": 51.7,
+        "tamanho": 1013301
+      },
+      {
+        "titulo": "2. Conhecer com os dados de demonstração",
+        "arquivo": "palestra-escola-02.mp4",
+        "poster": "palestra-escola-02.jpg",
+        "legenda": "palestra-escola-02.vtt",
+        "duracao": 25.3,
+        "tamanho": 988608
+      },
+      {
+        "titulo": "3. Conectar ao Moodle",
+        "arquivo": "palestra-escola-03.mp4",
+        "poster": "palestra-escola-03.jpg",
+        "legenda": "palestra-escola-03.vtt",
+        "duracao": 66.2,
+        "tamanho": 2845952
+      },
+      {
+        "titulo": "4. Criar a turma e ver as disciplinas no Moodle",
+        "arquivo": "palestra-escola-04.mp4",
+        "poster": "palestra-escola-04.jpg",
+        "legenda": "palestra-escola-04.vtt",
+        "duracao": 11.6,
+        "tamanho": 308083
+      },
+      {
+        "titulo": "5. Cadastrar um aluno e enturmar a turma",
+        "arquivo": "palestra-escola-05.mp4",
+        "poster": "palestra-escola-05.jpg",
+        "legenda": "palestra-escola-05.vtt",
+        "duracao": 38.6,
+        "tamanho": 1302150
+      },
+      {
+        "titulo": "6. Acompanhar em Envios ao Moodle",
+        "arquivo": "palestra-escola-06.mp4",
+        "poster": "palestra-escola-06.jpg",
+        "legenda": "palestra-escola-06.vtt",
+        "duracao": 8.8,
+        "tamanho": 144928
+      },
+      {
+        "titulo": "7. O aluno abre a disciplina no Moodle, sem senha",
+        "arquivo": "palestra-escola-07.mp4",
+        "poster": "palestra-escola-07.jpg",
+        "legenda": "palestra-escola-07.vtt",
+        "duracao": 21.6,
+        "tamanho": 308222
+      },
+      {
+        "titulo": "8. O portal de matrícula de exemplo",
+        "arquivo": "palestra-escola-08.mp4",
+        "poster": "palestra-escola-08.jpg",
+        "legenda": "palestra-escola-08.vtt",
+        "duracao": 66.1,
+        "tamanho": 1255956
+      }
+    ],
+    "transcricao": "Requisitos do servidor. O endereço do sistema, sem nada configurado, abre o instalador. Primeiro, ele confere o servidor.\nO banco de dados. O banco de dados vazio que a hospedagem criou: o servidor, o nome, o usuário e a senha.\n✓ A conexão com o banco deu certo.\nA configuração. Com a conexão testada, o instalador grava a configuração e confere que ela não fica à mostra na internet.\nAs tabelas. As tabelas do sistema são criadas de uma vez, numa tela só.\n✓ As tabelas foram criadas.\nA conta de administrador. A conta de quem administra o sistema: o usuário, o nome, o e-mail e uma senha forte.\nO tipo de instituição. Cada instalação é de um tipo. Aqui, uma escola: a educação básica, com séries, turmas e etapas.\n✓ Instalado, como escola.\nComo começar. Para conhecer antes de cadastrar a própria instituição, o sistema monta uma demonstração com dados fictícios.\nA demonstração. O Colégio Horizonte, fictício: séries, turmas, professores, alunos, notas por etapa e boletins.\nA montagem em passos. A montagem vai em passos curtos, numa janela que mostra o andamento. Se a página fechar, ela continua de onde parou.\n✓ A demonstração foi montada.\nDemonstração ligada. Pronto. Uma faixa no alto lembra que os dados são fictícios, e cada perfil tem a sua conta para conhecer.\nAntes: o plugin no Moodle. O Moodle precisa do plugin do VCOSTAEDU. Ele cria, no Moodle, a página \"Conectar ao VCOSTAEDU\", com o endereço e a chave. Agora: Se o plugin ainda não está instalado, siga estes 4 passos no Moodle. Depois, clique em Avançar.\nO endereço do Moodle. A página inicial do Moodle, com https://. Agora: Cole o endereço que o Moodle mostrou em \"Conectar ao VCOSTAEDU\".\nA chave. A chave fica cifrada no banco e não aparece mais inteira em lugar nenhum. Se já existe uma guardada, deixe em branco para mantê-la. Agora: Cole a chave que o Moodle mostrou (ou deixe em branco para manter a guardada).\nAs escolhas da instituição. O que acontece com as disciplinas, com o trancamento e com o professor. Cada opção diz o que faz. Agora: Confira as escolhas (os padrões servem para a maioria das instituições) e a categoria onde as disciplinas são criadas.\nSalvar. O endereço, a chave e as escolhas são gravados. Agora: Clique em Salvar.\nTestar a conexão. O VCOSTAEDU chama o Moodle e mostra o nome e a versão do site e se as 17 funções do serviço estão lá. Os envios só começam depois de um teste que deu certo. Agora: Clique em Testar conexão. Se der errado, a tela diz o que fazer.\nA categoria. O teste deu certo: o nome do site e as funções do serviço. Falta a categoria onde as disciplinas são criadas.\n✓ Conectado ao Moodle, com a categoria das disciplinas.\nNova turma. A turma é da série e do ano. Ao salvar, ela gera uma disciplina para cada componente curricular da série.\n✓ A turma foi criada, com uma disciplina por componente.\nAs disciplinas da turma. As disciplinas da turma, cada uma com o seu professor. No Moodle, cada uma leva a série e a turma no nome.\nCadastrar o aluno. O aluno novo: o número de matrícula, o nome, o sexo e o e-mail (é por ele que o aluno chega ao Moodle).\n✓ O aluno foi cadastrado.\nA matrícula. Na ficha, a matrícula no segmento do ano: é ela que deixa o aluno entrar numa turma.\n✓ O aluno foi matriculado.\nEnturmar a turma. Na turma, os alunos matriculados no ano e sem turma. Enturmar põe o aluno em todas as disciplinas da turma de uma vez.\n✓ A turma foi enturmada, em passos.\nEnviar o que falta. O que ainda falta ir ao Moodle vai em passos, num botão.\nOs envios. Cada envio, com a situação: enviado, na fila ou com falha. A falha diz o que fazer e tem \"Tentar de novo\".\n✓ O aluno e a disciplina chegaram ao Moodle.\nEntrar no portal. O aluno entra no portal com o número de matrícula e a senha que escolheu pelo link do e-mail.\nA disciplina no Moodle. No portal, as disciplinas do aluno. O botão do Moodle abre a disciplina lá, sem pedir outra senha.\nNo Moodle. Dentro do Moodle, na disciplina, já identificado. Nenhuma senha do Moodle foi digitada.\nA chave do site de inscrições. O site de inscrições da instituição fala com o VCOSTAEDU por uma chave de API, com o limite do que ela pode fazer.\n✓ A chave foi criada. Ela aparece uma vez só e vai para o servidor do site de inscrições, nunca para o navegador.\nA inscrição. O site de inscrições de exemplo: quem é de fora preenche o nome, o e-mail e o CPF.\nO andamento. O andamento: o aluno no sistema, a matrícula, a enturmação, o envio ao Moodle e o acesso pronto.\n✓ Inscrito, com a matrícula nº 970189.\nO aluno no painel. No painel, o aluno que se inscreveu de fora já tem a ficha, a matrícula e as disciplinas.\nO aluno no Moodle. E em Envios ao Moodle, a conta dele e as inscrições nas disciplinas, enviadas."
+  }
+}

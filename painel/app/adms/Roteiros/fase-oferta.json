@@ -1,0 +1,274 @@
+{
+ "titulo": "A primeira oferta e o professor",
+ "guia": "gerar-a-oferta-do-ano",
+ "fim": "primeiros-passos/index",
+ "inicio": "usuarios/cadastrar",
+ "rotas": [
+  "usuarios/cadastrar",
+  "usuarios/listar",
+  "disciplinas/gerar-oferta",
+  "disciplinas/listar",
+  "disciplinas/adiciona-professor"
+ ],
+ "passos": [
+  {
+   "p": "^usuarios/cadastrar",
+   "a": "#nome",
+   "t": "O professor",
+   "x": "O professor entra no painel com o próprio usuário. Cadastre-o com o nível Professor.",
+   "aviso": "Preencha o **nome**, o **e-mail** e o **usuário**.",
+   "faz": [
+    [
+     "preencher",
+     "#nome",
+     "Professora Exemplo"
+    ],
+    [
+     "preencher",
+     "#email",
+     "professora.exemplo@exemplo.invalid"
+    ],
+    [
+     "preencher",
+     "#usuario",
+     "professora.exemplo"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nome",
+     null,
+     "Escreva o **nome**."
+    ],
+    [
+     "valor",
+     "#usuario",
+     null,
+     "Escreva o **usuário**."
+    ]
+   ]
+  },
+  {
+   "p": "^usuarios/cadastrar",
+   "a": "#senha",
+   "t": "A senha inicial",
+   "x": "Uma senha inicial de pelo menos 12 caracteres; entregue-a por um canal seguro e peça a troca no primeiro acesso.",
+   "aviso": "Escreva a **senha** inicial.",
+   "faz": [
+    [
+     "preencher",
+     "#senha",
+     "sala de aula com janela azul"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#senha",
+     null,
+     "Escreva a **senha**."
+    ]
+   ]
+  },
+  {
+   "p": "^usuarios/cadastrar",
+   "a": "#adms_niveis_acesso_id",
+   "t": "O nível de acesso",
+   "x": "O nível Professor vê as disciplinas dele e lança as notas e as faltas.",
+   "aviso": "Escolha o nível **Professor** e o gênero.",
+   "faz": [
+    [
+     "escolher",
+     "#adms_niveis_acesso_id",
+     "Professor"
+    ],
+    [
+     "escolher",
+     "#genero_id",
+     "{primeira}"
+    ],
+    [
+     "escolher",
+     "#adms_sits_usuario_id",
+     "{primeira}"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#adms_niveis_acesso_id",
+     null,
+     "Escolha o **nível**."
+    ]
+   ]
+  },
+  {
+   "p": "^usuarios/cadastrar",
+   "a": "input[name=\"CadUsuario\"]",
+   "t": "Salvar o professor",
+   "x": "O professor é cadastrado.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava o usuário.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadUsuario\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^usuarios/(listar|visualizar)",
+   "a": "table, .card",
+   "t": "Agora, a oferta",
+   "x": "Com a grade pronta, o sistema oferta as disciplinas do ano de uma vez.",
+   "aviso": "Clique em **Avançar**: abrimos a oferta do ano.",
+   "faz": [
+    [
+     "ir",
+     "disciplinas/gerar-oferta"
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/gerar-oferta",
+   "a": "#grade",
+   "t": "A grade",
+   "x": "Escolha a grade de onde saem as disciplinas.",
+   "aviso": "Escolha a **grade** e clique em **Escolher**.",
+   "faz": [
+    [
+     "escolher",
+     "#grade",
+     "{primeira}"
+    ],
+    [
+     "clicar",
+     "form[method=\"get\"] button[type=\"submit\"], form[method=\"GET\"] button[type=\"submit\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     "#codtur",
+     null,
+     "Escolha a **grade** e clique em **Escolher**."
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/gerar-oferta",
+   "a": "#codtur",
+   "t": "A turma e o ano",
+   "x": "As disciplinas marcadas são ofertadas no ano escolhido, com o código da turma.",
+   "aviso": "Confira o **ano** e escreva o código da **turma**.",
+   "faz": [
+    [
+     "escolher",
+     "#ano",
+     "{primeira}"
+    ],
+    [
+     "preencher",
+     "#codtur",
+     "T1"
+    ],
+    [
+     "preencher",
+     "#encontros",
+     "10"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#codtur",
+     null,
+     "Escreva a **turma**."
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/gerar-oferta",
+   "a": "button[name=\"GerarOferta\"]",
+   "t": "Gerar a oferta",
+   "x": "As disciplinas do ano são criadas.",
+   "aviso": "Clique em **Gerar oferta**.",
+   "atencao": "Este passo grava a oferta.",
+   "faz": [
+    [
+     "clicar",
+     "button[name=\"GerarOferta\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/gerar-oferta",
+   "a": ".alert-success",
+   "t": "Agora, o professor",
+   "x": "A oferta foi criada. O professor de cada disciplina é indicado na lista das disciplinas.",
+   "aviso": "Clique em **Avançar**: abrimos as disciplinas.",
+   "faz": [
+    [
+     "ir",
+     "disciplinas/listar"
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/listar",
+   "a": "button[data-bs-target=\"#adicionarProfessor\"]",
+   "t": "O professor da disciplina",
+   "x": "Em cada disciplina, o botão dos professores abre a janela para indicar quem dá a aula.",
+   "aviso": "Clique no botão dos **professores** da disciplina.",
+   "faz": [
+    [
+     "clicar",
+     "button[data-bs-target=\"#adicionarProfessor\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     "#adicionarProfessor.show",
+     null,
+     "Clique no botão dos **professores**."
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/(listar|gerar-oferta)",
+   "a": "#adicionarProfessor .modal-body",
+   "t": "Escolher o professor",
+   "x": "Escolha o professor cadastrado.",
+   "aviso": "Escolha o **professor** e clique em **Salvar**.",
+   "atencao": "Este passo grava o professor da disciplina.",
+   "modal": "#adicionarProfessor",
+   "faz": [
+    [
+     "escolher",
+     "#professores",
+     "Professora Exemplo"
+    ],
+    [
+     "clicar",
+     "#adicionarProfessor input[name=\"AdicionaProfessor\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Escolha o professor e clique em **Salvar**."
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/(listar|adiciona-professor)",
+   "a": "table",
+   "t": "Pronto",
+   "x": "A disciplina está ofertada, com o professor. Nos Primeiros passos, a fase aparece concluída."
+  }
+ ]
+}

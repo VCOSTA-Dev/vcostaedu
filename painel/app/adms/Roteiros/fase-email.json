@@ -1,0 +1,136 @@
+{
+ "titulo": "O e-mail de envio",
+ "guia": "email-smtp",
+ "fim": "primeiros-passos/index",
+ "inicio": "configuracao-email/cadastrar",
+ "rotas": [
+  "configuracao-email/cadastrar",
+  "configuracao-email/listar"
+ ],
+ "passos": [
+  {
+   "p": "^configuracao-email/cadastrar",
+   "a": "#titulo",
+   "t": "Um nome para a configuração",
+   "x": "Só para identificar a configuração na lista.",
+   "aviso": "Escreva um **título**.",
+   "faz": [
+    [
+     "preencher",
+     "#titulo",
+     "Envio principal"
+    ],
+    [
+     "preencher",
+     "#nome",
+     "Secretaria Acadêmica"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#titulo",
+     null,
+     "Escreva um **título**."
+    ]
+   ]
+  },
+  {
+   "p": "^configuracao-email/cadastrar",
+   "a": "#host",
+   "t": "O servidor de e-mail",
+   "x": "O endereço do servidor SMTP, a porta e a segurança (ssl ou tls), como o provedor de e-mail informa.",
+   "aviso": "Preencha o **servidor**, a **porta** e a **segurança**.",
+   "faz": [
+    [
+     "preencher",
+     "#host",
+     "smtp.exemplo.invalid"
+    ],
+    [
+     "preencher",
+     "#porta",
+     "587"
+    ],
+    [
+     "preencher",
+     "#smtpsecure",
+     "tls"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#host",
+     null,
+     "Escreva o **servidor**."
+    ],
+    [
+     "valor",
+     "#porta",
+     null,
+     "Escreva a **porta**."
+    ]
+   ]
+  },
+  {
+   "p": "^configuracao-email/cadastrar",
+   "a": "#username",
+   "t": "A conta",
+   "x": "O usuário e a senha da conta que envia, e o e-mail que aparece como remetente.",
+   "aviso": "Preencha o **usuário**, a **senha** e o **e-mail do remetente**.",
+   "faz": [
+    [
+     "preencher",
+     "#username",
+     "secretaria@exemplo.invalid"
+    ],
+    [
+     "preencher",
+     "#senhas",
+     "senha-de-exemplo-smtp"
+    ],
+    [
+     "preencher",
+     "#email",
+     "secretaria@exemplo.invalid"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#username",
+     null,
+     "Escreva o **usuário**."
+    ],
+    [
+     "valor",
+     "#email",
+     null,
+     "Escreva o **e-mail**."
+    ]
+   ]
+  },
+  {
+   "p": "^configuracao-email/cadastrar",
+   "a": "input[name=\"CadConfigEmail\"]",
+   "t": "Salvar",
+   "x": "A configuração é gravada.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava a configuração.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadConfigEmail\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^configuracao-email/listar",
+   "a": "#testarEnvio",
+   "t": "O envio de teste",
+   "x": "Manda um e-mail de teste para o seu endereço, com esta configuração. Confira a caixa de entrada e a de spam.",
+   "aviso": "Clique em **Enviar um e-mail de teste** quando quiser, e depois em **Concluir**."
+  }
+ ]
+}

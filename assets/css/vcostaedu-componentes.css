@@ -1,0 +1,58 @@
+/*
+ * COMPONENTES COMUNS DO VCOSTAEDU (instalador, telas de acesso, painel, portal, página "Sobre").
+ * O comportamento está em assets/js/vcostaedu-componentes.js.
+ */
+
+/* --- o bloco de comando: o botão Copiar e a seleção visível no fundo escuro --- */
+.vc-copiar-caixa { position: relative; }
+.vc-copiar-caixa > pre { padding-right: 6.5rem !important; }
+.vc-copiar-botao {
+  position: absolute; top: .5rem; right: .5rem;
+  color: #fff; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35);
+}
+.vc-copiar-botao:hover, .vc-copiar-botao:focus { color: #fff; background: rgba(255, 255, 255, .24); }
+.vc-copiar-botao.vc-copiado { background: var(--tblr-success, #2fb344); border-color: var(--tblr-success, #2fb344); }
+pre.bg-dark::selection, pre.bg-dark *::selection,
+.vc-comando::selection, .vc-comando *::selection { background: #fbe38e; color: #1d273b; }
+
+/* --- a senha --- */
+.vc-senha-grupo .input-group-text { padding-top: 0; padding-bottom: 0; }
+.vc-senha-revelar { font-size: .8125rem; text-decoration: none; }
+.vc-senha-medidor .progress { max-width: 100%; }
+
+/* --- os avisos legais --- */
+.vc-legal { line-height: 1.6; }
+/* As marcas do rodapé (Onda 3, Etapa 7): a régua é a altura das LETRAS. "1cap" é a altura de maiúscula da fonte do
+   rodapé; o fallback (0.7em) vale para navegador sem a unidade. Com vertical-align na linha de base, o pé da imagem fica
+   na linha do texto; o deslocamento pequeno tira a sobra das letras redondas.
+   - VCOSTAEDU (vcostaedu-rodape.svg, 618 de altura; as letras retas, 377): imagem = 1,639 × a maiúscula; o capelo sobe;
+   - VCOSTA (o PNG; as letras retas ocupam 245 de 253): imagem = 1,033 × a maiúscula. */
+.vc-legal-marca, .vc-legal-marca-vcosta { width: auto; }
+.vc-legal .vc-legal-marca-edu { height: calc(.7em * 1.639); height: calc(1cap * 1.639); vertical-align: -.011em; vertical-align: -.016cap; }
+.vc-legal .vc-legal-marca-vcosta { height: calc(.7em * 1.033); height: calc(1cap * 1.033); vertical-align: -.011em; vertical-align: -.016cap; }
+/* a marca em imagem troca com o tema: a de texto escuro no claro, a de texto branco no escuro */
+.vc-marca-escura { display: none !important; }
+[data-bs-theme="dark"] .vc-legal .vc-marca-clara { display: none !important; }
+[data-bs-theme="dark"] .vc-legal .vc-marca-escura { display: inline !important; }
+.vc-legal a { text-decoration: underline; }
+.vc-licenca { white-space: pre-wrap; font-size: .8125rem; max-height: 32rem; overflow: auto; }
+.vc-marca-texto { max-width: 52rem; }
+.vc-marca-texto h3 { font-size: 1.15rem; margin: 0 0 .75rem; }
+.vc-marca-texto h4 { font-size: 1rem; margin: 1.5rem 0 .5rem; }
+.vc-marca-texto ul, .vc-marca-texto ol { padding-left: 1.25rem; }
+.vc-marca-texto li { margin-bottom: .35rem; }
+.vc-marca-texto hr { margin: 1.25rem 0; }
+.vc-rodape-legal { padding: 1rem 0; }
+
+/* --- a faixa de atualização pendente --- */
+.vc-aviso-atualizacao { border-radius: 0; margin: 0; }
+
+/* --- a faixa da demonstração (Onda 2, Etapa 4) --- */
+.vc-faixa-demo { background: #1f6feb; color: #fff; font-size: .875rem; padding: .35rem 0; }
+.vc-faixa-demo a.btn-light { padding: .1rem .6rem; }
+
+/* --- o tema (Onda 3, Etapa 10): a escolha no menu do usuário (o menu lateral é sempre escuro) --- */
+.vc-tema-seletor { padding: .35rem .75rem .5rem; }
+.vc-tema-seletor .vc-tema-rotulo { display: block; color: rgba(255, 255, 255, .72); margin-bottom: .25rem; }
+.vc-tema-seletor .btn { font-size: .78rem; padding: .25rem .35rem; }
+.vc-side-mini .vc-tema-seletor .vc-tema-rotulo, .vc-side-mini .vc-tema-seletor .btn span { display: none; }

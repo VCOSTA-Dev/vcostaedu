@@ -1,0 +1,198 @@
+[
+  {
+    "nome": "relatorio-risco-lista",
+    "tipo": "lista",
+    "rota": "painel/relatorios/alunos-risco",
+    "perfil": "administrador",
+    "tabela": "table.lista-dados",
+    "busca": "Heitor",
+    "esperaTexto": "Heitor",
+    "coluna": 1
+  },
+  {
+    "nome": "relatorio-grafico",
+    "tipo": "passos",
+    "rota": "painel/relatorios/coorte-ingresso",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "esperaSel": "#graficoRelatorio",
+        "rotulo": "o gráfico do relatório aparece (Chart.js pela flag carregarRelatorio)"
+      },
+      {
+        "confere": [
+          "body",
+          "[\\s\\S]"
+        ],
+        "rotulo": "a página monta"
+      }
+    ]
+  },
+  {
+    "nome": "relatorio-cartao-abre-a-lista",
+    "tipo": "passos",
+    "rota": "painel/relatorios/alunos-risco",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "clicar": ".vc-cartao-rel .card-footer"
+      },
+      {
+        "aguardar": 1200
+      },
+      {
+        "url": "detalhe=",
+        "rotulo": "o \"Ver a lista\" do cartão abre a lista do número"
+      }
+    ]
+  },
+  {
+    "nome": "relatorio-filtra",
+    "tipo": "passos",
+    "rota": "painel/relatorios/alunos-situacao",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "clicar": "#filtrosRelatorio button[type=\"submit\"], #filtrosRelatorio input[type=\"submit\"]"
+      },
+      {
+        "aguardar": 1200
+      },
+      {
+        "esperaSel": "#filtrosRelatorio",
+        "rotulo": "filtrar recarrega o relatório com o formulário"
+      }
+    ]
+  },
+  {
+    "nome": "polos-editar-grava",
+    "tipo": "form",
+    "rota": "painel/polos/editar/1",
+    "perfil": "administrador",
+    "preencher": {},
+    "enviar": "input[name=\"SalvarPolo\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "atos-editar-grava",
+    "tipo": "form",
+    "rota": "painel/atos-legais/editar/1",
+    "perfil": "administrador",
+    "preencher": {},
+    "enviar": "input[name=\"SalvarAto\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "instituicao-grava",
+    "tipo": "form",
+    "rota": "painel/dados-instituicao/editar",
+    "perfil": "administrador",
+    "preencher": {},
+    "enviar": "button[name=\"SalvarInstituicao\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "regra-simulador",
+    "tipo": "passos",
+    "rota": "painel/regra-media/editar/1",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "aguardar": 1200
+      },
+      {
+        "confere": [
+          "#simMedia",
+          "\\d"
+        ],
+        "rotulo": "o simulador calcula ao abrir"
+      },
+      {
+        "preencherTodos": [
+          "#simTabela input.s-nota",
+          "3"
+        ]
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "confere": [
+          "#simResultado",
+          "Reprovado"
+        ],
+        "rotulo": "notas baixas: o simulador reprova"
+      },
+      {
+        "esperaSel": "#simResultado.bg-danger-lt",
+        "rotulo": "a etiqueta do resultado é a do BS5 (escrita pelo JS da tela)"
+      },
+      {
+        "preencherTodos": [
+          "#simTabela input.s-nota",
+          "9"
+        ]
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "confere": [
+          "#simResultado",
+          "Aprovado"
+        ],
+        "rotulo": "notas altas: aprova"
+      }
+    ]
+  },
+  {
+    "nome": "ajuda-indice-guia",
+    "tipo": "passos",
+    "rota": "painel/ajuda/index",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "clicar": "a[href*=\"ajuda/guia/\"]:visible"
+      },
+      {
+        "aguardar": 1200
+      },
+      {
+        "esperaSel": "#conteudoGuia",
+        "rotulo": "do índice, o guia abre"
+      }
+    ]
+  },
+  {
+    "nome": "verificacao-publica-de-um-documento",
+    "tipo": "passos",
+    "rota": "painel/historico-emissoes/ver/1",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "guardar": [
+          "#codigoEmissao",
+          "codigo"
+        ]
+      },
+      {
+        "ir": "verificar/{codigo}"
+      },
+      {
+        "esperaSel": "#resultadoVerificacao",
+        "rotulo": "a verificação pública abre pelo endereço curto"
+      },
+      {
+        "confere": [
+          "#situacaoVerificacao",
+          "Documento válido|cancelado"
+        ],
+        "rotulo": "e mostra a situação do documento"
+      },
+      {
+        "esperaSel": "#hashVerificacao",
+        "rotulo": "com a impressão digital"
+      }
+    ]
+  }
+]

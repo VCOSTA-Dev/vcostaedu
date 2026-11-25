@@ -1,0 +1,5 @@
+[
+ { "nome": "importacao-alunos-lista", "rota": "painel/importacao-alunos/listar", "perfil": "administrador", "area": "Importação" },
+ { "nome": "importacao-alunos-lista-secretaria", "rota": "painel/importacao-alunos/listar", "perfil": "secretaria.demo", "area": "Importação" },
+ { "nome": "importacao-alunos-lista-supervisao", "rota": "painel/importacao-alunos/listar", "perfil": "supervisao.demo", "area": "Importação" }
+]

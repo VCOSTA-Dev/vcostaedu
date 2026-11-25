@@ -1,0 +1,259 @@
+/* ===========================================================================
+   VCOSTAEDU — ajustes sobre o Tabler (Etapa 3), painel e portal.
+   Carregado DEPOIS de tabler.min.css, vcostable-tabler.css (a identidade do vcostaedu, intocada) e vcostaedu-ui.css
+   (os componentes comuns do sistema). O que é desta casa mora aqui; as regras de DataTables e dos botões de
+   exportar vêm do projeto de referência (o CSS do Tabler de lá), medidas lá.
+   =========================================================================== */
+
+/* ---- A marca no topo do rail ---------------------------------------------
+   O lockup VCOSTAEDU tem o texto cinza-escuro: sobre o verde do badge (pensado para a marca preta) ou sobre o
+   fundo escuro da coluna ele não lê. Vai sobre uma PLACA BRANCA, como o brasão da origem (vcostaedu-placa). */
+.navbar-vertical.vc-side .vc-side-badge.vc-side-badge-placa { background: #fff; padding: .25rem .3rem; }
+.navbar-vertical.vc-side .vc-side-badge-placa .vc-side-vcosta { height: 34px; }
+
+/* Onda 3, Etapa 5: o topo numa linha — o selo e, ao lado, a instituição (o nome ou o logo). O nome não quebra a linha
+   nem empurra o botão de recolher: corta com reticências (o inteiro fica no title). O logo vai numa placa clara (os
+   logos são feitos para fundo claro), na altura do selo. Recolhido o menu, só o selo (a regra de .vc-side-nome). */
+.navbar-vertical.vc-side .vc-side-marca { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+.navbar-vertical.vc-side .vc-side-nome { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.navbar-vertical.vc-side .vc-side-nome-logo { display: inline-flex; align-items: center; background: #fff; border-radius: 6px; padding: .15rem .3rem; flex: 0 1 auto; }
+.navbar-vertical.vc-side .vc-side-nome-logo img { max-height: 30px; max-width: 120px; object-fit: contain; display: block; }
+
+/* ---- O cartão recolhido (data-vc-recolher, o recolher do cartão do AdminLTE) ---- */
+.card.vc-cartao-recolhido > :not(.card-header) { display: none !important; }
+
+/* ---- O cabeçalho da página ------------------------------------------------ */
+.page-header .page-title .badge { vertical-align: middle; }
+
+/* ---- DataTables (integração Bootstrap 5) — do projeto de referência -------
+   A integração aplica form-control-sm / form-select-sm na busca e no "Mostrar N"; o Tabler redefine a fonte
+   nessas variantes. Override escopado ao container do plugin, nunca o arquivo vendorizado. */
+.dataTables_wrapper .form-control-sm,
+.dataTables_wrapper .form-select-sm {
+  font-size: var(--tblr-body-font-size, .875rem);
+  padding-top: .4375rem;
+  padding-bottom: .4375rem;
+  border-radius: var(--tblr-border-radius, 4px);
+}
+/* O Tabler estica todo .btn de um .btn-group; o Buttons embrulha os botões de exportar num .btn-group. */
+.dataTables_wrapper .dt-buttons.btn-group > .btn { flex: 0 0 auto; }
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate { padding-top: .5rem; }
+/* Os botões de exportar são OUTLINE, com fundo branco (pedido do cliente na origem): o vcostaedu-listas.js já
+   troca a classe base para só `btn`; aqui só o espaço entre eles. */
+.dataTables_wrapper .dt-buttons.btn-group { gap: .25rem; flex-wrap: wrap; }
+.dataTables_wrapper .dt-buttons.btn-group > .btn { border-radius: var(--tblr-border-radius, 4px) !important; }
+
+/* ---- Select2 (sem tema, D-02) — com a cara do form-select do Tabler -------- */
+.select2-container { width: 100% !important; }
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+  min-height: calc(1.4285714em + 1.125rem + 2px);
+  border: var(--tblr-border-width, 1px) solid var(--tblr-border-color, #dadfe5);
+  border-radius: var(--tblr-border-radius, 4px);
+  background-color: var(--tblr-bg-forms, #fff);
+  font-size: var(--tblr-body-font-size, .875rem);
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: calc(1.4285714em + 1.125rem); padding-left: .75rem; color: var(--tblr-body-color, inherit);
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow { height: calc(1.4285714em + 1.125rem); right: .35rem; }
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--open .select2-selection--single {
+  border-color: var(--tblr-primary, #066fd1);
+  box-shadow: 0 0 0 .25rem rgba(var(--tblr-primary-rgb, 6, 111, 209), .25);
+}
+.select2-dropdown { border-color: var(--tblr-border-color, #dadfe5); font-size: var(--tblr-body-font-size, .875rem); z-index: 2000; }
+.select2-container--default .select2-results__option--highlighted[aria-selected] { background-color: var(--tblr-primary, #066fd1); }
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: var(--tblr-primary-lt, #e6f1fb); border-color: transparent; color: var(--tblr-primary, #066fd1);
+}
+
+/* ---- jquery-tabledit (D-03): as classes do Bootstrap 3 que o plugin gera ---- */
+.tabledit-toolbar .btn-default,
+.tabledit-toolbar .btn.btn-default {
+  color: var(--tblr-secondary, #667382); background: var(--tblr-bg-surface, #fff);
+  border: var(--tblr-border-width, 1px) solid var(--tblr-border-color, #dadfe5);
+}
+.tabledit-toolbar .btn-default:hover { background: var(--tblr-bg-surface-secondary, #f6f8fb); }
+.tabledit-toolbar .btn-sm, .tabledit-input.input-sm { font-size: .8125rem; }
+.tabledit-input.input-sm { height: calc(1.4285714em + .5rem + 2px); padding: .25rem .5rem; }
+.btn-toolbar.tabledit-toolbar { flex-wrap: nowrap; }
+.glyphicon { display: inline-block; font-family: "Font Awesome 6 Free"; font-weight: 900; font-style: normal; line-height: 1; }
+.glyphicon-pencil::before { content: "\f303"; }
+.glyphicon-trash::before { content: "\f1f8"; }
+.glyphicon-ok::before { content: "\f00c"; }
+.glyphicon-remove::before { content: "\f00d"; }
+.glyphicon-floppy-disk::before { content: "\f0c7"; }
+
+/* ---- Impressão: só o conteúdo ---------------------------------------------- */
+@media print {
+  .vc-tabler .navbar-vertical.vc-side, .vc-tabler .page-header .btn, .vc-tabler #ajudaDaTela { display: none !important; }
+  .vc-tabler .page-wrapper { margin-left: 0 !important; }
+}
+
+/* ---- Os atalhos da Página Inicial (Menu Rápido): ícone em cima, nome embaixo, como na origem ----
+   O .btn do Tabler é flex em linha; o <br> entre o ícone e o nome deixa de quebrar. */
+.btn.atalho-rapido { flex-direction: column; justify-content: center; gap: .5rem; white-space: normal; padding: 1rem .5rem; line-height: 1.3; }
+.btn.atalho-rapido br { display: none; }
+
+/* ---- btn-sm volta a ser pequeno ---------------------------------------------
+   O vcostable-tabler.css (a identidade, intocada) põe padding .5rem 1rem e fonte de 1rem em TODO .btn, para casar
+   o botão base com o AdminLTE. Aqui o btn-sm é o das ações por linha (AdmsUi), dos botões de exportar e da barra da
+   disciplina — a origem os desenhou pequenos, numa linha só. */
+.btn.btn-sm { --tblr-btn-font-size: .875rem; padding: .25rem .5rem; }
+.acoes-linha .btn.btn-sm, .btn.btn-sm.btn-acao { padding: .25rem .45rem; }
+
+/* ---- Conteúdo misto da origem dentro de componentes flex do Tabler -----------
+   O .alert do Tabler é flex em linha (pensado para ícone + texto): o texto corrido da origem, com <b>, ícones e
+   links no meio, virava uma coluna de pedaços. Volta a bloco; continua flex quando a marcação pede (.d-flex ou o
+   ícone do Tabler). O .page-title também é flex: os trechos do título (nome, turma, ano) ganham espaço entre si. */
+.vc-tabler .alert { display: block; }
+.vc-tabler .alert.d-flex, .vc-tabler .alert:has(> .alert-icon) { display: flex; }
+.vc-tabler .page-title { flex-wrap: wrap; column-gap: .45rem; row-gap: .15rem; }
+.vc-tabler .page-title small { font-size: .75em; }
+/* O .btn do Tabler é flex: o espaço entre o ícone e o texto da origem se perdia ("←Voltar"). */
+.vc-tabler .btn:not(.btn-acao):not(.btn-icon):not(.btn-action):not(.note-btn) > i[class*="fa-"]:first-child { margin-inline-end: .4rem; }
+
+/* ---- O indicador (o info-box do AdminLTE): ícone colorido à esquerda, rótulo e número à direita ---- */
+.vc-indicador { flex-direction: row; align-items: center; gap: .75rem; padding: .75rem; min-height: 4.5rem; margin-bottom: 1rem; }
+.vc-indicador .vc-indicador-icone { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; flex: 0 0 auto; border-radius: var(--tblr-border-radius, 4px); color: #fff; font-size: 1.15rem; }
+.vc-indicador .vc-indicador-conteudo { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
+.vc-indicador .vc-indicador-texto { color: var(--tblr-secondary, #667382); font-size: .875rem; }
+.vc-indicador .vc-indicador-numero { font-weight: 600; font-size: 1.15rem; }
+.vc-indicador.bg-light { background: var(--tblr-bg-surface-secondary, #f6f8fb) !important; }
+
+/* Etapa 6 — o seletor de curso e ano do boletim (montado pelo AdmsBoletimCurso do portal): no telefone, a linha
+   ocupa a largura e cada select divide o espaço, sem passar da tela (o form-inline do BS4 fazia isso sozinho). */
+@media (max-width: 575.98px) {
+  .barra-boletim .seletor-boletim { width: 100%; }
+  .barra-boletim .seletor-boletim .form-select { flex: 1 1 6rem; min-width: 0; }
+}
+
+/* A JANELA DE PROGRESSO (Onda 3, Etapa 4): a operação longa em passos curtos (include_tabler/_progresso.php) */
+.vc-progresso { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.vc-progresso[hidden] { display: none; }
+.vc-progresso-fundo { position: absolute; inset: 0; background: rgba(24, 36, 51, .55); }
+.vc-progresso-janela { position: relative; width: 100%; max-width: 32rem; max-height: calc(100vh - 2rem); overflow-y: auto; box-shadow: 0 1rem 3rem rgba(0, 0, 0, .25); }
+.vc-progresso-grupos li { display: flex; align-items: center; gap: .5rem; padding: .3rem 0; color: var(--tblr-secondary); }
+.vc-progresso-grupos li.feito, .vc-progresso-grupos li.atual, .vc-progresso-grupos li.falhou { color: var(--tblr-body-color); }
+.vc-progresso-grupos li.atual { font-weight: 600; }
+.vc-progresso-marca { display: inline-flex; width: 1.25rem; justify-content: center; }
+body.vc-progresso-aberto { overflow: hidden; }
+
+/* A AÇÃO TRAVADA (AdmsUi::acao com a razão, Onda 3, Etapa 5): o botão desabilitado do Bootstrap fica com a cor da ação
+   e meia transparência — texto branco sobre verde-claro, sem contraste. Travado, ele vira neutro e legível (texto
+   #344256 sobre #eef1f4: 9,6:1), com a borda tracejada que diz "indisponível"; a dica com a razão continua. */
+.acao-desabilitada .btn:disabled, .acao-desabilitada .btn.disabled {
+  opacity: 1; background: #eef1f4; border: 1px dashed #b3bcc8; color: #344256; box-shadow: none; cursor: not-allowed;
+}
+.acao-desabilitada .btn:disabled i, .acao-desabilitada .btn.disabled i { color: #5b6b7f; }
+/* nos Primeiros passos (Onda 3, Etapa 7), a fase travada não pode parecer pronta: os botões ainda mais apagados (texto #5f6b7a sobre #f4f6f8: 5,0:1) */
+.vc-fase .acao-desabilitada .btn:disabled { background: #f4f6f8; color: #5f6b7a; border-color: #c9d0d9; }
+.vc-fase .acao-desabilitada .btn:disabled i { color: #8a95a3; }
+
+/* O CONTRASTE (Onda 3, Etapa 5). O verde de sucesso do Tabler (#2fb344) com texto branco dá 2,5:1 — abaixo do mínimo
+   de leitura (4,5:1). O botão verde passa a #1d7a35 (5,4:1 com o branco), com o mesmo desenho; o de contorno usa o
+   mesmo verde no texto. As etiquetas claras (bg-*-lt) escrevem a cor da etiqueta sobre ela mesma, clareada: o texto
+   escurece até ler (acima de 4,5:1), o fundo fica. */
+.vc-tabler .btn-success {
+  --tblr-btn-bg: #1d7a35; --tblr-btn-border-color: #1d7a35; --tblr-btn-hover-bg: #17652c; --tblr-btn-hover-border-color: #17652c;
+  --tblr-btn-active-bg: #145625; --tblr-btn-active-border-color: #145625; --tblr-btn-color: #fff; --tblr-btn-hover-color: #fff;
+}
+.vc-tabler .btn-outline-success { --tblr-btn-color: #1d7a35; --tblr-btn-border-color: #1d7a35; --tblr-btn-hover-bg: #1d7a35; --tblr-btn-hover-border-color: #1d7a35; }
+.vc-tabler .badge.bg-azure-lt { color: #1d5f99 !important; }
+.vc-tabler .badge.bg-blue-lt, .vc-tabler .badge.bg-primary-lt { color: #174a8b !important; }
+.vc-tabler .badge.bg-info-lt { color: #1c5f86 !important; }
+.vc-tabler .badge.bg-success-lt, .vc-tabler .badge.bg-green-lt { color: #1a6b30 !important; }
+.vc-tabler .badge.bg-danger-lt, .vc-tabler .badge.bg-red-lt { color: #a32424 !important; }
+.vc-tabler .badge.bg-warning-lt, .vc-tabler .badge.bg-orange-lt, .vc-tabler .badge.bg-yellow-lt { color: #8a4b08 !important; }
+.vc-tabler .badge.bg-secondary-lt { color: #475569 !important; }
+
+/* O PADRÃO DA TELA DE DETALHE (Onda 3, Etapa 5) — definido aqui uma vez, para toda tela que tem estes elementos.
+   1. O VOLTAR do título: um ícone pequeno e discreto à esquerda (antes, um botão oval grande). O desenho é o da seta
+      que toda view já põe no título (a.btn.rounded-circle com fa-arrow-left): nenhuma view precisou mudar. */
+.vc-tabler .page-title > a.btn.rounded-circle:first-child {
+  --tblr-btn-padding-x: 0; --tblr-btn-padding-y: 0; width: 1.75rem; height: 1.75rem; min-width: 0;
+  display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 6px;
+  background: transparent; color: #49566a; font-size: .95rem; box-shadow: none;
+}
+.vc-tabler .page-title > a.btn.rounded-circle:first-child:hover,
+.vc-tabler .page-title > a.btn.rounded-circle:first-child:focus-visible { background: #e8ecf1; color: #1d273b; }
+/* 2. As telas de um registro em ABAS (AdmsUi::barraDisciplina): a atual destacada, as ações da tela à direita. */
+.vc-tabler .barra-disciplina.vc-abas { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1rem;
+  border-bottom: 1px solid var(--tblr-border-color); margin-bottom: 1rem; }
+.vc-tabler .vc-abas .vc-abas-lista { border-bottom: 0; flex-wrap: wrap; margin-bottom: -1px; }
+.vc-tabler .vc-abas .nav-link { color: #3a4659; font-weight: 500; padding: .5rem .8rem; }
+.vc-tabler .vc-abas .nav-link i { margin-inline-end: .35rem; color: #5b6b7f; }
+.vc-tabler .vc-abas .nav-link.active { color: #12345e; font-weight: 600; border-color: var(--tblr-border-color) var(--tblr-border-color) var(--tblr-bg-surface);
+  background: var(--tblr-bg-surface); box-shadow: inset 0 3px 0 #206bc4; }
+.vc-tabler .vc-abas .nav-link.active i { color: #206bc4; }
+.vc-tabler .vc-abas .nav-link.disabled { color: #8a95a5; }
+/* a aba travada recebe o mouse e o foco, para a dica com a razão aparecer (o Bootstrap tira o pointer-events de .disabled) */
+.vc-tabler .vc-abas .nav-link.disabled.acao-desabilitada { pointer-events: auto; cursor: not-allowed; }
+.vc-tabler .vc-abas .vc-abas-acoes { margin-left: auto; display: flex; flex-wrap: wrap; gap: .35rem; padding-bottom: .4rem; }
+/* 3. Os atalhos de um registro em cartões (no lugar das faixas de largura total). */
+.vc-tabler .vc-cartao-atalho { color: inherit; }
+.vc-tabler .vc-cartao-atalho .avatar { color: #174a8b; }
+/* (o título que envolve a marca também encolhe: sem isso, o nome passa por baixo do botão de recolher) */
+.navbar-vertical.vc-side .vc-side-topo > .navbar-brand { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+.navbar-vertical.vc-side .vc-side-topo > .navbar-brand > .vc-side-marca { display: flex; align-items: center; gap: .6rem; width: 100%; }
+.navbar-vertical.vc-side .vc-side-topo > .vc-side-recolher, .navbar-vertical.vc-side .vc-side-topo > .navbar-toggler { flex-shrink: 0; }
+/* o botão de recolher fica por cima (posição absoluta, no canto): a marca reserva o lugar dele para o nome não ficar embaixo */
+@media (min-width: 992px) {
+  .navbar-vertical.vc-side .vc-side-topo > .navbar-brand { padding-right: 2rem; }
+  .vc-side-mini .navbar-vertical.vc-side:not(:hover) .vc-side-topo > .navbar-brand { padding-right: 0; }
+}
+/* o nome da instituição cabe em até DUAS linhas, na altura do selo, com a fonte um pouco menor; só um nome que não
+   caiba nem assim corta com reticências (o inteiro fica no title). A palavra VCOSTAEDU continua no tamanho dela. */
+.navbar-vertical.vc-side #topoMenu[data-tipo="nome"] .vc-side-nome {
+  white-space: normal; font-size: .9rem; line-height: 1.15; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: ellipsis;
+}
+
+/* A FAIXA ÚNICA (Onda 3, Etapa 5): a demonstração e a atualização pendente na mesma linha — o aviso da atualização é um
+   selo claro dentro da faixa azul (texto escuro sobre âmbar claro: 8,9:1), não uma segunda faixa. */
+.vc-faixa-demo .vc-faixa-atualizacao { background: #fff3cd; color: #5c3c00; border-radius: 4px; padding: .1rem .5rem; font-size: .875em; white-space: nowrap; }
+.vc-faixa-demo .vc-faixa-atualizacao a { color: #5c3c00; font-weight: 600; text-decoration: underline; }
+
+/* O TEMA ESCURO NOS COMPONENTES DO VCOSTAEDU (Onda 3, Etapa 10): as cores que a Etapa 5 escureceu para o fundo claro
+   (as etiquetas claras, as abas) ganham a versão do escuro — medidas acima de 4,5:1 sobre o fundo de cada uma. */
+[data-bs-theme="dark"] .vc-tabler .badge.bg-info-lt, [data-bs-theme="dark"] .vc-tabler .badge.bg-blue-lt { color: #8CC8F0 !important; }
+[data-bs-theme="dark"] .vc-tabler .badge.bg-success-lt, [data-bs-theme="dark"] .vc-tabler .badge.bg-green-lt { color: #7EE2A0 !important; }
+[data-bs-theme="dark"] .vc-tabler .badge.bg-secondary-lt { color: #C3CAD5 !important; }
+[data-bs-theme="dark"] .vc-tabler .badge.bg-primary-lt { color: #9FC1F0 !important; }
+[data-bs-theme="dark"] .vc-tabler .badge.bg-warning-lt, [data-bs-theme="dark"] .vc-tabler .badge.bg-yellow-lt { color: #F2C879 !important; }
+[data-bs-theme="dark"] .vc-tabler .badge.bg-danger-lt, [data-bs-theme="dark"] .vc-tabler .badge.bg-red-lt { color: #F5A3A3 !important; }
+[data-bs-theme="dark"] .vc-tabler .vc-abas .nav-link { color: #C3CAD5; }
+[data-bs-theme="dark"] .vc-tabler .vc-abas .nav-link i { color: #A3ADBB; }
+[data-bs-theme="dark"] .vc-tabler .vc-abas .nav-link.active { color: #FFFFFF; background: var(--tblr-bg-surface); box-shadow: inset 0 3px 0 #2DD4D4; }
+[data-bs-theme="dark"] .vc-tabler .vc-abas .nav-link.active i { color: #2DD4D4; }
+[data-bs-theme="dark"] .vc-tabler .vc-abas .nav-link.disabled { color: #A3ADBB; }
+[data-bs-theme="dark"] .acao-desabilitada .btn:disabled, [data-bs-theme="dark"] .acao-desabilitada .btn.disabled { background: #2B3545; color: #C3CAD5; border-color: #5B6578; }
+[data-bs-theme="dark"] .vc-fase .acao-desabilitada .btn:disabled { background: #232C3A; color: #A3ADBB; border-color: #4B5563; }
+
+/* a escolha do tema no menu do usuário (o menu é sempre escuro): a opção escolhida, branca; as outras, contornadas */
+.vc-tema-seletor .vc-tema-opcao { color: #FFFFFF; background: transparent; border: 1px solid rgba(255, 255, 255, .45); }
+.vc-tema-seletor .vc-tema-opcao:hover { background: rgba(255, 255, 255, .12); color: #FFFFFF; }
+.vc-tema-seletor .vc-tema-opcao.active { background: #FFFFFF; color: #1D273B; border-color: #FFFFFF; }
+
+/* (Onda 3, Etapa 10, a segunda rodada da varredura do contraste) */
+[data-bs-theme="dark"] div.dt-buttons .btn { background-color: var(--tblr-bg-surface); }    /* os botões das listas (CSV, PDF…) */
+[data-bs-theme="dark"] .vc-tabler .btn-outline-success, [data-bs-theme="dark"] .vc-tabler .btn-acao.btn-outline-success {
+  --tblr-btn-color: #4ADE80; --tblr-btn-border-color: #4ADE80; --tblr-btn-hover-bg: #4ADE80; --tblr-btn-hover-border-color: #4ADE80; --tblr-btn-hover-color: #0A1929; }
+[data-bs-theme="dark"] .btn-primary { --tblr-btn-color: #0A1929; --tblr-btn-bg: #2DD4D4; --tblr-btn-border-color: #2DD4D4;
+  --tblr-btn-hover-color: #0A1929; --tblr-btn-hover-bg: #22B8B8; --tblr-btn-active-color: #0A1929; --tblr-btn-active-bg: #22B8B8; }
+[data-bs-theme="dark"] .bg-light { background-color: #2B3545 !important; color: #E7EAF0; }
+[data-bs-theme="dark"] .table-compacta .abaixo, [data-bs-theme="dark"] .cartao-boletim .abaixo { color: #F5A3A3; }
+/* os cabeçalhos coloridos com texto branco: mais escuros (5,3:1 e 5:1) */
+.bg-teal { background-color: #00796B !important; }
+.bg-green { background-color: #087F5B !important; }
+/* a Ajuda é documento: fica clara também no tema escuro (uma ilha clara, com as cores dela) */
+[data-bs-theme="dark"] .guia-conteudo { background: #FFFFFF; color: #1D273B; padding: 1rem 1.25rem; border-radius: 6px; }
+[data-bs-theme="dark"] .guia-conteudo a { color: #1C6FB5; }
+/* (a terceira rodada) */
+[data-bs-theme="dark"] .bg-light.text-dark, [data-bs-theme="dark"] .bg-light .text-dark { color: #E7EAF0 !important; }
+[data-bs-theme="dark"] .badge.bg-dark-lt { color: #E7EAF0 !important; }
+[data-bs-theme="dark"] .nav-tabs .nav-link:not(.active):not(.disabled), [data-bs-theme="dark"] .nav-link:not(.active):not(.disabled) { color: #C3CAD5; }
+[data-bs-theme="dark"] .table-primary { --tblr-table-bg: #203A47; --tblr-table-color: #E7EAF0; --tblr-table-border-color: #2E4E60; }
+[data-bs-theme="dark"] .vc-side .nav-link:not(.active) { color: inherit; }  /* o menu lateral tem as cores dele */

@@ -1,0 +1,6 @@
+[
+ { "nome": "atualizar-em-dia", "rota": "painel/atualizar/index", "perfil": "administrador", "area": "Atualização" },
+ { "nome": "versao-administrador", "rota": "painel/versao/index", "perfil": "administrador", "area": "Atualização" },
+ { "nome": "versao-secretaria", "rota": "painel/versao/index", "perfil": "secretaria.demo", "area": "Atualização" },
+ { "nome": "versao-professor", "rota": "painel/versao/index", "perfil": "prof.laura.demo", "area": "Atualização" }
+]

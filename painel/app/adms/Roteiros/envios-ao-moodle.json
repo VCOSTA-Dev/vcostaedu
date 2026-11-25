@@ -1,0 +1,38 @@
+{
+ "titulo": "Envios ao Moodle",
+ "guia": "envios-ao-moodle",
+ "fim": "moodle-envios/listar",
+ "inicio": "moodle-envios/listar",
+ "rotas": [
+  "moodle-envios/listar"
+ ],
+ "passos": [
+  {
+   "p": "^moodle-envios",
+   "a": "#contaPendentes",
+   "t": "Os contadores",
+   "x": "Quantos envios estão pendentes, quantos falharam e quando foi a última chamada que deu certo.",
+   "aviso": "Clique em **Avançar**."
+  },
+  {
+   "p": "^moodle-envios",
+   "a": "#filtroEnvios",
+   "t": "Filtrar",
+   "x": "Pendente, enviado, enviado com aviso ou falhou. Cada falha diz o que aconteceu e **o que fazer**.",
+   "aviso": "Clique em **Avançar**."
+  },
+  {
+   "p": "^moodle-envios",
+   "a": "#tabelaEnvios",
+   "t": "Tentar de novo",
+   "x": "Resolvido o motivo (por exemplo, o e-mail do aluno), **Tentar de novo** na linha. Quando o e-mail está em mais de uma conta do Moodle, a linha lista as contas para escolher a da pessoa.",
+   "aviso": "Clique em **Avançar**."
+  },
+  {
+   "p": "^moodle-envios",
+   "a": ".vc-pagina",
+   "t": "Enviar tudo o que falta",
+   "x": "Com pendência, **Enviar tudo o que falta** manda a fila inteira em passos curtos, com a janela de progresso."
+  }
+ ]
+}

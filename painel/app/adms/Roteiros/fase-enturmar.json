@@ -1,0 +1,193 @@
+{
+ "titulo": "Enturmar e lançar a primeira nota",
+ "guia": "vincular-e-enturmar",
+ "fim": "primeiros-passos/index",
+ "inicio": "portal-alunos/listar/{ano}",
+ "rotas": [
+  "portal-alunos/listar",
+  "portal-alunos/visualizar",
+  "portal-alunos/confirmar-enturmacao",
+  "minhas-disciplinas/listar",
+  "disciplinas/visualizar",
+  "atividades/listar",
+  "atividades/cadastrar",
+  "atividades/visualizar",
+  "atividades/edit-notas"
+ ],
+ "passos": [
+  {
+   "p": "^portal-alunos/listar",
+   "a": "a[href*=\"portal-alunos/visualizar/\"]",
+   "t": "O aluno",
+   "x": "Abra o aluno para pôr ele nas disciplinas ofertadas.",
+   "aviso": "Clique em **Visualizar** na linha do aluno.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"portal-alunos/visualizar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^portal-alunos/visualizar",
+   "a": "form[action*=\"confirmar-enturmacao\"] button[type=\"submit\"]",
+   "t": "Enturmar",
+   "x": "As disciplinas sugeridas do curso já vêm marcadas.",
+   "aviso": "Confira e clique em **Confirmar enturmação**.",
+   "atencao": "Este passo grava a enturmação.",
+   "faz": [
+    [
+     "clicar",
+     "form[action*=\"confirmar-enturmacao\"] button[type=\"submit\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Clique em **Confirmar enturmação**."
+    ]
+   ]
+  },
+  {
+   "p": "^portal-alunos/visualizar",
+   "a": ".alert-success",
+   "t": "Agora, a primeira nota",
+   "x": "O aluno está na turma. A nota é lançada numa atividade da disciplina.",
+   "aviso": "Clique em **Avançar**: abrimos as disciplinas.",
+   "faz": [
+    [
+     "ir",
+     "minhas-disciplinas/listar"
+    ]
+   ]
+  },
+  {
+   "p": "^minhas-disciplinas/listar",
+   "a": "a[href*=\"disciplinas/visualizar/\"]",
+   "t": "A disciplina",
+   "x": "Abra a disciplina ofertada.",
+   "aviso": "Abra a **disciplina**.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"disciplinas/visualizar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^disciplinas/visualizar",
+   "a": "a[href*=\"atividades/listar/\"]",
+   "t": "As atividades",
+   "x": "As atividades e as avaliações da disciplina ficam aqui.",
+   "aviso": "Clique em **Atividades**.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"atividades/listar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/listar",
+   "a": "#botaoCadastrarAtividade",
+   "t": "Uma atividade",
+   "x": "Crie a primeira atividade da disciplina.",
+   "aviso": "Clique em **Cadastrar atividade** e escolha o tipo.",
+   "faz": [
+    [
+     "clicar",
+     "#botaoCadastrarAtividade"
+    ],
+    [
+     "esperar",
+     600
+    ],
+    [
+     "clicar",
+     "#addAtividadeNota a[href*=\"atividades/cadastrar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/cadastrar",
+   "a": "#nomeAtividade",
+   "t": "A atividade",
+   "x": "O nome e as datas da atividade.",
+   "aviso": "Confira o **nome** e preencha as **datas**.",
+   "faz": [
+    [
+     "preencher",
+     "#nomeAtividade",
+     "Primeira avaliação"
+    ],
+    [
+     "preencher",
+     "input[name=\"data_inicial\"]",
+     "{ano}-03-01"
+    ],
+    [
+     "preencher",
+     "input[name=\"data_final\"]",
+     "{ano}-03-31"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nomeAtividade",
+     null,
+     "Escreva o **nome** da atividade."
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/cadastrar",
+   "a": "input[name=\"CadAtividadeNota\"]",
+   "t": "Salvar a atividade",
+   "x": "A atividade é criada com uma linha de nota para cada aluno enturmado.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava a atividade.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"CadAtividadeNota\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/listar",
+   "a": "a[href*=\"atividades/visualizar/\"]",
+   "t": "As notas",
+   "x": "Abra a atividade para lançar as notas.",
+   "aviso": "Abra a **atividade**.",
+   "faz": [
+    [
+     "clicar",
+     "a[href*=\"atividades/visualizar/\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/visualizar",
+   "a": "#tabelaLancaNotas",
+   "t": "A primeira nota",
+   "x": "Clique na célula da nota, escreva o valor e tecle Enter: a nota é gravada na hora.",
+   "aviso": "Lance a **nota** do aluno.",
+   "faz": [
+    [
+     "nota",
+     "#tabelaLancaNotas tbody tr:first-child td:nth-child(5)",
+     "8.5"
+    ]
+   ]
+  },
+  {
+   "p": "^atividades/visualizar",
+   "a": "#tabelaLancaNotas",
+   "t": "Pronto",
+   "x": "A primeira nota está lançada. Os Primeiros passos estão completos: a instituição está pronta para o dia a dia."
+  }
+ ]
+}

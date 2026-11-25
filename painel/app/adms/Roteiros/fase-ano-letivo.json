@@ -1,0 +1,96 @@
+{
+ "titulo": "O primeiro ano letivo",
+ "guia": "ano-letivo-passo-a-passo",
+ "fim": "primeiros-passos/index",
+ "inicio": "anos-letivos/listar",
+ "rotas": [
+  "anos-letivos/listar",
+  "anos-letivos/cadastrar"
+ ],
+ "passos": [
+  {
+   "p": "^anos-letivos/listar",
+   "a": "a[href$=\"anos-letivos/cadastrar\"]",
+   "t": "Um ano novo",
+   "x": "O ano letivo é o ano em que as disciplinas são ofertadas.",
+   "aviso": "Clique em **Novo ano letivo**.",
+   "faz": [
+    [
+     "clicar",
+     "a[href$=\"anos-letivos/cadastrar\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^anos-letivos/cadastrar",
+   "a": "#ano",
+   "t": "O ano",
+   "x": "O ano, com quatro dígitos.",
+   "aviso": "Escreva o **ano**.",
+   "faz": [
+    [
+     "preencher",
+     "#ano",
+     "{ano}"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#ano",
+     "/^\\d{4}$/",
+     "Escreva o **ano**, com quatro dígitos."
+    ]
+   ]
+  },
+  {
+   "p": "^anos-letivos/cadastrar",
+   "a": "#situacaodisciplina",
+   "t": "O ano corrente",
+   "x": "Marque o ano corrente do acadêmico e das matrículas, e o ano como ativo.",
+   "aviso": "Marque as **três opções** e clique em **Avançar**.",
+   "faz": [
+    [
+     "marcar",
+     "#situacaodisciplina"
+    ],
+    [
+     "marcar",
+     "#situacaomodelo"
+    ],
+    [
+     "marcar",
+     "#situacao"
+    ]
+   ]
+  },
+  {
+   "p": "^anos-letivos/cadastrar",
+   "a": "input[name=\"SalvarAnoLetivo\"]",
+   "t": "Salvar",
+   "x": "O ano letivo é criado.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava o ano letivo.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"SalvarAnoLetivo\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^anos-letivos/listar",
+   "a": "table",
+   "t": "Pronto",
+   "x": "O ano letivo está na lista. Nos Primeiros passos, a fase aparece concluída.",
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Salve o ano letivo."
+    ]
+   ]
+  }
+ ]
+}

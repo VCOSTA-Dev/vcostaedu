@@ -1,0 +1,46 @@
+{
+ "titulo": "Enturmar",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "turmas/listar",
+ "rotas": [
+  "turmas/listar",
+  "turmas/ver"
+ ],
+ "passos": [
+  {
+   "p": "^turmas/listar",
+   "a": "#tabelaTurmas",
+   "t": "A turma",
+   "x": "Abra a turma.",
+   "aviso": "Clique no **nome da turma**."
+  },
+  {
+   "p": "^turmas/ver",
+   "a": "#candidatosTurma",
+   "t": "Os alunos do segmento",
+   "x": "Os alunos com matrícula no segmento e ainda sem turma no ano. Cada um entra em todas as disciplinas da turma, de uma vez.",
+   "aviso": "Marque os **alunos**.",
+   "faz": [
+    [
+     "clicar",
+     "#marcarTodos"
+    ]
+   ]
+  },
+  {
+   "p": "^turmas/ver",
+   "a": "#enturmarMarcados",
+   "t": "Enturmar",
+   "x": "A janela mostra o andamento, aluno a aluno; se a página fechar no meio, a turma oferece Continuar.",
+   "aviso": "Clique em **Enturmar os marcados**.",
+   "atencao": "Este passo grava a enturmação.",
+   "faz": [
+    [
+     "clicar",
+     "#enturmarMarcados"
+    ]
+   ]
+  }
+ ]
+}

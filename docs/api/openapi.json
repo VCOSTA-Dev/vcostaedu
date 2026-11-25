@@ -1,0 +1,3623 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API do VCOSTAEDU",
+    "version": "1.0.0",
+    "description": "A API de integração: as mesmas regras das telas, para outro sistema consultar e cadastrar alunos, matrículas e enturmações.\n\n- **Autenticação:** a chave criada em Integrações → Chaves de API, no cabeçalho `Authorization: Bearer <chave>`.\n- **O limite da chave:** cada chave diz, assunto por assunto — Alunos, Matrículas, Enturmação, Cadastros de apoio —, se pode consultar ou gravar (gravar inclui consultar o mesmo assunto). Cada operação diz o assunto dela (`x-assunto`). Fora do limite: 403 `sem_permissao`, com a mensagem dizendo o que a chave pode.\n- **Erros:** sempre `{\"erro\": {\"codigo\", \"mensagem\", \"campo\"}}`, com a mensagem em português.\n- **Limite:** um número de chamadas por minuto por chave (parâmetro `api.limite_por_minuto`); acima, 429 com `Retry-After`.\n- **Escritas:** aceitam `Idempotency-Key`, para repetir a mesma chamada sem gravar duas vezes.\n- **Registro:** toda chamada fica registrada (a chave, a operação, o resultado, o IP, quando).",
+    "license": {
+      "name": "AGPL-3.0",
+      "url": "https://www.gnu.org/licenses/agpl-3.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "Relativo a esta instalação (a página de documentação usa o endereço completo)"
+    }
+  ],
+  "security": [
+    {
+      "chave": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Alunos",
+      "description": "O cadastro do aluno: consultar, cadastrar e atualizar."
+    },
+    {
+      "name": "Matrículas",
+      "description": "O vínculo do aluno com o curso, a grade e o ano; trancar, reativar e cancelar."
+    },
+    {
+      "name": "Enturmação",
+      "description": "As ofertas que o aluno cursa no ano da matrícula."
+    },
+    {
+      "name": "Cadastros de apoio",
+      "description": "Os cursos, as grades, os anos letivos, os polos, as modalidades, as formas de ingresso, as disciplinas e as ofertas, para montar as chamadas acima."
+    },
+    {
+      "name": "Responsáveis",
+      "description": "Só na escola: o responsável financeiro (um só) e o acadêmico titular de cada aluno, por ano letivo."
+    }
+  ],
+  "paths": {
+    "/alunos": {
+      "get": {
+        "operationId": "alunosListar",
+        "summary": "Lista os alunos (paginada), com filtro por RA, CPF ou nome",
+        "responses": {
+          "200": {
+            "description": "A página de alunos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados",
+                    "paginacao"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Aluno"
+                      }
+                    },
+                    "paginacao": {
+                      "$ref": "#/components/schemas/Paginacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nome",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "parte do nome"
+          },
+          {
+            "name": "pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "por_pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos",
+        "description": "**Limite da chave:** Alunos — consultar (ou consultar e gravar)."
+      },
+      "post": {
+        "operationId": "alunosCriar",
+        "summary": "Cadastra um aluno (a mesma regra da tela)",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cadastrado.",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Aluno"
+                    },
+                    "criado": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "O RA já existe: devolve o aluno existente, sem duplicar e sem mudar nada (criado: false).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Aluno"
+                    },
+                    "criado": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlunoNovo"
+              }
+            }
+          }
+        },
+        "description": "O aluno nasce sem senha: o primeiro acesso é pelo link enviado na tela do aluno, como no cadastro pela tela.\n\n**Limite da chave:** Alunos — consultar e gravar.",
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos"
+      }
+    },
+    "/alunos/{ra}": {
+      "get": {
+        "operationId": "alunosVer",
+        "summary": "Um aluno, pelo RA",
+        "responses": {
+          "200": {
+            "description": "O aluno.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Aluno"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{1,9}$"
+            },
+            "description": "O RA (registro acadêmico)."
+          }
+        ],
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos",
+        "description": "**Limite da chave:** Alunos — consultar (ou consultar e gravar)."
+      },
+      "patch": {
+        "operationId": "alunosAtualizar",
+        "summary": "Atualiza os dados de um aluno (só os campos enviados)",
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{1,9}$"
+            },
+            "description": "O RA (registro acadêmico)."
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "O aluno atualizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Aluno"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlunoAlteracao"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos",
+        "description": "**Limite da chave:** Alunos — consultar e gravar."
+      }
+    },
+    "/cursos": {
+      "get": {
+        "operationId": "cursosListar",
+        "summary": "Os cursos",
+        "responses": {
+          "200": {
+            "description": "Os cursos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Curso"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/cursos/{id}/grades": {
+      "get": {
+        "operationId": "gradesListar",
+        "summary": "As grades de um curso",
+        "responses": {
+          "200": {
+            "description": "As grades.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Grade"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/anos-letivos": {
+      "get": {
+        "operationId": "anosListar",
+        "summary": "Os anos letivos",
+        "responses": {
+          "200": {
+            "description": "Os anos letivos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AnoLetivo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/polos": {
+      "get": {
+        "operationId": "polosListar",
+        "summary": "Os polos",
+        "responses": {
+          "200": {
+            "description": "Os polos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Polo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/modalidades": {
+      "get": {
+        "operationId": "modalidadesListar",
+        "summary": "As modalidades",
+        "responses": {
+          "200": {
+            "description": "As modalidades.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Item"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/formas-ingresso": {
+      "get": {
+        "operationId": "formasListar",
+        "summary": "As formas de ingresso",
+        "responses": {
+          "200": {
+            "description": "As formas de ingresso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Item"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/disciplinas": {
+      "get": {
+        "operationId": "disciplinasListar",
+        "summary": "As disciplinas do catálogo (matérias)",
+        "responses": {
+          "200": {
+            "description": "As disciplinas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Disciplina"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/ofertas": {
+      "get": {
+        "operationId": "ofertasListar",
+        "summary": "As ofertas (paginada), por ano e curso",
+        "responses": {
+          "200": {
+            "description": "A página de ofertas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados",
+                    "paginacao"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Oferta"
+                      }
+                    },
+                    "paginacao": {
+                      "$ref": "#/components/schemas/Paginacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ano",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "curso_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "por_pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar)."
+      }
+    },
+    "/matriculas": {
+      "get": {
+        "operationId": "matriculasListar",
+        "summary": "As matrículas (paginada), por RA, curso ou situação",
+        "responses": {
+          "200": {
+            "description": "A página de matrículas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados",
+                    "paginacao"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Matricula"
+                      }
+                    },
+                    "paginacao": {
+                      "$ref": "#/components/schemas/Paginacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "curso_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "situacao",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cursando",
+                "concluido",
+                "trancado",
+                "cancelado",
+                "transferido"
+              ]
+            }
+          },
+          {
+            "name": "pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "por_pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas",
+        "description": "**Limite da chave:** Matrículas — consultar (ou consultar e gravar)."
+      },
+      "post": {
+        "operationId": "matriculasCriar",
+        "summary": "Vincula o aluno a um curso, grade e ano (a mesma regra da tela)",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Vinculado.",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Matricula"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatriculaNova"
+              }
+            }
+          }
+        },
+        "description": "Recusa (409) se o aluno já tem matrícula cursando ou trancada no curso.\n\n**Limite da chave:** Matrículas — consultar e gravar.",
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas"
+      }
+    },
+    "/matriculas/{id}": {
+      "get": {
+        "operationId": "matriculasVer",
+        "summary": "Uma matrícula",
+        "responses": {
+          "200": {
+            "description": "A matrícula.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Matricula"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas",
+        "description": "**Limite da chave:** Matrículas — consultar (ou consultar e gravar)."
+      }
+    },
+    "/matriculas/{id}/trancar": {
+      "post": {
+        "operationId": "matriculasTrancar",
+        "summary": "Tranca a matrícula (cursando → trancado)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A matrícula trancada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Matricula"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas",
+        "description": "**Limite da chave:** Matrículas — consultar e gravar."
+      }
+    },
+    "/matriculas/{id}/reativar": {
+      "post": {
+        "operationId": "matriculasReativar",
+        "summary": "Reativa a matrícula trancada (trancado → cursando)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A matrícula reativada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Matricula"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas",
+        "description": "**Limite da chave:** Matrículas — consultar e gravar."
+      }
+    },
+    "/matriculas/{id}/cancelar": {
+      "post": {
+        "operationId": "matriculasCancelar",
+        "summary": "Cancela a matrícula (cursando ou trancado → cancelado)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A matrícula cancelada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Matricula"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Matrículas"
+        ],
+        "x-assunto": "matriculas",
+        "description": "**Limite da chave:** Matrículas — consultar e gravar."
+      }
+    },
+    "/matriculas/{id}/enturmacao": {
+      "get": {
+        "operationId": "enturmacaoVer",
+        "summary": "As ofertas do ano da matrícula, com as que o aluno cursa",
+        "responses": {
+          "200": {
+            "description": "A enturmação.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Enturmacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ano",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "vazio: o ano mais recente"
+          }
+        ],
+        "tags": [
+          "Enturmação"
+        ],
+        "x-assunto": "enturmacao",
+        "description": "**Limite da chave:** Enturmação — consultar (ou consultar e gravar)."
+      },
+      "post": {
+        "operationId": "enturmacaoGravar",
+        "summary": "Grava a enturmação do ano (a lista inteira, como na tela)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A enturmação gravada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/Enturmacao"
+                    },
+                    "aviso": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "as ofertas mantidas porque já têm nota, falta ou observação"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnturmacaoNova"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Enturmação"
+        ],
+        "x-assunto": "enturmacao",
+        "description": "**Limite da chave:** Enturmação — consultar e gravar."
+      }
+    },
+    "/turmas": {
+      "get": {
+        "operationId": "turmasListar",
+        "summary": "As turmas da escola, por ano e segmento",
+        "responses": {
+          "200": {
+            "description": "As turmas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "dados"
+                  ],
+                  "properties": {
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/Turma"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "alunos": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ano",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "curso_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Cadastros de apoio"
+        ],
+        "x-assunto": "cadastros",
+        "description": "**Limite da chave:** Cadastros de apoio — consultar (ou consultar e gravar). **Só numa instalação de escola** (no ensino superior, a rota não existe: 404).",
+        "x-tipo": "escola"
+      }
+    },
+    "/turmas/{id}/alunos": {
+      "get": {
+        "operationId": "turmaAlunosVer",
+        "summary": "A turma, com os alunos dela",
+        "responses": {
+          "200": {
+            "description": "A turma e os alunos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/TurmaComAlunos"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A instalação exige HTTPS e a chamada veio por HTTP (codigo: https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Enturmação"
+        ],
+        "x-assunto": "enturmacao",
+        "description": "**Limite da chave:** Enturmação — consultar (ou consultar e gravar). **Só numa instalação de escola** (no ensino superior, a rota não existe: 404).",
+        "x-tipo": "escola"
+      },
+      "post": {
+        "operationId": "turmaAlunosEntrar",
+        "summary": "Põe o aluno na turma (ele entra em todas as disciplinas dela)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A turma, com o aluno.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/TurmaComAlunos"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito: a Idempotency-Key já foi usada com outra requisição (idempotencia_conflito), ou o estado não permite a operação (conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Dado recusado pela mesma regra da tela (codigo: validacao; \"campo\" diz qual).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ra"
+                ],
+                "properties": {
+                  "ra": {
+                    "type": "string",
+                    "description": "a RA do aluno, com matrícula Cursando no segmento e sem turma no ano"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Enturmação"
+        ],
+        "x-assunto": "enturmacao",
+        "description": "**Limite da chave:** Enturmação — consultar e gravar. **Só numa instalação de escola** (no ensino superior, a rota não existe: 404).",
+        "x-tipo": "escola"
+      }
+    },
+    "/alunos/{ra}/responsaveis": {
+      "get": {
+        "operationId": "responsaveisVer",
+        "summary": "O responsável financeiro e o acadêmico titular do aluno no ano",
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ano",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "O ano letivo (o padrão: o ano corrente)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "O financeiro e o titular do aluno no ano.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/ResponsaveisDoAluno"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Responsáveis"
+        ],
+        "x-assunto": "responsaveis",
+        "description": "**Limite da chave:** Responsáveis — consultar (ou consultar e gravar). **Só numa instalação de escola** (no ensino superior, a rota não existe: 404). O acesso acadêmico adicional não sai pela interface.",
+        "x-tipo": "escola"
+      },
+      "post": {
+        "operationId": "responsaveisDesignar",
+        "summary": "Designa o responsável financeiro ou o acadêmico titular do aluno no ano",
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo; com outro corpo, 409."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ano",
+                  "papel",
+                  "responsavel"
+                ],
+                "properties": {
+                  "ano": {
+                    "type": "integer",
+                    "description": "Um ano letivo aberto na escola."
+                  },
+                  "papel": {
+                    "type": "string",
+                    "enum": [
+                      "financeiro",
+                      "titular"
+                    ]
+                  },
+                  "responsavel": {
+                    "type": "object",
+                    "required": [
+                      "nome"
+                    ],
+                    "properties": {
+                      "nome": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "celular": {
+                        "type": "string"
+                      },
+                      "cpf": {
+                        "type": "string"
+                      },
+                      "parentesco": {
+                        "type": "string"
+                      }
+                    },
+                    "description": "A pessoa. Se já existe alguém com o mesmo e-mail ou CPF, o cadastro existente é usado (a pessoa não é criada de novo)."
+                  },
+                  "data": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Opcional: desde quando (o padrão: hoje no ano corrente; o 1º dia em outro ano)."
+                  },
+                  "motivo": {
+                    "type": "string",
+                    "description": "Obrigatório para TROCAR quem já está no papel: o anterior é encerrado nesta data, com o motivo."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "O financeiro e o titular do aluno no ano.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dados": {
+                      "$ref": "#/components/schemas/ResponsaveisDoAluno"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Recusado (codigo: validacao): o papel, o ano, a pessoa, a troca sem motivo, ou o acesso adicional (que é só da tela).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida (codigo: nao_autenticado, chave_revogada, chave_vencida).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido (codigo: limite_excedido). Cabeçalho Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave é só de leitura (codigo: sem_permissao), ou a instalação exige HTTPS e a chamada veio por HTTP (https_obrigatorio).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Responsáveis"
+        ],
+        "x-assunto": "responsaveis",
+        "description": "**Limite da chave:** Responsáveis — consultar e gravar. **Só numa instalação de escola** (no ensino superior, a rota não existe: 404). O responsável financeiro é sempre um só: a troca encerra o anterior; dois em vigor ao mesmo tempo, nunca.",
+        "x-tipo": "escola"
+      }
+    },
+    "/inscricoes": {
+      "post": {
+        "operationId": "inscricoesCriar",
+        "summary": "Inscreve uma pessoa numa chamada só: o cadastro, a matrícula e a turma (ou as ofertas)",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Opcional, e recomendada. A mesma chave com o mesmo corpo devolve a resposta guardada (cabeçalho Idempotent-Replayed: true), sem gravar de novo — também quando as duas chamadas chegam ao mesmo tempo (o clique duplo): a segunda espera a primeira e devolve a mesma resposta. Com outro corpo, 409. Gere a chave a partir do envio do formulário (o mesmo envio, a mesma chave), nunca uma chave nova a cada tentativa."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "aluno",
+                  "destino"
+                ],
+                "properties": {
+                  "aluno": {
+                    "type": "object",
+                    "required": [
+                      "ra",
+                      "nome"
+                    ],
+                    "description": "A pessoa: os mesmos campos de POST /alunos (ra e nome; sexo, email, celular, cpf, nascimento, se tiver). Sem o sexo, a pessoa entra na lista \"Alunos sem sexo informado\", como na importação. A que já existe (o mesmo RA) não muda."
+                  },
+                  "destino": {
+                    "type": "object",
+                    "description": "Na escola: {\"turma_id\"} (GET /turmas). No ensino superior: {\"curso_id\", \"ano\", \"ofertas\"} (GET /ofertas), e \"grade_id\" se o curso tiver mais de uma grade que aceita vínculo. Opcionais nos dois: forma_ingresso_id (o padrão é a primeira ativa), data_ingresso (o padrão é hoje), polo_id, modalidade_id, previsao_conclusao."
+                  }
+                }
+              },
+              "examples": {
+                "escola": {
+                  "summary": "Na escola: a turma",
+                  "value": {
+                    "aluno": {
+                      "ra": "970001",
+                      "nome": "Pessoa Exemplo da Silva",
+                      "email": "pessoa.exemplo@exemplo.invalid",
+                      "celular": "61999990000"
+                    },
+                    "destino": {
+                      "turma_id": 12
+                    }
+                  }
+                },
+                "superior": {
+                  "summary": "No ensino superior: o curso, o ano e as ofertas",
+                  "value": {
+                    "aluno": {
+                      "ra": "970002",
+                      "nome": "Outra Pessoa Exemplo",
+                      "email": "outra.pessoa@exemplo.invalid",
+                      "sexo": "F"
+                    },
+                    "destino": {
+                      "curso_id": 1,
+                      "ano": 2026,
+                      "ofertas": [
+                        10,
+                        11,
+                        12,
+                        13
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Inscrita: alguma coisa foi criada agora (feito diz o quê: aluno criado, matrícula criada, entrou na turma, enturmação gravada).",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "dados": {
+                    "aluno": {
+                      "ra": "970001",
+                      "nome": "Pessoa Exemplo da Silva",
+                      "email": "pessoa.exemplo@exemplo.invalid"
+                    },
+                    "matricula": {
+                      "id": 41,
+                      "curso_id": 3,
+                      "situacao": "Cursando"
+                    },
+                    "turma": {
+                      "id": 12,
+                      "nome": "Turma aberta",
+                      "curso": "Curso livre de exemplo",
+                      "componentes": 4
+                    }
+                  },
+                  "feito": {
+                    "aluno": "criado",
+                    "matricula": "criada",
+                    "turma": "entrou"
+                  },
+                  "moodle": {
+                    "conectado": true,
+                    "enviado": true,
+                    "disciplinas": 4,
+                    "pendentes": 0,
+                    "falhas": 0,
+                    "acesso_pronto": true,
+                    "disciplinas_total": 4
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Nada novo: a pessoa já estava inscrita (feito: ja_existia, ja_estava). Nenhuma segunda pessoa, matrícula ou enturmação.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "dados": {
+                    "aluno": {
+                      "ra": "970001",
+                      "nome": "Pessoa Exemplo da Silva",
+                      "email": "pessoa.exemplo@exemplo.invalid"
+                    },
+                    "matricula": {
+                      "id": 41,
+                      "curso_id": 3,
+                      "situacao": "Cursando"
+                    },
+                    "turma": {
+                      "id": 12,
+                      "nome": "Turma aberta",
+                      "curso": "Curso livre de exemplo",
+                      "componentes": 4
+                    }
+                  },
+                  "feito": {
+                    "aluno": "ja_existia",
+                    "matricula": "ja_existia",
+                    "turma": "ja_estava"
+                  },
+                  "moodle": {
+                    "conectado": true,
+                    "enviado": true,
+                    "disciplinas": 4,
+                    "pendentes": 0,
+                    "falhas": 0,
+                    "acesso_pronto": true,
+                    "disciplinas_total": 4
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O corpo não é um objeto JSON (codigo: json_invalido).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave não grava os três assuntos (codigo: sem_permissao).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A turma não existe (codigo: nao_encontrado; campo: destino.turma_id).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito, e NADA foi gravado: a pessoa já está noutra turma no ano, a matrícula está trancada, ou a Idempotency-Key já foi usada com outro corpo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Recusado pela mesma regra da tela, e NADA foi gravado (a mensagem começa por \"Nada foi gravado:\" e diz a razão; \"campo\" diz qual): por exemplo, a turma completa, o RA inválido, o curso sem a oferta.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de chamadas por minuto da chave excedido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos",
+        "description": "**Limite da chave:** Alunos, Matrículas e Enturmação — gravar (os três).\n\nTudo ou nada: o cadastro, a matrícula no curso e a turma (na escola) ou a enturmação nas ofertas (no ensino superior) numa transação só, pelas mesmas funções das operações separadas (que continuam valendo, sem mudança). Se uma parte é recusada — a turma completa, a turma que não existe, a pessoa noutra turma —, nada fica gravado, e a resposta diz a razão. A mesma matrícula de novo (outra chamada, sem a mesma Idempotency-Key) não cria uma segunda pessoa: a resposta diz o que já existia.\n\n**O que acontece no Moodle.** Com o Moodle conectado e o envio automático (Integrações → Conectar ao Moodle), depois de gravar a plataforma manda, na mesma requisição e dentro de um orçamento curto de tempo: o usuário da pessoa (o e-mail conforme o modo escolhido em Conectar ao Moodle), a disciplina no Moodle de cada disciplina da turma (ou de cada oferta), se ainda não existe, e a inscrição da pessoa em cada uma. A resposta traz o estado lá em `moodle`: `enviado` (o usuário existe no Moodle), `disciplinas` (em quantas ela já está inscrita), `disciplinas_total` (quantas são), `pendentes` e `falhas`. O que não coube no orçamento fica na fila e **termina sozinho** nas requisições seguintes à plataforma (de qualquer pessoa ou sistema), sem clique; consulte `GET /alunos/{ra}` para acompanhar. A falha passageira (o Moodle fora do ar, sem resposta) volta sozinha, com espera crescente. A que só uma pessoa resolve (por exemplo, a pessoa sem e-mail no modo \"só o e-mail do aluno\") fica em Integrações → Envios ao Moodle, com o motivo; corrigido o cadastro e com o usuário no Moodle, as inscrições que tinham falhado pelo mesmo motivo voltam à fila sozinhas. O Moodle fora do ar nunca impede a inscrição: os dados ficam gravados e a resposta é a de sempre."
+      }
+    },
+    "/alunos/{ra}/primeiro-acesso": {
+      "post": {
+        "operationId": "primeiroAcesso",
+        "summary": "Manda o e-mail de boas-vindas com o link para a pessoa criar a senha (o primeiro acesso)",
+        "parameters": [
+          {
+            "name": "ra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enviar_email": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Manda o e-mail de boas-vindas, para o e-mail do cadastro, com o link."
+                  },
+                  "devolver_link": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Devolve o mesmo link na resposta (para o site mostrar um botão \"Criar minha senha agora\"). Com ele, a inscrição deixa de confirmar que o e-mail é da pessoa: use só onde isso é aceitável (uma demonstração ao vivo, por exemplo)."
+                  }
+                }
+              },
+              "example": {
+                "enviar_email": true,
+                "devolver_link": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "O link foi emitido: de uso único, com prazo (o mesmo que a secretaria manda pela ficha do aluno). Emitir outro invalida o anterior. A resposta não é guardada para a repetição.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "dados": {
+                    "email_enviado": true,
+                    "valido_ate": "2026-11-23T10:00:00-03:00",
+                    "uso_unico": true
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem chave, chave inválida, revogada ou vencida.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "A chave não grava Alunos (codigo: sem_permissao).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Aluno não encontrado (codigo: nao_encontrado).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "A pessoa já criou a senha (ela entra pelo portal) ou está inativa (codigo: conflito).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Sem e-mail válido no cadastro para o e-mail de boas-vindas, ou nada foi pedido (codigo: validacao).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Alunos"
+        ],
+        "x-assunto": "alunos",
+        "description": "**Limite da chave:** Alunos — gravar.\n\nSó para quem ainda não criou a senha. A pessoa abre o link, cria a senha e entra no portal com o login (na escola, o número de matrícula) e a senha; de lá, entra no Moodle. O link aberto de novo depois de criar a senha leva à entrada, com o aviso de que a senha já foi criada."
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "chave": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "A chave da API (vce_...)"
+      }
+    },
+    "schemas": {
+      "Erro": {
+        "type": "object",
+        "required": [
+          "erro"
+        ],
+        "properties": {
+          "erro": {
+            "type": "object",
+            "required": [
+              "codigo",
+              "mensagem",
+              "campo"
+            ],
+            "properties": {
+              "codigo": {
+                "type": "string",
+                "example": "validacao"
+              },
+              "mensagem": {
+                "type": "string",
+                "example": "CPF inválido (dígitos verificadores não conferem)."
+              },
+              "campo": {
+                "type": "string",
+                "nullable": true,
+                "example": "cpf"
+              }
+            }
+          }
+        }
+      },
+      "Paginacao": {
+        "type": "object",
+        "properties": {
+          "pagina": {
+            "type": "integer"
+          },
+          "por_pagina": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "ra": {
+            "type": "string",
+            "example": "900101"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Aluna Exemplo da Silva"
+          },
+          "nome_social": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true,
+            "description": "só dígitos"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "nascimento": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "feminino",
+              "masculino",
+              "outros"
+            ],
+            "nullable": true,
+            "description": "vazio quando o sexo ainda não foi informado"
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "celular": {
+            "type": "string",
+            "nullable": true
+          },
+          "situacao": {
+            "type": "string",
+            "enum": [
+              "ativo",
+              "inativo"
+            ]
+          },
+          "cadastrado_em": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "moodle": {
+            "type": "object",
+            "nullable": true,
+            "description": "Só em GET /alunos/{ra}: o aluno no Moodle da instituição (sem id, sem nome de usuário, sem link).",
+            "properties": {
+              "conectado": {
+                "type": "boolean",
+                "description": "a instituição conectou o Moodle"
+              },
+              "enviado": {
+                "type": "boolean",
+                "description": "o aluno já está no Moodle"
+              },
+              "disciplinas": {
+                "type": "integer",
+                "description": "em quantas disciplinas do Moodle a enturmação dele já foi"
+              },
+              "pendentes": {
+                "type": "integer"
+              },
+              "falhas": {
+                "type": "integer"
+              },
+              "acesso_pronto": {
+                "type": "boolean",
+                "description": "o portal do aluno já mostra o botão \"Entrar no Moodle\""
+              }
+            }
+          }
+        }
+      },
+      "AlunoNovo": {
+        "type": "object",
+        "required": [
+          "ra",
+          "nome",
+          "sexo"
+        ],
+        "properties": {
+          "ra": {
+            "type": "string",
+            "pattern": "^[0-9]{1,9}$",
+            "example": "900101"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Aluna Exemplo da Silva"
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "feminino",
+              "masculino",
+              "outros"
+            ],
+            "example": "feminino"
+          },
+          "nome_social": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "123.456.789-09"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "aluna@exemplo.invalid"
+          },
+          "nascimento": {
+            "type": "string",
+            "format": "date",
+            "example": "2000-03-15"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "celular": {
+            "type": "string"
+          },
+          "situacao": {
+            "type": "string",
+            "enum": [
+              "ativo",
+              "inativo"
+            ],
+            "default": "ativo"
+          }
+        }
+      },
+      "AlunoAlteracao": {
+        "type": "object",
+        "description": "Só os campos enviados mudam; o RA não muda.",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "nome_social": {
+            "type": "string"
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "feminino",
+              "masculino",
+              "outros"
+            ]
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "nascimento": {
+            "type": "string",
+            "format": "date"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "celular": {
+            "type": "string"
+          },
+          "situacao": {
+            "type": "string",
+            "enum": [
+              "ativo",
+              "inativo"
+            ]
+          }
+        }
+      },
+      "Curso": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "sigla": {
+            "type": "string",
+            "nullable": true
+          },
+          "nivel": {
+            "type": "string",
+            "nullable": true
+          },
+          "nome_extenso": {
+            "type": "string",
+            "nullable": true
+          },
+          "modalidade_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "polo_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ativo": {
+            "type": "boolean"
+          },
+          "exige_tcc": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Grade": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "versao": {
+            "type": "integer"
+          },
+          "situacao": {
+            "type": "string",
+            "nullable": true
+          },
+          "aceita_vinculo": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AnoLetivo": {
+        "type": "object",
+        "properties": {
+          "ano": {
+            "type": "integer",
+            "example": 2026
+          }
+        }
+      },
+      "Polo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "cidade": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "type": "string",
+            "nullable": true
+          },
+          "ativo": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          }
+        }
+      },
+      "Disciplina": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "sigla": {
+            "type": "string",
+            "nullable": true
+          },
+          "carga_horaria": {
+            "type": "string",
+            "nullable": true
+          },
+          "ativa": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Oferta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "curso_id": {
+            "type": "integer"
+          },
+          "grade_id": {
+            "type": "integer"
+          },
+          "disciplina_id": {
+            "type": "integer"
+          },
+          "disciplina": {
+            "type": "string"
+          },
+          "turma": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "integer"
+          },
+          "carga_horaria": {
+            "type": "string"
+          },
+          "encerrada": {
+            "type": "boolean"
+          },
+          "data_inicio": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "data_fim": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          }
+        }
+      },
+      "Matricula": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ra": {
+            "type": "string"
+          },
+          "aluno": {
+            "type": "string"
+          },
+          "curso_id": {
+            "type": "integer"
+          },
+          "curso": {
+            "type": "string"
+          },
+          "grade_id": {
+            "type": "integer"
+          },
+          "grade_versao": {
+            "type": "integer"
+          },
+          "situacao": {
+            "type": "string",
+            "enum": [
+              "cursando",
+              "concluido",
+              "trancado",
+              "cancelado",
+              "transferido"
+            ]
+          },
+          "forma_ingresso_id": {
+            "type": "integer"
+          },
+          "data_ingresso": {
+            "type": "string",
+            "format": "date"
+          },
+          "polo_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "modalidade_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "previsao_conclusao": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "data_conclusao": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "anos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "posicao_id": {
+                  "type": "integer"
+                },
+                "ano": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MatriculaNova": {
+        "type": "object",
+        "required": [
+          "ra",
+          "curso_id",
+          "ano",
+          "forma_ingresso_id",
+          "data_ingresso"
+        ],
+        "properties": {
+          "ra": {
+            "type": "string",
+            "example": "900101"
+          },
+          "curso_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "grade_id": {
+            "type": "integer",
+            "description": "obrigatória se o curso tiver mais de uma grade aberta"
+          },
+          "ano": {
+            "type": "integer",
+            "example": 2026
+          },
+          "forma_ingresso_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "data_ingresso": {
+            "type": "string",
+            "format": "date",
+            "example": "2026-02-02"
+          },
+          "polo_id": {
+            "type": "integer",
+            "description": "vazio: o polo do curso"
+          },
+          "modalidade_id": {
+            "type": "integer",
+            "description": "vazio: a modalidade do curso"
+          },
+          "previsao_conclusao": {
+            "type": "string",
+            "format": "date"
+          },
+          "observacao": {
+            "type": "string"
+          }
+        }
+      },
+      "Enturmacao": {
+        "type": "object",
+        "properties": {
+          "posicao_id": {
+            "type": "integer"
+          },
+          "ano": {
+            "type": "integer"
+          },
+          "ofertas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "oferta_id": {
+                  "type": "integer"
+                },
+                "disciplina": {
+                  "type": "string"
+                },
+                "turma": {
+                  "type": "string"
+                },
+                "enturmado": {
+                  "type": "boolean"
+                },
+                "sugerida": {
+                  "type": "boolean"
+                },
+                "encerrada": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "EnturmacaoNova": {
+        "type": "object",
+        "required": [
+          "ofertas"
+        ],
+        "properties": {
+          "ano": {
+            "type": "integer",
+            "description": "vazio: o ano mais recente da matrícula"
+          },
+          "ofertas": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "A lista INTEIRA das ofertas em que o aluno fica, como na tela: a que sai da lista é desenturmada, salvo se já tiver nota, falta ou observação."
+          }
+        }
+      },
+      "Turma": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ano": {
+            "type": "integer"
+          },
+          "curso_id": {
+            "type": "integer",
+            "description": "o segmento"
+          },
+          "grade_id": {
+            "type": "integer",
+            "description": "a matriz"
+          },
+          "serie_id": {
+            "type": "integer"
+          },
+          "serie": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "turma": {
+            "type": "string",
+            "description": "a série e o nome (\"6º ano A\"), a turma das ofertas"
+          },
+          "turno": {
+            "type": "string",
+            "nullable": true
+          },
+          "sala": {
+            "type": "string",
+            "nullable": true
+          },
+          "capacidade": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ofertas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "oferta_id": {
+                  "type": "integer"
+                },
+                "disciplina": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TurmaComAlunos": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Turma"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "alunos": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ra": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "entrada": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ResponsavelPessoa": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "celular": {
+            "type": "string",
+            "nullable": true,
+            "description": "só os dígitos, com o DDD"
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true,
+            "description": "só os dígitos"
+          },
+          "parentesco": {
+            "type": "string",
+            "nullable": true
+          },
+          "desde": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "ResponsaveisDoAluno": {
+        "type": "object",
+        "properties": {
+          "ra": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "integer"
+          },
+          "financeiro": {
+            "$ref": "#/components/schemas/ResponsavelPessoa"
+          },
+          "titular": {
+            "$ref": "#/components/schemas/ResponsavelPessoa"
+          }
+        }
+      }
+    }
+  }
+}

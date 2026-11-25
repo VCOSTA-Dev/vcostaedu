@@ -1,0 +1,13 @@
+[
+ { "nome": "coord-inicio", "rota": "painel/home/index", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "coord-minhas-disciplinas", "rota": "painel/minhas-disciplinas/listar", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "coord-disciplina", "rota": "painel/disciplinas/visualizar/1", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "coord-notas", "rota": "painel/medias/final/1", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "coord-cursos", "rota": "painel/cursos/listar", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "coord-relatorio", "rota": "painel/relatorios/alunos-situacao", "perfil": "coord.demo", "area": "Coordenação de curso" },
+ { "nome": "direcao-inicio", "rota": "painel/home/index", "perfil": "direcao.demo", "area": "Direção acadêmica" },
+ { "nome": "direcao-curso", "rota": "painel/cursos/visualizar/1", "perfil": "direcao.demo", "area": "Direção acadêmica" },
+ { "nome": "direcao-disciplinas", "rota": "painel/disciplinas/listar", "perfil": "direcao.demo", "area": "Direção acadêmica" },
+ { "nome": "supervisao-inicio", "rota": "painel/home/index", "perfil": "supervisao.demo", "area": "Supervisão de secretaria" },
+ { "nome": "supervisao-encerramento", "rota": "painel/disciplinas/encerrar/1", "perfil": "supervisao.demo", "area": "Supervisão de secretaria" }
+]

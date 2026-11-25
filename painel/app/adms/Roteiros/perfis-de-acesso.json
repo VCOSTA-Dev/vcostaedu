@@ -1,0 +1,24 @@
+{
+ "titulo": "Perfis de acesso",
+ "guia": "perfis-de-acesso",
+ "fim": "perfis-acesso/index",
+ "inicio": "perfis-acesso/index",
+ "rotas": [
+  "perfis-acesso/index"
+ ],
+ "passos": [
+  {
+   "p": "^perfis-acesso",
+   "a": "#matrizPerfis",
+   "t": "O que cada perfil pode",
+   "x": "As ações, agrupadas, com o limite de cada uma e um ✓ em cada perfil que pode.",
+   "aviso": "Percorra a tabela e clique em **Avançar**."
+  },
+  {
+   "p": "^perfis-acesso",
+   "a": "#matrizPerfis",
+   "t": "O limite",
+   "x": "O limite é o perfil mais baixo que pode receber a ação. Os perfis vêm prontos e mudam com a atualização do sistema. Quem coordena cada curso é indicado na tela do curso (**Adicionar coordenador**)."
+  }
+ ]
+}

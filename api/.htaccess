@@ -1,0 +1,6 @@
+# Onda 2, Etapa 6: a API /api/v1 — tudo passa pelo index.php; o cabeçalho Authorization chega ao PHP.
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+Options -Indexes

@@ -1,0 +1,94 @@
+/* O site de exemplo do Instituto Ventoalto (fictício): a identidade própria dele — o verde-petróleo da capa, o âmbar do
+   botão e o papel claro. As fontes são servidas daqui mesmo (fontes/): nada vem de fora. */
+@font-face { font-family: "Ventoalto Titulo"; src: url("fontes/DejaVuSerif-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Ventoalto Texto"; src: url("fontes/LiberationSans-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Ventoalto Texto"; src: url("fontes/LiberationSans-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+
+:root {
+  --petroleo: #0d3a40;
+  --petroleo-claro: #1d5a61;
+  --ambar: #f3b23a;
+  --ambar-escuro: #c98812;
+  --tinta: #1c2426;
+  --tinta-suave: #4a5659;
+  --papel: #faf6ee;
+  --cartao: #ffffff;
+  --linha: #e4dccb;
+  --erro: #9b1c1c;
+  --erro-fundo: #fdecea;
+  --ok: #1f6b3a;
+  --largura: 44rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font: 1.0625rem/1.6 "Ventoalto Texto", Arial, sans-serif; overflow-wrap: anywhere; }
+h1, h2 { font-family: "Ventoalto Titulo", Georgia, serif; line-height: 1.15; margin: 0 0 .6em; }
+h2 { font-size: 1.45rem; color: var(--petroleo); }
+a { color: var(--petroleo-claro); }
+:focus-visible { outline: 3px solid var(--ambar); outline-offset: 3px; border-radius: 4px; }
+
+.marca { background: var(--petroleo); color: #fff; padding: .75rem 1rem; }
+.logo { display: inline-flex; align-items: center; gap: .55rem; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: .01em; }
+.logo svg { color: var(--ambar); }
+
+.capa { position: relative; overflow: hidden; background: var(--petroleo); color: #fbf7ef; padding: 2.5rem 1rem 3.5rem; }
+.capa-conteudo { position: relative; z-index: 1; max-width: var(--largura); margin: 0 auto; }
+.capa h1 { font-size: clamp(2.1rem, 9vw, 3.6rem); color: #fff; max-width: 14ch; }
+.selo { display: inline-block; margin: 0 0 1rem; padding: .25rem .7rem; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; font-size: .9rem; color: #f4e9d2; }
+.promessa { font-size: 1.15rem; max-width: 34rem; color: #e9efe9; margin: 0 0 1.5rem; }
+.capa .nota { color: #d9e4e2; }
+.ondas { position: absolute; right: -2rem; bottom: -1rem; width: min(30rem, 95vw); fill: none; stroke: var(--ambar); stroke-width: 6; stroke-linecap: round; opacity: .28; }
+
+.botao { display: inline-block; background: var(--ambar); color: #1b1404; border: 0; border-radius: .6rem; padding: .9rem 1.4rem; font: 700 1.05rem/1.2 "Ventoalto Texto", Arial, sans-serif; text-decoration: none; cursor: pointer; box-shadow: 0 2px 0 var(--ambar-escuro); }
+.botao:hover { background: #f6c260; }
+.botao:active { transform: translateY(1px); box-shadow: none; }
+
+main { display: block; }
+.bloco { max-width: var(--largura); margin: 0 auto; padding: 2rem 1rem 0; }
+.lista { padding-left: 1.2rem; margin: 0; }
+.lista li { margin-bottom: .55rem; }
+.modulos { counter-reset: m; list-style: none; padding: 0; margin: 0; }
+.modulos li { counter-increment: m; position: relative; padding: .85rem 0 .85rem 3rem; border-bottom: 1px solid var(--linha); color: var(--tinta-suave); }
+.modulos li b { color: var(--tinta); }
+.modulos li::before { content: counter(m); position: absolute; left: 0; top: .85rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--petroleo); color: #fff; font: 700 1rem/2.1rem "Ventoalto Titulo", Georgia, serif; text-align: center; }
+.gratis { display: inline-block; margin-left: .35rem; padding: 0 .5rem; border-radius: 999px; background: #fff1d1; color: #7a4f00; font-size: .8rem; font-weight: 700; vertical-align: middle; }
+details { border-bottom: 1px solid var(--linha); padding: .7rem 0; }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin: .5rem 0 0; color: var(--tinta-suave); }
+
+.inscricao { padding-bottom: 2.5rem; }
+form { background: var(--cartao); border: 1px solid var(--linha); border-radius: .9rem; padding: 1.25rem 1rem; }
+label { display: block; font-weight: 700; margin: .9rem 0 .3rem; }
+label:first-of-type { margin-top: 0; }
+input { width: 100%; padding: .75rem .8rem; border: 1px solid #b9b19f; border-radius: .5rem; font: inherit; background: #fff; color: var(--tinta); }
+form .botao { width: 100%; margin-top: 1.2rem; }
+.nota { font-size: .92rem; color: var(--tinta-suave); margin: .7rem 0 0; }
+.aviso-local { background: #fff1d1; color: #5b3b00; border-left: 4px solid var(--ambar); border-radius: .4rem; padding: .7rem .9rem; margin: 0 0 1rem; }
+.erro { background: var(--erro-fundo); color: var(--erro); border-radius: .5rem; padding: .75rem .9rem; }
+
+.estreito .bloco { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.confirmacao h1 { font-size: 1.8rem; color: var(--petroleo); }
+.passos { list-style: none; padding: 0; margin: 1.2rem 0; }
+.passos li { position: relative; padding: .8rem 0 .8rem 2.4rem; border-bottom: 1px solid var(--linha); color: var(--tinta-suave); }
+.passos li b { color: var(--tinta); }
+.passos li::before { position: absolute; left: 0; top: .8rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; text-align: center; font-weight: 700; line-height: 1.6rem; }
+.passos .feito::before { content: "✓"; background: var(--ok); color: #fff; }
+.passos .andamento::before { content: "…"; background: var(--ambar); color: #1b1404; animation: pulsar 1.4s ease-in-out infinite; }
+.passos .falta::before { content: "•"; background: #d8d0bf; color: var(--tinta); }
+.tempo { font-weight: 700; color: var(--ok); }
+@keyframes pulsar { 50% { opacity: .45; } }
+
+.rodape { max-width: var(--largura); margin: 0 auto; padding: 1.5rem 1rem 2.5rem; font-size: .9rem; color: var(--tinta-suave); border-top: 1px solid var(--linha); }
+
+@media (min-width: 48rem) {
+  .capa { padding: 4.5rem 2rem 5.5rem; }
+  .bloco { padding-top: 3rem; }
+  form { padding: 1.75rem; }
+  form .botao { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+.botao-secundario { background: transparent; color: var(--petroleo); border: 2px solid var(--petroleo); box-shadow: none; }
+.botao-secundario:hover { background: var(--petroleo); color: #fff; }

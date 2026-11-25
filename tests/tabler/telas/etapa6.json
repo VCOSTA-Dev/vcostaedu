@@ -1,0 +1,19 @@
+[
+  { "nome": "portal-login", "rota": "portal/login/acesso", "area": "Portal — acesso", "layout": "portal-acesso" },
+  { "nome": "portal-esqueci-a-senha", "rota": "portal/login/esqueceu-senha", "area": "Portal — acesso", "layout": "portal-acesso" },
+  { "nome": "portal-definir-senha", "rota": "portal/login/definir-senha", "area": "Portal — acesso", "layout": "portal-acesso" },
+  { "nome": "portal-inicio", "rota": "portal/home/index", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-horario", "rota": "portal/home/horario-aluno", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-boletim", "rota": "portal/home/boletim-aluno", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-notas-atividades", "rota": "portal/home/notas-atividades", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-atestado", "rota": "portal/atestado/index", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-progresso", "rota": "portal/progresso/index", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-perfil", "rota": "portal/perfil/visualizar", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-perfil-editar", "rota": "portal/perfil/editar", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-perfil-senha", "rota": "portal/perfil/editar-senha", "perfil": "260101", "area": "Portal", "layout": "portal" },
+  { "nome": "portal-ajuda", "rota": "portal/home/ajuda", "perfil": "260101", "area": "Portal — ajuda", "layout": "portal" },
+  { "nome": "portal-guia", "rota": "portal/home/guia/ler-o-boletim", "perfil": "260101", "area": "Portal — ajuda", "layout": "portal" },
+  { "nome": "portal-guia-video", "rota": "portal/home/guia/entrar-no-portal", "perfil": "260101", "area": "Portal — ajuda", "layout": "portal" },
+  { "nome": "portal-videos", "rota": "portal/home/videos", "perfil": "260101", "area": "Portal — ajuda", "layout": "portal" },
+  { "nome": "portal-novidades", "rota": "portal/home/novidades", "perfil": "260101", "area": "Portal — ajuda", "layout": "portal" }
+]

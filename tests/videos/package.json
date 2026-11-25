@@ -1,0 +1,10 @@
+{
+  "name": "vcostaedu-videos-guias",
+  "private": true,
+  "description": "Gravador dos vídeos dos guias da Ajuda (só na base de demonstração). Ver README.md.",
+  "dependencies": {
+    "ffmpeg-static": "5.2.0",
+    "pdfjs-dist": "4.10.38",
+    "playwright-core": "1.63.0"
+  }
+}

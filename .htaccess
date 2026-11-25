@@ -1,0 +1,18 @@
+# E6c (D-203): o que não é tela nem arquivo estático não responde pela web.
+# Repositório git, documentação, scripts, dependências e arquivos de configuração
+# ficam negados em QUALQUER pasta (as <Files> valem para as subpastas também).
+RedirectMatch 404 "(?i)/\.git(/|$)"
+# Onda 6, Etapa 6: nada roda como programa dentro de assets/ (as fotos enviadas pelas telas ficam lá)
+RedirectMatch 404 "(?i)/assets/.*\.(php[0-9]?|phtml|phar|pht|phps|cgi|pl|py)$"
+<FilesMatch "(?i)(\.(md|sql|log|bak|sh|lock|swp|dist|ya?ml|ini|env|tsv)|^(composer|package|package-lock|bower)\.json|^\.git.*|^\.htaccess)$">
+  Require all denied
+</FilesMatch>
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+Options -Indexes

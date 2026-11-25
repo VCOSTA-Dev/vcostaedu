@@ -1,0 +1,162 @@
+[
+  {
+    "nome": "portal-inicio-troca-o-ano",
+    "tipo": "passos",
+    "rota": "portal/home/index",
+    "perfil": "260101",
+    "passos": [
+      {
+        "escolher": [
+          "#selAno",
+          "2025"
+        ]
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "url": "ano=2025",
+        "rotulo": "o ano escolhido recarrega a página com ele"
+      }
+    ]
+  },
+  {
+    "nome": "portal-inicio-atalho-boletim",
+    "tipo": "passos",
+    "rota": "portal/home/index",
+    "perfil": "260101",
+    "passos": [
+      {
+        "clicar": "a.btn:has-text(\"Boletim\")"
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "esperaSel": ".boletimCurso",
+        "rotulo": "o atalho do cartão Acadêmico abre o boletim"
+      }
+    ]
+  },
+  {
+    "nome": "portal-rail-abre-o-grupo",
+    "tipo": "passos",
+    "rota": "portal/home/index",
+    "perfil": "260101",
+    "passos": [
+      {
+        "clicar": ".vc-side-grupo-toggle[title=\"Acadêmico\"]"
+      },
+      {
+        "esperaSel": ".vc-side-grupo-itens.aberta a[href*=\"progresso/index\"]",
+        "rotulo": "o grupo Acadêmico do menu abre"
+      },
+      {
+        "clicar": ".vc-side-grupo-itens.aberta a[href*=\"progresso/index\"]"
+      },
+      {
+        "aguardar": 1200
+      },
+      {
+        "esperaSel": "#chCumprida",
+        "rotulo": "o item leva ao Meu progresso"
+      },
+      {
+        "clicar": "#vc-side-alca"
+      },
+      {
+        "esperaSel": "#vc-side-acoes a[href*=\"login/logout\"]",
+        "rotulo": "a alça do aluno mostra o Sair (grupo 5)"
+      }
+    ]
+  },
+  {
+    "nome": "portal-boletim-filtra",
+    "tipo": "passos",
+    "rota": "portal/home/boletim-aluno",
+    "perfil": "260101",
+    "passos": [
+      {
+        "escolher": [
+          "#filtroAno",
+          "2026"
+        ]
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "url": "filtro_ano=2026",
+        "rotulo": "o filtro de ano recarrega o boletim"
+      },
+      {
+        "esperaSel": ".boletimCurso",
+        "rotulo": "o boletim do ano aparece"
+      }
+    ]
+  },
+  {
+    "nome": "portal-notas-filtra-disciplina",
+    "tipo": "passos",
+    "rota": "portal/home/notas-atividades",
+    "perfil": "260101",
+    "passos": [
+      {
+        "esperaSel": ".select2-container",
+        "rotulo": "o Select2 das disciplinas liga (na origem o \"$\" ainda não existia)"
+      },
+      {
+        "clicar": ".select2-selection"
+      },
+      {
+        "clicar": ".select2-results__option:has-text(\"Liderança de Equipes\")"
+      },
+      {
+        "clicar": ".page-title",
+        "rotulo": "fora da lista: o Select2 fecha"
+      },
+      {
+        "clicar": "button[type=\"submit\"]:has-text(\"Pesquisar\")"
+      },
+      {
+        "aguardar": 1500
+      },
+      {
+        "confere": [
+          "#accordionNotas",
+          "^\\s*Liderança de Equipes[\\s\\S]*$"
+        ],
+        "rotulo": "a lista começa pela disciplina escolhida"
+      },
+      {
+        "confere": [
+          "#accordionNotas",
+          "^(?![\\s\\S]*Planejamento e Cronograma)"
+        ],
+        "rotulo": "e só ela aparece"
+      }
+    ]
+  },
+  {
+    "nome": "portal-perfil-grava",
+    "tipo": "form",
+    "rota": "portal/perfil/editar",
+    "perfil": "260101",
+    "preencher": {},
+    "enviar": "input[type=\"submit\"][name], button[type=\"submit\"][name]",
+    "mensagem": ""
+  },
+  {
+    "nome": "portal-atestado-emitido",
+    "tipo": "passos",
+    "rota": "portal/atestado/index",
+    "perfil": "260101",
+    "passos": [
+      {
+        "enviar": "button[name=\"EmitirAtestado\"]",
+        "mensagem": "Atestado de matrícula emitido",
+        "rotulo": "emitir: a matrícula da demonstração tem a previsão de conclusão (Onda 2, Etapa 4), e o atestado sai (a recusa sem a previsão é provada em onda2/jornada4.js)"
+      }
+    ]
+  }
+]

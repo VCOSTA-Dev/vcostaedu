@@ -1,0 +1,83 @@
+{
+ "titulo": "As regras de nota e frequência",
+ "guia": "regras-de-nota-e-frequencia",
+ "fim": "primeiros-passos/index",
+ "inicio": "parametros/listar",
+ "rotas": [
+  "parametros/listar",
+  "parametros/salvar"
+ ],
+ "passos": [
+  {
+   "p": "^parametros/listar",
+   "a": "#portal_login_campo",
+   "t": "Como o aluno entra no portal",
+   "x": "O campo com que o aluno se identifica no portal: o RA, o CPF ou o e-mail.",
+   "aviso": "Escolha o **campo de entrada** do portal.",
+   "faz": [
+    [
+     "escolher",
+     "#portal_login_campo",
+     "ra"
+    ]
+   ]
+  },
+  {
+   "p": "^parametros/listar",
+   "a": "#frequencia_minima",
+   "t": "A frequência mínima",
+   "x": "O percentual mínimo de presença para a aprovação (por exemplo, 75).",
+   "aviso": "Confira ou escreva a **frequência mínima**.",
+   "faz": [
+    [
+     "preencher",
+     "#frequencia_minima",
+     "75"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#frequencia_minima",
+     null,
+     "Escreva a **frequência mínima**."
+    ]
+   ]
+  },
+  {
+   "p": "^parametros/listar",
+   "a": "#regraMediaResumo",
+   "t": "A média mínima e as casas decimais",
+   "x": "Elas fazem parte da regra de média da instituição: o link abre a tela da regra. Pode ajustá-las depois, com calma.",
+   "aviso": "Leia e clique em **Avançar**."
+  },
+  {
+   "p": "^parametros/listar",
+   "a": "input[name=\"SalvarParametros\"]",
+   "t": "Salvar",
+   "x": "As regras passam a valer para as notas e as faltas.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava as regras.",
+   "faz": [
+    [
+     "clicar",
+     "input[name=\"SalvarParametros\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Clique em **Salvar**."
+    ]
+   ]
+  },
+  {
+   "p": "^parametros/(listar|salvar)",
+   "a": "#frequencia_minima",
+   "t": "Pronto",
+   "x": "As regras foram gravadas. Nos Primeiros passos, a fase aparece concluída."
+  }
+ ]
+}

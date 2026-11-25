@@ -1,0 +1,20 @@
+{
+    "description": "VCOSTAEDU — painel",
+    "license": "AGPL-3.0-only",
+    "authors": [
+        {
+            "name": "VCOSTA"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.6",
+        "dompdf/dompdf": "^2.0",
+        "chillerlan/php-qrcode": "3.4.1"
+    }
+}

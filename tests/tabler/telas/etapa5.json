@@ -1,0 +1,300 @@
+[
+  {
+    "nome": "ensino-anos-listar",
+    "rota": "painel/anos-letivos/listar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-anos-cadastrar",
+    "rota": "painel/anos-letivos/cadastrar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-anos-editar",
+    "rota": "painel/anos-letivos/editar/1",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-materias-listar",
+    "rota": "painel/materias/listar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-materias-cadastrar",
+    "rota": "painel/materias/cadastrar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-materias-visualizar",
+    "rota": "painel/materias/visualizar/1",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-materias-editar",
+    "rota": "painel/materias/editar/1",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-cursos-listar",
+    "rota": "painel/cursos/listar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-cursos-cadastrar",
+    "rota": "painel/cursos/cadastrar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-cursos-editar",
+    "rota": "painel/cursos/editar/1",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-matriz-listar",
+    "rota": "painel/matriz/listar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-matriz-visualizar",
+    "rota": "painel/matriz/visualizar/1",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-matriz-editar-grade",
+    "rota": "painel/matriz/editar-grade/1",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-modulos-listar",
+    "rota": "painel/modulos/listar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino",
+    "redireciona": true,
+    "nota": "a origem também redireciona (Módulos desligado pelo parâmetro; rota de POST)"
+  },
+  {
+    "nome": "ensino-modulos-cadastrar",
+    "rota": "painel/modulos/cadastrar",
+    "perfil": "secretaria.demo",
+    "area": "Ensino",
+    "redireciona": true,
+    "nota": "a origem também redireciona (Módulos desligado pelo parâmetro; rota de POST)"
+  },
+  {
+    "nome": "ensino-disciplinas-cadastrar",
+    "rota": "painel/disciplinas/cadastrar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-disciplinas-editar",
+    "rota": "painel/disciplinas/editar/5",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-disciplinas-visualizar",
+    "rota": "painel/disciplinas/visualizar/5",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-disciplinas-polivalente",
+    "rota": "painel/disciplinas/ver-polivalente/5",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-disciplinas-gerar-oferta",
+    "rota": "painel/disciplinas/gerar-oferta",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-disciplinas-encerrar",
+    "rota": "painel/disciplinas/encerrar/5",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-minhas-disciplinas",
+    "rota": "painel/minhas-disciplinas/listar",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-atividades-listar",
+    "rota": "painel/atividades/listar/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-atividades-cadastrar",
+    "rota": "painel/atividades/cadastrar/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino",
+    "redireciona": true,
+    "nota": "a origem também redireciona (Módulos desligado pelo parâmetro; rota de POST)"
+  },
+  {
+    "nome": "ensino-atividades-editar",
+    "rota": "painel/atividades/editar/9",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-atividades-notas",
+    "rota": "painel/atividades/visualizar/9",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-atividades-upload-notas",
+    "rota": "painel/atividades/upload-notas/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino",
+    "redireciona": true,
+    "nota": "a origem também redireciona (Módulos desligado pelo parâmetro; rota de POST)"
+  },
+  {
+    "nome": "ensino-medias-final",
+    "rota": "painel/medias/final/5",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-chamada-listar",
+    "rota": "painel/chamada/listar/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-chamada-encontro",
+    "rota": "painel/chamada/encontro/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-regra-oferta",
+    "rota": "painel/regra-media/oferta/5",
+    "perfil": "secretaria.demo",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-salas-listar",
+    "rota": "painel/salas-de-aula/listar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-salas-cadastrar",
+    "rota": "painel/salas-de-aula/cadastrar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "ensino-horario-listar",
+    "rota": "painel/horario-aula/listar",
+    "perfil": "administrador",
+    "area": "Ensino"
+  },
+  {
+    "nome": "educacional-alunos-listar",
+    "rota": "painel/academicos/listar",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-cadastrar",
+    "rota": "painel/academicos/cadastrar",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-visualizar",
+    "rota": "painel/academicos/visualizar/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-editar",
+    "rota": "painel/academicos/editar/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-editar-senha",
+    "rota": "painel/academicos/editar-senha/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-pendencia-sexo",
+    "rota": "painel/academicos/pendencia-sexo",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-alunos-vincular",
+    "rota": "painel/academicos/vincular/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional",
+    "redireciona": true,
+    "nota": "a origem também redireciona (Módulos desligado pelo parâmetro; rota de POST)"
+  },
+  {
+    "nome": "educacional-alunos-boletim",
+    "rota": "painel/academicos/boletim/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-emissoes-listar",
+    "rota": "painel/historico-emissoes/listar",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-emissoes-emitir",
+    "rota": "painel/historico-emissoes/emitir/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-emissoes-ver",
+    "rota": "painel/historico-emissoes/ver/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-enturmacao-listar",
+    "rota": "painel/portal-alunos/listar/5",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "educacional-enturmacao-visualizar",
+    "rota": "painel/portal-alunos/visualizar/1",
+    "perfil": "secretaria.demo",
+    "area": "Educacional"
+  },
+  {
+    "nome": "ensino-atividades-notas-sem-tabela",
+    "rota": "painel/atividades/visualizar/5",
+    "perfil": "prof.laura.demo",
+    "area": "Ensino"
+  }
+]

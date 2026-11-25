@@ -1,0 +1,215 @@
+[
+  {
+    "nome": "alunos-lista",
+    "tipo": "lista",
+    "rota": "painel/academicos/listar",
+    "perfil": "secretaria.demo",
+    "busca": "Heitor",
+    "esperaTexto": "Heitor",
+    "coluna": 1
+  },
+  {
+    "nome": "materias-lista",
+    "tipo": "lista",
+    "rota": "painel/materias/listar",
+    "perfil": "secretaria.demo",
+    "busca": "Avaliação",
+    "esperaTexto": "Avaliação da Aprendizagem",
+    "coluna": 1
+  },
+  {
+    "nome": "materias-editar-grava",
+    "tipo": "form",
+    "rota": "painel/materias/editar/1",
+    "perfil": "secretaria.demo",
+    "preencher": {},
+    "enviar": "input[type=\"submit\"], button[type=\"submit\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "anos-editar-grava",
+    "tipo": "form",
+    "rota": "painel/anos-letivos/editar/1",
+    "perfil": "secretaria.demo",
+    "preencher": {},
+    "enviar": "input[type=\"submit\"], button[type=\"submit\"]",
+    "mensagem": ""
+  },
+  {
+    "nome": "aluno-ficha-abas",
+    "tipo": "passos",
+    "rota": "painel/academicos/visualizar/1",
+    "perfil": "secretaria.demo",
+    "passos": [
+      {
+        "ir": "painel/academicos/visualizar/1"
+      },
+      {
+        "clicar": "[data-bs-toggle=\"pill\"]:not(.active), [data-bs-toggle=\"tab\"]:not(.active)"
+      },
+      {
+        "esperaSel": ".tab-pane.active.show",
+        "rotulo": "a aba troca e o painel aparece"
+      }
+    ]
+  },
+  {
+    "nome": "notas-lancar-na-celula",
+    "tipo": "passos",
+    "rota": "painel/atividades/visualizar/9",
+    "perfil": "prof.laura.demo",
+    "passos": [
+      {
+        "ir": "painel/atividades/visualizar/9"
+      },
+      {
+        "clicar": "#tabelaLancaNotas tbody tr:first-child td:nth-child(5)"
+      },
+      {
+        "preencher": {
+          "#tabelaLancaNotas tbody tr:first-child input.vc-nota[name=\"nota\"]": "99"
+        }
+      },
+      {
+        "tecla": "Enter"
+      },
+      {
+        "esperaSel": "#tabelaLancaNotas tbody tr:first-child .vc-sinal-erro",
+        "rotulo": "nota fora da escala: o alerta no próprio campo, com o motivo (Onda 8, D-74: sem o modal, a pedido do responsável)"
+      },
+      {
+        "aguardar": 600
+      },
+      {
+        "clicar": "#tabelaLancaNotas tbody tr:first-child td:nth-child(5)"
+      },
+      {
+        "preencher": {
+          "#tabelaLancaNotas tbody tr:first-child input.vc-nota[name=\"nota\"]": "7.5"
+        }
+      },
+      {
+        "tecla": "Enter"
+      },
+      {
+        "aguardar": 800
+      },
+      {
+        "ir": "painel/atividades/visualizar/9"
+      },
+      {
+        "guardarAttr": [
+          "#tabelaLancaNotas tbody tr:first-child input.vc-nota",
+          "data-id",
+          "nota"
+        ]
+      },
+      {
+        "banco": [
+          "SELECT nota FROM rm_disciplina_atividade_notas WHERE id = {nota}",
+          "^7\\.50?$"
+        ],
+        "rotulo": "a nota 7,5 gravada no banco (a linha do aluno)"
+      },
+      {
+        "confereVisivel": [
+          "#tabelaLancaNotas tbody tr:first-child input.vc-nota",
+          "^7,5$"
+        ],
+        "rotulo": "depois de recarregar, a nota 7,5 visível na linha do aluno"
+      }
+    ]
+  },
+  {
+    "nome": "chamada-trocar-fonte-e-lancar",
+    "tipo": "passos",
+    "rota": "painel/chamada/listar/6",
+    "perfil": "secretaria.demo",
+    "passos": [
+      {
+        "ir": "painel/faltas/visualizar/6"
+      },
+      {
+        "preencherTodos": [
+          "input[name^=\"faltas[\"]",
+          "0"
+        ]
+      },
+      {
+        "enviar": "button[type=\"submit\"]:has-text(\"Salvar faltas\")",
+        "mensagem": "Faltas salvas",
+        "rotulo": "zerar as faltas lançadas"
+      },
+      {
+        "ir": "painel/chamada/listar/6"
+      },
+      {
+        "clicarConfirmando": "#fonteFrequencia form button[type=\"submit\"]"
+      },
+      {
+        "espera": "Fonte da frequência: <b>Chamada",
+        "rotulo": "a fonte passou para"
+      },
+      {
+        "ir": "painel/chamada/encontro/6"
+      },
+      {
+        "clicar": "tbody tr:first-child .botao-presenca"
+      },
+      {
+        "confere": [
+          "tbody tr:first-child .botao-presenca",
+          "AUSENTE"
+        ],
+        "rotulo": "o clique marca a falta"
+      },
+      {
+        "enviar": "form button[type=\"submit\"].btn-primary",
+        "mensagem": "",
+        "rotulo": "salvar o encontro"
+      }
+    ]
+  },
+  {
+    "nome": "matriz-arrastar-e-salvar",
+    "tipo": "passos",
+    "rota": "painel/matriz/visualizar/1",
+    "perfil": "administrador",
+    "passos": [
+      {
+        "ir": "painel/matriz/visualizar/1"
+      },
+      {
+        "escolher": [
+          "#situacao",
+          "Aberta"
+        ]
+      },
+      {
+        "preencher": {
+          "#observacao": "Prova da onda Tabler: reabrir para ordenar."
+        }
+      },
+      {
+        "enviar": "#quadroSituacao button[type=\"submit\"]",
+        "mensagem": "",
+        "rotulo": "reabrir a grade"
+      },
+      {
+        "arrastar": [
+          "tbody.ordenavel tr.linhaMatriz:first-child .alca-ordem",
+          "tbody.ordenavel tr.linhaMatriz:nth-child(2) .alca-ordem"
+        ]
+      },
+      {
+        "habilitado": "#btnSalvarOrdem",
+        "rotulo": "arrastar habilita"
+      },
+      {
+        "enviar": "#btnSalvarOrdem",
+        "mensagem": "",
+        "rotulo": "salvar a ordem"
+      }
+    ]
+  }
+]

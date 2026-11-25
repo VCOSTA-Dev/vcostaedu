@@ -1,0 +1,117 @@
+/*
+ * VCOSTAEDU — componentes comuns de interface (E8c). Painel e portal carregam este arquivo.
+ * Documentação: docs/USABILIDADE_COMPONENTES.md. Regras: docs/CHECKLIST_ENTREGA.md (R1 a R9).
+ */
+
+/* VCOSTAEDU: o estilo do item ativo do menu ANTIGO (AdminLTE, R8) saiu com ele (Etapa 8); o rail do Tabler tem o dele. */
+
+/* ---------- A10: brasão sobre placa branca (no menu escuro, no login e na carga) ---------- */
+.brand-link .brand-image.vcostaedu-placa,
+img.vcostaedu-placa {
+  background: #fff;
+  border-radius: 8px;
+  padding: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  opacity: 1 !important;
+}
+.brand-link .brand-image.vcostaedu-placa { border-radius: 8px !important; }
+
+/* ---------- R3/R4: ações por linha ---------- */
+.acoes-linha { white-space: nowrap; text-align: right; }
+.acoes-linha .btn, .acoes-linha form { display: inline-block; margin: 0 1px; }
+.acoes-linha form { margin: 0; }
+.btn-acao { min-width: 2rem; }
+.acao-desabilitada { display: inline-block; cursor: not-allowed; }
+.acao-desabilitada .btn { pointer-events: none; opacity: .45; }
+
+/* ---------- tabela compacta padrão ---------- */
+.table-compacta { font-size: .92rem; }
+.table-compacta th, .table-compacta td { vertical-align: middle; }
+.table-compacta th.num, .table-compacta td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table-compacta th.cen, .table-compacta td.cen { text-align: center; }
+.table-compacta .abaixo { color: #dc3545; font-weight: 600; }
+.table-compacta tr.grupo td { background: #e9f1f7; font-weight: 600; }
+/* E8d (A22): cabeçalho dinâmico (ex.: nome da atividade) quebra em até 2 linhas; o nome inteiro fica na dica (title) */
+.table-compacta th.th-dinamico { white-space: normal; min-width: 5.5rem; max-width: 10rem; vertical-align: bottom; }
+.th-duas-linhas { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.2; }
+.table-compacta tr.grupo td .ch { float: right; font-weight: 400; color: #495057; }
+.etiqueta-parcial { display: inline-block; font-size: .68rem; line-height: 1.3; padding: 0 .3rem; border-radius: .25rem; background: #fff3cd; color: #856404; font-weight: 600; vertical-align: middle; }
+
+/* ---------- R5: barra da disciplina ---------- */
+.barra-disciplina { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; margin-bottom: .9rem; }
+.barra-disciplina .btn { white-space: nowrap; }
+.barra-disciplina .sep { flex: 1 1 auto; }
+.barra-disciplina .titulo-oferta { font-weight: 600; margin-right: .5rem; }
+
+/* ---------- R6: faixa de trava ---------- */
+.faixa-trava { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.faixa-trava .texto { flex: 1 1 18rem; }
+
+/* ---------- DataTables: barra de botões e pesquisa em telas estreitas ---------- */
+div.dt-buttons { margin-bottom: .4rem; }
+div.dt-buttons .btn { margin-right: .2rem; background-color: #fff; }
+div.dt-buttons .btn:hover { color: #fff; }
+div.dt-buttons .btn-outline-success:hover { background-color: #28a745; } div.dt-buttons .btn-outline-warning:hover { background-color: #ffc107; color: #212529; }
+div.dt-buttons .btn-outline-danger:hover { background-color: #dc3545; } div.dt-buttons .btn-outline-dark:hover { background-color: #343a40; }
+@media (max-width: 575.98px) {
+  div.dataTables_wrapper div.dataTables_filter { text-align: left; }
+  div.dt-buttons .btn .rotulo { display: none; }
+}
+
+/* ---------- A11: boletim (painel, portal; o PDF repete estas regras) ---------- */
+.faixa-aluno { width: 100%; background: #17607a; color: #fff; border-radius: .35rem; margin-bottom: .75rem; }
+.faixa-aluno, .faixa-aluno tbody, .faixa-aluno tr { display: flex; flex-wrap: wrap; }
+.faixa-aluno td { padding: .45rem .8rem; border: 0; }
+.faixa-aluno .rotulo { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: .03em; opacity: .8; }
+.tabela-boletim tr.grupo.total td { background: #f4f6f9; }
+/* o Bootstrap tem .media { display: flex } — numa célula de tabela isso a tira da coluna */
+td.media { display: table-cell; }
+.regras-boletim { font-size: .8rem; color: #495057; background: #f8f9fa; border-left: 3px solid #adb5bd; padding: .4rem .7rem; margin: .5rem 0 1rem; }
+.barra-boletim { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+.barra-boletim .seletor-boletim .form-control, .barra-boletim .seletor-boletim .form-select { max-width: 16rem; }
+/* E8d (P-7): boletim em cartões abaixo de 576 px (um por disciplina) */
+.boletim-cartoes { padding: .5rem; }
+.cartao-boletim { border: 1px solid #dee2e6; border-radius: .4rem; padding: .55rem .7rem; margin-bottom: .5rem; background: #fff; }
+.cartao-boletim .cb-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; }
+.cartao-boletim .cb-nome { font-weight: 600; line-height: 1.25; }
+.cartao-boletim .cb-dados { display: grid; grid-template-columns: 1fr 1fr; gap: .15rem .75rem; margin: .45rem 0 0; }
+.cartao-boletim .cb-dados dt { font-size: .7rem; text-transform: uppercase; color: #6c757d; font-weight: 600; margin: 0; }
+.cartao-boletim .cb-dados dd { margin: 0; font-variant-numeric: tabular-nums; }
+.cartao-boletim .abaixo { color: #dc3545; font-weight: 600; }
+.cartoes-grupo, .cartoes-total { font-weight: 600; background: #e9f1f7; border-radius: .3rem; padding: .35rem .6rem; margin: .5rem 0; }
+.cartoes-grupo .ch, .cartoes-total .ch { float: right; font-weight: 400; }
+@media (max-width: 575.98px) {
+  .barra-boletim .seletor-boletim .form-control, .barra-boletim .seletor-boletim .form-select { max-width: 100%; }
+}
+/* VCOSTAEDU (D-15): tirada a chave que sobrava aqui — ela invalidava o @media print abaixo (R1). */
+
+/* ---------- impressão (R1): só o conteúdo ---------- */
+@media print {
+  .main-sidebar, .main-header, .main-footer, .no-print, .barra-boletim, .dt-buttons, .dataTables_filter, .dataTables_length, .dataTables_paginate, .barra-disciplina .btn { display: none !important; }
+  .content-wrapper { margin-left: 0 !important; }
+  /* VCOSTAEDU (Etapa 3): o layout Tabler */
+  .navbar-vertical, .page-header .btn-list, #ajudaDaTela, .d-print-none { display: none !important; }
+  .page-wrapper { margin-left: 0 !important; }
+  a[href]:after { content: none !important; }
+  .faixa-aluno { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .tabela-boletim .d-none { display: table-cell !important; }
+}
+
+/* E8d (A24, R10): EDITOR PADRÃO — marcador de bloco do sistema, painel de variáveis e a prévia ao lado */
+.bloco-sistema { display: inline-block; background: #e7f1ff; color: #0b4a8b; border: 1px dashed #5b8fd6; border-radius: 4px; padding: 0 .35rem; font-size: .85em; font-weight: 600; cursor: default; user-select: all; }
+.catalogo-variaveis { max-height: 55vh; overflow-y: auto; }
+.catalogo-variaveis .btn-var { white-space: normal; text-align: left; }
+.painel-editor .nav-tabs .nav-link { padding: .4rem .6rem; font-size: .9rem; }
+.quadro-previa { width: 100%; height: 70vh; border: 1px solid #dee2e6; border-radius: 4px; background: #f8f9fa; }
+.note-editable { font-family: "DejaVu Sans", Verdana, sans-serif; font-size: 11.5px; line-height: 1.35; }
+.note-editable table { width: 100%; border-collapse: collapse; }
+.note-editable table td, .note-editable table th { border: 1px dotted #ced4da; padding: 2px 4px; vertical-align: top; }
+.note-editable .cab { border-bottom: 1px solid #333; }
+.note-editable .rodape { border-top: 1px solid #999; }
+.note-editable p { margin: 0 0 3px 0; }
+.note-editable h1 { font-size: 17px; margin: 5px 0; } .note-editable h2 { font-size: 15px; margin: 5px 0; } .note-editable h3 { font-size: 13px; margin: 5px 0; } .note-editable h4 { font-size: 12px; margin: 4px 0; }
+
+/* 1.18.2 (D-490): linha com valor RECUSADO na edição na própria tabela (notas): fundo claro e texto escuro, legível
+   também nas linhas listradas (antes, "bg-danger" deixava texto branco sobre a listra cinza). */
+table tbody tr.linha-recusada > td { background-color: #f8d7da !important; color: #721c24 !important; }
+table tbody tr.linha-recusada .tabledit-span { font-weight: 600; }

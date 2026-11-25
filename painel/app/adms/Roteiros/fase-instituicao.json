@@ -1,0 +1,152 @@
+{
+ "titulo": "Configurar a instituição",
+ "guia": "dados-da-instituicao-e-atos-legais",
+ "fim": "primeiros-passos/index",
+ "inicio": "dados-instituicao/editar",
+ "rotas": [
+  "dados-instituicao/editar"
+ ],
+ "passos": [
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#nome",
+   "t": "O nome da instituição",
+   "x": "É o nome que sai no menu, na tela de entrada e nos documentos.",
+   "aviso": "Escreva o **nome** da instituição.",
+   "faz": [
+    [
+     "preencher",
+     "#nome",
+     "Instituto Exemplo de Educação"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nome",
+     null,
+     "Escreva o **nome** da instituição."
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#razao_social",
+   "t": "A mantenedora",
+   "x": "A razão social de quem mantém a instituição, como no CNPJ.",
+   "aviso": "Escreva a **mantenedora**.",
+   "faz": [
+    [
+     "preencher",
+     "#razao_social",
+     "Associação Exemplo de Ensino"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#razao_social",
+     null,
+     "Escreva a **mantenedora**."
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#cnpj",
+   "t": "O CNPJ",
+   "x": "O CNPJ da mantenedora, com os dígitos verificadores; ele vai nos documentos.",
+   "aviso": "Escreva o **CNPJ**.",
+   "faz": [
+    [
+     "preencher",
+     "#cnpj",
+     "11.222.333/0001-81"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#cnpj",
+     null,
+     "Escreva o **CNPJ**."
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#telefone",
+   "t": "Contato e endereço",
+   "x": "O telefone, o e-mail, o site e o endereço completam o cabeçalho dos documentos. Nenhum deles é obrigatório.",
+   "aviso": "Preencha o que tiver e clique em **Avançar**.",
+   "faz": [
+    [
+     "preencher",
+     "#telefone",
+     "(11) 3000-0000"
+    ],
+    [
+     "preencher",
+     "#email",
+     "secretaria@exemplo.invalid"
+    ],
+    [
+     "preencher",
+     "#site",
+     "https://exemplo.invalid"
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#logo",
+   "t": "O logo",
+   "x": "Um arquivo PNG ou JPG, de até 1 MB. Ele aparece no menu, na tela de entrada e no cabeçalho dos documentos.",
+   "aviso": "Escolha o arquivo do **logo**.",
+   "faz": [
+    [
+     "anexar",
+     "#logo",
+     "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAhElEQVRoge3aMQrCQBBAUVdyBHtzQz1KjpheD2GbMiLyWPivnoX5TLvj/nhdZnbVC/yqAK0ArQCtAK0ArQCtAG359sG+3f6xx9H6fJ8fnv4CBWgFaAVoBWgFaAVoBWgFaAVoBWgFaAVoBWgFaAVo0weMPjxhBWgFaAVoBWgFaAVo0wd8AJ6ZBnP7etceAAAAAElFTkSuQmCC",
+     "logo-exemplo.png"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#logo",
+     null,
+     "Escolha o arquivo do **logo**."
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "button[name=\"SalvarInstituicao\"]",
+   "t": "Salvar",
+   "x": "Os dados são gravados e o logo passa a aparecer no menu.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava os dados da instituição.",
+   "faz": [
+    [
+     "clicar",
+     "button[name=\"SalvarInstituicao\"]"
+    ]
+   ],
+   "confere": [
+    [
+     "existe",
+     ".alert-success",
+     null,
+     "Clique em **Salvar**."
+    ]
+   ]
+  },
+  {
+   "p": "^dados-instituicao/editar",
+   "a": "#logoAtual",
+   "t": "Pronto",
+   "x": "A instituição está configurada. Nos Primeiros passos, a fase aparece concluída, com a prévia do logo no menu, na entrada e no documento."
+  }
+ ]
+}

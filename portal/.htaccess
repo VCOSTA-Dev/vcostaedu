@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# E6c (D-203): código, configuração e bibliotecas (app/, core/, vendor/) só pelo index.php.
+RewriteRule ^(app|core|vendor)(/|$) - [F,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+Options -Indexes

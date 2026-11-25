@@ -1,0 +1,7 @@
+# Onda 2, Etapa 1: todo endereço desta pasta vai para o index.php do instalador. Com o sistema instalado, ele responde
+# a mesma recusa (sem revelar nada do servidor); os arquivos de apoio (.php) não respondem a pedido direto.
+Options -Indexes
+RewriteEngine On
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^ index.php [L]
+ErrorDocument 403 "Acesso negado."

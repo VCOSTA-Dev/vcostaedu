@@ -1,0 +1,8 @@
+[
+ { "nome": "sobre", "rota": "sobre.php", "area": "Avisos legais", "layout": "publica" },
+ { "nome": "login-painel", "rota": "painel/login/acesso", "area": "Avisos legais", "layout": "acesso" },
+ { "nome": "login-portal", "rota": "portal/login/acesso", "area": "Avisos legais", "layout": "portal-acesso" },
+ { "nome": "painel-meu-perfil", "rota": "painel/perfil/visualizar", "perfil": "administrador", "area": "Senha" },
+ { "nome": "painel-cadastrar-usuario", "rota": "painel/usuarios/cadastrar", "perfil": "administrador", "area": "Senha" },
+ { "nome": "portal-editar-senha", "rota": "portal/perfil/editar-senha", "perfil": "260101", "area": "Senha", "layout": "portal" }
+]

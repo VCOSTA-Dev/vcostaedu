@@ -1,0 +1,323 @@
+[
+ {
+  "nome": "configemail-listar",
+  "rota": "painel/configuracao-email/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "configemail-cadastrar",
+  "rota": "painel/configuracao-email/cadastrar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "instituicao-editar",
+  "rota": "painel/dados-instituicao/editar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "parametros-listar",
+  "rota": "painel/parametros/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "polos-listar",
+  "rota": "painel/polos/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "polos-cadastrar",
+  "rota": "painel/polos/cadastrar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "polos-editar",
+  "rota": "painel/polos/editar/1",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "atos-listar",
+  "rota": "painel/atos-legais/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "atos-cadastrar",
+  "rota": "painel/atos-legais/cadastrar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "atos-editar",
+  "rota": "painel/atos-legais/editar/1",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "regra-listar",
+  "rota": "painel/regra-media/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "regra-cadastrar",
+  "rota": "painel/regra-media/cadastrar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "regra-editar",
+  "rota": "painel/regra-media/editar/1",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "regra-curso",
+  "rota": "painel/regra-media/curso/1",
+  "perfil": "administrador",
+  "area": "Configurações",
+  "redireciona": true
+ },
+ {
+  "nome": "regra-disciplina",
+  "rota": "painel/regra-media/disciplina/1",
+  "perfil": "administrador",
+  "area": "Configurações",
+  "redireciona": true
+ },
+ {
+  "nome": "regra-aplicar",
+  "rota": "painel/regra-media/aplicar/1",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "modelos-listar",
+  "rota": "painel/historico-modelos/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "modelos-previa",
+  "rota": "painel/historico-modelos/previa/1",
+  "perfil": "administrador",
+  "area": "Configurações",
+  "layout": "documento"
+ },
+ {
+  "nome": "historico-previa",
+  "rota": "painel/historico/previa",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "historico-previa-aluno",
+  "rota": "painel/historico/previa/1",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "tentativas-listar",
+  "rota": "painel/tentativas-acesso/listar",
+  "perfil": "administrador",
+  "area": "Configurações"
+ },
+ {
+  "nome": "relatorios-hub",
+  "rota": "painel/relatorios/listar",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "relatorios-hub-secretaria",
+  "rota": "painel/relatorios/listar",
+  "perfil": "secretaria.demo",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "relatorios-parametros",
+  "rota": "painel/relatorios/parametros",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-painel-academico",
+  "rota": "painel/relatorios/painel-academico",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-alunos-situacao",
+  "rota": "painel/relatorios/alunos-situacao",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-lista-turma",
+  "rota": "painel/relatorios/lista-turma",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-previsao-conclusao",
+  "rota": "painel/relatorios/previsao-conclusao",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-qualidade-cadastro",
+  "rota": "painel/relatorios/qualidade-cadastro",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-mapa-notas",
+  "rota": "painel/relatorios/mapa-notas",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-resultado-disciplina",
+  "rota": "painel/relatorios/resultado-disciplina",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-distribuicao-notas",
+  "rota": "painel/relatorios/distribuicao-notas",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-pendencias-lancamento",
+  "rota": "painel/relatorios/pendencias-lancamento",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-desempenho-aluno",
+  "rota": "painel/relatorios/desempenho-aluno",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-frequencia-oferta",
+  "rota": "painel/relatorios/frequencia-oferta",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-frequencia-minimo",
+  "rota": "painel/relatorios/frequencia-minimo",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-alunos-risco",
+  "rota": "painel/relatorios/alunos-risco",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-aptos-concluir",
+  "rota": "painel/relatorios/aptos-concluir",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-situacao-tcc",
+  "rota": "painel/relatorios/situacao-tcc",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-coorte-ingresso",
+  "rota": "painel/relatorios/coorte-ingresso",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-concluintes",
+  "rota": "painel/relatorios/concluintes",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-documentos-emitidos",
+  "rota": "painel/relatorios/documentos-emitidos",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-reaberturas",
+  "rota": "painel/relatorios/reaberturas",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-trocas-regra",
+  "rota": "painel/relatorios/trocas-regra",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-exportacoes",
+  "rota": "painel/relatorios/exportacoes",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "rel-usuarios-acesso",
+  "rota": "painel/relatorios/usuarios-acesso",
+  "perfil": "administrador",
+  "area": "Relatórios"
+ },
+ {
+  "nome": "ajuda-indice",
+  "rota": "painel/ajuda/index",
+  "perfil": "administrador",
+  "area": "Ajuda"
+ },
+ {
+  "nome": "ajuda-guia",
+  "rota": "painel/ajuda/guia/ver-e-imprimir-o-boletim",
+  "perfil": "administrador",
+  "area": "Ajuda"
+ },
+ {
+  "nome": "ajuda-videos",
+  "rota": "painel/ajuda/videos",
+  "perfil": "administrador",
+  "area": "Ajuda"
+ },
+ {
+  "nome": "ajuda-indice-professor",
+  "rota": "painel/ajuda/index",
+  "perfil": "prof.laura.demo",
+  "area": "Ajuda"
+ },
+ {
+  "nome": "novidades",
+  "rota": "painel/novidades/listar",
+  "perfil": "administrador",
+  "area": "Ajuda"
+ },
+ {
+  "nome": "verificar-inicio",
+  "rota": "painel/verificar/codigo",
+  "area": "Verificação pública",
+  "layout": "publica"
+ },
+ {
+  "nome": "verificar-nao-encontrado",
+  "rota": "painel/verificar/codigo/XXXX-XXXX-XXXX",
+  "area": "Verificação pública",
+  "layout": "publica"
+ }
+]

@@ -1,0 +1,18 @@
+{
+ "titulo": "As regras de média",
+ "guia": "configurar-a-regra-de-media",
+ "fim": "primeiros-passos/index",
+ "inicio": "regra-media/listar",
+ "rotas": [
+  "regra-media/listar"
+ ],
+ "passos": [
+  {
+   "p": "^regra-media/listar",
+   "a": ".page-body",
+   "t": "As regras prontas",
+   "x": "A escola recebe duas regras prontas: \"Só atividades\" (para as disciplinas práticas) e \"Prova mensal + prova bimestral + atividades\" (para os componentes com prova). Use como estão ou ajuste a que quiser.",
+   "aviso": "Escolha a regra **padrão** da escola (ou abra uma e ajuste)."
+  }
+ ]
+}

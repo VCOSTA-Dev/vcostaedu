@@ -1,0 +1,6 @@
+# O site de exemplo: a configuração (com a chave), o código comum, o contador e o LEIA-ME nunca são servidos.
+<FilesMatch "^(config\.local\.php|config\.exemplo\.php|lib\.php|LEIA-ME\.md|FONTES\.md)$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^.*/dados(/.*)?$
+Options -Indexes

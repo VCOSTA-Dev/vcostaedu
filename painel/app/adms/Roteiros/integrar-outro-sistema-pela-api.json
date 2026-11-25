@@ -1,0 +1,94 @@
+{
+ "titulo": "Uma chave de API",
+ "guia": "integrar-outro-sistema-pela-api",
+ "fim": "integracoes/chaves",
+ "inicio": "integracoes/chaves",
+ "rotas": [
+  "integracoes/chaves",
+  "integracoes/documentacao",
+  "integracoes/chamadas"
+ ],
+ "passos": [
+  {
+   "p": "^integracoes/chaves",
+   "a": "#nomeChave",
+   "t": "Quem vai usar",
+   "x": "Uma chave por sistema que se integra: assim dá para revogar uma sem parar as outras.",
+   "aviso": "Escreva o **nome** do sistema.",
+   "faz": [
+    [
+     "preencher",
+     "#nomeChave",
+     "Sistema de matrículas (exemplo)"
+    ]
+   ],
+   "confere": [
+    [
+     "valor",
+     "#nomeChave",
+     null,
+     "Escreva o **nome** de quem vai usar a chave."
+    ]
+   ]
+  },
+  {
+   "p": "^integracoes/chaves",
+   "a": "#limiteChave",
+   "t": "O que a chave pode fazer",
+   "x": "Para cada assunto: nada, consultar, ou consultar e gravar. Marque só o que o outro sistema precisa.",
+   "aviso": "Marque **Alunos: consultar e gravar** e clique em **Avançar**.",
+   "faz": [
+    [
+     "marcar",
+     "input[name=\"permissao[alunos]\"][value=\"gravar\"]"
+    ]
+   ]
+  },
+  {
+   "p": "^integracoes/chaves",
+   "a": "#criarChave",
+   "t": "Criar",
+   "x": "A chave é criada e aparece uma vez só.",
+   "aviso": "Clique em **Criar**.",
+   "atencao": "Este passo cria a chave.",
+   "faz": [
+    [
+     "clicar",
+     "#criarChave"
+    ]
+   ]
+  },
+  {
+   "p": "^integracoes/chaves",
+   "a": "#chaveNova",
+   "t": "A chave nova",
+   "x": "Copie a chave e entregue ao outro sistema por um canal seguro: ele a envia em toda chamada. Ela não aparece de novo.",
+   "aviso": "Copie e clique em **Avançar**.",
+   "faz": [
+    [
+     "ir",
+     "integracoes/documentacao"
+    ]
+   ]
+  },
+  {
+   "p": "^integracoes/documentacao",
+   "a": "#swaggerUi",
+   "t": "A documentação",
+   "x": "Todas as operações, com os campos, as respostas e o limite que cada uma pede. Para testar: **Authorize**, cole a chave e use **Try it out**.",
+   "aviso": "Clique em **Avançar**.",
+   "faz": [
+    [
+     "ir",
+     "integracoes/chamadas"
+    ]
+   ]
+  },
+  {
+   "p": "^integracoes/chamadas",
+   "a": "#filtroChamadas",
+   "t": "As chamadas",
+   "x": "Cada chamada, com a chave, a operação, o resultado e a hora. Uma chave que vazou: **Revogar**, na lista das chaves."
+  }
+ ]
+}

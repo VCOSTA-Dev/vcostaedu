@@ -1,0 +1,2228 @@
+{
+  "videos": {
+    "acompanhar-notas-e-resultado": {
+      "titulo": "Acompanhar notas, frequência e resultado",
+      "perfis": [
+        "professor",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "acompanhar-notas-e-resultado.mp4",
+      "poster": "acompanhar-notas-e-resultado.jpg",
+      "legenda": "acompanhar-notas-e-resultado.vtt",
+      "capitulos_vtt": "acompanhar-notas-e-resultado.capitulos.vtt",
+      "duracao": 54.8,
+      "tamanho": 1390367,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "b3ac7b2d39643be759b81a1f76d4dabcc355c39b03e9b1f51d9fae6390ab5152",
+      "hash_guia": "612f55713f5b5fc51df289af8d0db6e2708f7e5ccfc7b7b09794512c0b423c37",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A média parcial"
+        },
+        {
+          "inicio": 21.1,
+          "titulo": "A conta e as regras"
+        },
+        {
+          "inicio": 33.4,
+          "titulo": "No encerramento, sem nota conta 0"
+        }
+      ],
+      "transcricao": "Na disciplina, clique em \"Notas e resultado\", na barra do topo.\nDisciplina aberta: a média é PARCIAL — só as atividades que já têm nota entram na conta.\nEm cada linha: uma coluna por atividade (— é sem nota), a média com a etiqueta \"parcial\", faltas e frequência.\nDepois, o resultado (\"Em curso\" enquanto a disciplina está aberta) e o botão Boletim. Abaixo do mínimo, em vermelho.\n\"conta\", ao lado da média, abre a memória de cálculo do aluno. As regras de cálculo estão no pé da tela.\n\"Atualizar lista\": um aluno enturmado depois das atividades ganha as linhas de nota. A enturmação já faz isso.\nAntes de encerrar, confira se todas as notas foram lançadas. Veja a prévia do encerramento:\nO Trabalho final sem nota entra com 0: a média parcial 9,0 vira 4,5, \"Reprovado por nota\".\nAprovado exige média E frequência mínimas; senão, reprovado por nota, por frequência ou pelas duas."
+    },
+    "ano-letivo-passo-a-passo": {
+      "titulo": "O ano letivo, do começo ao fim",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "ano-letivo-passo-a-passo.mp4",
+      "poster": "ano-letivo-passo-a-passo.jpg",
+      "legenda": "ano-letivo-passo-a-passo.vtt",
+      "capitulos_vtt": "ano-letivo-passo-a-passo.capitulos.vtt",
+      "duracao": 73.3,
+      "tamanho": 1918912,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "76b3262c3ce377b8d80e976131b736eb52ba1efc0a26e1b818916d359a10e139",
+      "hash_guia": "6080fd3b6073dfe0c274958882af34d0108d12baab92eaf114393851ee57f2f6",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O caminho na Ajuda"
+        },
+        {
+          "inicio": 10.7,
+          "titulo": "1 a 3 — Matérias e matriz"
+        },
+        {
+          "inicio": 22.9,
+          "titulo": "4 — A oferta do ano"
+        },
+        {
+          "inicio": 29.2,
+          "titulo": "5 e 6 — Alunos e enturmação"
+        },
+        {
+          "inicio": 39.1,
+          "titulo": "7 — Notas e faltas"
+        },
+        {
+          "inicio": 44.3,
+          "titulo": "8 — Encerrar: quem pula um passo é recusado"
+        },
+        {
+          "inicio": 55,
+          "titulo": "9 e 10 — Boletim e histórico"
+        }
+      ],
+      "transcricao": "Ajuda → Central de ajuda: o \"Comece por aqui\" é o caminho do ano, na ordem em que as coisas acontecem.\nO guia mestre: cada passo, quem faz e o guia de cada um. Siga a ordem: cada passo depende do anterior.\n1. Secretaria: as matérias do catálogo, com o código que sai no histórico (Ensino → Matérias).\n2 e 3. A matriz: a grade e as disciplinas (secretaria). Quem finaliza a grade é o administrador.\n4. Sem matriz não há oferta: gere a oferta do ano e complete cada uma (período, professor).\n5. Cadastre os alunos e envie o link de acesso (Educacional → Usuários Acadêmico).\n6. Na ficha, aba Matrículas: o vínculo ao curso e o botão Enturmação de cada ano.\n7. Sem enturmação não há nota: o professor lança atividades, notas e faltas; a secretaria compensa faltas.\n8. Encerrar cada disciplina. Pulou um passo? A tela diz o motivo: esta oferta não tem aluno enturmado.\n\"A oferta não tem aluno enturmado.\" Volte ao passo que faltou (aqui, a enturmação).\n9. O boletim do aluno, para ver e imprimir.\n10. Conclusão, TCC e histórico: a prévia avisa o que falta antes de emitir.\nRegra que parece errada (média, frequência, casas decimais)? É do administrador: Regras de nota e frequência."
+    },
+    "auditoria-de-notas-e-faltas": {
+      "titulo": "Auditoria de notas e faltas",
+      "perfis": [
+        "administrador",
+        "professor"
+      ],
+      "arquivo": "auditoria-de-notas-e-faltas.mp4",
+      "poster": "auditoria-de-notas-e-faltas.jpg",
+      "legenda": "auditoria-de-notas-e-faltas.vtt",
+      "capitulos_vtt": "auditoria-de-notas-e-faltas.capitulos.vtt",
+      "duracao": 34.1,
+      "tamanho": 781833,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "240e454d72d64e61af7a1c54301725d3b5b4fc9e7a8f6d2df70062c97f873e24",
+      "hash_guia": "452fdc2f603e218450e715804bebc84a4369982705bb472accbb5aaf3e9656df",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O histórico de uma nota"
+        },
+        {
+          "inicio": 11.2,
+          "titulo": "O relatório"
+        }
+      ],
+      "transcricao": "Histórico da nota. Na avaliação, a coluna Histórico: o relógio na linha do aluno abre cada mudança daquela nota.\nCada mudança. Quando, a ação, o valor antes e depois, quem fez e a origem. Ninguém apaga este registro.\nAuditoria de notas e faltas. Para tudo: Relatórios → Auditoria de notas e faltas.\nOs filtros. Filtre por curso, disciplina, aluno, quem lançou, o quê e o período. \"Só alterações e exclusões\" deixa só o que mudou depois de lançado.\nExportar. Para guardar o resultado, Excel, CSV ou PDF, acima da tabela."
+    },
+    "avaliar-na-escola": {
+      "titulo": "A avaliação na escola: as etapas, a recuperação, a média anual e o conselho",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "avaliar-na-escola.mp4",
+      "poster": "avaliar-na-escola.jpg",
+      "legenda": "avaliar-na-escola.vtt",
+      "capitulos_vtt": "avaliar-na-escola.capitulos.vtt",
+      "duracao": 70.2,
+      "tamanho": 1607978,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "66353bab140c7383dd3642aa2d9fe623cec141b2b8015be44624f8717d332e0a",
+      "hash_guia": "1ea298f2e1c13349a24dddb1504620f0ba2ae9e41daa582ae72541c8092905e0",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "As etapas do componente"
+        },
+        {
+          "inicio": 22.7,
+          "titulo": "O conselho de classe"
+        },
+        {
+          "inicio": 30.8,
+          "titulo": "Liberar o boletim"
+        },
+        {
+          "inicio": 39.8,
+          "titulo": "O boletim"
+        }
+      ],
+      "transcricao": "A turma. Na tela da turma, cada componente tem \"Etapas e notas\": a média de cada aluno em cada etapa.\nAs etapas. Uma aba por etapa. Na etapa: a média de cada aluno pela regra do componente, a recuperação (para quem ficou abaixo da média) e as faltas.\nA etapa aberta. Numa etapa aberta, os campos da recuperação e das faltas. \"Fechar a etapa\" guarda as notas da etapa de cada aluno, com a regra copiada.\nConselho de classe. O conselho de classe: cada aluno com a média anual e a situação de cada componente. No fim do ano, o conselho pode aprovar, com a observação obrigatória; a nota não muda.\nLiberar no portal. Ano letivo e etapas: a coluna do portal libera o boletim de cada etapa para a escola inteira. A média anual e a situação aparecem com todas liberadas.\nO boletim na tela. O boletim do aluno: as etapas em colunas (com \"R\" quando houve recuperação), a média anual, as faltas, a frequência e a situação.\nO boletim em PDF. O mesmo boletim em PDF, com o mesmo cálculo.\nO boletim no portal. No portal, o aluno vê só as etapas liberadas."
+    },
+    "avisos-e-seguranca": {
+      "titulo": "Avisos do sistema e segurança",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "avisos-e-seguranca.mp4",
+      "poster": "avisos-e-seguranca.jpg",
+      "legenda": "avisos-e-seguranca.vtt",
+      "capitulos_vtt": "avisos-e-seguranca.capitulos.vtt",
+      "duracao": 52.3,
+      "tamanho": 985969,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "31b2be230ec4d634cb14e890173588fefa45195575fb1129202040aa181af636",
+      "hash_guia": "9ad669a11cfe6fe2b5dba1af87c3a3d04e398648a0bb4c8b8b8bee3cce0d490a",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Avisos do sistema e segurança"
+        }
+      ],
+      "transcricao": "As versões. A versão dos arquivos e a do banco. Se houver atualização por aplicar, o cartão leva a Atualizar o sistema. Agora: Confira e clique em Avançar.\nA versão nova. Se existe uma versão mais nova: no máximo uma consulta por dia, sem enviar dado da instalação e sem baixar nada. Agora: Clique em Avançar.\nA segurança. O resumo da conferência de segurança: o que está certo, o que pede atenção e o que é preciso resolver. Agora: Clique em Ver as verificações de segurança.\nVerificações de segurança. Cada item, com o que foi conferido e o que fazer. Numa instalação no próprio computador, o HTTPS e a pasta dos arquivos aparecem como atenção. Agora: Leia os itens e clique em Avançar.\nBibliotecas. As bibliotecas de terceiros que o sistema usa, com a versão e a licença de cada uma. Nada nestas telas muda dado do sistema."
+    },
+    "cadastrar-aluno-e-enviar-link": {
+      "titulo": "Cadastrar aluno e enviar o link",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "cadastrar-aluno-e-enviar-link.mp4",
+      "poster": "cadastrar-aluno-e-enviar-link.jpg",
+      "legenda": "cadastrar-aluno-e-enviar-link.vtt",
+      "capitulos_vtt": "cadastrar-aluno-e-enviar-link.capitulos.vtt",
+      "duracao": 44.5,
+      "tamanho": 969214,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "533a759201ff19f3933a2c6b067d66602772092e796e41019f88910f0886a0db",
+      "hash_guia": "79be9bb350304c187b2e906bbbc735e972d3610034137c3d7ce56f9542d65871",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o cadastro"
+        },
+        {
+          "inicio": 5.9,
+          "titulo": "O sexo é obrigatório"
+        },
+        {
+          "inicio": 13.6,
+          "titulo": "Cadastro certo"
+        },
+        {
+          "inicio": 22.6,
+          "titulo": "Enviar o link de acesso"
+        }
+      ],
+      "transcricao": "Educacional → Usuários Acadêmico: a lista de alunos. Clique em \"Cadastrar aluno\".\nPreencha o RA (só números, único) e o nome. Vamos tentar salvar sem escolher o sexo.\nRecusado: o campo Sexo é obrigatório — os documentos concordam com ele (ALUNA/ALUNO).\nEscolha o sexo. CPF e e-mail são opcionais, mas precisam ser válidos e únicos.\nAluno cadastrado. Ele nasce SEM senha: quem define a senha é o próprio aluno, pelo link.\nNa ficha do aluno, clique em \"Enviar link de acesso\".\nSem e-mail configurado, a tela avisa \"O e-mail NÃO foi enviado\" e mostra o link para você entregar por um canal seguro.\nO link vale por 48 horas e uma vez só; um link novo invalida o anterior."
+    },
+    "cadastrar-materias": {
+      "titulo": "Cadastrar matérias",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "cadastrar-materias.mp4",
+      "poster": "cadastrar-materias.jpg",
+      "legenda": "cadastrar-materias.vtt",
+      "capitulos_vtt": "cadastrar-materias.capitulos.vtt",
+      "duracao": 49.4,
+      "tamanho": 768608,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "9ed18e8dc21272a4ab23a3924f1394e8388dbdc7ea1908fb5121ded5c0ff1e1b",
+      "hash_guia": "b27b0a9aad93a35f656c19126b0649afcc717e40f497509c112adaad1442660a",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O catálogo de matérias"
+        },
+        {
+          "inicio": 9.9,
+          "titulo": "Cadastrar"
+        },
+        {
+          "inicio": 38.7,
+          "titulo": "A matéria na lista"
+        }
+      ],
+      "transcricao": "Ensino → Matérias: o catálogo de disciplinas. A matriz de cada curso é montada com elas.\nCada matéria tem o seu código (a coluna \"Código / abreviação\"): é ele que sai no histórico.\nCódigo / abreviação: até 20 caracteres. Em branco, o histórico mostra o número interno da matéria.\nNome e carga horária são obrigatórios: sem eles, a tela não deixa salvar.\nRecusado: \"Preencha este campo.\" — e, se o pedido chegasse assim mesmo, o sistema recusaria sem gravar nada.\nAgora o nome, a carga horária padrão (horas, de 1 a 9999) e uma descrição curta.\nSalvo: \"Matéria criada!\". A matéria nova aparece na lista, com o código ESP101.\nApagar matéria é do administrador; a secretaria cadastra e edita (lápis). Matéria que não será oferecida: inative-a."
+    },
+    "cancelar-uma-emissao": {
+      "titulo": "Cancelar uma emissão",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "cancelar-uma-emissao.mp4",
+      "poster": "cancelar-uma-emissao.jpg",
+      "legenda": "cancelar-uma-emissao.vtt",
+      "capitulos_vtt": "cancelar-uma-emissao.capitulos.vtt",
+      "duracao": 51.6,
+      "tamanho": 1073048,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "bf9fd533116e1b088c8c672e09e5d04279a13366c64380f5e53729cfd56ddfd6",
+      "hash_guia": "a2d2b9faba288006a17d3d32a595a0e5814aed80fdff4ce861c4b69f04c5632d",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir a emissão"
+        },
+        {
+          "inicio": 11,
+          "titulo": "O motivo é obrigatório"
+        },
+        {
+          "inicio": 20.5,
+          "titulo": "Cancelar com motivo"
+        },
+        {
+          "inicio": 36.9,
+          "titulo": "A verificação pública"
+        }
+      ],
+      "transcricao": "Educacional → Históricos emitidos: a lista de todos os documentos emitidos, com a situação de cada um.\nVamos cancelar o histórico PARCIAL 5JJS-ZAME-HUGY. Clique em \"Ver\" na linha da emissão.\nÀ direita, o quadro \"Cancelar esta emissão\" (só o administrador o vê). Sem motivo, o cancelamento é recusado.\nRecusado: \"Informe o motivo do cancelamento (de 5 a 500 caracteres)\". Nada mudou: a emissão continua válida.\nEscreva o motivo (ele fica gravado) e clique em \"Cancelar emissão\". O sistema pede confirmação.\nCancelada. O documento NÃO é apagado: a situação mostra a data, quem cancelou e o motivo.\nO quadro de cancelamento e a 2ª via somem: cancelada não volta a valer. Para corrigir, emita de novo (novo código).\nAbra o link da verificação pública desta emissão.\nQuem conferir o código agora vê \"Documento cancelado\", com a data do cancelamento."
+    },
+    "como-usar-os-videos-da-ajuda": {
+      "titulo": "Como usar os vídeos da Ajuda",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor",
+        "aluno"
+      ],
+      "arquivo": "como-usar-os-videos-da-ajuda.mp4",
+      "poster": "como-usar-os-videos-da-ajuda.jpg",
+      "legenda": "como-usar-os-videos-da-ajuda.vtt",
+      "capitulos_vtt": "como-usar-os-videos-da-ajuda.capitulos.vtt",
+      "duracao": 48.7,
+      "tamanho": 1667080,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "326164c11d40fd318809c485bcc7f001d633bedbe69b259ffb276a2b524b29fa",
+      "hash_guia": "5e30f8aecb68397e2b6b1320e731d1299f36864e732d341cf174056aa62850cf",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A página Vídeos"
+        },
+        {
+          "inicio": 16.6,
+          "titulo": "O player no guia"
+        },
+        {
+          "inicio": 29.3,
+          "titulo": "Capítulos e transcrição"
+        }
+      ],
+      "transcricao": "Na Central de ajuda, o botão \"Vídeos\" abre todos os vídeos do seu perfil.\nCada vídeo com o poster e a duração. Busque por uma palavra do título ou do que é dito no vídeo.\nA busca encontra o guia \"Cadastrar aluno e enviar o link\". Clique para abrir o guia com o vídeo.\nO vídeo fica no topo do guia, antes do texto. Ele só carrega quando você manda tocar.\nA legenda já vem ligada: é a narração de cada passo. Velocidade e tela cheia ficam nos controles do vídeo.\nAo lado, os capítulos: clique em um para pular direto para aquele trecho. O capítulo atual fica marcado.\nAbaixo do vídeo, \"Ler a transcrição\" mostra todo o texto narrado.\nGuia sem vídeo no servidor? O texto continua valendo — o player simplesmente não aparece."
+    },
+    "compensar-faltas": {
+      "titulo": "Compensar faltas (atestado, licença)",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "compensar-faltas.mp4",
+      "poster": "compensar-faltas.jpg",
+      "legenda": "compensar-faltas.vtt",
+      "capitulos_vtt": "compensar-faltas.capitulos.vtt",
+      "duracao": 57.5,
+      "tamanho": 1693423,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "f623e41486d0dbcc725a100a9d8745e2781ab66aee58265fc1fd079f69cdde7b",
+      "hash_guia": "4c931fd36951c2fec62b211cc32d3030ea8247fdef4e6b3ae06c2f0aaec8e571",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir as faltas"
+        },
+        {
+          "inicio": 9.6,
+          "titulo": "O que é recusado"
+        },
+        {
+          "inicio": 27.5,
+          "titulo": "A compensação certa"
+        }
+      ],
+      "transcricao": "Na disciplina, clique em Faltas. As faltas já foram lançadas pelo professor.\nNa linha do aluno, o botão Compensar. Fábio tem 2 faltas: 86,67% de frequência.\nA tela diz até quanto dá para compensar. Mais que as faltas (3) não passa.\nQuantidade 2, tipo Atestado médico e a justificativa. Vamos pôr o fim do período antes do início.\nRecusado: \"O fim do período não pode ser antes do início.\" Nada foi salvo.\nDe novo, com o período certo. Clique em \"Lançar compensação\".\n\"Compensação lançada.\" Compensadas: 2. A frequência é recalculada na hora: 100%.\nO histórico registra quem lançou, quando, o tipo, o período e o motivo. Um lançamento errado sai pela lixeira.\nO aluno (e o professor) vê só a quantidade compensada, nunca o motivo."
+    },
+    "completar-a-oferta": {
+      "titulo": "Completar a oferta: período e professor",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "completar-a-oferta.mp4",
+      "poster": "completar-a-oferta.jpg",
+      "legenda": "completar-a-oferta.vtt",
+      "capitulos_vtt": "completar-a-oferta.capitulos.vtt",
+      "duracao": 47.7,
+      "tamanho": 1058480,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "c3085d308e8d70ed97db16074457da4dd0934ce291144ed0798456205eccf846",
+      "hash_guia": "a6a330cdea9d8bec23fc70f2788cad00d5950b4f64c4e6208dbb6cc1a6dfb7ef",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Editar a oferta"
+        },
+        {
+          "inicio": 12.1,
+          "titulo": "Período: o fim não vem antes do início"
+        },
+        {
+          "inicio": 29.2,
+          "titulo": "O professor"
+        }
+      ],
+      "transcricao": "Ensino → Todas as Disciplinas. A oferta recém-gerada do TCC (turma PGP-2026-B) ainda está \"sem professor\".\nClique em Editar (lápis) na linha da disciplina.\nPreencha o total de encontros e o período de realização (início e fim: saem no histórico).\nDatas trocadas por engano: o fim ficou antes do início. Salve para ver a recusa.\nRecusado: \"O fim do período da oferta não pode ser antes do início.\" Corrija as datas e salve.\nOferta salva, com os encontros e o período.\nNa mesma lista, o botão verde com o ícone de pessoa: escolha o professor e salve.\nPronto: a professora passa a ver a oferta, a frequência tem base e o histórico tem o período e o docente."
+    },
+    "concluir-o-curso-e-tcc": {
+      "titulo": "Concluir o curso e registrar o TCC",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "concluir-o-curso-e-tcc.mp4",
+      "poster": "concluir-o-curso-e-tcc.jpg",
+      "legenda": "concluir-o-curso-e-tcc.vtt",
+      "capitulos_vtt": "concluir-o-curso-e-tcc.capitulos.vtt",
+      "duracao": 49.5,
+      "tamanho": 1234055,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "77f37f6320f8ed6836f53686726b7ca6f63a26b70a81a73c68ee21c3b7df242e",
+      "hash_guia": "a597fc4090162f3c5259b62d9daacd3c08f23e9ca5f61c2549542b12ce91bad0",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A conclusão sem o TCC aprovado"
+        },
+        {
+          "inicio": 14.7,
+          "titulo": "Registrar o TCC"
+        },
+        {
+          "inicio": 30.8,
+          "titulo": "Concluir o curso"
+        }
+      ],
+      "transcricao": "Ficha do aluno, aba Matrículas. João cursou todas as disciplinas; o curso exige TCC, ainda \"Em andamento\".\nVamos tentar concluir assim: em Situação, escolha \"Concluído\" e informe a data de conclusão.\n\"Conclusão RECUSADA — falta: …\" A lista diz o que falta (aqui, o TCC aprovado). Nada foi salvo.\nNo bloco TCC: título, orientador (um professor), nota, data da defesa ou entrega e a situação.\n\"Aprovado\" exige orientador, data e nota a partir da mínima (7,0). Clique em \"Salvar TCC\".\nTCC salvo como Aprovado.\nAgora, de novo: Situação \"Concluído\", a data de conclusão e \"Salvar matrícula\".\nAceita: \"curso CONCLUÍDO em 15/12/2025\". A matrícula fica Concluída — isso libera o histórico FINAL.\nA data de conclusão não pode ser antes do ingresso; com disciplina em curso, reprovada ou não cursada, também é recusada."
+    },
+    "conferir-um-documento": {
+      "titulo": "Conferir um documento",
+      "perfis": [
+        "secretaria",
+        "administrador",
+        "aluno"
+      ],
+      "arquivo": "conferir-um-documento.mp4",
+      "poster": "conferir-um-documento.jpg",
+      "legenda": "conferir-um-documento.vtt",
+      "capitulos_vtt": "conferir-um-documento.capitulos.vtt",
+      "duracao": 56.9,
+      "tamanho": 785075,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "c1b74426dbd673e354bc7694151f289cd82aa38cc306f723a37709d09708370b",
+      "hash_guia": "705edd718c6ad4d51055eb319b768988d0d7607f06019d6ddfe5d25463f6a46f",
+      "capitulos": [
+        {
+          "inicio": 2.2,
+          "titulo": "Digitar o código"
+        },
+        {
+          "inicio": 6.4,
+          "titulo": "O resultado"
+        },
+        {
+          "inicio": 24,
+          "titulo": "Conferir o PDF recebido"
+        },
+        {
+          "inicio": 42,
+          "titulo": "Código não encontrado"
+        }
+      ],
+      "transcricao": "Abra o endereço do sistema seguido de /verificar. Não precisa de login. Digite o código impresso no documento.\nA página do código (o QR code e o endereço curto /verificar/CÓDIGO levam a ela). No topo, a instituição e o resultado.\nOs dados mínimos: tipo, data de emissão, instituição, curso, nome do aluno e o CPF mascarado.\nA impressão digital do documento (o hash), com o botão Copiar. \"Imprimir comprovante\" guarda a prova da conferência.\nRecebeu o arquivo? Em \"Conferir o arquivo recebido\", escolha o PDF e clique em \"Conferir PDF\". Ele não é guardado.\nO arquivo é idêntico ao documento emitido com este código.\nAgora um arquivo alterado depois da emissão (mesmo que só um pouco).\n\"O arquivo enviado NÃO é idêntico a nenhum documento emitido com este código: ele pode ter sido alterado.\"\nUm código que não existe (digitado errado, por exemplo):\n\"Código não encontrado\": confira o código impresso no documento. Cancelado ou \"Não confere\": não aceite o documento."
+    },
+    "configurar-a-regra-de-media": {
+      "titulo": "Configurar a regra de média",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "configurar-a-regra-de-media.mp4",
+      "poster": "configurar-a-regra-de-media.jpg",
+      "legenda": "configurar-a-regra-de-media.vtt",
+      "capitulos_vtt": "configurar-a-regra-de-media.capitulos.vtt",
+      "duracao": 74.2,
+      "tamanho": 2965236,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "7b7167c9c415e78faf72a577749e845c166d8ee54130557afc1a52d311adceb8",
+      "hash_guia": "4bb92ef337dd42d3265faefdbf91aae3d818daa1bfeb75fe33d46983dc5e5e84",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O catálogo e as regras prontas"
+        },
+        {
+          "inicio": 13.4,
+          "titulo": "Componentes e pesos"
+        },
+        {
+          "inicio": 20.3,
+          "titulo": "O acréscimo"
+        },
+        {
+          "inicio": 30,
+          "titulo": "O simulador"
+        },
+        {
+          "inicio": 66.1,
+          "titulo": "Salvar"
+        }
+      ],
+      "transcricao": "Regras de média. Configurações → Regras de média: cada regra, os componentes, em uso por quantas disciplinas, e as ações.\nAs regras prontas. Duas regras vêm prontas: \"Só atividades\" e \"Prova mensal + prova bimestral + atividades\". Nenhuma muda a regra de uma disciplina sozinha.\nOs componentes. Os componentes, cada um com o peso e o modo. A soma dos pesos fica embaixo: fora de 100, o Salvar desliga.\nPermitir acréscimo. Permitir acréscimo (o padrão é não): o professor lança um acréscimo, que soma à média fechada, até o limite.\n✓ Acréscimo permitido, até 0,5 ponto.\nO simulador. O simulador, ao lado: notas de teste, a média e a memória de cálculo na hora, pela conta do próprio sistema. Nada é gravado.\nA média sem o acréscimo. Com as notas, a média fica 7,1. Agora, um acréscimo de 1,0 — maior que o limite.\nA média com o acréscimo. A média vai a 7,6: o acréscimo soma antes do arredondamento, até o limite de 0,5, e nunca passa de 10.\n✓ A memória de cálculo mostra a linha do acréscimo.\nSalvar. Salvar a regra. Se ela está em uso, a tela mostra antes as disciplinas abertas que mudam. No lançamento, o tipo Acréscimo só aparece nas disciplinas com esta regra.\n✓ A regra foi salva, com o acréscimo."
+    },
+    "dados-da-instituicao-e-atos-legais": {
+      "titulo": "Dados da instituição e atos legais",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "dados-da-instituicao-e-atos-legais.mp4",
+      "poster": "dados-da-instituicao-e-atos-legais.jpg",
+      "legenda": "dados-da-instituicao-e-atos-legais.vtt",
+      "capitulos_vtt": "dados-da-instituicao-e-atos-legais.capitulos.vtt",
+      "duracao": 59.7,
+      "tamanho": 1645035,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "9ea37be3db16489579a66333f4a97f757489a29a2e02974f98b8a9386badc777",
+      "hash_guia": "697c618773b0286ef94a2fdab64ab35bcaeafd3dabbfc37f6f23301299ba1b12",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Os dados da instituição"
+        },
+        {
+          "inicio": 54,
+          "titulo": "O topo do menu"
+        }
+      ],
+      "transcricao": "Dados da instituição. Configurações → Instituição: os dados que aparecem no topo do menu, nos documentos e no ícone da aba do navegador.\nO nome da instituição. É o nome que sai no menu, na tela de entrada e nos documentos. Agora: Escreva o nome da instituição.\nContato e endereço. O telefone, o e-mail, o site e o endereço completam o cabeçalho dos documentos. Nenhum deles é obrigatório. Agora: Preencha o que tiver e clique em Avançar.\nO logo. Um arquivo PNG ou JPG, de até 1 MB. Ele aparece no menu, na tela de entrada e no cabeçalho dos documentos. Agora: Escolha o arquivo do logo.\nSalvar. Os dados são gravados e o logo passa a aparecer no menu. Agora: Clique em Salvar.\nPronto. A instituição está configurada. Nos Primeiros passos, a fase aparece concluída, com a prévia do logo no menu, na entrada e no documento.\nO topo da instituição. No alto do menu, ao lado do selo do sistema, o logo ou o nome da instituição. O mesmo logo vira o ícone da aba do navegador.\n✓ A instituição aparece no topo de toda tela."
+    },
+    "editar-modelo-de-historico": {
+      "titulo": "Editar um modelo de histórico",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "editar-modelo-de-historico.mp4",
+      "poster": "editar-modelo-de-historico.jpg",
+      "legenda": "editar-modelo-de-historico.vtt",
+      "capitulos_vtt": "editar-modelo-de-historico.capitulos.vtt",
+      "duracao": 84.9,
+      "tamanho": 2971866,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "a1835da1b8a1cf464e136fb0460111d414b79275b1892b73140b969fff2a1f05",
+      "hash_guia": "d20261bb66d4ed487e69196f534240804187b4b08f11753218ecaa4186ca202b",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A lista de modelos"
+        },
+        {
+          "inicio": 11.8,
+          "titulo": "Nome, cursos e situação"
+        },
+        {
+          "inicio": 15.6,
+          "titulo": "O documento e as variáveis"
+        },
+        {
+          "inicio": 42.9,
+          "titulo": "Quadro, assinaturas e opções"
+        },
+        {
+          "inicio": 60.1,
+          "titulo": "Prévia e salvar"
+        }
+      ],
+      "transcricao": "Configurações → Modelos de histórico: o tipo, os cursos a que se aplica, a versão e a situação de cada modelo.\nClique em \"Editar\" no modelo (ou em \"Novo modelo\").\nNome, cursos a que se aplica (nenhum = padrão da instituição) e situação: só \"Ativo\" aparece para emitir.\nO documento: escreva e formate como num editor de texto. Vamos digitar uma variável à mão, errada.\n\"Nada foi salvo: … variável desconhecida — {{CONFERIDO_POR}}.\" Variável se põe pelo painel, não à mão.\nO texto volta para corrigir. Reescreva a linha e, na aba Variáveis, busque e clique na variável certa.\nEla entra no ponto do cursor, como {{ALUNO_NOME}}; na emissão, vira o nome do aluno.\nNo alto do painel, os blocos do sistema (quadro de disciplinas, assinaturas, logo, QR code…) e o trecho condicional.\nAba Quadro: as colunas do quadro de disciplinas, o rótulo, a largura, o alinhamento e a frequência.\nAba Assinaturas: nome, cargo e, se quiser, a imagem (PNG ou JPEG até 1 MB).\nAba Opções: o estilo do documento, a fonte e as casas decimais das notas.\nAba Prévia: escolha um aluno e \"Gerar a prévia em PDF\" — o documento como está, sem salvar nada.\nDepois, \"Salvar modelo\". Modelo ativo: salvar cria uma NOVA versão; as emissões antigas ficam com a delas.\nA prévia em PDF do modelo salvo, com a tarja PRÉVIA: a linha nova traz o nome do aluno."
+    },
+    "email-smtp": {
+      "titulo": "E-mail (SMTP) dos links de acesso",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "email-smtp.mp4",
+      "poster": "email-smtp.jpg",
+      "legenda": "email-smtp.vtt",
+      "capitulos_vtt": "email-smtp.capitulos.vtt",
+      "duracao": 73.6,
+      "tamanho": 1349993,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "3dcb685e79a025c5ca62240e0fa0d17560203a241e0201012e6e70caa0fd1aa8",
+      "hash_guia": "be74ebe40acd998083f6e81b0fae19ac88cdbde27fac2143a44ff3f793fddceb",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir a configuração"
+        },
+        {
+          "inicio": 10.4,
+          "titulo": "Preencher os dados do servidor"
+        },
+        {
+          "inicio": 39.8,
+          "titulo": "Mandar um link de teste"
+        }
+      ],
+      "transcricao": "Configurações → E-mail (SMTP): o servidor que envia os links de senha aos alunos.\nNenhuma configuração ainda: sem SMTP, nenhum link sai por e-mail. Clique em Cadastrar.\nTenha em mãos servidor, porta, usuário e senha da conta de e-mail da instituição. Aqui, dados inventados.\nSenha da conta de e-mail, Smtp Secure (tls ou ssl) e a porta (587 com tls; 465 com ssl).\nSalvo. A senha do e-mail fica só no banco da instituição: não aparece na lista, em relatório nem em guia.\nAo editar, o campo Senha vem em branco: a senha gravada não aparece. Em branco, ela é mantida; preencha só para trocar.\nAgora, um link de teste: a secretaria (ou você) abre a ficha de um aluno e clica em \"Enviar link de acesso\".\nO servidor inventado não responde: a tela avisa \"O e-mail NÃO foi enviado\" e diz o motivo.\nSem SMTP (ou sem e-mail no cadastro), a secretaria copia o link e entrega por um canal seguro.\nCom o servidor certo, o aviso é \"Link de acesso enviado para …\" e o link vai direto ao e-mail do aluno."
+    },
+    "emitir-2a-via": {
+      "titulo": "Emitir a 2ª via",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "emitir-2a-via.mp4",
+      "poster": "emitir-2a-via.jpg",
+      "legenda": "emitir-2a-via.vtt",
+      "capitulos_vtt": "emitir-2a-via.capitulos.vtt",
+      "duracao": 45.5,
+      "tamanho": 750219,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "619fa42f38f7136a6b47f70dfbbeec6a0abe8ea4cecd066e9a2ba092cacadbf2",
+      "hash_guia": "4125e801040ad44886500113dae46270ce2e90ab88756e00f1017a6aeebddb6f",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir a emissão"
+        },
+        {
+          "inicio": 8.9,
+          "titulo": "Gerar a 2ª via"
+        },
+        {
+          "inicio": 23.6,
+          "titulo": "O PDF da via"
+        }
+      ],
+      "transcricao": "Educacional → Históricos emitidos. A coluna \"Vias\" conta o original e as reimpressões.\nO histórico FINAL UM9W-LZ5D-B4JQ está válido. Clique em \"Ver\" na linha da emissão.\nNo quadro Documentos, clique em \"Gerar 2ª via\": reimprime o MESMO conteúdo gravado, com o mesmo código.\n\"2ª via gerada, com o mesmo código e o mesmo conteúdo.\" Fica registrado quem gerou e quando.\nA via entra na lista Documentos, ao lado do PDF original. Abra o PDF da 2ª via.\nNo topo de cada página, a marca \"2ª VIA — reimpressão de …\". O código continua UM9W-LZ5D-B4JQ.\nEmissão cancelada não tem 2ª via. Precisa de um documento com dados novos? Não é 2ª via: emita de novo."
+    },
+    "emitir-atestado-de-matricula": {
+      "titulo": "Emitir atestado de matrícula",
+      "perfis": [
+        "secretaria",
+        "administrador",
+        "aluno"
+      ],
+      "arquivo": "emitir-atestado-de-matricula.mp4",
+      "poster": "emitir-atestado-de-matricula.jpg",
+      "legenda": "emitir-atestado-de-matricula.vtt",
+      "capitulos_vtt": "emitir-atestado-de-matricula.capitulos.vtt",
+      "duracao": 78,
+      "tamanho": 1421488,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "93c187099a006a1e60a347c9f2375e2c346321fad438bb723f1f8b2bec83f5eb",
+      "hash_guia": "d4ed3950a6733052ef29ee72606dc493f81f74cb58414e982f4107b1a8c560d3",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Sem a previsão de conclusão"
+        },
+        {
+          "inicio": 8.6,
+          "titulo": "Preencher a previsão"
+        },
+        {
+          "inicio": 20.1,
+          "titulo": "Emitir pela ficha (secretaria)"
+        },
+        {
+          "inicio": 52.1,
+          "titulo": "Pelo portal (aluno)"
+        }
+      ],
+      "transcricao": "Ficha do aluno, aba Históricos. A matrícula está \"Cursando\": clique em \"Emitir atestado\".\nBloqueado: \"Falta a previsão de conclusão da matrícula\". Sem ela, a frase do atestado ficaria quebrada.\nAba Matrículas: em \"Previsão de conclusão\", use a sugestão (o fim das ofertas da grade) ou digite a data.\nSalvo. A previsão aparece na matrícula como mês e ano — é assim que sai no atestado.\nDe volta a \"Emitir atestado\": confira o modelo. \"Prévia em PDF\" sai com a tarja PRÉVIA; nada é gravado.\nClique em \"Emitir atestado de matrícula\". A emissão guarda a cópia fiel dos dados do dia, o PDF e o código.\nEmitido, com o código LYG2-39MT-VG57. O PDF:\nO próprio aluno também emite: ele entra no portal com o RA e a senha.\nMenu Acadêmico → Atestado de matrícula.\nNa matrícula em curso, \"Emitir atestado\".\nEm \"Atestados emitidos\" ficam os do aluno e também os que a secretaria emitiu para ele.\nNo PDF do portal, no lugar da assinatura: \"Documento emitido eletronicamente em … Confira a autenticidade em …\"."
+    },
+    "emitir-historico-final": {
+      "titulo": "Emitir o histórico final",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "emitir-historico-final.mp4",
+      "poster": "emitir-historico-final.jpg",
+      "legenda": "emitir-historico-final.vtt",
+      "capitulos_vtt": "emitir-historico-final.capitulos.vtt",
+      "duracao": 60.1,
+      "tamanho": 989948,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "ce1915ee41419d0df20484cd530245eb4bb592e9bbc8854b967778ce51e936fc",
+      "hash_guia": "0d6c4ea6ca043148be5e2b9587fd6f3241f910983dfd4459073bbf1dbcddb546",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Só com a matrícula Concluída"
+        },
+        {
+          "inicio": 11,
+          "titulo": "Prévia de quem concluiu"
+        },
+        {
+          "inicio": 32.2,
+          "titulo": "Emitir"
+        },
+        {
+          "inicio": 50.7,
+          "titulo": "A verificação pública"
+        }
+      ],
+      "transcricao": "Ficha do aluno, aba Históricos. João ainda está \"Cursando\" (o TCC não foi aprovado). Clique em \"Emitir final\".\nBloqueado: \"O histórico FINAL só é emitido com a matrícula CONCLUÍDA\". O botão fica desligado.\nIrene concluiu o curso. Na aba Históricos dela, \"Emitir final\".\nSituação Concluído e o modelo FINAL. \"Nenhum alerta\": o FINAL só sai sem nenhum alerta.\n\"Prévia em PDF\" mostra o documento com a tarja PRÉVIA. Nada é gravado.\nSem bloqueios, clique em \"Emitir histórico FINAL\".\nEmitido. A tela da emissão mostra o código L9UM-2FH7-YJXU, o modelo e a versão usados e os hashes.\nO PDF emitido, no desenho do modelo escolhido: as disciplinas com a nota final e a frequência, a média, o TCC e a situação.\nPor fim, o link da verificação pública: qualquer pessoa confere o documento pelo código.\n\"Documento válido\", com o tipo, o curso e o nome do aluno."
+    },
+    "emitir-historico-parcial": {
+      "titulo": "Emitir o histórico parcial",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "emitir-historico-parcial.mp4",
+      "poster": "emitir-historico-parcial.jpg",
+      "legenda": "emitir-historico-parcial.vtt",
+      "capitulos_vtt": "emitir-historico-parcial.capitulos.vtt",
+      "duracao": 60.6,
+      "tamanho": 909148,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "b33b1c5d8cd5af5c90f6e7bcbb3a0b5f1fe0275359aa40d9f5a1bd4caf79edf1",
+      "hash_guia": "ee5e0e3fa09287b5711a929815e78dea536de700ba01170bad56f60f5044ebea",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir a emissão"
+        },
+        {
+          "inicio": 6,
+          "titulo": "Modelo e prévia"
+        },
+        {
+          "inicio": 25.6,
+          "titulo": "Os alertas"
+        },
+        {
+          "inicio": 36.1,
+          "titulo": "Emitir"
+        }
+      ],
+      "transcricao": "Ficha do aluno, aba Históricos: cada matrícula tem os botões de emissão. Clique em \"Emitir parcial\".\nConfira o tipo (Parcial) e o modelo: só aparecem os modelos ATIVOS que servem a este curso.\n\"Prévia em PDF\": o documento com a tarja PRÉVIA, nada é gravado. Neste modelo, a disciplina em andamento sai em branco.\nLeia os alertas (aqui, falta a naturalidade da aluna). No PARCIAL, dá para emitir assim mesmo, confirmando.\nSem marcar a confirmação, a emissão é recusada:\nMarque \"Li os alertas acima e emito o documento assim mesmo\": os alertas ficam gravados na emissão.\nClique em \"Emitir histórico PARCIAL\".\nEmitido: a emissão guarda a cópia fiel dos dados de hoje, o PDF e o código VDZX-LU3D-NBKW (impresso no rodapé).\nO PDF emitido. Corrigiu uma nota depois? O documento emitido não muda: emita de novo."
+    },
+    "encerrar-uma-disciplina": {
+      "titulo": "Encerrar uma disciplina",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "encerrar-uma-disciplina.mp4",
+      "poster": "encerrar-uma-disciplina.jpg",
+      "legenda": "encerrar-uma-disciplina.vtt",
+      "capitulos_vtt": "encerrar-uma-disciplina.capitulos.vtt",
+      "duracao": 53.1,
+      "tamanho": 1432522,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "e653f6acd59abf7eb4f85f5e931c292e08e19dead13bbcc555107a04d5c12ab0",
+      "hash_guia": "4948c7d7f6495081ca52aca03ed86bcb8445e7c728574e83a1405e5e1f98d0d6",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Com pendência, não encerra"
+        },
+        {
+          "inicio": 10.3,
+          "titulo": "A prévia"
+        },
+        {
+          "inicio": 32.6,
+          "titulo": "Confirmar"
+        }
+      ],
+      "transcricao": "Encerramento de \"Trabalho de Conclusão de Curso\": a regra da disciplina exige uma Prova, e ela não foi cadastrada.\nRecusado: \"Falta cadastrar: Prova (mínimo 1)\". Na prévia, cada aluno fica \"Pendente — falta Prova\", sem botão de encerrar.\nOutra disciplina, com todas as notas e faltas lançadas: Todas as Disciplinas → ver.\nNa barra do topo da disciplina, clique em Encerramento.\nA prévia diz qual regra de média vai valer, pelo nome e de onde vem (aqui, o padrão da instituição).\nPara cada aluno: a conta, a média final, as faltas, a frequência e o resultado. \"Imprimir a prévia\" imprime a conferência.\nConferido, clique em \"Confirmar encerramento\".\nEncerrada: abre Notas e resultado com os valores GRAVADOS (a regra usada e a memória de cálculo); notas e faltas travam.\nEm Encerramento, o quadro Fechamentos lista o vigente e os anteriores. Encerrou com erro? Só o administrador reabre."
+    },
+    "entrar-no-painel": {
+      "titulo": "Entrar no painel e trocar a senha",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "entrar-no-painel.mp4",
+      "poster": "entrar-no-painel.jpg",
+      "legenda": "entrar-no-painel.vtt",
+      "capitulos_vtt": "entrar-no-painel.capitulos.vtt",
+      "duracao": 58.8,
+      "tamanho": 676646,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "96bed7aba4e03002bd6e13ce9054cb999c9f444c7dde7e606555722bd758b321",
+      "hash_guia": "d0894b34dfd40fd25fc1dcd1c747ca760729fe274db2668c2a06cd98b639874c",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A tela de entrada"
+        },
+        {
+          "inicio": 9.8,
+          "titulo": "Entrar"
+        },
+        {
+          "inicio": 25.7,
+          "titulo": "O menu do seu perfil"
+        },
+        {
+          "inicio": 27.8,
+          "titulo": "O tema"
+        },
+        {
+          "inicio": 47.8,
+          "titulo": "O aviso da página inicial"
+        }
+      ],
+      "transcricao": "Entrar no painel. Abra o endereço do painel e informe o usuário (ou o e-mail) e a senha.\nA senha errada. Senha errada: \"Usuário ou senha incorretos.\" A mensagem é a mesma se o usuário não existir. Depois de várias erradas, a entrada pede uma espera.\nA senha certa. Agora, com a senha certa.\n✓ Entrou, na página inicial.\nO menu. O menu da esquerda mostra só o que o seu perfil pode abrir, em grupos. A tela em que você está fica destacada.\nAs suas opções. Embaixo do menu, o seu nome abre as suas opções: o tema, o seu perfil e sair.\nClaro, escuro ou automático. O tema é de cada pessoa: claro, escuro ou automático (segue o computador). Fica guardado para as próximas vezes.\n✓ O tema escuro, nesta conta.\nO seu perfil. Para trocar a senha ou os seus dados: \"Meu perfil\", no mesmo lugar.\nO aviso. O aviso de boas-vindas (ou de novidades) fica aqui até você clicar em Entendi. As novidades continuam em Ajuda → Novidades.\n✓ Lido: o aviso não volta."
+    },
+    "entrar-no-portal": {
+      "titulo": "Entrar no portal",
+      "perfis": [
+        "aluno"
+      ],
+      "arquivo": "entrar-no-portal.mp4",
+      "poster": "entrar-no-portal.jpg",
+      "legenda": "entrar-no-portal.vtt",
+      "capitulos_vtt": "entrar-no-portal.capitulos.vtt",
+      "duracao": 79.9,
+      "tamanho": 721918,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "016df626a70abe3db2d4b80dae77856708d5c641bd5f91723fa414e36e454948",
+      "hash_guia": "530ba91b6934ce6b9c7342ef3d7016922ed3d8f3fb2a24d62ffbadaa71fac0c9",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A tela de entrada"
+        },
+        {
+          "inicio": 11.1,
+          "titulo": "A espera depois de 5 erros"
+        },
+        {
+          "inicio": 58.9,
+          "titulo": "Entrar"
+        }
+      ],
+      "transcricao": "Na tela de entrada, o usuário é o RA (ou CPF ou e-mail, se a instituição escolheu): a própria tela diz qual.\nSenha errada: \"Usuário ou senha incorretos.\" A mensagem é a mesma se o usuário não existir.\nErrando 5 vezes seguidas…\n…a entrada pede uma espera: \"Muitas tentativas. Aguarde…\". Começa em 30 s e dobra a cada novo erro.\nDurante a espera, nem a senha certa entra:\nEspere o tempo indicado (aqui, 30 segundos). Esqueceu a senha? Use \"Esqueci a senha\", abaixo do botão.\nDepois da espera, a senha certa entra e zera a contagem de erros.\nEntrou. O menu traz o grupo Acadêmico (Horário, Boletim, Notas das Atividades e outros)…\n…e o grupo Ajuda, com a Central de ajuda e as Novidades.\nPortal dentro do Moodle com o botão \"Abrir o portal em nova aba\"? O navegador bloqueou; use o botão."
+    },
+    "envios-ao-moodle": {
+      "titulo": "Envios ao Moodle",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "envios-ao-moodle.mp4",
+      "poster": "envios-ao-moodle.jpg",
+      "legenda": "envios-ao-moodle.vtt",
+      "capitulos_vtt": "envios-ao-moodle.capitulos.vtt",
+      "duracao": 41.5,
+      "tamanho": 1334633,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "5d5b1d2a1375346509a3f67eea1aa9a5a3b3f73b6095c966d2e12ccaa717e53d",
+      "hash_guia": "1bb8201837f044df3e711f2b28455e87e05b7735412be2a08f4a3b6d6c4ab906",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Envios ao Moodle"
+        },
+        {
+          "inicio": 36.1,
+          "titulo": "Enviar tudo o que falta"
+        }
+      ],
+      "transcricao": "Os contadores. Quantos envios estão pendentes, quantos falharam e quando foi a última chamada que deu certo. Agora: Clique em Avançar.\nFiltrar. Pendente, enviado, enviado com aviso ou falhou. Cada falha diz o que aconteceu e o que fazer. Agora: Clique em Avançar.\nTentar de novo. Resolvido o motivo (por exemplo, o e-mail do aluno), Tentar de novo na linha. Quando o e-mail está em mais de uma conta do Moodle, a linha lista as contas para escolher a da pessoa. Agora: Clique em Avançar.\nEnviar tudo o que falta. Com pendência, Enviar tudo o que falta manda a fila inteira em passos curtos, com a janela de progresso.\nEnviar tudo. \"Enviar tudo o que falta\" manda a fila inteira em passos curtos, com a janela de progresso.\n✓ A fila foi enviada."
+    },
+    "escolher-uma-senha": {
+      "titulo": "Escolher uma senha",
+      "perfis": [
+        "aluno",
+        "professor",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "escolher-uma-senha.mp4",
+      "poster": "escolher-uma-senha.jpg",
+      "legenda": "escolher-uma-senha.vtt",
+      "capitulos_vtt": "escolher-uma-senha.capitulos.vtt",
+      "duracao": 40.4,
+      "tamanho": 516813,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "1f8a29b9d167a1c37771d334dace9ea737558aa2ae29a63de84af58fa7837649",
+      "hash_guia": "398398a1f581ce1386fe3ecc2d3c1b9380a505ed446854736953a7913d306e48",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A força da senha"
+        },
+        {
+          "inicio": 24.2,
+          "titulo": "Mostrar e ocultar"
+        },
+        {
+          "inicio": 26.5,
+          "titulo": "Salvar"
+        }
+      ],
+      "transcricao": "Editar senha. Em Meu perfil, \"Editar senha\". O mesmo campo aparece em toda tela que pede uma senha nova.\nA barra de força. Digite a senha. Abaixo do campo, a barra mostra a força; uma senha curta é recusada já aqui, antes de enviar.\nUma frase longa. Quanto mais longa, mais forte: uma frase com várias palavras é fácil de lembrar e difícil de adivinhar.\nMostrar e ocultar. Para conferir o que digitou, clique em Mostrar; Ocultar esconde de novo. Colar e o gerenciador de senhas do navegador funcionam normalmente.\nSalvar. Clique em Atualizar. As mesmas regras valem no servidor, que é quem decide.\n✓ Senha nova salva."
+    },
+    "esqueci-a-senha": {
+      "titulo": "Esqueci a senha",
+      "perfis": [
+        "aluno",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "esqueci-a-senha.mp4",
+      "poster": "esqueci-a-senha.jpg",
+      "legenda": "esqueci-a-senha.vtt",
+      "capitulos_vtt": "esqueci-a-senha.capitulos.vtt",
+      "duracao": 85.2,
+      "tamanho": 727266,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "94dde718580c4a5c2ae06afa71891d991599cfd278479fa5803ec1920fe78b40",
+      "hash_guia": "3305bb313ce5ca675438972775faf207d9d690c1def69a3006ac3d42739e5d60",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Pedir o link"
+        },
+        {
+          "inicio": 31.9,
+          "titulo": "A resposta é sempre a mesma"
+        },
+        {
+          "inicio": 44.1,
+          "titulo": "Muitos pedidos seguidos"
+        },
+        {
+          "inicio": 63.2,
+          "titulo": "O link"
+        }
+      ],
+      "transcricao": "Na tela de entrada do portal, clique em \"Esqueci a senha\".\nInforme o seu usuário (aqui, o RA) e clique em Recuperar.\nSe houver e-mail no cadastro, chega um link para definir a nova senha. Ele vale por 48 horas.\nPor segurança, a resposta é a mesma exista ou não o cadastro. Veja com um RA que não existe:\nA mesma mensagem: a tela não revela quem tem cadastro.\nPedindo de novo e de novo para o mesmo RA…\n…a tela pede uma espera: começa em 30 segundos e dobra a cada novo pedido, até 15 minutos.\nEspere e peça de novo, ou procure a secretaria.\nCom o link do e-mail, você define a nova senha como no primeiro acesso. Esta demonstração não envia e-mail.\nLink velho, já usado ou incompleto: \"Este link é inválido, já foi usado ou expirou.\" Peça outro.\nO e-mail não chegou? Confira o spam. Sem e-mail no cadastro, a secretaria envia o link pela sua ficha."
+    },
+    "exportar-e-imprimir-listas": {
+      "titulo": "Pesquisar, exportar e imprimir listas",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "exportar-e-imprimir-listas.mp4",
+      "poster": "exportar-e-imprimir-listas.jpg",
+      "legenda": "exportar-e-imprimir-listas.vtt",
+      "capitulos_vtt": "exportar-e-imprimir-listas.capitulos.vtt",
+      "duracao": 57.8,
+      "tamanho": 898387,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "b1412469f95b25fb1ad71f5cbd839546191f2fc9b613fe5e4e80cf6d7ae249fd",
+      "hash_guia": "e0c02cb9b62ad2b4072b7ef58defa57352b6479d037fde2610009cd317156e86",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Pesquisar"
+        },
+        {
+          "inicio": 10.6,
+          "titulo": "Ordenar"
+        },
+        {
+          "inicio": 15,
+          "titulo": "Exportar"
+        },
+        {
+          "inicio": 28.3,
+          "titulo": "Mostrar"
+        },
+        {
+          "inicio": 39.1,
+          "titulo": "Ações"
+        }
+      ],
+      "transcricao": "Todas as listas do painel funcionam do mesmo jeito. Aqui, a lista de matérias.\nPesquisar: digite no campo à direita. A lista filtra enquanto você digita.\nOrdenar: clique no título da coluna; clique de novo para inverter.\nExportar: Excel, CSV (separado por ponto e vírgula, abre direto no Excel), PDF e Imprimir, no topo da lista.\nA exportação leva o que está filtrado na tela e deixa de fora a coluna Ações.\nO CSV saiu com as 2 matérias filtradas. Lista curta? Há texto no Pesquisar: limpe e exporte de novo.\nMostrar: no pé da lista, escolha 10, 25, 50, 100 ou Todos por página.\nAgora o Excel leva a lista inteira. O PDF sai em paisagem quando a lista tem muitas colunas.\nAções: os botões de cada linha (ver, editar, apagar…). Passe o mouse para ver a dica.\nUm botão apagado diz na dica por que não pode ser usado: \"Em uso: 1 grade(s) na matriz, 1 oferta(s). Não pode ser apagado.\""
+    },
+    "fazer-a-chamada": {
+      "titulo": "Fazer a chamada",
+      "perfis": [
+        "professor",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "fazer-a-chamada.mp4",
+      "poster": "fazer-a-chamada.jpg",
+      "legenda": "fazer-a-chamada.vtt",
+      "capitulos_vtt": "fazer-a-chamada.capitulos.vtt",
+      "duracao": 57.7,
+      "tamanho": 1353572,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "1f12cb2a83b714f518418aafac509bba5caa1113b992a227b55242b3261dd618",
+      "hash_guia": "fca9339e39796a0d78f2e74522c85098d6d8fc7333b18adfb94b54b9cca0e6aa",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A fonte da frequência"
+        },
+        {
+          "inicio": 12,
+          "titulo": "Zerar as faltas lançadas"
+        },
+        {
+          "inicio": 30.1,
+          "titulo": "Registrar um encontro"
+        },
+        {
+          "inicio": 43.1,
+          "titulo": "A lista de encontros"
+        }
+      ],
+      "transcricao": "Na barra da disciplina, clique em Chamada.\nA fonte é \"Lançamento de faltas\". Para fazer chamada, clique em \"Trocar para Chamada por encontro\".\nRecusado: há falta lançada para 3 alunos. As duas fontes não se misturam, para a falta não contar duas vezes.\nNa tela de Faltas, zere as faltas lançadas e salve.\nDe volta à Chamada, a troca agora passa (o sistema pede confirmação).\n\"Novo encontro\": a data é obrigatória; horário, título e conteúdo são opcionais.\nTodos começam PRESENTES. Clique em quem faltou: o botão vira AUSENTE (clique de novo para desfazer).\n\"Salvar a chamada\": o encontro, as presenças e as faltas são gravados de uma vez.\nO encontro na lista, com presentes e ausentes. O lápis abre para corrigir; a lixeira apaga e recalcula as faltas.\nAs faltas agora vêm da chamada; a compensação continua na tela de Faltas."
+    },
+    "gerar-a-oferta-do-ano": {
+      "titulo": "Gerar a oferta do ano",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "gerar-a-oferta-do-ano.mp4",
+      "poster": "gerar-a-oferta-do-ano.jpg",
+      "legenda": "gerar-a-oferta-do-ano.vtt",
+      "capitulos_vtt": "gerar-a-oferta-do-ano.capitulos.vtt",
+      "duracao": 71,
+      "tamanho": 1619822,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "e5a65082ff1f4c53ab892c10536d7f03a9933062b1500ecb947934395a7da46a",
+      "hash_guia": "af7977497f5c207de0fd4b593445179af5d3f0b5681b30ae16636ee79a6dc598",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Escolher a grade"
+        },
+        {
+          "inicio": 15,
+          "titulo": "As recusas"
+        },
+        {
+          "inicio": 32,
+          "titulo": "Gerar"
+        },
+        {
+          "inicio": 48.4,
+          "titulo": "Repetir não duplica"
+        },
+        {
+          "inicio": 61.1,
+          "titulo": "Conferir a lista"
+        }
+      ],
+      "transcricao": "Ensino → Todas as Disciplinas: clique em \"Gerar oferta do ano\" (o mesmo botão está na tela da grade).\nEscolha o curso e a grade. Grade Desativada não aparece: ela não gera oferta.\nAs disciplinas da grade vêm todas marcadas: desmarque as que não serão oferecidas agora.\nSe todas ficarem desmarcadas, a geração é recusada.\n\"Escolha ao menos uma disciplina.\" Agora com as disciplinas, mas 0 encontros:\n\"O total de encontros deve ser um número inteiro de 1 a 999 (ou vazio).\" Ele é a base da frequência.\nDesmarque o Trabalho de Conclusão de Curso (será ofertado depois). Ano, turma, polo, modalidade (vazio = a do curso) e encontros.\nSai uma oferta por disciplina marcada: 5 criadas. Os professores vêm depois, em cada oferta.\nGerar de novo com a mesma turma (o TCC de novo desmarcado) não duplica: a oferta que já existe é pulada.\n\"0 criada(s), 5 já existia(m)\": nada foi duplicado.\nEm Todas as Disciplinas, as 5 ofertas da turma nova, Abertas e sem professor. Agora, complete cada oferta."
+    },
+    "importar-alunos-de-planilha": {
+      "titulo": "Importar alunos de uma planilha",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "importar-alunos-de-planilha.mp4",
+      "poster": "importar-alunos-de-planilha.jpg",
+      "legenda": "importar-alunos-de-planilha.vtt",
+      "capitulos_vtt": "importar-alunos-de-planilha.capitulos.vtt",
+      "duracao": 52.9,
+      "tamanho": 975838,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "532da4c62f74b4ff65ee7f8bfd3a07ba00555d91dea690400b5e9b568bb9041e",
+      "hash_guia": "0558ab8e71fdfeb91f1a57ad3fea0eac7b7109c2d8be76b8eec249d5e00717ff",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Enviar a planilha"
+        },
+        {
+          "inicio": 15.6,
+          "titulo": "Conferir"
+        },
+        {
+          "inicio": 34.1,
+          "titulo": "Aplicar"
+        }
+      ],
+      "transcricao": "Importar alunos. Educacional → Importar alunos. \"Baixar o modelo\" traz as colunas; a planilha pode ter outros nomes de coluna.\nEnviar e conferir. Escolha o arquivo (CSV ou planilha) e clique em \"Enviar e conferir\": nada é gravado ainda.\nAs colunas. As colunas: em que campo cada coluna entra. O que não for reconhecido fica \"(não importar)\" até você escolher.\nOs valores. Os valores: cada valor diferente de sexo, situação e modalidade e o que ele virou. Valor não reconhecido não é adivinhado.\nAs linhas. As linhas: Pronta, Com erro (com o motivo) ou Pulada (o RA já está cadastrado). \"Corrigir\" acerta uma linha aqui mesmo.\nAplicar. Com linhas ainda com erro, marque \"Aplicar sem as linhas com erro\" e clique em \"Aplicar a importação\".\n✓ Importado. Os alunos novos recebem o primeiro acesso pelo \"Enviar link de acesso\", como os cadastrados na tela."
+    },
+    "inativar-curso-ou-materia": {
+      "titulo": "Inativar curso ou matéria",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "inativar-curso-ou-materia.mp4",
+      "poster": "inativar-curso-ou-materia.jpg",
+      "legenda": "inativar-curso-ou-materia.vtt",
+      "capitulos_vtt": "inativar-curso-ou-materia.capitulos.vtt",
+      "duracao": 62.3,
+      "tamanho": 1201311,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "ddb9cc7ad7914e965551288b249303b9b390bcf76027eec326381e5256a88ce0",
+      "hash_guia": "39183eb49d6c5af1e0e1c95fcf0857291c0bc31f2f89d54411c8e81d1b326d3b",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Curso em uso não se apaga"
+        },
+        {
+          "inicio": 9.3,
+          "titulo": "Inativar o curso"
+        },
+        {
+          "inicio": 20.1,
+          "titulo": "Fora das listas de escolha"
+        },
+        {
+          "inicio": 40.8,
+          "titulo": "Reativar"
+        },
+        {
+          "inicio": 48.1,
+          "titulo": "Matéria: o mesmo caminho"
+        }
+      ],
+      "transcricao": "Ensino → Cursos. O curso de Docência no Ensino Superior já tem grade e matrícula: o Apagar fica desabilitado.\nA dica diz: \"Em uso: 1 grade(s), 2 matrícula(s), 4 oferta(s). Não pode ser apagado.\". É o caso de INATIVAR.\nNa linha, clique em Inativar (ícone de proibido) e confirme.\nA situação passa a Inativo e, no lugar do botão, aparece Reativar. Ofertas, notas e históricos não mudam.\nEm Ensino → Matriz, o curso inativo aparece com a etiqueta Inativo, e \"Nova grade\" fica desabilitado.\nA dica explica: \"Curso inativo: reative-o em Cursos para criar uma grade\". O mesmo vale para nova oferta e vínculo do aluno.\nE na tela \"Nova grade\", o seletor de curso só traz cursos ativos: o de Docência no Ensino Superior, inativo, não aparece.\nPara voltar a oferecer, clique em Reativar: o curso volta às listas de escolha.\nMatéria: Ensino → Matérias (a secretaria também pode). Inativar e confirmar.\nInativa, ela sai da matriz e da nova oferta, mas continua aqui, com a etiqueta Inativo.\nReativar devolve a matéria às listas de escolha."
+    },
+    "integrar-outro-sistema-pela-api": {
+      "titulo": "Integrar outro sistema pela API",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "integrar-outro-sistema-pela-api.mp4",
+      "poster": "integrar-outro-sistema-pela-api.jpg",
+      "legenda": "integrar-outro-sistema-pela-api.vtt",
+      "capitulos_vtt": "integrar-outro-sistema-pela-api.capitulos.vtt",
+      "duracao": 57.2,
+      "tamanho": 1613622,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "4d9774968f58bdde6c9f0ee9b483953abfadd69af557bb959b59d86619046649",
+      "hash_guia": "9bac2c505183f6808aadcf1d40ebc7414bed8591a60be87d809a8b191168ce29",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A chave, a documentação e as chamadas"
+        }
+      ],
+      "transcricao": "Quem vai usar. Uma chave por sistema que se integra: assim dá para revogar uma sem parar as outras. Agora: Escreva o nome do sistema.\nO que a chave pode fazer. Para cada assunto: nada, consultar, ou consultar e gravar. Marque só o que o outro sistema precisa. Agora: Marque Alunos: consultar e gravar e clique em Avançar.\nCriar. A chave é criada e aparece uma vez só. Agora: Clique em Criar.\nA chave nova. Copie a chave e entregue ao outro sistema por um canal seguro: ele a envia em toda chamada. Ela não aparece de novo. Agora: Copie e clique em Avançar.\nA documentação. Todas as operações, com os campos, as respostas e o limite que cada uma pede. Para testar: Authorize, cole a chave e use Try it out. Agora: Clique em Avançar.\nAs chamadas. Cada chamada, com a chave, a operação, o resultado e a hora. Uma chave que vazou: Revogar, na lista das chaves."
+    },
+    "lancar-faltas": {
+      "titulo": "Lançar faltas",
+      "perfis": [
+        "professor",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "lancar-faltas.mp4",
+      "poster": "lancar-faltas.jpg",
+      "legenda": "lancar-faltas.vtt",
+      "capitulos_vtt": "lancar-faltas.capitulos.vtt",
+      "duracao": 53.2,
+      "tamanho": 1728893,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "fcd500b671a1bee81cf525057b6c32d246e0913dc3f7b5ab8b9618b42f9546d6",
+      "hash_guia": "c5c003be902776901a1e0e04fa790e07f785109cf52f5d47612672fd29d04ce6",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir as faltas"
+        },
+        {
+          "inicio": 9.2,
+          "titulo": "Digitar e salvar"
+        },
+        {
+          "inicio": 19.7,
+          "titulo": "Por planilha: tudo ou nada"
+        }
+      ],
+      "transcricao": "Ensino → Minhas Disciplinas: o atalho Faltas de cada disciplina (ou Faltas, na barra da disciplina).\nFrequência = 1 − (faltas − compensadas) ÷ total de encontros. Aqui são 15 encontros; o mínimo é 75%.\nDigite as faltas de cada aluno e clique em \"Salvar faltas\".\nSalvo. 5 faltas em 15 encontros: 66,67%, em vermelho, \"Abaixo do mínimo\". A coluna Compensadas é da secretaria.\nPor planilha: \"Importar faltas por planilha\", um CSV rm;faltas. \"Baixar o modelo\" traz o cabeçalho.\nUm arquivo com uma linha errada: 20 faltas, mais que os 15 encontros.\nRecusado: nada é gravado, e a tela mostra a linha com o erro (\"… é mais que o total de 15 encontros\").\nCorrigido o arquivo, envie de novo.\n\"Faltas importadas: 4 aluno(s). Tudo foi gravado.\" A frequência de cada um é recalculada."
+    },
+    "lancar-notas": {
+      "titulo": "Lançar notas",
+      "perfis": [
+        "professor",
+        "administrador"
+      ],
+      "arquivo": "lancar-notas.mp4",
+      "poster": "lancar-notas.jpg",
+      "legenda": "lancar-notas.vtt",
+      "capitulos_vtt": "lancar-notas.capitulos.vtt",
+      "duracao": 54.6,
+      "tamanho": 1177778,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "fc063e35e4bd35e289e58e806c6bd6a0524f45015c75f8df12e0b2bc0f347f86",
+      "hash_guia": "9171df5f95cfe4d81eb6287ecaa001f154c49d2cacdf5282da3f63e366f96b53",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir a atividade"
+        },
+        {
+          "inicio": 5,
+          "titulo": "Nota pela tela"
+        },
+        {
+          "inicio": 21.6,
+          "titulo": "Por planilha: tudo ou nada"
+        }
+      ],
+      "transcricao": "Na disciplina, Atividades: abra a atividade em que vai lançar as notas.\nClique na célula Nota do aluno, digite e aperte Enter: grava na hora. De 0 a 10, até 2 casas.\nUma nota fora da escala (12) é recusada: nada é gravado.\nA linha fica marcada em vermelho claro, legível, e a célula volta ao valor gravado (aqui, vazio): o 12 não foi salvo.\nPor planilha: \"Atualizar via Planilha\", com um CSV rm;nota separado por ponto e vírgula.\nPrimeiro, um arquivo com duas linhas erradas: uma nota 11 e um RA que não existe.\nRecusado inteiro: \"Nenhuma nota foi gravada\", com o número da linha de cada erro. Corrija e envie de novo.\nAgora o arquivo corrigido (vírgula ou ponto na nota; colunas a mais são ignoradas).\n\"Notas importadas: 6 aluno(s). Tudo foi gravado.\" As notas aparecem na atividade."
+    },
+    "ler-o-boletim": {
+      "titulo": "Ler o boletim",
+      "perfis": [
+        "aluno"
+      ],
+      "arquivo": "ler-o-boletim.mp4",
+      "poster": "ler-o-boletim.jpg",
+      "legenda": "ler-o-boletim.vtt",
+      "capitulos_vtt": "ler-o-boletim.capitulos.vtt",
+      "duracao": 66.2,
+      "tamanho": 1371311,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "2e006b6d4ff6a47e1c14f08aac7bd5eb194cda22accdf9b6da72f4a71b4798f6",
+      "hash_guia": "da02fa5bcf7fd59cd2d0af7fd19f04ecabcdf5b96aac44ff97bb8b3b5031702f",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o boletim"
+        },
+        {
+          "inicio": 9.1,
+          "titulo": "Como ler"
+        },
+        {
+          "inicio": 39.4,
+          "titulo": "Curso, ano e imprimir"
+        },
+        {
+          "inicio": 50.6,
+          "titulo": "Como foi calculado"
+        }
+      ],
+      "transcricao": "No menu, Acadêmico → Boletim.\nNo topo, uma faixa com o seu nome, RA, curso e situação; abaixo, as disciplinas do curso. No menu, \"Boletim\" fica marcado.\nMédia com a etiqueta \"parcial\": a disciplina está aberta; é a média só das atividades com nota e pode mudar.\nMédia sem etiqueta: a disciplina foi encerrada; é a média final.\nFaltas e Comp. (faltas compensadas, como atestados): as compensadas não contam contra você.\nFrequência = 1 − (faltas − compensadas) ÷ total de encontros. O que está em vermelho está abaixo do mínimo.\nResultado: Em curso, Aprovado ou Reprovado (por nota, por frequência ou pelos dois).\nPara ver só um ano ou um curso, use os seletores Curso e Ano, no topo.\n\"Imprimir\" tira o menu e imprime só o boletim. Veja como fica a página impressa:\n\"Como foi calculado\", embaixo do curso: clique para abrir a conta de cada disciplina.\nAs notas de cada componente, os pesos, o arredondamento e a frequência, conforme a regra de média.\nNota ou falta errada? Fale com o professor ou a secretaria."
+    },
+    "meu-progresso": {
+      "titulo": "Meu progresso no curso",
+      "perfis": [
+        "aluno"
+      ],
+      "arquivo": "meu-progresso.mp4",
+      "poster": "meu-progresso.jpg",
+      "legenda": "meu-progresso.vtt",
+      "capitulos_vtt": "meu-progresso.capitulos.vtt",
+      "duracao": 41.6,
+      "tamanho": 579695,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "766e1b8817fd0a1df7d329f7ad6dd1d5b26dadd409d7d6273fd15694c4ade33a",
+      "hash_guia": "6517186cb4507c4463890433031623f9a919b148095c3acad30e1b4bc17d0aa3",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o progresso"
+        },
+        {
+          "inicio": 7.8,
+          "titulo": "Os números do curso"
+        },
+        {
+          "inicio": 22.2,
+          "titulo": "A grade, disciplina por disciplina"
+        }
+      ],
+      "transcricao": "No menu, Acadêmico → Meu progresso: quanto falta para concluir o curso, disciplina por disciplina.\nVocê vê só as suas matrículas. Com mais de um curso, um seletor no topo escolhe o curso.\nA carga horária cumprida, sobre a carga horária total da grade do curso.\nQuantas disciplinas você já aprovou, de quantas tem a grade.\nA média final: só das disciplinas encerradas.\nNa tabela, cada disciplina da grade: Aprovado, Reprovado, Em curso ou Não cursada, com a média e a frequência.\nEm curso: a média é parcial (só das atividades com nota) e pode mudar até o encerramento.\n\"Não cursada\", mas você está na turma? Fale com a secretaria: pode faltar a enturmação."
+    },
+    "minhas-disciplinas-e-atividades": {
+      "titulo": "Minhas disciplinas e atividades",
+      "perfis": [
+        "professor",
+        "administrador"
+      ],
+      "arquivo": "minhas-disciplinas-e-atividades.mp4",
+      "poster": "minhas-disciplinas-e-atividades.jpg",
+      "legenda": "minhas-disciplinas-e-atividades.vtt",
+      "capitulos_vtt": "minhas-disciplinas-e-atividades.capitulos.vtt",
+      "duracao": 49.1,
+      "tamanho": 1038636,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "e5caf5a1420ea91fa9566b508b8a8445904a20d79b0322cadd1a1add93e2922d",
+      "hash_guia": "070f8eb75f9e6018414e7023474cfe3ef8a3ad2c3c6fc86c2032376576d7e34c",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Minhas Disciplinas"
+        },
+        {
+          "inicio": 9.4,
+          "titulo": "Dentro da disciplina"
+        },
+        {
+          "inicio": 20,
+          "titulo": "Cadastrar atividade"
+        }
+      ],
+      "transcricao": "Ensino → Minhas Disciplinas: as disciplinas do ano em que você é o professor.\nEm cada linha: a quantidade de alunos, a situação (Aberta ou Encerrada) e os atalhos Atividades, Notas e Faltas.\nClique em Atividades. A barra do topo leva a Atividades, Notas e resultado, Faltas e Encerramento.\nO cartão \"Dados da disciplina\" mostra curso, turma, polo, modalidade, datas e encontros.\n\"Cadastrar atividade\": escolha o tipo. Os tipos desativados (Acréscimo, Recuperação…) não aparecem.\nNome, conteúdo e as datas. Salve.\nA atividade está na lista. Ao salvar, cada aluno ganhou a linha de nota.\nOs 8 alunos da turma, prontos para a nota. Aluno enturmado depois? \"Atualizar lista\", em Notas e resultado."
+    },
+    "montar-a-matriz": {
+      "titulo": "Montar a matriz",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "montar-a-matriz.mp4",
+      "poster": "montar-a-matriz.jpg",
+      "legenda": "montar-a-matriz.vtt",
+      "capitulos_vtt": "montar-a-matriz.capitulos.vtt",
+      "duracao": 83.2,
+      "tamanho": 1739107,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "8a3e1309d6e308ae09ab3c54d93e1e22c4530312f720eb3d51898b4a19c0900e",
+      "hash_guia": "d6b08727f02f76b6e4ccc14dc144e6748668fb18fafd6fede32ee4b2995ae448",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Nova grade"
+        },
+        {
+          "inicio": 20.2,
+          "titulo": "Incluir disciplinas"
+        },
+        {
+          "inicio": 42.6,
+          "titulo": "Carga horária"
+        },
+        {
+          "inicio": 53.1,
+          "titulo": "A ordem do histórico"
+        },
+        {
+          "inicio": 66.9,
+          "titulo": "Mandar para Em análise"
+        }
+      ],
+      "transcricao": "Ensino → Matriz: cada curso com as suas grades. A grade 1 do curso de Gestão de Projetos já está Finalizada.\nClique em \"Nova grade\" no curso. O número é inteiro e não se repete no mesmo curso.\nRecusado: \"A grade 1 já existe no curso…\". Use outro número: 2.\nGrade 2 criada, Aberta. Agora as disciplinas.\nEm \"Incluir disciplina\", escolha a matéria do catálogo e clique em Incluir. CH vazia = a do catálogo.\nCada disciplina nova entra no fim da lista. A CH da grade é a soma, feita pelo sistema.\nA mesma matéria não entra duas vezes: vamos tentar incluir Liderança de Equipes de novo.\nRecusado: \"«Liderança de Equipes» já está nesta grade.\"\nPara mudar a CH de uma disciplina: digite o número na linha e clique no disquete. Aqui, Planejamento e Cronograma passa a 90 h.\nA CH da grade foi recalculada: 60 + 90 + 60 = 210 h.\nOrdem do currículo: arraste a linha pela alça (a 1ª coluna). Vamos levar Liderança de Equipes para o topo.\nDepois de arrastar, clique em \"Salvar a ordem\". É a ordem em que as disciplinas saem no histórico.\nPronta, mande a grade para \"Em análise\" em Situação da grade. Quem finaliza é o administrador.\nEm análise, a grade trava: a faixa diz o motivo e o caminho para destravar, e os botões ficam desabilitados."
+    },
+    "notas-das-atividades": {
+      "titulo": "Ver as notas das atividades",
+      "perfis": [
+        "aluno"
+      ],
+      "arquivo": "notas-das-atividades.mp4",
+      "poster": "notas-das-atividades.jpg",
+      "legenda": "notas-das-atividades.vtt",
+      "capitulos_vtt": "notas-das-atividades.capitulos.vtt",
+      "duracao": 37.2,
+      "tamanho": 635992,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "50c17aa77df7ebe8e1c49421eba634bface4742c440c3a7f877a099bac47da6d",
+      "hash_guia": "c8cbde0568cece9bb940c17d200a7c8fa1a07f92b01e20909a648f1034e50573",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir as notas"
+        },
+        {
+          "inicio": 9.9,
+          "titulo": "Escolher a disciplina"
+        }
+      ],
+      "transcricao": "No menu, Acadêmico → Notas das Atividades: cada nota como o professor lançou, antes de virar média.\nAqui, todas as disciplinas do ano, uma abaixo da outra, com as atividades e as notas. No menu, o item fica marcado.\nPara ver uma só, escolha a disciplina no filtro e clique em Pesquisar.\nAparece cada atividade da disciplina, com a sua nota.\n\"-\" é atividade sem nota: o professor ainda não lançou. No encerramento, ela conta 0.\nNota errada? Fale com o professor. A média e o resultado ficam no Boletim."
+    },
+    "organizar-a-escola": {
+      "titulo": "Organizar a escola: o ano letivo, as turmas e os alunos",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "organizar-a-escola.mp4",
+      "poster": "organizar-a-escola.jpg",
+      "legenda": "organizar-a-escola.vtt",
+      "capitulos_vtt": "organizar-a-escola.capitulos.vtt",
+      "duracao": 62.3,
+      "tamanho": 1572628,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "83cdd9b82ab255ed544f87e4e3b1dff89e45c650d2034486e7617f8ab92c76d0",
+      "hash_guia": "5381642141fb1e1e3bbc7177505acade9ee835133fa3eb1dc3570a7e36d3be32",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A estrutura"
+        },
+        {
+          "inicio": 5.8,
+          "titulo": "O ano letivo e as etapas"
+        },
+        {
+          "inicio": 19.7,
+          "titulo": "A turma"
+        },
+        {
+          "inicio": 41.5,
+          "titulo": "Trocar de turma"
+        }
+      ],
+      "transcricao": "Estrutura da escola. Ensino → Estrutura da escola: os segmentos, as séries de cada um e os componentes curriculares de cada série.\nAno letivo e etapas. Ensino → Ano letivo e etapas: o ano em quatro bimestres (o padrão) ou três trimestres, com as datas e o conselho de cada etapa.\nAs etapas. Com nota lançada, o modelo não muda mais. As datas se ajustam na própria tela.\nTurmas. Ensino → Turmas: cada turma do ano, com a série, o turno, a sala e quantos alunos tem.\nAs ofertas da turma. A turma gera uma oferta por componente da série, cada uma com o seu professor. O professor vê só as turmas e os componentes dele.\nOs alunos. Os alunos da turma. O cartão \"Enturmar alunos\" lista os do segmento ainda sem turma: marcar e enturmar põe o aluno em todos os componentes de uma vez.\nTrocar de turma. Para trocar um aluno de turma: escolha a turma de destino, da mesma série, e clique em Trocar de turma. As notas e as faltas vão junto.\n✓ O aluno mudou de turma, com o que já tinha sido lançado."
+    },
+    "perfis-de-acesso": {
+      "titulo": "Perfis de acesso",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "perfis-de-acesso.mp4",
+      "poster": "perfis-de-acesso.jpg",
+      "legenda": "perfis-de-acesso.vtt",
+      "capitulos_vtt": "perfis-de-acesso.capitulos.vtt",
+      "duracao": 38.2,
+      "tamanho": 1022880,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "98da3ade9d8e719b89b2be3c5a14523976f3435813d52165d17b76903efe0cdf",
+      "hash_guia": "a952714792fc4bb8a2f3f9116462e0923dd6513c32346aa9f235ebc6a6f724b1",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O que cada perfil pode"
+        },
+        {
+          "inicio": 21.3,
+          "titulo": "A coordenação do curso"
+        }
+      ],
+      "transcricao": "O que cada perfil pode. As ações, agrupadas, com o limite de cada uma e um ✓ em cada perfil que pode. Agora: Percorra a tabela e clique em Avançar.\nO limite. O limite é o perfil mais baixo que pode receber a ação. Os perfis vêm prontos e mudam com a atualização do sistema. Quem coordena cada curso é indicado na tela do curso (Adicionar coordenador).\nQuem coordena o curso. A Coordenação de curso vê só os cursos em que é coordenadora. Quem indica é o Administrador ou a Direção acadêmica, na tela do curso.\nA pessoa e a posição. Escolha a pessoa e a posição, e salve. A pessoa passa a ver, em Minhas disciplinas e em Relatórios, só os dados deste curso.\n✓ A coordenação foi indicada."
+    },
+    "polos-e-cursos": {
+      "titulo": "Polos e cursos",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "polos-e-cursos.mp4",
+      "poster": "polos-e-cursos.jpg",
+      "legenda": "polos-e-cursos.vtt",
+      "capitulos_vtt": "polos-e-cursos.capitulos.vtt",
+      "duracao": 78.1,
+      "tamanho": 1472099,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "76178083ee42446a92cb26f43b10776dd125992dc892424bff3df6c739faa2c1",
+      "hash_guia": "d103573c4c5fda951bf85c3a59b84cd10bfe1c0a44d671f991f4b7b5ea928511",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Novo polo"
+        },
+        {
+          "inicio": 16.9,
+          "titulo": "Novo curso"
+        },
+        {
+          "inicio": 45.5,
+          "titulo": "Nos documentos"
+        },
+        {
+          "inicio": 63.9,
+          "titulo": "Curso em uso não se apaga"
+        }
+      ],
+      "transcricao": "Configurações → Polos: onde as turmas acontecem. Clique em \"Novo polo\".\nNome, endereço, cidade e UF.\nPolo cadastrado. Ele passa a aparecer na escolha do polo do curso, da oferta e da matrícula.\nEnsino → Cursos → Cadastrar. A secretaria não cadastra polos nem cursos: só os escolhe.\nO polo padrão e a modalidade padrão: a oferta e a matrícula herdam os dois (e podem trocar).\nCom a modalidade EaD, o Turno some: não se aplica. Em Presencial ou Híbrido, ele é escolhido na lista.\nExige TCC = Sim: a conclusão do curso passa a exigir o TCC aprovado.\nFrequência mínima do curso: opcional. Vazia, vale a da instituição (Configurações → Instituição).\nNos documentos (opcionais): nível, sigla, nome por extenso e a linha do cabeçalho, escrita como deve sair.\nCurso criado. Abra o Visualizar para conferir.\nO Visualizar mostra o polo, a modalidade, a frequência (a da instituição) e os quatro campos dos documentos.\nCurso em uso: Apagar desabilitado — \"Em uso: 1 grade(s), 8 matrícula(s), 6 oferta(s). Não pode ser apagado.\". Se não vai mais ser oferecido, inative."
+    },
+    "portal-dentro-do-moodle": {
+      "titulo": "Portal dentro do Moodle",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "portal-dentro-do-moodle.mp4",
+      "poster": "portal-dentro-do-moodle.jpg",
+      "legenda": "portal-dentro-do-moodle.vtt",
+      "capitulos_vtt": "portal-dentro-do-moodle.capitulos.vtt",
+      "duracao": 68.2,
+      "tamanho": 1020925,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "4489cddf55fb6de20d548a27bb4bcb048e55c8680f45bf93112eada38ed5d0ac",
+      "hash_guia": "7d6b91c515a681622eca1f7af70cba1fa93820ad37206f723e25e6dab79627be",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O que o guia pede"
+        },
+        {
+          "inicio": 20.6,
+          "titulo": "O portal dentro da página do curso"
+        },
+        {
+          "inicio": 40.7,
+          "titulo": "O painel nunca aparece num iframe"
+        }
+      ],
+      "transcricao": "Ajuda → \"Portal dentro do Moodle\". Antes: portal e Moodle em HTTPS; o recomendado é o portal num subdomínio do Moodle.\n1) No servidor do portal, em portal/core/Config.php: o endereço do Moodle em ORIGENS_PERMITIDAS_IFRAME.\n2) No Moodle, no curso: um recurso URL com \"Embutir\", ou um bloco HTML com este iframe.\nQuem instala o sistema edita o arquivo no servidor. A demonstração não tem Moodle: a seguir, uma simulação.\n3) Abra o curso como um aluno de teste: o portal aparece dentro da página. O aluno entra com o RA.\nEntrou sem sair do curso. Agora o Boletim: se ele aparece sem pedir o login de novo, está pronto.\nO boletim abriu dentro da página, sem novo login. O aluno vê boletim, notas e horário sem sair do curso.\nSó o portal do aluno pode aparecer dentro de outro site. O painel da equipe, por segurança, nunca.\nO quadro do painel fica recusado (\"recusou a conexão\"). O mesmo acontece com o portal se o endereço do Moodle faltar no passo 1.\nSe o navegador do aluno bloquear o acesso dentro do Moodle, o portal mostra o botão \"Abrir o portal em nova aba\"."
+    },
+    "previa-do-historico": {
+      "titulo": "Conferir a prévia do histórico",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "previa-do-historico.mp4",
+      "poster": "previa-do-historico.jpg",
+      "legenda": "previa-do-historico.vtt",
+      "capitulos_vtt": "previa-do-historico.capitulos.vtt",
+      "duracao": 61.2,
+      "tamanho": 1675457,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "7206e2cf42ae319683227a3de9d94f9f475bebb39c406655f2e912defa12e58e",
+      "hash_guia": "1177141840a6c4bc1b1653728da3a66fca3d8bfeb7fe6b045545c950f615270b",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Buscar o aluno"
+        },
+        {
+          "inicio": 9.7,
+          "titulo": "Os alertas"
+        },
+        {
+          "inicio": 17.3,
+          "titulo": "Conferir os dados"
+        },
+        {
+          "inicio": 37.9,
+          "titulo": "A barra do topo"
+        }
+      ],
+      "transcricao": "Educacional → Prévia do histórico. Busque o aluno pelo RA ou pelo nome.\nEscolha a matrícula e clique em \"Ver prévia\".\nNo topo, os alertas: o que falta para o histórico. Aqui, o curso exige TCC e o dele ainda não foi aprovado.\nO histórico FINAL só sai sem nenhum alerta. Resolva cada um onde o alerta indica.\nOs dados do aluno e a matrícula: polo, modalidade, ingresso e conclusão.\nA instituição e o ato legal da modalidade da matrícula, na data de referência.\nAs disciplinas com todas as tentativas (a vigente em destaque): docente, titulação, datas, média, frequência, resultado.\nPor fim, o TCC e os totais.\nNa barra do topo: a prévia em PDF (parcial ou final), imprimir a conferência, a ficha do aluno e \"Emitir histórico\".\n\"Prévia em PDF — parcial\": o documento com a tarja PRÉVIA. Nada é gravado.\nPara corrigir dados pessoais, a matrícula ou o TCC: \"Ir para a ficha do aluno\"."
+    },
+    "primeiro-acesso-do-aluno": {
+      "titulo": "Primeiro acesso do aluno",
+      "perfis": [
+        "aluno",
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "primeiro-acesso-do-aluno.mp4",
+      "poster": "primeiro-acesso-do-aluno.jpg",
+      "legenda": "primeiro-acesso-do-aluno.vtt",
+      "capitulos_vtt": "primeiro-acesso-do-aluno.capitulos.vtt",
+      "duracao": 78.9,
+      "tamanho": 861319,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "9520d42989d08dea69190ede5c5fa49c7d1d74f5496749a1055b7af0502242cc",
+      "hash_guia": "cb4bee33bf51e41f67559a49a3c99beac172d419edfd15cd515c2c5f0226f63e",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O link de acesso"
+        },
+        {
+          "inicio": 6.7,
+          "titulo": "Abrir o link"
+        },
+        {
+          "inicio": 33.8,
+          "titulo": "As recusas"
+        },
+        {
+          "inicio": 48.3,
+          "titulo": "Definir a senha"
+        },
+        {
+          "inicio": 58.6,
+          "titulo": "O link vale uma vez só"
+        },
+        {
+          "inicio": 63.5,
+          "titulo": "Entrar no portal"
+        }
+      ],
+      "transcricao": "Antes: a secretaria cadastrou o aluno e enviou o link de acesso (por e-mail ou entregue pessoalmente).\nAgora o aluno, no computador dele, abre o link recebido.\nO link abre \"Definir a senha\". O código do link sai da barra de endereço e não fica gravado no servidor.\nA nova senha, duas vezes: pelo menos 12 caracteres. Primeiro, com as duas diferentes…\nRecusado na hora: \"Os campos de senha estão diferentes!\" — nada é enviado.\n…e com uma senha curta demais.\nRecusada: a senha precisa ter pelo menos 12 caracteres. Senhas muito comuns também são recusadas.\nAgora certo: a mesma senha nas duas caixas. Clique em Atualizar Senha.\n\"Senha definida. Entre com ela no portal.\" Ninguém da instituição fica sabendo dela.\nAbrir o mesmo link de novo não funciona: ele vale uma vez só (e por 48 horas, se a instituição não mudou).\nPronto: o aluno entra no portal com o RA e a senha que acabou de definir.\nDentro do portal: boletim, notas das atividades, horário e ajuda."
+    },
+    "primeiros-passos": {
+      "titulo": "Primeiros passos",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "primeiros-passos.mp4",
+      "poster": "primeiros-passos.jpg",
+      "legenda": "primeiros-passos.vtt",
+      "capitulos_vtt": "primeiros-passos.capitulos.vtt",
+      "duracao": 97.3,
+      "tamanho": 2412210,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "025ae546e9c2e32a78587bdf7ab87d8f5e88682efecfe9d3a2e520228bc88974",
+      "hash_guia": "b40221d5c72c33e929332b310c145a526d76f206fba2a4ad9798a89cdb10426d",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Começar com os dados da instituição"
+        },
+        {
+          "inicio": 11.1,
+          "titulo": "As fases"
+        },
+        {
+          "inicio": 19.7,
+          "titulo": "Faça comigo"
+        }
+      ],
+      "transcricao": "Começar com os dados da minha instituição. Terminada a visita, a demonstração sai sem reinstalar: os dados fictícios são apagados e fica só a conta do administrador.\n✓ A demonstração saiu, em passos.\nPrimeiros passos. Os Primeiros passos: as fases na ordem em que a instituição se monta. A próxima fica em destaque.\nAs fases travadas. A fase que depende de outra fica travada e diz qual falta, até a anterior ser feita.\nFaça comigo. Cada fase tem o \"Faça comigo\": uma janela diz o que fazer, destaca o campo e confere cada passo.\nO nome da instituição. É o nome que sai no menu, na tela de entrada e nos documentos. Agora: Escreva o nome da instituição.\nA mantenedora. A razão social de quem mantém a instituição, como no CNPJ. Agora: Escreva a mantenedora.\nO CNPJ. O CNPJ da mantenedora, com os dígitos verificadores; ele vai nos documentos. Agora: Escreva o CNPJ.\nContato e endereço. O telefone, o e-mail, o site e o endereço completam o cabeçalho dos documentos. Nenhum deles é obrigatório. Agora: Preencha o que tiver e clique em Avançar.\nO logo. Um arquivo PNG ou JPG, de até 1 MB. Ele aparece no menu, na tela de entrada e no cabeçalho dos documentos. Agora: Escolha o arquivo do logo.\nSalvar. Os dados são gravados e o logo passa a aparecer no menu. Agora: Clique em Salvar.\nPronto. A instituição está configurada. Nos Primeiros passos, a fase aparece concluída, com a prévia do logo no menu, na entrada e no documento.\nFase concluída. A fase concluída é marcada sozinha, e a próxima passa a ser a da vez."
+    },
+    "reabrir-uma-disciplina": {
+      "titulo": "Reabrir uma disciplina encerrada",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "reabrir-uma-disciplina.mp4",
+      "poster": "reabrir-uma-disciplina.jpg",
+      "legenda": "reabrir-uma-disciplina.vtt",
+      "capitulos_vtt": "reabrir-uma-disciplina.capitulos.vtt",
+      "duracao": 48.8,
+      "tamanho": 1421287,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "8473242b25c62e58d3d6ea7f937ac77d3560940f4a0690daa6ff2ebce6198811",
+      "hash_guia": "ec2322ed02a6c901a8806d7114407b6934c62e4157d48cd9696c9835c79dbe25",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o encerramento"
+        },
+        {
+          "inicio": 12.6,
+          "titulo": "Sem justificativa: recusado"
+        },
+        {
+          "inicio": 21.8,
+          "titulo": "Com justificativa"
+        }
+      ],
+      "transcricao": "Abra a disciplina encerrada e clique em Encerramento, na barra do topo.\nA faixa diz que a disciplina está encerrada. Embaixo, o quadro \"Reabrir a disciplina\".\nA dica do quadro: reabrir exige a justificativa e NÃO apaga o resultado — o fechamento fica guardado como substituído.\nSem a justificativa, clique em Reabrir.\nRecusado: \"Escreva a justificativa da reabertura (ela fica no registro da disciplina).\"\nEscreva o motivo em Justificativa e clique em Reabrir.\nReaberta: notas e faltas voltam a ser lançadas. A prévia do encerramento aparece de novo.\nNada se apaga: o fechamento nº 1 fica \"Substituído\", com quem reabriu, quando e a justificativa.\nO professor corrige; a secretaria encerra de novo (o fechamento nº 2). Históricos já emitidos não mudam."
+    },
+    "regras-de-nota-e-frequencia": {
+      "titulo": "Regras de nota e frequência",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "regras-de-nota-e-frequencia.mp4",
+      "poster": "regras-de-nota-e-frequencia.jpg",
+      "legenda": "regras-de-nota-e-frequencia.vtt",
+      "capitulos_vtt": "regras-de-nota-e-frequencia.capitulos.vtt",
+      "duracao": 59,
+      "tamanho": 3012257,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "eb8f38c708e9f9facee2f2ae42bf6139f5e34c8a056f3ea44407800273eefabc",
+      "hash_guia": "f5ee68db0e7b57bac412f9cfa7c7e9f0075ca13bd0e6b84005cf62921a0da5d7",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A tela"
+        },
+        {
+          "inicio": 33.6,
+          "titulo": "Fora da faixa: recusado"
+        },
+        {
+          "inicio": 41.2,
+          "titulo": "Salvar"
+        }
+      ],
+      "transcricao": "Configurações → Instituição: as regras que valem para todo o sistema.\nPortal do aluno: o aluno entra com RA, CPF ou e-mail, e a validade do link de senha (1 a 720 horas).\nCasas decimais e média mínima ficam na regra de média: a tela mostra os valores e o link.\nFrequência mínima (padrão 75%) e \"Mostrar média parcial ao aluno\". O curso pode ter a sua própria frequência.\n\"Organizar a matriz em módulos\" (Sim ou Não), os textos dos documentos e a média final do histórico.\nOs limites de tentativas por IP: login, \"Esqueci a senha\" e a verificação pública.\nUma validade de link de 1000 horas, fora da faixa. Salvar:\nRecusado: a validade do link vai de 1 a 720 horas. Nada foi salvo; a tela aponta o campo.\nCorrigido para 72 horas, e a frequência mínima em 80%. Salvar.\nSalvo. Vale para as disciplinas abertas e os próximos encerramentos; a encerrada guarda as regras do dia."
+    },
+    "relatorios-a-painel": {
+      "titulo": "Relatórios A: painel acadêmico",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "relatorios-a-painel.mp4",
+      "poster": "relatorios-a-painel.jpg",
+      "legenda": "relatorios-a-painel.vtt",
+      "capitulos_vtt": "relatorios-a-painel.capitulos.vtt",
+      "duracao": 51.9,
+      "tamanho": 1259575,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "8f2fc64078297b6d11190d3d91b4d9442a6498b6ae1d555ed54ee9387a1cdc64",
+      "hash_guia": "4631ec5f084c9ac98e9bc5cfb628b656cf89efb1209d5b2d8ccc5f4491fad2f9",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir e filtrar"
+        },
+        {
+          "inicio": 9.1,
+          "titulo": "Os cartões"
+        },
+        {
+          "inicio": 23.2,
+          "titulo": "A lista de cada número"
+        },
+        {
+          "inicio": 39,
+          "titulo": "Período sem encerramento"
+        }
+      ],
+      "transcricao": "Relatórios → Painel acadêmico: como está a instituição agora, num relance.\nFiltre pelo curso e, se quiser, pelo período de encerramento. Clique em Filtrar.\nAlunos ativos (matrícula em Cursando), matrículas por situação e as ofertas abertas e encerradas.\nAprovação e reprovação (por nota, por frequência) e a frequência média usam só resultados gravados de ofertas encerradas.\nAlunos em risco, pendentes, ofertas com pendência e atrasadas olham as ofertas abertas.\nClique no número para ver quem compõe o número.\nA lista dos 8 alunos ativos. \"Voltar ao relatório\" volta aos cartões.\nNos percentuais, clique em \"Ver a lista (n)\": os aprovados que formam a taxa.\nCada linha mostra a oferta, a média, a frequência e o resultado gravado.\nO período filtra a data do encerramento. Num período sem oferta encerrada, os percentuais aparecem como \"—\".\nPara ver de novo tudo, limpe o período (ou clique em Limpar)."
+    },
+    "relatorios-b-secretaria": {
+      "titulo": "Relatórios B: secretaria e cadastro",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "relatorios-b-secretaria.mp4",
+      "poster": "relatorios-b-secretaria.jpg",
+      "legenda": "relatorios-b-secretaria.vtt",
+      "capitulos_vtt": "relatorios-b-secretaria.capitulos.vtt",
+      "duracao": 53,
+      "tamanho": 987420,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "a1414c32c45c2a2fe666d0583a0d52e6ab03f10fa770a3c11fa8792cc3d972bd",
+      "hash_guia": "ee054b7863c8650f9dc06805d58047a82b2bbe2190ae8727f96b79cc44f1fabc",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Alunos por curso e situação"
+        },
+        {
+          "inicio": 9.6,
+          "titulo": "Lista de turma"
+        },
+        {
+          "inicio": 22.9,
+          "titulo": "Previsão de conclusão"
+        },
+        {
+          "inicio": 35.7,
+          "titulo": "Qualidade do cadastro"
+        }
+      ],
+      "transcricao": "Alunos por curso e situação: uma linha por matrícula. Filtre por curso, grade, situação, polo ou ingresso.\nOs cartões contam cada situação. O nome do aluno abre o desempenho dele.\nLista de turma: escolha a oferta e clique em Filtrar.\nOs enturmados da oferta, numerados. A coluna Assinatura vai em branco, para o diário de papel.\nUse PDF ou Imprimir para tirar o diário. O PDF é baixado (e a exportação fica registrada).\nPrevisão de conclusão: as matrículas em Cursando por mês da previsão, em gráfico e em tabela.\nA linha \"sem previsão\" mostra quem ainda não tem a data. Clique no número para ver quem é.\nQualidade do cadastro: o que falta em cada matrícula para emitir documentos.\nA contagem por tipo: sexo, CPF, nascimento, naturalidade, RG, filiação, previsão, enturmação…\nEm \"Matrículas com falta\", o que falta a cada uma; \"Editar\" abre a ficha do aluno para completar."
+    },
+    "relatorios-c-desempenho": {
+      "titulo": "Relatórios C: desempenho acadêmico",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "relatorios-c-desempenho.mp4",
+      "poster": "relatorios-c-desempenho.jpg",
+      "legenda": "relatorios-c-desempenho.vtt",
+      "capitulos_vtt": "relatorios-c-desempenho.capitulos.vtt",
+      "duracao": 63.4,
+      "tamanho": 1528609,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "acc0f37a6a209c4b753eee2b329ef2aadde36c99e97fd10c937da39e10cfa513",
+      "hash_guia": "9899326f1b6f7c12b84439db48b7570ef33b1143e0e3fb560b43c424a2078f4b",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Mapa de notas da oferta"
+        },
+        {
+          "inicio": 17.5,
+          "titulo": "Resultado por disciplina"
+        },
+        {
+          "inicio": 32.5,
+          "titulo": "Distribuição de notas"
+        },
+        {
+          "inicio": 40.3,
+          "titulo": "Pendências de lançamento"
+        },
+        {
+          "inicio": 47.6,
+          "titulo": "Desempenho do aluno"
+        }
+      ],
+      "transcricao": "Mapa de notas: escolha a oferta. Aqui, uma oferta ainda aberta.\nUma coluna por atividade, a média, a frequência, FS/FI e o resultado (ou \"Pendente — motivo\").\nOferta aberta: a média parcial (a mesma do boletim) e, à parte, a \"se encerrasse hoje\", provisória.\nResultado por disciplina: só as ofertas encerradas — aprovados, reprovados por nota e por frequência, média e desvio.\nO gráfico mostra a taxa de reprovação de cada disciplina. Agrupe por oferta no filtro \"Agrupar por\".\nDistribuição de notas: o histograma das médias em faixas de 1 ponto. Com uma oferta aberta, as médias provisórias.\nPendências de lançamento: por oferta aberta, o que falta antes de encerrar (nota, chamada, encontros, atraso).\nO desempenho do aluno abre também pelo botão Desempenho, na ficha do aluno (aba Matrículas).\nA grade inteira da matrícula: situação, média e frequência de cada disciplina, CH cumprida e a média final do documento."
+    },
+    "relatorios-d-frequencia": {
+      "titulo": "Relatórios D: frequência",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "relatorios-d-frequencia.mp4",
+      "poster": "relatorios-d-frequencia.jpg",
+      "legenda": "relatorios-d-frequencia.vtt",
+      "capitulos_vtt": "relatorios-d-frequencia.capitulos.vtt",
+      "duracao": 50.6,
+      "tamanho": 1172014,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "a328cbeeb745cd739fbb1dd082072b2eff953d3424b6387a505863df5f810e3a",
+      "hash_guia": "c2c8e0e7a54a88016657c639eba75bf70e6e8700736f8041bd8a9a6c6c1c96e7",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Frequência da oferta"
+        },
+        {
+          "inicio": 9.4,
+          "titulo": "Abaixo ou perto do mínimo"
+        },
+        {
+          "inicio": 32,
+          "titulo": "Mostrar todos"
+        }
+      ],
+      "transcricao": "Frequência da oferta: escolha a oferta. Com lançamento, as faltas lançadas; com chamada, uma coluna por encontro.\nFaltas, compensadas, a frequência e FS/FI: 1 − (faltas − compensadas) ÷ encontros, a mesma conta do boletim.\nTodas as ofertas abertas. Abre em \"Só os alertas\": abaixo do mínimo, no limite e perto.\nOs cartões mostram sempre as quatro contagens, qualquer que seja o filtro.\nAbaixo: já passou do mínimo. No limite: não pode faltar mais. Perto: tem falta e pode faltar até a margem.\nClique num cartão para ver a lista daquele grupo.\nPara ver também os \"Sem alerta\", escolha Mostrar todos e clique em Filtrar. O filtro fica no link.\nOrdene por \"Faltas que ainda pode ter\" para ver primeiro quem está pior.\nA exportação (Excel, CSV, PDF, Imprimir) leva só o que a tabela mostra, com o filtro no cabeçalho."
+    },
+    "relatorios-e-risco-conclusao": {
+      "titulo": "Relatórios E: risco, evasão e conclusão",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "relatorios-e-risco-conclusao.mp4",
+      "poster": "relatorios-e-risco-conclusao.jpg",
+      "legenda": "relatorios-e-risco-conclusao.vtt",
+      "capitulos_vtt": "relatorios-e-risco-conclusao.capitulos.vtt",
+      "duracao": 69,
+      "tamanho": 1763998,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "9063b87958829ccd1593e60f004b696328f140e49971cb1b0790e0a97e8ba7d7",
+      "hash_guia": "456ca0f1eae820ae362f7f0dad0441a84be344926075533f09b9147ae593517d",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Alunos em risco"
+        },
+        {
+          "inicio": 30.4,
+          "titulo": "Aptos a concluir"
+        },
+        {
+          "inicio": 48.3,
+          "titulo": "Coorte de ingresso"
+        },
+        {
+          "inicio": 57.5,
+          "titulo": "Concluintes"
+        }
+      ],
+      "transcricao": "Alunos em risco: matrículas em Cursando com ao menos um sinal. O alerta não dá nota: mostra o sinal e o porquê.\nOs sinais: frequência perto do mínimo, média parcial abaixo da mínima, atividades sem nota, reprovação anterior, sem enturmação.\nFrequência: abaixo do mínimo, ou ao menos 1 falta não compensada e só até a margem (padrão 2). Sem falta, não entra.\nFiltre por sinal para agir em grupo. Aqui, só a frequência.\nAptos a concluir: todas as disciplinas da grade aprovadas e o TCC aprovado, quando o curso exige. A mesma regra do Concluído.\nO atalho abre a emissão do histórico final. Antes, mude a matrícula para Concluído, com a data (o aviso no topo lembra).\n\"Cursando com pendência\" mostra o que falta aos outros: disciplina não aprovada na tentativa vigente ou TCC.\nCoorte de ingresso (administrador e diretoria): por semestre de ingresso, quantos concluíram, seguem, trancaram ou saíram.\nEvasão = cancelados + transferidos. Retenção (atraso no fluxo) = trancados + cursando com a previsão vencida.\nConcluintes e tempo até a conclusão: por semestre de conclusão, o tempo médio, mediano e máximo, em meses."
+    },
+    "relatorios-f-tcc": {
+      "titulo": "Relatórios F: situação do TCC",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "relatorios-f-tcc.mp4",
+      "poster": "relatorios-f-tcc.jpg",
+      "legenda": "relatorios-f-tcc.vtt",
+      "capitulos_vtt": "relatorios-f-tcc.capitulos.vtt",
+      "duracao": 37.8,
+      "tamanho": 1310818,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "99202e33a128f0dd1b224b7fec90981e7ef0c129a53b0e3cfbea720dfcc86d67",
+      "hash_guia": "253d2bbe8b9f02822c86b20a4a371bfca931453b4632dfe8118acbbfd8993e19",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o relatório"
+        },
+        {
+          "inicio": 17.3,
+          "titulo": "A tabela"
+        },
+        {
+          "inicio": 20,
+          "titulo": "Cobrar quem não tem TCC"
+        }
+      ],
+      "transcricao": "Relatórios → Situação do TCC: como estão os TCC de quem vai concluir.\nEntram as matrículas de cursos que exigem TCC e as que têm TCC lançado. Filtre por curso, situação ou previsão.\nOs cartões contam Sem TCC, Em andamento, Aprovado e Reprovado.\nA tabela traz a situação do TCC, a nota, a nota mínima da regra do curso, o orientador e a data da defesa.\nPara cobrar quem ainda não tem TCC: clique no cartão Sem TCC, ou filtre \"Situação do TCC: Sem TCC\".\nJá defendeu e aparece \"Sem TCC\"? Lance o TCC na ficha do aluno (aba Matrícula)."
+    },
+    "relatorios-g-documentos": {
+      "titulo": "Relatórios G: documentos emitidos",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "relatorios-g-documentos.mp4",
+      "poster": "relatorios-g-documentos.jpg",
+      "legenda": "relatorios-g-documentos.vtt",
+      "capitulos_vtt": "relatorios-g-documentos.capitulos.vtt",
+      "duracao": 48.2,
+      "tamanho": 898360,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "f7fc690e9834c7e716ad6394ea5fcd8f1eb36ed4921a9521818e3c6f6b5d5cbe",
+      "hash_guia": "6d82a5f14e1edc328913334aea2d747944dd4858418cce34119c7377794aa8df",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir e filtrar"
+        },
+        {
+          "inicio": 12.7,
+          "titulo": "Os cartões"
+        },
+        {
+          "inicio": 27.2,
+          "titulo": "O código abre a emissão"
+        }
+      ],
+      "transcricao": "Relatórios → Documentos emitidos: que documentos saíram e qual pode estar desatualizado.\nCada emissão gravada: histórico parcial, final e atestado, pela secretaria ou pelo portal do aluno.\nFiltre por curso, período de emissão, tipo, origem ou situação (válida ou cancelada).\nOs cartões contam cada tipo, as Canceladas e os Emitidos antes de reabertura.\n\"Emitido antes de reabertura\": uma disciplina do aluno foi reaberta depois da emissão. O documento pode estar desatualizado.\nConfira se a reabertura mudou a nota. Se mudou, emita de novo; o antigo, só o administrador cancela.\nO código abre a emissão, com o PDF. O quadro de cancelamento aparece só para o administrador (aqui, a conta é a dele).\nO administrador informa o motivo (obrigatório) e clica em \"Cancelar emissão\". A secretaria vê a emissão e o PDF e pede a ele."
+    },
+    "relatorios-h-auditoria": {
+      "titulo": "Relatórios H: auditoria e governança",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "relatorios-h-auditoria.mp4",
+      "poster": "relatorios-h-auditoria.jpg",
+      "legenda": "relatorios-h-auditoria.vtt",
+      "capitulos_vtt": "relatorios-h-auditoria.capitulos.vtt",
+      "duracao": 46.3,
+      "tamanho": 1006147,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "ca5b4744d2db2e19c4c14b6840a448338051f1b6a4623b1859468ac476ffdee7",
+      "hash_guia": "9839e7a62d6439a274dceac25c4d1cbbcc4a5f95274990f42348e7de84c9273d",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Reaberturas de oferta"
+        },
+        {
+          "inicio": 14.2,
+          "titulo": "Trocas e edições de regra"
+        },
+        {
+          "inicio": 18.3,
+          "titulo": "Exportações"
+        },
+        {
+          "inicio": 32.1,
+          "titulo": "Usuários e último acesso"
+        }
+      ],
+      "transcricao": "Relatórios → H. Auditoria: quem mudou o quê, quando e por quê. Só o administrador vê estes relatórios.\nReaberturas: cada fechamento substituído, com quem encerrou, quem reabriu, quando e a justificativa.\nToda tabela de relatório exporta. Exporto esta em CSV: a exportação fica registrada.\nTrocas de regra por oferta (anterior, nova, justificativa, quem) e as criações e edições de regra no catálogo.\nExportações: cada Excel, CSV, PDF ou impressão, com quem, quando, o relatório, os filtros e quantas linhas.\nO link dos filtros abre o relatório como foi exportado.\nUsuários e último acesso: usuários por perfil, o último login e quem, ativo, não entra há mais de N dias.\nO padrão é 90 dias; mude em \"Sem acesso há mais de (dias)\". Use para inativar acessos parados."
+    },
+    "relatorios-visao-geral": {
+      "titulo": "Relatórios: visão geral",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor"
+      ],
+      "arquivo": "relatorios-visao-geral.mp4",
+      "poster": "relatorios-visao-geral.jpg",
+      "legenda": "relatorios-visao-geral.vtt",
+      "capitulos_vtt": "relatorios-visao-geral.capitulos.vtt",
+      "duracao": 87.3,
+      "tamanho": 2641417,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "d10eb91b2ea783451d2ad40694d3fa68bf67991c52000134134b5b59fe914cdd",
+      "hash_guia": "b8a12599d13df3945350a9fa7144cf1dfd8c407f3d84a9293222e99e922832fb",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Todos os relatórios"
+        },
+        {
+          "inicio": 11.3,
+          "titulo": "Filtros no endereço"
+        },
+        {
+          "inicio": 20.1,
+          "titulo": "Como é calculado"
+        },
+        {
+          "inicio": 31.1,
+          "titulo": "A lista de cada número"
+        },
+        {
+          "inicio": 41.3,
+          "titulo": "Colunas"
+        },
+        {
+          "inicio": 48.4,
+          "titulo": "Exportar"
+        },
+        {
+          "inicio": 63.5,
+          "titulo": "Salvar"
+        },
+        {
+          "inicio": 77.4,
+          "titulo": "Alerta de risco"
+        }
+      ],
+      "transcricao": "Relatórios → Todos os relatórios: por categoria, de A (Painel gerencial) a H (Auditoria). Cada um responde a uma pergunta.\nCada perfil vê só os relatórios a que tem acesso. Vamos abrir \"Alunos em risco\".\nA pergunta fica no topo. Escolha os filtros — aqui, o curso — e clique em Filtrar.\nOs filtros ficam no endereço: copie o link e quem abrir verá o mesmo relatório (com o que o perfil dele permite).\n\"Como é calculado\": a fórmula de cada número, o que entra e o que fica de fora.\nOs números são clicáveis: clique no número, ou em \"Ver a lista\", para ver quem compõe o número.\nA lista tem sempre o mesmo tamanho do número: 8 matrícula(s) em risco, com os sinais de cada uma.\nO botão Colunas esconde ou mostra colunas. A exportação leva só as visíveis.\nExportar: Excel, CSV, PDF ou Imprimir. O PDF, a impressão e o Excel trazem no topo a data, a hora e os filtros.\nAntes de gerar o arquivo, o sistema registra a exportação. Sem o registro, o arquivo não sai.\nEm Relatórios → Exportações: quem, quando, o relatório, os filtros e quantas linhas.\nSalvar guarda os filtros e as colunas com um nome.\nEscolha um perfil para compartilhar: quem é do perfil abre, mas não altera nem apaga.\nOs salvos aparecem em Todos os relatórios (e no botão Salvos de cada relatório), com o perfil compartilhado.\nAlerta de risco (administrador): os limites dos sinais do relatório Alunos em risco."
+    },
+    "situacao-da-grade": {
+      "titulo": "Situação da grade (finalizar, desativar, reabrir)",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "situacao-da-grade.mp4",
+      "poster": "situacao-da-grade.jpg",
+      "legenda": "situacao-da-grade.vtt",
+      "capitulos_vtt": "situacao-da-grade.capitulos.vtt",
+      "duracao": 63.1,
+      "tamanho": 1899719,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "2fb7ef993fa8c04007a9e5df21b10288a21c5e8682186dd90f5ce4dee5baaa32",
+      "hash_guia": "cef5999479053f9a064039dac952cf11862369ec9fd1242adc0d48f769bf1a47",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A grade em análise"
+        },
+        {
+          "inicio": 11.2,
+          "titulo": "Finalizar"
+        },
+        {
+          "inicio": 26.4,
+          "titulo": "Reabrir pede justificativa"
+        },
+        {
+          "inicio": 47.3,
+          "titulo": "Desativada"
+        }
+      ],
+      "transcricao": "Ensino → Matriz: a secretaria montou a grade 2 e a mandou para \"Em análise\". Abra a grade.\nTravada, a grade mostra uma faixa com o motivo e o botão \"Ir para a situação da grade\".\nEm Situação da grade, escolha \"Finalizada\". A justificativa é opcional aqui. Salve.\nFinalizada: é a matriz oficial da turma. A troca fica no Registro de alterações, com quem mudou e quando.\nPara mudar a grade de novo, reabra (Aberta). Vamos tentar sem a justificativa.\nRecusado: \"Para reabrir uma grade «Finalizada», escreva a justificativa (ao menos 5 caracteres).\"\nReaberta. O registro guarda a justificativa de quem reabriu.\nDesativada: a grade não aceita aluno nem oferta nova.\nO \"Gerar oferta do ano\" fica desabilitado: \"Grade Desativada: não gera oferta\". Para usar de novo, reabra."
+    },
+    "tentativas-de-acesso": {
+      "titulo": "Tentativas de acesso e limites",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "tentativas-de-acesso.mp4",
+      "poster": "tentativas-de-acesso.jpg",
+      "legenda": "tentativas-de-acesso.vtt",
+      "capitulos_vtt": "tentativas-de-acesso.capitulos.vtt",
+      "duracao": 106.8,
+      "tamanho": 2243132,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "e0f405a665e190776f7469e2481b810ef8b0ef30db8c5be26e9f8ca908982bde",
+      "hash_guia": "72cdb43d0ef2041fa5036896487f5310f83a2fd79a2ceb2b9aaf84799be414ef",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Cinco senhas erradas"
+        },
+        {
+          "inicio": 22.2,
+          "titulo": "Quem está em espera"
+        },
+        {
+          "inicio": 73,
+          "titulo": "Liberar antes do fim"
+        },
+        {
+          "inicio": 80.9,
+          "titulo": "Os limites por IP"
+        }
+      ],
+      "transcricao": "Alguém tenta entrar como \"carlos.inventado\" (um usuário inventado) e erra a senha cinco vezes.\nNo 5º erro: \"Muitas tentativas. Aguarde…\". A espera começa em 30 s e dobra a cada nova falha, até 15 min.\nO administrador entra no painel…\n…e abre Configurações → Tentativas de acesso. O quadro azul resume os limites em vigor.\nA linha amarela está em espera agora: 5 falhas, por usuário, com a hora em que a espera acaba.\nA tabela guarda só uma dica do usuário (as 2 primeiras letras e o tamanho), nunca a senha.\nPara liberar: digite o usuário como a pessoa digitou na entrada e clique em Liberar (ou use o botão da linha).\n\"Contagem apagada\": a pessoa pode tentar de novo. A linha do IP fica — na dúvida, não libere o IP.\nOs limites por IP ficam em Configurações → Instituição, no quadro \"Limite de tentativas por IP\".\nUm valor fora da faixa é recusado. Ex.: 5 falhas por hora no login — a faixa é de 10 a 1000.\nRecusado, e nada foi salvo: o campo fora da faixa fica marcado. Use um número dentro dela e salve de novo."
+    },
+    "usar-a-ajuda": {
+      "titulo": "Como usar a ajuda e as novidades",
+      "perfis": [
+        "administrador",
+        "secretaria",
+        "professor",
+        "aluno"
+      ],
+      "arquivo": "usar-a-ajuda.mp4",
+      "poster": "usar-a-ajuda.jpg",
+      "legenda": "usar-a-ajuda.vtt",
+      "capitulos_vtt": "usar-a-ajuda.capitulos.vtt",
+      "duracao": 100.4,
+      "tamanho": 2856002,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "ab5fd3858eb5e758d70db62e365be65658fc29adcc90bfd0ad2248a8f763a4ef",
+      "hash_guia": "01c626cb670428797ab0858364c3dd72fcf592560dddd01052f70180af855819",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "O aviso da página inicial"
+        },
+        {
+          "inicio": 9.5,
+          "titulo": "A Central de ajuda"
+        },
+        {
+          "inicio": 41,
+          "titulo": "Achar um guia"
+        },
+        {
+          "inicio": 45.5,
+          "titulo": "O ícone ? de cada tela"
+        },
+        {
+          "inicio": 54.7,
+          "titulo": "Vídeos e Novidades"
+        },
+        {
+          "inicio": 74.3,
+          "titulo": "Guia de outro perfil"
+        },
+        {
+          "inicio": 83.1,
+          "titulo": "Marcar o aviso como lido"
+        }
+      ],
+      "transcricao": "No primeiro acesso, a página inicial mostra o aviso de boas-vindas, com o link para o \"Comece por aqui\".\nEle fica aqui, toda vez que a página abre, até você clicar em Entendi (ou no ×). Vamos deixá-lo para depois.\nNo menu da esquerda, abra o grupo Ajuda e clique em Central de ajuda.\nNo topo, \"Comece por aqui\": o caminho do seu perfil, na ordem em que as coisas acontecem no ano.\nCada guia: para que serve, antes de começar, o passo a passo e o que pode dar errado.\nNo topo do guia, o vídeo da tarefa, com legenda e capítulos.\nNo fim de cada guia, o botão \"Próximo passo\" leva ao seguinte do caminho.\nAbaixo, todos os guias do seu perfil. Digite parte do título no campo Filtrar.\nEm várias telas, o ícone ? no alto da página abre direto o guia daquela tela. Ex.: a lista de alunos.\nAbriu o guia \"Cadastrar aluno e enviar o link\".\nAjuda → Vídeos (no menu, ou o botão Vídeos na Central) reúne os vídeos dos guias do seu perfil.\nClique num vídeo para abrir o guia com ele; a busca procura no título e no que é dito no vídeo.\nNovidades (o botão aqui ou Ajuda → Novidades): o que mudou em cada versão, com o link para o guia.\nUm link para um guia de outro perfil (ex.: o do e-mail SMTP, que é do administrador)…\n…é recusado: \"Este guia não é do seu perfil (ou não existe).\" A Central mostra os que você pode abrir.\nDe volta à página inicial: o aviso continua lá. Clique em Entendi.\nPronto: o aviso não volta mais. Sair e entrar de novo não conta como lido; só o Entendi (ou o ×)."
+    },
+    "usuarios-e-niveis": {
+      "titulo": "Usuários da equipe e titulação",
+      "perfis": [
+        "administrador"
+      ],
+      "arquivo": "usuarios-e-niveis.mp4",
+      "poster": "usuarios-e-niveis.jpg",
+      "legenda": "usuarios-e-niveis.vtt",
+      "capitulos_vtt": "usuarios-e-niveis.capitulos.vtt",
+      "duracao": 83.5,
+      "tamanho": 1785420,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "b39aa7e79a6a53d54fbd498010afdfa5216ef86199ee1bd8c5494d53dff6ef5c",
+      "hash_guia": "b3823bbf5f8aa41aec204ed73a04707d86268291f71798324b36a8785443de99",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "A lista da equipe"
+        },
+        {
+          "inicio": 10.6,
+          "titulo": "Cadastrar uma professora"
+        },
+        {
+          "inicio": 32.9,
+          "titulo": "Cadastro certo"
+        },
+        {
+          "inicio": 46.4,
+          "titulo": "Pedir a atualização dos dados"
+        },
+        {
+          "inicio": 64.2,
+          "titulo": "Quem altera quem"
+        }
+      ],
+      "transcricao": "Usuários, no menu: quem tem acesso ao painel (secretaria e professores).\nNome, e-mail, sexo, usuário e a senha inicial. Vamos usar, por engano, um e-mail que já existe.\nO nível de acesso: a lista só oferece níveis ABAIXO do seu. Para professor, a titulação: ela sai no histórico.\nRecusado: o e-mail já é de outra pessoa. Usuário e e-mail não podem se repetir.\nOs dados voltam preenchidos, menos a senha: por segurança, ela nunca volta. Digite de novo.\nCorrija o e-mail e salve de novo.\nCadastrada, como Professor. Entregue a senha inicial por um canal seguro e peça a troca no 1º acesso.\nPara pedir que a pessoa confira o cadastro, abra Editar e escolha a situação \"Atualizar Dados\".\nEla entra e é levada a atualizar os dados antes de usar o sistema. Inativo e Bloqueado não entram.\nGravado. Ao salvar os dados, a situação volta sozinha para Ativo.\nVocê só altera quem é de nível ABAIXO do seu. Quem é do seu nível ou de um nível acima aparece como \"Protegido\", sem editar nem apagar.\nVocê não aparece na lista: o seu cadastro e a sua senha ficam no Perfil (clique no seu nome, embaixo do menu)."
+    },
+    "ver-e-imprimir-o-boletim": {
+      "titulo": "Ver e imprimir o boletim",
+      "perfis": [
+        "secretaria",
+        "administrador"
+      ],
+      "arquivo": "ver-e-imprimir-o-boletim.mp4",
+      "poster": "ver-e-imprimir-o-boletim.jpg",
+      "legenda": "ver-e-imprimir-o-boletim.vtt",
+      "capitulos_vtt": "ver-e-imprimir-o-boletim.capitulos.vtt",
+      "duracao": 54.9,
+      "tamanho": 1012010,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "10f2adf833ce3f86c934400ff088d738325df362e7ebd301b461b6ade2522d75",
+      "hash_guia": "90c3c6905df35f7c1d34552f77bb8b5614059befa645d7ac4abf3c8883e6dbf9",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Abrir o boletim"
+        },
+        {
+          "inicio": 6.2,
+          "titulo": "Ler o boletim"
+        },
+        {
+          "inicio": 21.1,
+          "titulo": "Filtros, Imprimir e PDF"
+        }
+      ],
+      "transcricao": "Educacional → Alunos. Na linha do aluno, o botão \"Boletim\" (também está em Notas e resultado da disciplina).\nUma faixa com o aluno e o curso; depois, cada disciplina: média, faltas e compensadas, frequência e resultado.\nA etiqueta \"parcial\": a disciplina está aberta e a média ainda pode mudar até o encerramento.\nEm vermelho, o que está abaixo do mínimo. Abaixo da tabela, \"Como ler\": a média e a frequência mínimas.\nNo topo, Curso e Ano filtram o boletim. Vamos escolher um ano.\nO boletim de 2026. Sem nada com o filtro, a tela avisa: volte o filtro para \"Todos\".\n\"Imprimir\" imprime a página sem o menu. \"PDF\" gera o mesmo boletim, com o mesmo filtro:\nAluno em dois cursos tem dois boletins, um abaixo do outro, cada um com a sua faixa."
+    },
+    "vincular-e-enturmar": {
+      "titulo": "Vincular e enturmar",
+      "perfis": [
+        "administrador",
+        "secretaria"
+      ],
+      "arquivo": "vincular-e-enturmar.mp4",
+      "poster": "vincular-e-enturmar.jpg",
+      "legenda": "vincular-e-enturmar.vtt",
+      "capitulos_vtt": "vincular-e-enturmar.capitulos.vtt",
+      "duracao": 62.7,
+      "tamanho": 1585798,
+      "versao": "1.42.0",
+      "gravado_em": "2026-11-17",
+      "hash_roteiro": "1931c916603bf06747b749857eaa4bcd96c10465a5ba6f06af8bcab47572fa2a",
+      "hash_guia": "90204fa5ca9243c00747493db139c22ac2125201352babfc396b16a62d132bbb",
+      "capitulos": [
+        {
+          "inicio": 2,
+          "titulo": "Vincular ao curso"
+        },
+        {
+          "inicio": 30.2,
+          "titulo": "Previsão de conclusão"
+        },
+        {
+          "inicio": 39.4,
+          "titulo": "Enturmação"
+        }
+      ],
+      "transcricao": "Ficha da aluna, aba Matrículas: ela ainda não tem vínculo. Use \"Vincular a um curso\".\nAno, curso — grade, forma e data de ingresso, polo e modalidade (vazio = os do curso). Sem a data, veja:\nRecusado: \"Informe a data de ingresso.\" Preencha e vincule de novo.\nVinculada. A modalidade da matrícula escolhe o ato legal do histórico.\nNa edição da matrícula, \"Usar a sugestão\" preenche a previsão com a maior data de fim das ofertas da grade.\nEla sai nos documentos como \"novembro de 2026\".\nClique no botão Enturmação do ano 2026.\nAs ofertas abertas da grade vêm sugeridas e marcadas. As já encerradas aparecem bloqueadas: o administrador reabre.\nDesmarque o que ela cursará depois (aqui, o TCC) e clique em \"Confirmar enturmação\". Nada grava antes.\nConfirmada: agora ela aparece para o professor de Liderança de Equipes. Num ano seguinte, use \"Registrar no ano\"."
+    }
+  }
+}

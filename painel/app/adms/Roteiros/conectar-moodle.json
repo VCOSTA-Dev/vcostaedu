@@ -1,0 +1,62 @@
+{
+ "titulo": "Conectar ao Moodle",
+ "guia": "conectar-ao-moodle",
+ "fim": "moodle/conexao",
+ "inicio": "moodle/conexao",
+ "rotas": [
+  "moodle/conexao"
+ ],
+ "passos": [
+  {
+   "p": "^moodle/conexao",
+   "a": "#passoAPasso",
+   "t": "Antes: o plugin no Moodle",
+   "x": "O Moodle precisa do plugin do VCOSTAEDU. Ele cria, no Moodle, a página \"Conectar ao VCOSTAEDU\", com o endereço e a chave.",
+   "aviso": "Se o plugin ainda não está instalado, siga estes 4 passos no Moodle. Depois, clique em **Avançar**."
+  },
+  {
+   "p": "^moodle/conexao",
+   "a": "#url",
+   "t": "O endereço do Moodle",
+   "x": "A página inicial do Moodle, com https://.",
+   "aviso": "Cole o **endereço** que o Moodle mostrou em \"Conectar ao VCOSTAEDU\".",
+   "confere": [
+    [
+     "valor",
+     "#url",
+     null,
+     "Cole o **endereço** do Moodle."
+    ]
+   ]
+  },
+  {
+   "p": "^moodle/conexao",
+   "a": "#chave",
+   "t": "A chave",
+   "x": "A chave fica cifrada no banco e não aparece mais inteira em lugar nenhum. Se já existe uma guardada, deixe em branco para mantê-la.",
+   "aviso": "Cole a **chave** que o Moodle mostrou (ou deixe em branco para manter a guardada)."
+  },
+  {
+   "p": "^moodle/conexao",
+   "a": "input[name=\"disciplina_modo\"]",
+   "t": "As escolhas da instituição",
+   "x": "O que acontece com as disciplinas, com o trancamento e com o professor. Cada opção diz o que faz.",
+   "aviso": "Confira as escolhas (os padrões servem para a maioria das instituições) e a **categoria** onde as disciplinas são criadas."
+  },
+  {
+   "p": "^moodle/conexao",
+   "a": "#salvarMoodle",
+   "t": "Salvar",
+   "x": "O endereço, a chave e as escolhas são gravados.",
+   "aviso": "Clique em **Salvar**.",
+   "atencao": "Este passo grava a conexão."
+  },
+  {
+   "p": "^moodle/conexao",
+   "a": "#testarMoodle",
+   "t": "Testar a conexão",
+   "x": "O VCOSTAEDU chama o Moodle e mostra o nome e a versão do site e se as 17 funções do serviço estão lá. Os envios só começam depois de um teste que deu certo.",
+   "aviso": "Clique em **Testar conexão**. Se der errado, a tela diz o que fazer."
+  }
+ ]
+}

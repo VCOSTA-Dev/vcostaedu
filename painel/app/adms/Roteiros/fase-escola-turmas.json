@@ -1,0 +1,68 @@
+{
+ "titulo": "As turmas",
+ "guia": "organizar-a-escola",
+ "fim": "primeiros-passos/index",
+ "inicio": "turmas/listar",
+ "rotas": [
+  "turmas/listar",
+  "turmas/cadastrar",
+  "turmas/ver"
+ ],
+ "passos": [
+  {
+   "p": "^turmas/listar",
+   "a": "#novaTurma",
+   "t": "Uma turma nova",
+   "x": "A turma é de uma série, num ano letivo. Ao criá-la, o sistema gera as ofertas da série: uma por disciplina.",
+   "aviso": "Clique em **Nova turma**.",
+   "faz": [
+    [
+     "clicar",
+     "#novaTurma"
+    ]
+   ]
+  },
+  {
+   "p": "^turmas/cadastrar",
+   "a": "#modulo_id",
+   "t": "A série",
+   "x": "Escolha a série da turma.",
+   "aviso": "Escolha a **série**."
+  },
+  {
+   "p": "^turmas/cadastrar",
+   "a": "#nome",
+   "t": "O nome",
+   "x": "O nome da turma (\"A\", \"B\", \"Manhã 1\"): ela aparece como a série e o nome, \"6º ano A\". Turno, sala e capacidade são opcionais.",
+   "aviso": "Escreva o **nome** da turma."
+  },
+  {
+   "p": "^turmas/cadastrar",
+   "a": "#salvarTurma",
+   "t": "Criar",
+   "x": "A turma é criada, com as ofertas da série.",
+   "aviso": "Clique em **Criar a turma**.",
+   "atencao": "Este passo grava a turma e as ofertas.",
+   "faz": [
+    [
+     "clicar",
+     "#salvarTurma"
+    ]
+   ]
+  },
+  {
+   "p": "^turmas/ver",
+   "a": "#ofertasTurma",
+   "t": "Pronto",
+   "x": "A turma tem uma disciplina por linha. A seguir, o professor de cada uma.",
+   "confere": [
+    [
+     "existe",
+     "#ofertasTurma tr[data-oferta]",
+     null,
+     "Crie a turma."
+    ]
+   ]
+  }
+ ]
+}

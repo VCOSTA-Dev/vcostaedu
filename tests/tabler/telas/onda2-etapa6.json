@@ -1,0 +1,4 @@
+[
+ { "nome": "integracoes-chaves", "rota": "painel/integracoes/chaves", "perfil": "administrador", "area": "Integrações" },
+ { "nome": "integracoes-chamadas", "rota": "painel/integracoes/chamadas", "perfil": "administrador", "area": "Integrações" }
+]

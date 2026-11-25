@@ -1,0 +1,8 @@
+[
+ { "nome": "auditoria-relatorio", "rota": "painel/auditoria/listar", "perfil": "administrador", "area": "Auditoria" },
+ { "nome": "auditoria-relatorio-direcao", "rota": "painel/auditoria/listar", "perfil": "direcao.demo", "area": "Auditoria" },
+ { "nome": "auditoria-relatorio-coordenacao", "rota": "painel/auditoria/listar", "perfil": "coord.demo", "area": "Auditoria" },
+ { "nome": "auditoria-nota", "rota": "painel/auditoria/nota/9", "perfil": "prof.laura.demo", "area": "Auditoria" },
+ { "nome": "notas-com-historico", "rota": "painel/atividades/visualizar/9", "perfil": "prof.laura.demo", "area": "Auditoria" },
+ { "nome": "notas-direcao-somente-leitura", "rota": "painel/atividades/visualizar/9", "perfil": "direcao.demo", "area": "Auditoria" }
+]

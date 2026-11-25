@@ -1,0 +1,5 @@
+# O portal de matrícula de exemplo: a configuração (com a chave) e o código comum nunca são servidos.
+<FilesMatch "^(config\.local\.php|config\.exemplo\.php|lib\.php|LEIA-ME\.md)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

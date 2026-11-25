@@ -1,0 +1,8 @@
+{
+  "name": "vcostaedu-provas-tabler",
+  "private": true,
+  "description": "Provas por HTTP real da conversão para Tabler (Playwright, Chromium).",
+  "dependencies": {
+    "playwright-core": "1.63.0"
+  }
+}

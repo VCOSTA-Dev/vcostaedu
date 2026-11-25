@@ -1,0 +1,59 @@
+{
+ "titulo": "Avisos do sistema e segurança",
+ "guia": "avisos-e-seguranca",
+ "fim": "bibliotecas/index",
+ "inicio": "avisos-sistema/index",
+ "rotas": [
+  "avisos-sistema/index",
+  "verificacoes-seguranca/index",
+  "bibliotecas/index"
+ ],
+ "passos": [
+  {
+   "p": "^avisos-sistema",
+   "a": "#cartaoVersoes",
+   "t": "As versões",
+   "x": "A versão dos arquivos e a do banco. Se houver atualização por aplicar, o cartão leva a **Atualizar o sistema**.",
+   "aviso": "Confira e clique em **Avançar**."
+  },
+  {
+   "p": "^avisos-sistema",
+   "a": "#cartaoVersaoNova",
+   "t": "A versão nova",
+   "x": "Se existe uma versão mais nova: no máximo uma consulta por dia, sem enviar dado da instalação e sem baixar nada.",
+   "aviso": "Clique em **Avançar**."
+  },
+  {
+   "p": "^avisos-sistema",
+   "a": "#irVerificacoes",
+   "t": "A segurança",
+   "x": "O resumo da conferência de segurança: o que está certo, o que pede atenção e o que é preciso resolver.",
+   "aviso": "Clique em **Ver as verificações de segurança**.",
+   "faz": [
+    [
+     "clicar",
+     "#irVerificacoes"
+    ]
+   ]
+  },
+  {
+   "p": "^verificacoes-seguranca",
+   "a": "#itensSeguranca",
+   "t": "Verificações de segurança",
+   "x": "Cada item, com o que foi conferido e o que fazer. Numa instalação no próprio computador, o HTTPS e a pasta dos arquivos aparecem como atenção.",
+   "aviso": "Leia os itens e clique em **Avançar**.",
+   "faz": [
+    [
+     "ir",
+     "bibliotecas/index"
+    ]
+   ]
+  },
+  {
+   "p": "^bibliotecas",
+   "a": "#tabelaBibliotecas",
+   "t": "Bibliotecas",
+   "x": "As bibliotecas de terceiros que o sistema usa, com a versão e a licença de cada uma. Nada nestas telas muda dado do sistema."
+  }
+ ]
+}
