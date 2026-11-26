@@ -9,7 +9,37 @@ if (!defined('VCOSTAEDU')) {
  * entrar (a conexão feita e o professor no Moodle); sem isso, a frase diz o porquê. Só no curso livre e só para o papel
  * de professor.
  */
-if (!\App\adms\Models\helper\AdmsTipoInstituicao::ehLivre() || !\App\adms\Models\helper\AdmsNivel::ehPapel('professor')) {
+if (!\App\adms\Models\helper\AdmsNivel::ehPapel('professor')) {
+  return;
+}
+/* D-126 (1.102.1, C5): na escola e no ensino superior, o mesmo "Entrar no Moodle" (as disciplinas já estão em "O meu dia"
+   e em Minhas Disciplinas): um cartão só do Moodle, e só quando dá para entrar */
+if (!\App\adms\Models\helper\AdmsTipoInstituicao::ehLivre()) {
+  $moodleLp = \App\adms\Models\moodle\AdmsMoodleProfessor::doProfessor((int) ($_SESSION['colUsuario_id'] ?? 0));
+  if (!$moodleLp['entrar']) {
+    return;
+  }
+  $hLp = fn($x) => htmlspecialchars((string) $x, ENT_QUOTES, 'UTF-8'); ?>
+<div class="row justify-content-center mt-2 mb-3">
+  <div class="col-12 col-lg-8">
+    <div class="card shadow" id="cartaoMoodleProfessor">
+      <div class="card-body">
+        <a href="<?= URLADM ?>moodle-professor/entrar" class="btn btn-primary w-100 mb-2" id="entrarMoodleProfessor" rel="noopener"><i class="fas fa-right-to-bracket me-1" aria-hidden="true"></i>Entrar no Moodle</a>
+        <?php if ($moodleLp['disciplinas']) : ?>
+          <div class="list-group list-group-flush" id="disciplinasMoodleProfessor">
+            <?php foreach ($moodleLp['disciplinas'] as $dLp) : ?>
+              <div class="list-group-item d-flex align-items-center gap-2 px-0" data-oferta="<?= $hLp((int) $dLp['id']) ?>">
+                <span class="flex-fill"><?= $hLp($dLp['materia']) ?> <span class="text-secondary small"><?= $hLp($dLp['codtur'] ?? '') ?></span></span>
+                <a href="<?= $hLp(URLADM . 'moodle-professor/abrir/' . (int) $dLp['id']) ?>" class="btn btn-sm btn-outline-primary vc-abrir-moodle-prof" rel="noopener">Abrir no Moodle</a>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
   return;
 }
 $hLp = fn($x) => htmlspecialchars((string) $x, ENT_QUOTES, 'UTF-8');

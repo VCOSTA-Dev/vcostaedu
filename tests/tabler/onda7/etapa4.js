@@ -150,7 +150,7 @@ const tabelas = (p) => p.$$eval('.boletimCurso table', (l) => l.map((t) => t.inn
       semPrev = await e.p.textContent('#atestadoErro').catch(() => '');
       sql(`UPDATE rm_matriculas_curso SET previsao_conclusao = '2029-12-15' WHERE usuario_id = ${a1} AND previsao_conclusao IS NULL`);
     }
-    sql(`UPDATE col_usuarios_informacoes SET cpf = '529.982.247-25' WHERE col_user_id = ${a1} AND (cpf IS NULL OR cpf = '')`);
+    sql(`UPDATE col_usuarios_informacoes SET cpf = '000.930.101-17' WHERE col_user_id = ${a1} AND (cpf IS NULL OR cpf = '')`);
     const at = await abre(e.p, `familia/atestado/${a1}?ano=${ANO}`);
     let pdf = 0;
     if (await e.p.$('#emitirAtestado')) {

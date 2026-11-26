@@ -8,7 +8,7 @@ if (!defined('VCOSTAEDU')) { // E6 (D-376): o portal também carrega (atestado d
 }
 
 /**
- * E8c (D-268) — MÓDULO INTERNO da grade. Para o cliente não existe módulo: com o parâmetro "Organizar a matriz em
+ * E8c (D-268) — MÓDULO INTERNO da grade. Para a instituição de origem não existe módulo: com o parâmetro "Organizar a matriz em
  * módulos" em Não, cada grade tem UM módulo (rm_cursos_turma_series), criado e mantido aqui e nunca exibido. As
  * ligações por modulo_id (linha da matriz, vínculo, oferta, boletim, histórico) seguem valendo sem migração.
  *

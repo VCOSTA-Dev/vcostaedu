@@ -78,6 +78,7 @@ async function gravar(p, v) {
     L.ok(valor() === '15' && /Nada foi salvo/.test(recusa) && /10 a 10000/.test(recusa), `5 é recusado ("${recusa.replace(/\s+/g, ' ').trim().slice(0, 100)}…"); o parâmetro continua ${valor()}`);
 
     /* 4. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/O limite da API em Parâmetros/.test(await p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "O limite da API em Parâmetros"');
 

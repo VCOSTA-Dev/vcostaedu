@@ -14,6 +14,7 @@ Config.php
 
 # 4. Uploads de pessoa (as pastas nascem pelo sistema; o conteúdo nunca é versionado)
 /painel/assets/img/usuario/*/
+/portal/assets/img/usuario/*/
 /portal/assets/img/academicos/*/
 /painel/assets/img/academicos/*/
 /painel/assets/docs/alunos/*

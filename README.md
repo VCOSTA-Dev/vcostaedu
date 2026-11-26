@@ -27,9 +27,10 @@ completa, com uma conta de cada perfil.
 ## Instalar
 
 1. Crie um banco vazio em `utf8mb4` / `utf8mb4_unicode_ci` (MySQL ou MariaDB).
-2. Copie esta pasta para o servidor web: Apache com `mod_rewrite`, PHP 8.0 ou superior com `pdo_mysql`, `mbstring`, `gd`
-   e `zip`. No Nginx, que não lê os `.htaccess`, use o exemplo `docs/nginx/vcostaedu.conf` (o guia:
-   `docs/IMPLANTACAO.md`).
+2. Copie esta pasta para o servidor web: Apache com `mod_rewrite`, PHP 8.1 ou superior com `pdo_mysql`, `mbstring`, `gd`,
+   `dom` e `iconv` (o que o instalador confere). O `zip` só é pedido pelas ferramentas de linha de comando (o backup e
+   o pacote). No Linux, o guia "Instalar no Linux, ao lado do Moodle" mostra os passos. No Nginx, que não lê os
+   `.htaccess`, use o exemplo `docs/nginx/vcostaedu.conf` (o guia: `docs/IMPLANTACAO.md`).
 3. Abra o endereço da pasta no navegador. O instalador aparece sozinho e guia o resto.
 
 Para atualizar uma instalação, use **Manutenção → Atualizar o sistema**, que aplica as etapas do banco em passos curtos,

@@ -829,7 +829,7 @@ function telaAdministrador(bool $envio): void
  */
 function telaTipo(string $erro = ''): void
 {
-    abrirPagina('Tipo de instituição', 'administrador'); // dentro do passo "Sua conta" (a régua de passos continua com sete)
+    abrirPagina('Tipo de instituição', 'administrador', 'Tipo de instituição'); // dentro do passo "Sua conta" (a régua continua com sete; o nome na régua é o desta tela: D-125)
     ?>
     <div class="card card-md">
       <div class="card-body">
@@ -905,6 +905,10 @@ function gravarTipoInstituicao(PDO $pdo, string $tipo): void
     VcHorarioPadrao::aplicar($pdo, $tipo); // D-86: as aulas do dia padrão nascem só na escola
     VcAtestadoEscola::aplicar($pdo, $tipo); // D-102: o atestado de matrícula da escola
     VcTipoLivre::aplicar($pdo, $tipo); // D-106: no curso livre, o Moodle no menu do aluno
+    /* D-124 (1.102.1, C2): a instalação nova guarda a versão em que nasceu; a tela de Novidades mostra só as versões
+       depois dela (quem instala conhece o sistema agora, não o histórico). Uma vez só: a troca do tipo não muda. A
+       instalação que já existia não tem a chave e continua vendo todas. */
+    $pdo->exec("INSERT IGNORE INTO adms_instalacao_estado (chave, valor) SELECT 'novidades.desde', CAST(id AS CHAR) FROM adms_versoes WHERE situacao = 1 ORDER BY id DESC LIMIT 1");
 }
 
 function telaAdministradorForm(array $dados = [], array $erros = []): void

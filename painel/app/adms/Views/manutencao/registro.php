@@ -45,8 +45,8 @@ $marcado = fn($b) => $b ? ' checked' : '';
               <label class="form-check"><input class="form-check-input" type="checkbox" name="listar" value="1" id="registroListar"<?= $marcado($esc['listar']) ?>>
                 <span class="form-check-label">Aparecer na lista de instituições que usam o sistema</span></label>
               <div class="mt-2" style="max-width: 26rem"><label class="form-label" for="registroEmail">E-mail para avisos de segurança (opcional)</label>
-                <input type="email" class="form-control" name="email" id="registroEmail" value="<?= $h($esc['email']) ?>" maxlength="190" placeholder="ti@suainstituicao.edu.br"></div>
-              <button type="submit" class="btn btn-outline-primary mt-3" id="atualizarPrevia">Atualizar o que vai</button>
+                <input type="email" class="form-control" name="email" id="registroEmail" value="<?= $h($esc['email']) ?>" maxlength="190" placeholder="ti@instituicao.exemplo.invalid"></div>
+              <button type="submit" class="btn btn-outline-primary mt-3" id="atualizarPrevia">Atualizar a prévia do envio</button>
             </form>
           </div>
         </div>

@@ -1,6 +1,6 @@
 # Implantação: o servidor web
 
-O VCOSTAEDU roda num servidor web com PHP 8.0 ou superior. As **rotas** (o endereço curto de cada tela) e as **pastas
+O VCOSTAEDU roda num servidor web com PHP 8.1 ou superior (com `pdo_mysql`, `mbstring`, `gd`, `dom` e `iconv`: o que o instalador confere). As **rotas** (o endereço curto de cada tela) e as **pastas
 que não respondem pela web** (o código, a configuração, as etapas do banco, os testes, os arquivos privados) são feitas
 pelos arquivos `.htaccess`, que **só o Apache lê**.
 

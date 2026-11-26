@@ -216,7 +216,7 @@ const topo = (p) => p.evaluate(() => {
     const soTexto = spawnSync(PHP, [path.join(__dirname, 'so_texto.php'), path.join(L.RAIZ, 'tests', 'tabler', 'saida', 'regua-onda3-etapa4.json'), path.join(L.RAIZ, 'tests', 'tabler', 'saida', 'regua-onda3-etapa5-nomes.json')], { encoding: 'utf8' });
     L.ok(soTexto.status === 0 && /Só texto/.test(soTexto.stdout), `a troca dos nomes mexeu SÓ em texto: os números, as quantidades e os ids da demonstração são os mesmos (${(soTexto.stdout.match(/Campos de TEXTO que mudaram \((\d+)\)/) || [])[1]} campos de texto)`);
     const nomeAdm = (await p.textContent('#usuario-logado').catch(() => '')).trim();
-    L.ok(nomeAdm === 'Alice' && /^Alice Administradora \(fict/.test(sql('SELECT nome FROM adms_usuarios WHERE id = 1')) && /"nome"/.test(sql("SELECT valor FROM adms_instalacao_estado WHERE chave = 'demonstracao.admin_nome'")),
+    L.ok(nomeAdm === 'Administração' && /^Administração da demonstração \(fict/.test(sql('SELECT nome FROM adms_usuarios WHERE id = 1')) && /"nome"/.test(sql("SELECT valor FROM adms_instalacao_estado WHERE chave = 'demonstracao.admin_nome'")),
       'o administrador da demonstração com nome fictício no canto do usuário (o nome dele guardado para voltar na remoção)');
 
     /* I. as ações; J. o polo Sede */

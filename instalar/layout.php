@@ -67,7 +67,9 @@ const PASSOS = [
     'pronto'        => 'Pronto',
 ];
 
-function abrirPagina(string $titulo, ?string $passoAtual = null): void
+/* D-125 (1.102.1, C3.1): $rotuloPasso é o nome do passo na régua quando a tela é uma parte do passo (o tipo de instituição,
+   dentro de "Sua conta"); sem ele, o nome do passo. */
+function abrirPagina(string $titulo, ?string $passoAtual = null, ?string $rotuloPasso = null): void
 {
     $indice = $passoAtual === null ? -1 : array_search($passoAtual, array_keys(PASSOS), true);
     ?>
@@ -140,7 +142,7 @@ function abrirPagina(string $titulo, ?string $passoAtual = null): void
     ?>
     <div class="mb-4">
       <div class="d-flex align-items-baseline justify-content-between mb-1">
-        <span class="fw-medium"><?= e(array_values(PASSOS)[$indice]) ?></span>
+        <span class="fw-medium"><?= e($rotuloPasso ?? array_values(PASSOS)[$indice]) ?></span>
         <span class="text-secondary small">Passo <?= $numero ?> de <?= $total ?></span>
       </div>
       <div class="progress progress-sm" role="progressbar"

@@ -375,7 +375,7 @@ ORDER BY men.ordem, nivpg.ordem
 ### 6.3 O portal do aluno
 
 - **Menu próprio, do banco:** `portal/app/adms/Models/AdmsMenus.php:17-26`, a mesma consulta sobre `col_nivacs_pgs`, `col_menus`, `col_paginas` com `academico_nivel`. Grupos: 1 Página Inicial, 2 Acadêmico, 3 Financeiro, 4 Atendimento, 5 Sair (`conteudo.sql:1380-1384`). `portal/.../include/menu.php` é idêntico ao do painel. **O grupo da alça no portal é o 5**, não o 3.
-- **Já existe um rail de portal em Tabler:** P2 `portal/app/adms/Views/include_tabler/rail.php` (612 linhas) lê o mesmo `AdmsMenus` sobre `col_*` (`:59`), põe "Sair" (pela rota `login/logout`) na alça (`:113-119, :439-442`), marca VCOSTA + logo do cliente (`:213-220`), recolher (`#vcSideRecolher`, `:237`), toggler móvel (`:249-256`). O `ConfigView` do P2 tem `renderizar('tabler')` com fallback para `include/` (`portal/core/ConfigView.php:18-19,65-70,115-138`). **É o molde direto do portal do ORIG.** Atenção: o `head.php` do P2 traz Barlow do Google (`:110-112`) e o nome da escola-cliente no `<title>` (`:45`): os dois não podem vir.
+- **Já existe um rail de portal em Tabler:** P2 `portal/app/adms/Views/include_tabler/rail.php` (612 linhas) lê o mesmo `AdmsMenus` sobre `col_*` (`:59`), põe "Sair" (pela rota `login/logout`) na alça (`:113-119, :439-442`), marca VCOSTA + logo da instituição de origem (`:213-220`), recolher (`#vcSideRecolher`, `:237`), toggler móvel (`:249-256`). O `ConfigView` do P2 tem `renderizar('tabler')` com fallback para `include/` (`portal/core/ConfigView.php:18-19,65-70,115-138`). **É o molde direto do portal do ORIG.** Atenção: o `head.php` do P2 traz Barlow do Google (`:110-112`) e o nome da escola-cliente no `<title>` (`:45`): os dois não podem vir.
 - **Dentro do Moodle (iframe):** o que existe no ORIG:
   - `ORIGENS_PERMITIDAS_IFRAME` (vazio por padrão) e `COOKIE_PARTICIONADO` (`portal/core/Config.php:38,43`); `origensIframe()` só `https://host[:porta]` (`portal/core/Seguranca.php:38-49`);
   - cookie `SameSite=None` com iframe, senão `Lax`; `Partitioned` injetado por `header_register_callback` (`:102-125`);
@@ -430,7 +430,7 @@ Evidências: código das duas pastas, lido nesta sessão; contagens com `find �
 
 | trabalho | tipo | arquivos |
 |---|---|---|
-| copiar o ORIG sem o que é do cliente (base, logo, retornos, `graphify-out`, dados de prova) | higiene | toda a árvore; a conferência é por lista |
+| copiar o ORIG sem o que é da instituição de origem (base, logo, retornos, `graphify-out`, dados de prova) | higiene | toda a árvore; a conferência é por lista |
 | `ConfigView` com `renderizar('tabler')` (painel e portal), como o projeto de referência e o P2 | reescrita pequena | 2 |
 | `include_tabler/` do painel: `head.php`, `rail.php` (do EDU, adaptado como em §6.1), `libraries_js.php`, login | reescrita | ~6 |
 | `include_tabler/` do portal: a partir do rail do P2 | reescrita | ~5 |
@@ -464,7 +464,7 @@ Evidências: código das duas pastas, lido nesta sessão; contagens com `find �
 
 - **Ganha:** guarda única, aplicação única, prefixos `edu_`, o instalador/runner/atualizador **sem adaptação**, sessão conferida já no lugar, o histórico de decisões D1–D35 do EDU continua valendo.
 - **Perde:** a validação do ORIG (régua de ouro, 18 retratos, jornada, 54 vídeos) deixa de valer sobre código reescrito; a reconciliação dos dois modelos de matrícula é trabalho de produto, não de conversão.
-- **Tamanho:** as mesmas 140 views, mais ~545 arquivos com a guarda (mecânico), mais a reescrita do SQL de 265 models se os prefixos mudarem, mais a fusão do portal e da matrícula. Em número de arquivos tocados, **Y é 2 a 3 vezes X**; em risco, a diferença é maior, porque a parte de Y que não é mecânica é a parte validada pelo cliente.
+- **Tamanho:** as mesmas 140 views, mais ~545 arquivos com a guarda (mecânico), mais a reescrita do SQL de 265 models se os prefixos mudarem, mais a fusão do portal e da matrícula. Em número de arquivos tocados, **Y é 2 a 3 vezes X**; em risco, a diferença é maior, porque a parte de Y que não é mecânica é a parte validada pela instituição de origem.
 
 O que só um dos dois tem, e o outro precisa trazer:
 
@@ -540,7 +540,7 @@ Fora dos quatro, o portal tem o seu próprio piloto natural: `portal acesso/logi
 
 | onda | o que vai junto | depende de | arquivos | sessões |
 |---|---|---|---|---|
-| **0. Montar a pasta** | cópia do ORIG sem o que é do cliente (base, logo, retornos, dados de prova, `graphify-out`, prompts); licença AGPL; a base 1.18.4 vira a migration inicial (de `schema.sql` + `conteudo.sql`); o instalador, o runner e o CLI do EDU enxertados; a sessão conferida a cada requisição; o banco de teste instalado do zero e conferido | decisão 1 | ~15 escritos; a cópia por lista | 2 |
+| **0. Montar a pasta** | cópia do ORIG sem o que é da instituição de origem (base, logo, retornos, dados de prova, `graphify-out`, prompts); licença AGPL; a base 1.18.4 vira a migration inicial (de `schema.sql` + `conteudo.sql`); o instalador, o runner e o CLI do EDU enxertados; a sessão conferida a cada requisição; o banco de teste instalado do zero e conferido | decisão 1 | ~15 escritos; a cópia por lista | 2 |
 | **1. Camada Tabler do painel** | `ConfigView` com `renderizar('tabler')`; `include_tabler/` (head, rail adaptado, `libraries_js` com flags, `_page_header` com o **?** da ajuda, login); vendorizar `datatables-bs5`, `buttons.bootstrap5`, FA regular e brands; tirar 7 plugins sem uso; os componentes comuns (§4: `AdmsUi` 3 linhas, `escola1-listas.js`, `escola1-ui.css`, `escola1-ui.js` sai, `funcoes.js` 8 linhas); o script das mensagens e dos badges (120 + 9 arquivos) | 0 | ~20 escritos + ~130 mecânicos | 1-2 |
 | **2. Piloto** | as 4 telas da §9; a prova da ponte jQuery; a decisão do Select2 aplicada numa tela | 1 | 4 | 1 |
 | **3. Script nas B do painel** | o dicionário (§2) rodado por área, com conferência visual de cada tela: Ensino + Educacional (56 arquivos) numa sessão; Configurações, Relatórios, Equipe, Suporte técnico, Ajuda e Início (os outros ~57) noutra | 2 | ~113 | 2 |
@@ -576,7 +576,7 @@ Fora dos quatro, o portal tem o seu próprio piloto natural: `portal acesso/logi
 - O tempo de `gerar_guias.php`, de `provar_menu.js`/`provar_player.js` e da jornada (interativa, sem registro).
 - O conteúdo de `cabecalho_login.php` e `rodapejs_login.php` em detalhe.
 - A licença do código herdado (cabeçalhos de copyright de terceiros no esqueleto `adms`), que o plano da palestra pede para conferir antes de abrir o repositório.
-- O tamanho da cópia do ORIG em arquivos (fora o PHP) e o que nela é dado do cliente.
+- O tamanho da cópia do ORIG em arquivos (fora o PHP) e o que nela é dado da instituição de origem.
 
 ## Decisões que dependem do responsável pelo projeto
 
@@ -603,4 +603,4 @@ Fora dos quatro, o portal tem o seu próprio piloto natural: `portal acesso/logi
 12. **Mensagens de retorno:** substituição por script nos 120 arquivos (rápido, mantém o HTML espalhado) ou um helper de mensagem como o `AdmsMensagem` do projeto de referência (mais lento, e o HTML passa a existir num lugar só).
 13. **Vídeos e prints:** refazer só no fim, com todas as telas convertidas (2,5 a 3,5 h de máquina uma vez), ou a cada onda (o mesmo tempo várias vezes); e se a demonstração usa os vídeos antigos.
 14. **A demonstração de 26/11:** com 12 dias e a trilha Moodle no mesmo prazo (`PLANO_PALESTRA_26NOV_VCOSTAEDU.md` §4), o recorte de demonstração em Tabler custa 6 a 7 sessões. Caminhos: (a) Tabler no recorte da demonstração e Moodle em paralelo; (b) demonstrar em AdminLTE (o plano da palestra já previa suspender a D15) e converter depois; (c) Tabler só no instalador, no login e no rail, com as telas internas em AdminLTE por baixo (não é possível sem as duas pilhas carregadas na mesma tela; custo e risco altos).
-15. **Achados no sistema de origem** (a `}` sobrando em `escola1-ui.css:99`, o `AdmsUi` diferente no portal, o comentário da ficha financeira): corrigir também na instância do cliente ou só aqui. Não foi tocado nada lá.
+15. **Achados no sistema de origem** (a `}` sobrando em `escola1-ui.css:99`, o `AdmsUi` diferente no portal, o comentário da ficha financeira): corrigir também na instância da instituição de origem ou só aqui. Não foi tocado nada lá.

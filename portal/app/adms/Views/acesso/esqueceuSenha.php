@@ -32,7 +32,7 @@ if ($familiaLigada) {
             <input type="<?= $campoLogin === 'email' && !$familiaLigada ? 'email' : 'text' ?>" name="identificador" id="identificador" class="form-control" placeholder="<?= htmlspecialchars($rotulo) ?>" value="" autocomplete="username" required>
             <span class="input-group-text"><i class="far fa-envelope" aria-hidden="true"></i></span>
           </div>
-          <?php if ($familiaLigada) : ?><div class="form-hint" id="dicaResponsavelSenha">Aluno: o número de matrícula. Responsável: o seu login (o CPF ou o e-mail); o link vai para o e-mail do cadastro. Sem e-mail cadastrado, peça um novo convite à secretaria da escola.</div><?php endif; ?>
+          <?php if ($familiaLigada) : ?><div class="form-hint" id="dicaResponsavelSenha">Aluno: <?= \App\adms\Models\helper\AdmsTipoPortal::atual() === \VcVocabulario::ESCOLA ? 'o RM' : 'o número de matrícula' /* D-125 (1.102.1, C3.4) */ ?>. Responsável: o seu login (o CPF ou o e-mail); o link vai para o e-mail do cadastro. Sem e-mail cadastrado, peça um novo convite à secretaria da escola.</div><?php endif; ?>
         </div>
         <div class="form-footer">
           <input type="submit" class="btn btn-primary w-100 botaoEnvia" name="RecupLogin" value="Recuperar">

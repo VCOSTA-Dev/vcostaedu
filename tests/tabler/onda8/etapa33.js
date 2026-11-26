@@ -65,6 +65,7 @@ function retrato() {
     L.ok(/financeiro\/ficha\//.test(sec.p.url()) && linhas >= 12 && vencidos >= 1, `a ficha financeira da aluna 265002, aberta da ficha dela: ${linhas} títulos, ${vencidos} vencido(s)`);
 
     /* 5. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await sec.p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/O financeiro na demonstração/.test(await sec.p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "O financeiro na demonstração"');
     await sec.ctx.close();

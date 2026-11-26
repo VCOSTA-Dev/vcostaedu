@@ -5,7 +5,7 @@ perfis: administrador, secretaria
 ordem: 69
 relacionados: conectar-ao-moodle, envios-ao-moodle
 entrou: 1.34.0
-mudou: 1.58.0
+mudou: 1.102.1
 ---
 ## Para que serve
 
@@ -46,7 +46,7 @@ O mesmo glossário está no fim da tela **Integrações → Conectar ao Moodle**
 - **O Moodle gravou a inscrição, mas não conseguiu mandar o e-mail de aviso ("Message was not sent.").** — Nada a fazer no VCOSTAEDU: a inscrição está certa. Quem cuida do Moodle confere o envio de e-mail dele.
 - **O aluno não tem e-mail cadastrado: o Moodle exige um.** — Cadastre o e-mail na ficha do aluno; o envio vai sozinho. Ou, em Conectar ao Moodle, escolha um modo com o e-mail da escola.
 - **O e-mail do cadastro do aluno é o mesmo de outro aluno (irmãos com o e-mail da família, por exemplo): a conta do Moodle é de uma pessoa só.** — Cadastre um e-mail só do aluno na ficha; o envio vai sozinho. Ou, em Conectar ao Moodle, escolha um modo com o e-mail da escola.
-- **O modo de e-mail usa o e-mail da escola, mas o domínio dele não foi informado.** — Em Conectar ao Moodle, informe o domínio do e-mail da escola (por exemplo, alunos.suaescola.edu.br) e salve.
+- **O modo de e-mail usa o e-mail da escola, mas o domínio dele não foi informado.** — Em Conectar ao Moodle, informe o domínio do e-mail da escola (por exemplo, alunos.escola.exemplo.invalid) e salve.
 - **O e-mail está em mais de uma conta do Moodle: o VCOSTAEDU não escolhe sozinho qual é a da pessoa.** — Em Envios ao Moodle, na linha do envio, escolha a conta (o número de cada uma no Moodle aparece ali); o envio segue com ela.
 - **Ligado a uma conta que já existia no Moodle, mas que está SUSPENSA lá: a pessoa não entra no Moodle enquanto a conta não for reativada.** — Quem cuida do Moodle reativa a conta (Administração do site → Usuários). Nada a fazer no VCOSTAEDU.
 - **O Moodle não está conectado.** — O Administrador conecta em Integrações → Conectar ao Moodle.

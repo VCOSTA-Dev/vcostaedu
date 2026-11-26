@@ -111,7 +111,7 @@ class Moodle
         }
         $dominio = mb_strtolower(trim((string) ($_POST['email_dominio'] ?? $dominioAntes)));
         if ($modo !== 'aluno' && !preg_match(M::DOMINIO, $dominio)) {
-            self::aviso('danger', 'Para usar o e-mail da escola, informe o domínio dele (por exemplo, alunos.suaescola.edu.br). Ou escolha "Só o e-mail do aluno".', 'moodleRecusado');
+            self::aviso('danger', 'Para usar o e-mail da escola, informe o domínio dele (por exemplo, alunos.escola.exemplo.invalid). Ou escolha "Só o e-mail do aluno".', 'moodleRecusado');
             header('Location: ' . URLADM . 'moodle/conexao');
             return;
         }

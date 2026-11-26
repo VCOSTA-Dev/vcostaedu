@@ -2,8 +2,8 @@
 /* GERADO por database/ferramentas/guias/gerar_guias.php a partir de docs/guia/tarefas/ — não editar. */
 if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); }
 return array (
-  'versao' => '1.102.0',
-  'gerado' => '25/11/2026',
+  'versao' => '1.102.1',
+  'gerado' => '26/11/2026',
   'guias' => 
   array (
     'acompanhar-notas-e-resultado' => 
@@ -932,7 +932,7 @@ A data de conclusão não pode ser antes do ingresso; com disciplina em curso, r
       ),
       'ordem' => 67,
       'entrou' => '1.34.0',
-      'mudou' => '1.58.0',
+      'mudou' => '1.102.1',
       'comece' => 
       array (
       ),
@@ -1115,7 +1115,7 @@ Salvar. Salvar a regra. Se ela está em uso, a tela mostra antes as disciplinas 
       ),
       'ordem' => 1,
       'entrou' => '1.22.0',
-      'mudou' => '1.101.0',
+      'mudou' => '1.102.1',
       'comece' => 
       array (
       ),
@@ -2037,7 +2037,7 @@ Enviar tudo. "Enviar tudo o que falta" manda a fila inteira em passos curtos, co
       ),
       'ordem' => 69,
       'entrou' => '1.34.0',
-      'mudou' => '1.58.0',
+      'mudou' => '1.102.1',
       'comece' => 
       array (
       ),
@@ -2620,6 +2620,34 @@ Reativar devolve a matéria às listas de escolha.',
       'telas' => 
       array (
         0 => 'recursos-livre/index',
+      ),
+      'imagens' => 
+      array (
+      ),
+      'tipo' => '',
+    ),
+    'instalar-no-linux-ao-lado-do-moodle' => 
+    array (
+      'titulo' => 'Instalar no Linux, ao lado do Moodle',
+      'resumo' => 'O VCOSTAEDU num servidor Linux com Apache, PHP e MariaDB, no mesmo servidor do Moodle, sem mexer nele: o mod_rewrite, o AllowOverride, o banco com a collation certa, as permissões das pastas e o porquê de uma porta ou um domínio próprio.',
+      'perfis' => 
+      array (
+        0 => 'administrador',
+      ),
+      'ordem' => 2,
+      'entrou' => '1.102.1',
+      'mudou' => '',
+      'comece' => 
+      array (
+      ),
+      'relacionados' => 
+      array (
+        0 => 'instalar-como-curso-livre',
+        1 => 'o-tipo-de-instituicao',
+        2 => 'conectar-ao-moodle',
+      ),
+      'telas' => 
+      array (
       ),
       'imagens' => 
       array (

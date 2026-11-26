@@ -38,7 +38,7 @@ $data = fn($x) => $x ? date('d/m/Y H:i', strtotime((string) $x)) : '—';
             <div class="card-body">
               <div class="mb-3">
                 <label class="form-label required" for="url">Endereço do Moodle</label>
-                <input type="url" class="form-control" id="url" name="url" value="<?= $h($c['url'] ?? '') ?>" placeholder="https://moodle.suainstituicao.edu.br" required maxlength="255">
+                <input type="url" class="form-control" id="url" name="url" value="<?= $h($c['url'] ?? '') ?>" placeholder="https://moodle.instituicao.exemplo.invalid" required maxlength="255">
                 <div class="form-hint">A página inicial do Moodle, com https://. Endereço sem https:// só numa instalação local.</div>
               </div>
               <div class="mb-3">
@@ -90,7 +90,7 @@ $data = fn($x) => $x ? date('d/m/Y H:i', strtotime((string) $x)) : '—';
                 <label class="form-check"><input class="form-check-input" type="radio" name="envio" value="botao"<?= $sel('envio', 'botao') ?>><span class="form-check-label"><b>Só pelo botão</b> — as mudanças ficam na fila até alguém clicar em "Enviar tudo o que falta".</span></label>
               </div>
               <?php $modoEmail = \App\adms\Models\moodle\AdmsMoodle::emailModo(); $dominio = \App\adms\Models\moodle\AdmsMoodle::parametro('moodle.email_dominio', '');
-                $exemplo = '260101@' . ($dominio !== '' ? $dominio : 'alunos.suaescola.edu.br'); ?>
+                $exemplo = '260101@' . ($dominio !== '' ? $dominio : 'alunos.escola.exemplo.invalid'); ?>
               <div class="mt-3" id="emailModo" data-modo="<?= $h($modoEmail) ?>">
                 <div class="form-label">O e-mail do aluno no Moodle</div>
                 <div class="form-hint mb-2">O Moodle não aceita conta sem e-mail, e cada conta é de uma pessoa só. O e-mail da escola é feito da matrícula no domínio abaixo (por exemplo, <code id="exemploEmail"><?= $h($exemplo) ?></code>).</div>
@@ -99,7 +99,7 @@ $data = fn($x) => $x ? date('d/m/Y H:i', strtotime((string) $x)) : '—';
                 <label class="form-check"><input class="form-check-input" type="radio" name="email_modo" value="aluno" id="emailModoAluno"<?= $modoEmail === 'aluno' ? ' checked' : '' ?>><span class="form-check-label"><b>Só o e-mail do aluno</b> — sem e-mail no cadastro, ou com o mesmo de outro aluno, o aluno fica fora do Moodle, com o motivo em Envios ao Moodle.</span></label>
                 <div class="alert alert-info mt-2 mb-2" id="avisoEmailEscola">O endereço da escola <b>não recebe mensagens</b>: o Moodle não consegue mandar nada a ele, e o "Esqueci a senha" do Moodle não funciona para ele. O aluno entra no Moodle <b>pelo portal</b> (o botão "Entrar no Moodle"), sem senha do Moodle. O endereço não é gravado no cadastro do aluno. Se o domínio mudar, os alunos que o sistema criou no Moodle vão com o endereço novo; a conta que já existia lá fica com o e-mail dela.</div>
                 <div style="max-width: 26rem"><label class="form-label" for="emailDominio">Domínio do e-mail da escola</label>
-                  <input type="text" class="form-control" name="email_dominio" id="emailDominio" value="<?= $h($dominio) ?>" placeholder="alunos.suaescola.edu.br" maxlength="190"></div>
+                  <input type="text" class="form-control" name="email_dominio" id="emailDominio" value="<?= $h($dominio) ?>" placeholder="alunos.escola.exemplo.invalid" maxlength="190"></div>
               </div>
             </div>
             <div class="card-footer d-flex flex-wrap gap-2">

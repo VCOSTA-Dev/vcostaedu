@@ -95,7 +95,7 @@ class AdmsHistoricoEditor
         return self::converter(AdmsHistoricoSecoes::padrao($tipo), $tipo);
     }
 
-    /** E6 (D-371): o atestado padrão, NEUTRO (só variáveis; sem quadro de disciplinas). O do cliente é montado pelo editor. */
+    /** E6 (D-371): o atestado padrão, NEUTRO (só variáveis; sem quadro de disciplinas). O da instituição de origem é montado pelo editor. */
     private static function padraoAtestado(): array
     {
         $doc = '<table class="cab"><tr><td class="cab-logo">{{LOGO_INSTITUICAO}}</td><td class="cab-texto">{{INSTITUICAO_CABECALHO}}</td></tr></table>'

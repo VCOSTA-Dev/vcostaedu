@@ -6,7 +6,7 @@ ordem: 67
 relacionados: envios-ao-moodle, erros-do-moodle
 telas: moodle/conexao
 entrou: 1.34.0
-mudou: 1.58.0
+mudou: 1.102.1
 ---
 ## Para que serve
 
@@ -25,7 +25,7 @@ Ligar o VCOSTAEDU ao Moodle da instituição. Conectado, o aluno, a disciplina, 
    - **Trancamento ou cancelamento da matrícula:** *suspender a inscrição* (o padrão: o aluno não entra, e tudo volta na reativação), *remover a inscrição* ou *não fazer nada*.
    - **Professor da disciplina:** inscrever no Moodle (com edição, o padrão, ou sem edição) ou não. O coordenador do curso não é enviado.
    - **Envio:** *automático*, a cada mudança (o padrão), ou *só pelo botão*.
-   - **O e-mail do aluno no Moodle:** o Moodle não aceita conta sem e-mail, e cada conta é de uma pessoa só. O **e-mail da escola** é feito da matrícula no domínio que você informar (por exemplo, 260101@alunos.suaescola.edu.br). Três modos:
+   - **O e-mail do aluno no Moodle:** o Moodle não aceita conta sem e-mail, e cada conta é de uma pessoa só. O **e-mail da escola** é feito da matrícula no domínio que você informar (por exemplo, 260101@alunos.escola.exemplo.invalid). Três modos:
      - *sempre o e-mail da escola* (o padrão na escola): todo aluno vai com o endereço da escola, tenha ou não e-mail no cadastro;
      - *o e-mail do aluno, ou o da escola*: o do cadastro do aluno; sem ele, ou se outro aluno tem o mesmo (irmãos com o e-mail da família), o da escola;
      - *só o e-mail do aluno* (o padrão no ensino superior): sem e-mail no cadastro, ou com o mesmo de outro aluno, o aluno fica fora do Moodle, com o motivo em Envios ao Moodle.

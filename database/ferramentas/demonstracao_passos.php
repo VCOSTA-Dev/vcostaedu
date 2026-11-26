@@ -302,7 +302,7 @@ final class VcDemoPassos
     public const INSTITUICAO = 'Faculdade Horizonte (fictícia)';
     /* o administrador da instalação ganha, enquanto a demonstração dura, um nome fictício de pessoa (como a equipe); o
        nome dele fica guardado e volta na remoção (database/seed_demo.sql) */
-    public const ADMIN_FICTICIO = 'Alice Administradora (fictícia)';
+    public const ADMIN_FICTICIO = 'Administração da demonstração (fictícia)';
     /* os cursos e a faixa de RA da demonstração (a montagem pela tela recusa uma instalação que já tem outros) */
     public const CURSOS_DEMO = ['Pós-graduação em Gestão de Projetos', 'Pós-graduação em Docência no Ensino Superior', 'Graduação Fictícia de Demonstração',
         'Especialização em Gestão Pública Exemplar', 'Especialização em Dados Públicos Exemplar']; // os dois últimos: os nomes de antes da 1.31.0

@@ -86,7 +86,7 @@ function cartela() {
     await v.clicarENavegar('a.btn:has-text("Criar a conta de administrador")');
     await v.passo('A conta de quem administra o sistema: o usuário, o nome, o e-mail e uma senha forte.', janela('A conta de administrador', 'Preencha e clique em **Criar a conta e concluir**.'));
     await v.digitar('#usuario', ADMIN);
-    await v.digitar('#nome', 'Alice Administradora (fictícia)');
+    await v.digitar('#nome', 'Administração da demonstração (fictícia)');
     await v.digitar('#email', 'administracao@exemplo.invalid');
     await v.digitar('#senha', SENHA);
     await v.digitar('#confirmacao', SENHA);

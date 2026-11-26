@@ -65,6 +65,7 @@ async function topo(p, url) {
     L.ok(/escrita no topo da tela/.test(await p.evaluate(() => document.body.innerText)), 'o guia dos relatórios diz que a pergunta fica no topo da tela');
 
     /* 3. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/A pergunta no topo do relatório/.test(await p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "A pergunta no topo do relatório"');
 

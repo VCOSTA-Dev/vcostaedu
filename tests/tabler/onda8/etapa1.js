@@ -39,8 +39,8 @@ const SENHA_PAI = 'caqui maduro na janela de outubro';
 const SENHA_ALUNO1 = 'pitanga doce no muro da escola';
 const SENHA_ALUNO2 = 'goiaba vermelha no fundo do rio';
 const EMAIL_FAMILIA = 'familia.irmaos@exemplo.invalid';
-const CPF_PAI = '52998224725';
-const CPF_RA = '39053344705'; // um CPF válido, digitado como matrícula
+const CPF_PAI = '00093010117';
+const CPF_RA = '00093010206'; // um CPF válido, digitado como matrícula
 
 const sql = (q) => execFileSync('C:/xampp/mysql/bin/mysql.exe', ['-uroot', '--default-character-set=utf8mb4', '-N', '-B', BANCO, '-e', q], { encoding: 'utf8' }).trim();
 const um = (q) => +(sql(q).split('\n')[0] || 0);
@@ -220,7 +220,7 @@ async function planilhaAlunos(p, csv) {
     const troca = await postar(p, 'responsaveis/login', { responsavel_id: String(pai), login_tipo: 'email' }, 'responsaveis/ver/' + pai);
     const depoisEmail = await entrouComo(navegador, 'pai.irmaos@exemplo.invalid', SENHA_PAI);
     const depoisCpf = await entrouComo(navegador, CPF_PAI, SENHA_PAI);
-    L.ok(/529\.982\.247-25/.test(mostrado) && /Login do portal gravado/.test(troca) && depoisEmail.q === 'familia' && depoisCpf.q === ''
+    L.ok(/000\.930\.101-17/.test(mostrado) && /Login do portal gravado/.test(troca) && depoisEmail.q === 'familia' && depoisCpf.q === ''
       && um(`SELECT COUNT(*) FROM esc_responsavel_auditoria WHERE responsavel_id = ${pai} AND acao = 'login_trocado'`) === 1,
       'a ficha mostra o login (o CPF com a pontuação); "Trocar o login" para o e-mail: entra com o e-mail, o CPF deixa de entrar; a troca fica no registro');
 
@@ -290,7 +290,7 @@ async function planilhaAlunos(p, csv) {
     const dica = await pv.textContent('#dicaResponsavel').catch(() => '');
     await L.print(pv, ETAPA, 'entrada-do-portal-escola');
     await vis.close();
-    L.ok(/número de matrícula/.test(dica) && /CPF ou o e-mail/.test(dica), `a dica da entrada do portal: "${dica.trim()}"`);
+    L.ok(/Aluno: o RM\./.test(dica) && /CPF ou o e-mail/.test(dica), `a dica da entrada do portal: "${dica.trim()}"`);
 
     /* sabotagem (a): a entrada da escola volta a procurar o aluno pelo e-mail do cadastro */
     const origLogin = fs.readFileSync(LOGIN, 'utf8');

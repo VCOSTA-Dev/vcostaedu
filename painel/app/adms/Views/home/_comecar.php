@@ -44,6 +44,13 @@ if ($demo) :
       ? 'Lance uma nota na tela das notas, faça a chamada de uma aula na Matemática de uma das suas turmas (em "O meu dia") e veja o histórico da nota.'
       : 'Lance uma nota na tela das notas, faça a chamada de um encontro e veja o histórico da nota.'],
   ];
+  /* D-125 (1.102.1, C3.2): na escola, as palavras da escola — segmento (não curso), a coordenação de segmento e "as
+     alterações da nota" (o "histórico" fica para o histórico escolar) */
+  if ($escolaDemo) {
+    $perfis['direcao.demo'] = ['Direção acadêmica', 'Abra os relatórios de todos os segmentos e a auditoria de notas e faltas; indique um coordenador na tela do segmento. Nada se altera em nota e falta.'];
+    $perfis['coord.demo'] = ['Coordenação de segmento', 'Veja as disciplinas, as notas e os relatórios só do segmento que coordena; tente abrir o outro segmento pelo endereço.'];
+    $perfis['prof.laura.demo'][1] = 'Lance uma nota na tela das notas, faça a chamada de uma aula na Matemática de uma das suas turmas (em "O meu dia") e veja as alterações da nota.';
+  }
   /* Fechamento (D-106): no curso livre, o que cada perfil experimenta é o que existe nele */
   if (\App\adms\Models\helper\AdmsTipoInstituicao::ehLivre()) {
     $perfis = [

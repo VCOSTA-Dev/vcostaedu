@@ -99,6 +99,7 @@ function contar(email, turma) {
       `as duas ao mesmo tempo: ${x.st} e ${y.st}, a mesma matrícula (${x.mc}); ${JSON.stringify(juntas)}`);
 
     /* 4. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     const novidades = await p.evaluate(() => document.body.innerText);
     L.ok(/inscrição que não duplica/i.test(novidades), 'o registro das mudanças diz "inscrição que não duplica"');

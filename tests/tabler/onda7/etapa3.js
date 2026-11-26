@@ -201,7 +201,7 @@ const paginaInvalida = async (p) => (await p.$('#conviteInvalido')) ? (await p.i
     L.ok(sha(CONTA) === shaConta, 'o arquivo sabotado voltou igual (sha256)');
 
     /* 4. a entrada */
-    sql(`UPDATE esc_responsaveis SET cpf = '52998224725' WHERE id = ${pA}`);
+    sql(`UPDATE esc_responsaveis SET cpf = '00093010117' WHERE id = ${pA}`);
     let e = await entrarPortal(navegador, 'mae.convite@exemplo.invalid', SENHA_BOA);
     const porEmail = /familia\/(index|filho)/.test(e.p.url());
     const nivel = await e.p.textContent('#perfil-logado').catch(() => '');
@@ -209,7 +209,7 @@ const paginaInvalida = async (p) => (await p.$('#conviteInvalido')) ? (await p.i
     const voltou = /familia\/(index|filho)/.test(e.p.url());
     const semPerfil = !(await e.p.$('#railMenu a[href*="perfil/visualizar"]'));
     await e.ctx.close();
-    e = await entrarPortal(navegador, '529.982.247-25', SENHA_BOA);
+    e = await entrarPortal(navegador, '000.930.101-17', SENHA_BOA);
     const porCpf = /familia\/(index|filho)/.test(e.p.url());
     await e.ctx.close();
     e = await entrarPortal(navegador, 'mae.convite@exemplo.invalid', 'senha errada de proposito');
@@ -220,8 +220,8 @@ const paginaInvalida = async (p) => (await p.$('#conviteInvalido')) ? (await p.i
       'a entrada: pelo login (o e-mail escolhido no convite); o CPF do cadastro, que não é o login, não entra (D-67); a senha errada, a mensagem genérica; a página do aluno leva de volta aos filhos; sem o perfil do aluno no menu');
 
     /* 5. cancelar e bloquear */
-    await postar(p, 'responsaveis/cadastrar', { nome: 'Avó Convite Exemplo', email: '', celular: '', cpf: '390.533.447-05' }, 'responsaveis/listar');
-    const pC = um("SELECT id FROM esc_responsaveis WHERE cpf = '39053344705'");
+    await postar(p, 'responsaveis/cadastrar', { nome: 'Avó Convite Exemplo', email: '', celular: '', cpf: '000.930.102-06' }, 'responsaveis/listar');
+    const pC = um("SELECT id FROM esc_responsaveis WHERE cpf = '00093010206'");
     await postar(p, 'responsaveis/designar', { aluno: String(a1), ano: String(ANO), papel: 'titular', responsavel_id: String(pC), parentesco: 'Avó', data: `${ANO}-02-01` }, `responsaveis/aluno/${a1}?ano=${ANO}`);
     const linkC = await gerar(p, pC);
     const semCelular = !!(await p.$('#semCelular'));

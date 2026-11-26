@@ -46,9 +46,9 @@ class AdmsNovidades
         $ler->fullRead(
             "SELECT v.id AS versao_id, v.numero, v.data_versao, v.resumo, v.situacao, n.id, n.titulo, n.texto, n.guia, n.ordem
                FROM adms_versoes v INNER JOIN adms_novidades n ON n.adms_versao_id = v.id
-              WHERE FIND_IN_SET(:p, n.perfis) > 0
+              WHERE FIND_IN_SET(:p, n.perfis) > 0 AND v.id > :desde
               ORDER BY v.major DESC, v.minor DESC, v.patch DESC, n.ordem, n.id",
-            'p=' . urlencode($perfil)
+            'p=' . urlencode($perfil) . '&desde=' . self::desde()
         );
         $por = [];
         foreach ($ler->getResultado() ?: [] as $r) {
@@ -57,6 +57,22 @@ class AdmsNovidades
             $por[$k]['itens'][] = ['titulo' => $r['titulo'], 'texto' => $r['texto'], 'guia' => $r['guia']];
         }
         return array_values($por);
+    }
+
+    /**
+     * D-124 (1.102.1, C2): a instalação nova começa as Novidades do zero — só as versões depois da que ela instalou
+     * (adms_instalacao_estado "novidades.desde", gravada pelo instalador). Sem a chave (a instalação que já existia), 0:
+     * todas, como antes.
+     */
+    private static function desde(): int
+    {
+        try {
+            $ler = new AdmsRead();
+            $ler->fullRead("SELECT valor FROM adms_instalacao_estado WHERE chave = :c LIMIT :limit", 'c=novidades.desde&limit=1');
+            return (int) ($ler->getResultado()[0]['valor'] ?? 0);
+        } catch (\Throwable $e) {
+            return 0;
+        }
     }
 
     /** A versão atual (situação 1). */

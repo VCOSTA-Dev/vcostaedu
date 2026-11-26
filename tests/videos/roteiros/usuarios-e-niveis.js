@@ -67,7 +67,7 @@ module.exports = {
 
     v.capitulo('Quem altera quem');
     /* só se altera quem é de nível abaixo; o próprio cadastro não está na lista (fica no Perfil) */
-    v.confere(!(await v.page.locator('table tbody tr', { hasText: 'Alice Administradora' }).count()), 'o próprio usuário não deveria estar na lista');
+    v.confere(!(await v.page.locator('table tbody tr', { hasText: 'Administração da demonstração' }).count()), 'o próprio usuário não deveria estar na lista');
     await v.passo('Você só altera quem é de nível ABAIXO do seu. Quem é do seu nível ou de um nível acima aparece como "Protegido", sem editar nem apagar.');
     await v.destacar('table tbody');
     await v.passo('Você não aparece na lista: o seu cadastro e a sua senha ficam no Perfil (clique no seu nome, embaixo do menu).');

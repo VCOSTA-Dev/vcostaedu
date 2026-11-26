@@ -198,7 +198,7 @@ class AdmsHistoricoDocumento
     }
 
     /**
-     * CSS do documento. E5 (D-367): `estilo` = "oficial" dá as medidas do modelo Word do cliente (A.0 do levantamento:
+     * CSS do documento. E5 (D-367): `estilo` = "oficial" dá as medidas do modelo Word da instituição de origem (A.0 do levantamento:
      * margens, cabeçalho sem filete, quadro com bordas pretas de 0,5 pt, linhas finais com fundo #B2B2B2); `fonte` =
      * "liberation" troca a família (a métrica da Arial). Sem as opções (todos os modelos anteriores), o CSS de sempre.
      */
@@ -212,7 +212,7 @@ class AdmsHistoricoDocumento
         return $familia === 'DejaVu Sans, sans-serif' ? $css : $css . 'body { font-family: ' . $familia . '; }';
     }
 
-    /** E5 (D-367): as medidas do .docx do cliente (twips → mm/pt; A.0). */
+    /** E5 (D-367): as medidas do .docx da instituição de origem (twips → mm/pt; A.0). */
     private static function cssOficial(string $familia): string
     {
         return '@page { margin: 11.3mm 23.1mm 12mm 26.8mm; }'
@@ -351,7 +351,7 @@ class AdmsHistoricoDocumento
 
     private function linha(array $colunas, array $m, array $d, ?array $t, bool $mostrarTurma, callable $h, string $emCurso = 'Em curso', string $modoFreq = 'percentual', array $fmt = []): string
     {
-        /* E5 (D-331): disciplina em andamento com nota e frequência em branco (modelo do cliente) */
+        /* E5 (D-331): disciplina em andamento com nota e frequência em branco (modelo da instituição de origem) */
         $branco = !empty($fmt['branco']) && $t && !$t['encerrada'];        $dt = fn($x) => $x ? date('d/m/Y', strtotime($x)) : '';
         $attrs = $t ? ' class="tentativa' . (!$t['vigente'] ? ' tentativa-anterior' : '') . '" data-oferta="' . (int) $t['oferta_id'] . '" data-vigente="' . ($t['vigente'] ? 1 : 0) . '"'
             : ' class="nao-cursada" data-linha="' . (int) $d['linha_id'] . '"';

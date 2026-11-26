@@ -58,7 +58,7 @@ $escolaLista = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); // Onda 
                 <?php endforeach; ?>
               </div>
               <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Minhas disciplinas" data-ordem='[[1,"asc"]]'>
-                <thead><tr><th>Código</th><th><?= $escolaLista ? 'Disciplina' : 'Matéria' ?></th><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr></thead>
+                <thead><tr><th>Código</th><th>Disciplina</th><?php /* D-125 (C3.8): "Disciplina" nos três tipos */ ?><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr></thead>
                 <tbody>
                   <?php foreach ($this->dados['listaDisciplinas']['disciplinas'] ?? [] as $disc) : $id = (int) $disc['id']; $soConsulta = !empty($disc['so_consulta']); ?>
                     <tr data-oferta="<?= htmlspecialchars((string) ($id), ENT_QUOTES, 'UTF-8') ?>" data-so-consulta="<?= $soConsulta ? '1' : '0' ?>">

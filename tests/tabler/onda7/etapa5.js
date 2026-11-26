@@ -148,8 +148,8 @@ const prepararAtestado = (aluno, cpf) => {
     await lib(a2, ANO, R6, 'A tia busca na escola (prova)');
     sql(`UPDATE esc_responsaveis SET senha = '${hash(SENHA_R)}', ativado_em = NOW(), login = email WHERE id IN (${[R1, R2, R3, R5, R6, R7].join(',')})`); // como o convite faz (Onda 8, D-67: o login, o e-mail)
     sql(`UPDATE col_usuarios SET senha = '${hash(SENHA_ALUNO)}', col_sits_usuario_id = 1 WHERE id = ${a1}`);
-    prepararAtestado(a1, '529.982.247-25');
-    prepararAtestado(a3, '168.995.350-09');
+    prepararAtestado(a1, '000.930.101-17');
+    prepararAtestado(a3, '000.930.103-89');
     const montadas = um(`SELECT COUNT(*) FROM esc_responsavel_designacoes WHERE fim IS NULL AND responsavel_id IN (${[R1, R2, R3, R5, R6].join(',')})`);
     L.ok([R1, R2, R3, R5, R6, R7].every((x) => x > 0) && montadas === 7, `as famílias da prova montadas pela tela (${montadas} papéis)`);
 

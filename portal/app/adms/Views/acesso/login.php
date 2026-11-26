@@ -50,7 +50,7 @@ if ($entradaEmail) {
               <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
             </div>
             <?php if ($entradaEmail) : ?><div class="form-hint" id="dicaEntrada">O e-mail do seu cadastro ou o seu número de matrícula.</div><?php endif; ?>
-            <?php if ($familiaLigada) : ?><div class="form-hint" id="dicaResponsavel">Aluno: o número de matrícula. Responsável: o CPF ou o e-mail que você escolheu no convite.</div><?php endif; ?>
+            <?php if ($familiaLigada) : ?><div class="form-hint" id="dicaResponsavel">Aluno: <?= \App\adms\Models\helper\AdmsTipoPortal::atual() === \VcVocabulario::ESCOLA ? 'o RM' : 'o número de matrícula' /* D-125 (1.102.1, C3.4) */ ?>. Responsável: o CPF ou o e-mail que você escolheu no convite.</div><?php endif; ?>
           </div>
           <div class="mb-3">
             <label class="form-label" for="senha">Senha</label>

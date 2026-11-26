@@ -258,10 +258,10 @@ class AdmsBoletimCurso
         $html = '<table class="faixa-aluno"><tr>' . $cel('Aluno(a)', ($aluno['nome_social'] ?? '') ?: $aluno['nome']) . $cel(\App\adms\Models\helper\AdmsParametro::naEscola() ? 'RM' : 'RA', $aluno['rm']);
         if ($m) {
             /* Onda 7, Etapa 1: o curso pelo nome; a versão da grade num campo próprio, só quando o curso tem mais de uma */
-            $html .= $cel('Curso', $m['curso']) . (self::gradesDoCurso((int) $m['curso_id']) > 1 ? $cel('Grade', (string) (int) $m['versao']) : '') . $cel('Situação', $m['situacao'] ?? '—')
+            $html .= $cel(self::rotuloCurso(), $m['curso']) . (self::gradesDoCurso((int) $m['curso_id']) > 1 ? $cel('Grade', (string) (int) $m['versao']) : '') . $cel('Situação', $m['situacao'] ?? '—')
                 . $cel('Ingresso', $m['data_ingresso'] ? date('d/m/Y', strtotime($m['data_ingresso'])) : '—');
         } else {
-            $html .= $cel('Curso', 'Disciplinas fora de uma matrícula no curso');
+            $html .= $cel(self::rotuloCurso(), 'Disciplinas fora de uma matrícula no ' . self::rotuloCurso(false));
         }
         return $html . '</tr></table>';
     }
@@ -423,7 +423,7 @@ class AdmsBoletimCurso
         return $html . '</tbody></table></div>';
     }
 
-    /** Parâmetro "Organizar a matriz em módulos" (E8c, complemento do cliente); sem o parâmetro, Sim (comportamento 1.7.2). */
+    /** Parâmetro "Organizar a matriz em módulos" (E8c, complemento da instituição de origem); sem o parâmetro, Sim (comportamento 1.7.2). */
     public static function usaModulos(): bool
     {
         return !method_exists(\App\adms\Models\helper\AdmsParametro::class, 'usaModulos') || \App\adms\Models\helper\AdmsParametro::usaModulos();
@@ -474,13 +474,19 @@ class AdmsBoletimCurso
     }
 
     /** Seletor de curso e ano (GET). $manter: parâmetros que a URL precisa carregar (o portal leva o ano da página). */
+    /** D-125 (1.102.1, C3.3): "Curso" no vocabulário do tipo (na escola, "Segmento"). */
+    private static function rotuloCurso(bool $maiuscula = true): string
+    {
+        return \VcVocabulario::termo('curso', \App\adms\Models\helper\AdmsTipoInstituicao::atual(), false, $maiuscula);
+    }
+
     public static function seletor(array $op, int $curso, int $ano, string $acao, array $manter = []): string
     {
         $html = '<form method="GET" action="' . self::h($acao) . '" class="d-flex flex-wrap align-items-center gap-1 seletor-boletim" id="seletorBoletim">';
         foreach ($manter as $k => $v) {
             $html .= '<input type="hidden" name="' . self::h($k) . '" value="' . self::h($v) . '">';
         }
-        $html .= '<label class="me-1 small" for="filtroCurso">Curso</label><select name="filtro_curso" id="filtroCurso" class="form-select form-select-sm w-auto me-2" onchange="this.form.submit()"><option value="0">Todos</option>';
+        $html .= '<label class="me-1 small" for="filtroCurso">' . self::rotuloCurso() . '</label><select name="filtro_curso" id="filtroCurso" class="form-select form-select-sm w-auto me-2" onchange="this.form.submit()"><option value="0">Todos</option>';
         foreach ($op['cursos'] as $id => $nome) {
             $html .= '<option value="' . (int) $id . '"' . ((int) $id === $curso ? ' selected' : '') . '>' . self::h($nome) . '</option>';
         }

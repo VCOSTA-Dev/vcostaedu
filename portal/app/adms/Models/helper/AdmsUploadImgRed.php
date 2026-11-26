@@ -70,7 +70,7 @@ class AdmsUploadImgRed
     private function valdiretorio()
     {
         if(!file_exists($this->diretorio) && !is_dir($this->diretorio)){
-            mkdir($this->diretorio, 0755);
+            mkdir($this->diretorio, 0755, true); // D-127 (1.102.1, C6.2): com as pastas de cima, se faltarem
         }
     }
     

@@ -6,7 +6,7 @@ ordem: 1
 relacionados: primeiros-passos, perfis-de-acesso
 telas: demonstracao/comecar, demonstracao/instituicao
 entrou: 1.22.0
-mudou: 1.101.0
+mudou: 1.102.1
 ---
 ## Para que serve
 
@@ -23,7 +23,7 @@ A demonstração só é montada numa instalação ainda vazia (sem curso nem alu
    - Uma janela mostra a montagem, passo a passo: preparando a instalação, a instituição e a equipe, os cursos e a matriz, os alunos e as matrículas, as notas e as faltas, a turma de 2025 já concluída e os documentos. Cada parte ganha um ✓ ao terminar, e a barra mostra quanto falta.
    - Se a página for fechada no meio, nada se perde: ao voltar a **Como você quer começar**, a tela mostra onde a montagem parou e o botão **Continuar**.
    - No fim, clique em **Entrar na demonstração**.
-3. A demonstração é uma faculdade fictícia, a **Faculdade Horizonte**, com dois cursos de pós-graduação (Gestão de Projetos e Docência no Ensino Superior); enquanto ela está ligada, a sua conta aparece com um nome fictício (**Alice Administradora**), que volta ao seu quando a demonstração sai. A faixa azul, no alto de toda tela, lembra que os dados são fictícios. Na Página Inicial, o cartão **Conheça o sistema** mostra o usuário e a senha de cada perfil e o que experimentar com cada um. As senhas ficam escondidas: **Mostrar** revela, e **Copiar** copia a senha verdadeira (mesmo escondida) para você colar no campo da senha. Entre com eles numa janela anônima, para não sair da sua conta.
+3. A demonstração é uma faculdade fictícia, a **Faculdade Horizonte**, com dois cursos de pós-graduação (Gestão de Projetos e Docência no Ensino Superior); enquanto ela está ligada, a sua conta aparece com um nome fictício (**Administração da demonstração**), que volta ao seu quando a demonstração sai. A faixa azul, no alto de toda tela, lembra que os dados são fictícios. Na Página Inicial, o cartão **Conheça o sistema** mostra o usuário e a senha de cada perfil e o que experimentar com cada um. As senhas ficam escondidas: **Mostrar** revela, e **Copiar** copia a senha verdadeira (mesmo escondida) para você colar no campo da senha. Entre com eles numa janela anônima, para não sair da sua conta.
 4. Quando quiser começar de verdade, clique em **Começar com os dados da minha instituição** (na faixa, no menu ou no cartão), escreva **COMEÇAR** e confirme. A mesma janela mostra a remoção; os dados fictícios saem, sem reinstalar — também os planos de pagamento, os títulos e os recibos da demonstração —, e o botão do fim abre os [Primeiros passos](guia:primeiros-passos). A Página Inicial volta a perguntar **Como você quer começar?**, e os Primeiros passos levam a essa pergunta.
 
 **No curso livre:** a demonstração monta o **Instituto Ventoalto (fictício)**: o curso **IA na prática para professores**, a matriz com os quatro módulos (10 horas), a turma aberta do ano com 500 vagas e o professor em cada módulo, e dois alunos fictícios na turma, que entram no portal pelo e-mail ou pela matrícula. É o destino das inscrições do site de vendas de exemplo, pela interface de integração.

@@ -50,7 +50,7 @@ class Chamada
                    próximo encontro; o encontro novo criado pela tela abre já gravado, e dali em diante cada clique grava */
                 if (!$encontroId && !empty($post['inicio'])) {
                     M::lembrarInicio((int) $_SESSION['colUsuario_id'], (string) $post['inicio']);
-                    $_SESSION['msg'] = "<div class='alert alert-success alert-dismissible' id='chamadaSalva'><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>Encontro criado. Agora, cada clique na presença grava na hora.</div>";
+                    $_SESSION['msg'] = "<div class='alert alert-success alert-dismissible' id='chamadaSalva'><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>" . (\App\adms\Models\helper\AdmsTipoInstituicao::ehEscola() ? 'Aula criada' : 'Encontro criado') /* D-125 (C3.5) */ . ". Agora, cada clique na presença grava na hora.</div>";
                     header('Location: ' . URLADM . 'chamada/encontro/' . $ofertaId . '?id=' . $m->getId());
                     return;
                 }

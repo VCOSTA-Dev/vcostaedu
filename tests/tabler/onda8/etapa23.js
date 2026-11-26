@@ -81,6 +81,7 @@ async function renomear(p, materia, nome) {
     L.ok(X.sql(`SELECT materia FROM rm_professores_materias WHERE id = ${mao}`) === 'Arte (nome dado a mao)', 'a oferta com outro nome, dado à mão, ficou como estava');
 
     /* 5. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/O nome da disciplina nas ofertas/.test(await p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "O nome da disciplina nas ofertas"');
 

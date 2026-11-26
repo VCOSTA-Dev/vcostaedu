@@ -11,6 +11,7 @@ use App\adms\Models\faltas\AdmsCompensacoes as Comp;
 
 $c = $this->dados['calc'];
 $o = $c['oferta'];
+$escF = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); // D-125 (1.102.1, C3.7): na escola, disciplina e aula (não oferta e encontro)
 $f = $this->dados['ficha'] ?? [];
 $bt = $this->dados['botao'] ?? [];
 $sit = $this->dados['situacoes'] ?? [];
@@ -35,11 +36,11 @@ foreach ($this->dados['compensacoes'] ?? [] as $cp) { $compPorRm[$cp['rm']][] = 
           'Para mudar, o administrador ou a supervisão da secretaria reabre a disciplina (com justificativa) na tela Encerramento.', \App\adms\Models\helper\AdmsNivel::podeSensivel() ? ['Ir ao Encerramento', URLADM . 'disciplinas/encerrar/' . (int) $o['id']] : null, 'situacaoFaltas') ?>
       <?php else : ?>
         <?php if ($porChamada) : ?>
-          <div class="alert alert-warning py-2" id="faltasDaChamada"><b>As faltas desta oferta vêm da chamada</b> (só leitura aqui): cada ausência num encontro é uma falta, e o total de encontros é o de encontros registrados. <a href="<?= htmlspecialchars((string) (URLADM . 'chamada/listar/' . (int) $o['id']), ENT_QUOTES, 'UTF-8') ?>">Ir à chamada</a>. A compensação continua valendo.</div>
+          <div class="alert alert-warning py-2" id="faltasDaChamada"><?= $escF ? '<b>As faltas desta disciplina vêm da chamada</b> (só leitura aqui): cada ausência numa aula é uma falta, e o total de aulas é o de aulas registradas.' : '<b>As faltas desta oferta vêm da chamada</b> (só leitura aqui): cada ausência num encontro é uma falta, e o total de encontros é o de encontros registrados.' ?> <a href="<?= htmlspecialchars((string) (URLADM . 'chamada/listar/' . (int) $o['id']), ENT_QUOTES, 'UTF-8') ?>">Ir à chamada</a>. A compensação continua valendo.</div>
         <?php endif; ?>
         <div class="alert alert-info py-2" id="situacaoFaltas">
-          Frequência = 1 − (faltas − compensadas) ÷ total de encontros. Mínimo: <b><?= $h(Calc::numero($c['regras']['frequenciaMinima'])) ?>%</b>.
-          <b>Total de encontros:</b> <?= $o['encontros'] !== null ? (int) $o['encontros'] : '<span class="text-danger">não informado</span> (informe na edição da disciplina; sem ele a frequência não é calculada e o encerramento é recusado)' ?>.
+          Frequência = 1 − (faltas − compensadas) ÷ total de <?= $escF ? 'aulas' : 'encontros' ?>. Mínimo: <b><?= $h(Calc::numero($c['regras']['frequenciaMinima'])) ?>%</b>.
+          <b>Total de <?= $escF ? 'aulas' : 'encontros' ?>:</b> <?= $o['encontros'] !== null ? (int) $o['encontros'] : '<span class="text-danger">não informado</span> (informe na edição da disciplina; sem ele a frequência não é calculada e o encerramento é recusado)' ?>.
           <?= $podeComp ? 'Compensação: pelo botão <i class="fas fa-notes-medical"></i> de cada aluno, com tipo, justificativa e período.' : 'As compensações são lançadas pela secretaria.' ?>
         </div>
       <?php endif; ?>
@@ -58,7 +59,7 @@ foreach ($this->dados['compensacoes'] ?? [] as $cp) { $compPorRm[$cp['rm']][] = 
                     <td class="num compensadas"><?= htmlspecialchars((string) ((int) $al['compensadas']), ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="num"><?= htmlspecialchars((string) ($o['encontros'] !== null ? (int) $o['encontros'] : '—'), ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="num frequencia<?= $abaixo ? ' abaixo' : '' ?>"><?= $al['frequencia'] === null ? '<span class="text-muted">—</span>' : $h(Calc::formatar($al['frequencia'], 2)) . '%' ?></td>
-                    <td><?= $al['frequencia'] === null ? Ui::etiqueta('Sem encontros', ['Sem encontros' => 'secondary']) : ($abaixo ? Ui::etiqueta('Abaixo do mínimo', ['Abaixo do mínimo' => 'danger']) : Ui::etiqueta('Frequência ok', ['Frequência ok' => 'success'])) ?></td>
+                    <td><?= $al['frequencia'] === null ? ($escF ? Ui::etiqueta('Sem aulas', ['Sem aulas' => 'secondary']) : Ui::etiqueta('Sem encontros', ['Sem encontros' => 'secondary'])) : ($abaixo ? Ui::etiqueta('Abaixo do mínimo', ['Abaixo do mínimo' => 'danger']) : Ui::etiqueta('Frequência ok', ['Frequência ok' => 'success'])) ?></td>
                     <td class="acoes-linha">
                       <?php if ($razaoComp === null) : ?>
                         <button type="button" class="btn btn-sm btn-acao btn-outline-info" title="Compensar faltas de <?= $h($al['nome']) ?>" data-bs-toggle="modal" data-bs-target="#modalCompensar" data-rm="<?= $h($al['rm']) ?>" data-nome="<?= $h($al['nome']) ?>" data-max="<?= htmlspecialchars((string) (max(0, (int) $al['faltas'] - (int) $al['compensadas'])), ENT_QUOTES, 'UTF-8') ?>"><i class="fas fa-notes-medical"></i></button>
@@ -107,7 +108,7 @@ foreach ($this->dados['compensacoes'] ?? [] as $cp) { $compPorRm[$cp['rm']][] = 
           </div>
         </div>
       <?php endif; ?>
-      <?php /* 1.14.0 (E8, D-411): importar faltas por planilha rm;faltas */ $razaoImp = $encerrada ? 'Disciplina encerrada: não aceita importação' : ($porChamada ? 'As faltas desta oferta vêm da chamada' : (empty($bt['importar']) ? 'Esta tela não é do seu perfil' : null)); ?>
+      <?php /* 1.14.0 (E8, D-411): importar faltas por planilha rm;faltas */ $razaoImp = $encerrada ? 'Disciplina encerrada: não aceita importação' : ($porChamada ? ($escF ? 'As faltas desta disciplina vêm da chamada' : 'As faltas desta oferta vêm da chamada') : (empty($bt['importar']) ? 'Esta tela não é do seu perfil' : null)); ?>
       <div class="card shadow-sm" id="importarFaltas">
         <div class="card-header"><b><i class="fas fa-file-csv"></i> Importar faltas por planilha</b> <small class="text-muted">— CSV com <code>rm;faltas</code>, separado por ponto e vírgula; tudo ou nada</small></div>
         <div class="card-body">

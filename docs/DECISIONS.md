@@ -6,7 +6,7 @@ O levantamento que embasa as D-01 a D-15 é `docs/LEVANTAMENTO_DEPARA_TABLER.md`
 
 ## D-01 — Modo X: o código do sistema de origem é a base
 Esta pasta começa com o código do sistema de origem (1.18.4), recebe o instalador e o runner do `vcostaedu`, e a interface passa para Tabler.
-**Motivo:** o acadêmico inteiro (88 tabelas, 49 controllers, 265 models, 218 views) está validado pelo cliente (régua de ouro, retratos, jornada, 54 vídeos). No modo Y seria reescrito; aqui, só a camada de interface muda. Custo medido: 11 a 15 sessões contra 15 a 23 (levantamento §7.2, §10).
+**Motivo:** o acadêmico inteiro (88 tabelas, 49 controllers, 265 models, 218 views) está validado pela instituição de origem (régua de ouro, retratos, jornada, 54 vídeos). No modo Y seria reescrito; aqui, só a camada de interface muda. Custo medido: 11 a 15 sessões contra 15 a 23 (levantamento §7.2, §10).
 **Consequência:** ficam as duas aplicações (`painel/`, `portal/`), as guardas, os prefixos `rm_`/`col_`/`uni_`/`seg_` e as chaves de sessão de origem. As D1, D2, D19 e D31 do `vcostaedu` não valem aqui.
 
 ## D-02 — Select2 fica, sem tema, com um ajuste de CSS
@@ -51,7 +51,7 @@ A escolha "recolhido" fica guardada no navegador; abaixo de 992 px o menu abre p
 **Motivo:** a escola pode estar em rede fechada, e o portal roda dentro do Moodle (D15 do `vcostaedu`). Saem a fonte Source Sans Pro e o Ionicons, que vinham por CDN.
 
 ## D-15 — Os achados do levantamento no sistema de origem são corrigidos só aqui
-A chave sobrando em `escola1-ui.css:99`, o `AdmsUi` do portal diferente do painel, o comentário da ficha financeira. A instância do cliente não é tocada.
+A chave sobrando em `escola1-ui.css:99`, o `AdmsUi` do portal diferente do painel, o comentário da ficha financeira. A instância da instituição de origem não é tocada.
 
 ## D-16 — A origem é a 1.18.4
 O código veio do commit da 1.18.4 da origem, com o histórico de git novo (`docs/ORIGEM.md`).
@@ -616,3 +616,47 @@ A interface ganha `POST /inscricoes`: o cadastro, a matrícula e a turma (na esc
 **As provas:** a Onda 8, etapa 48 (a parte A): Vídeos fora dos menus e da Central, a página abrindo; o texto do tipo; o filtro (Ativas, Encerradas e Todas); os dois relatórios abrindo para o professor, com o número das ofertas dele; a sabotagem pega (o filtro desligado: a encerrada aparece em Ativas) e o arquivo de volta igual. A referência do menu (`tests/tabler/menu-referencia.json`) perdeu os Vídeos.
 
 **Motivo:** os acertos do ensaio que aparecem na frente da plateia.
+
+## D-123 — A 1.102.1, C1: a higiene antes de o código ir a público
+**Decisão (1.102.1, C1):** os textos que aparecem na tela e que vinham de migrations já aplicadas mudam por uma migration nova (a 0100; as aplicadas não mudam, o hash delas é conferido em toda instalação): o resumo da versão 1.12.0 e a novidade 79 deixam de falar do "modelo do cliente" (passam ao documento oficial), e a descrição do parâmetro do domínio do e-mail da escola passa ao domínio reservado de exemplo. No código e nos guias, os domínios de exemplo `suaescola.edu.br` e `suainstituicao.edu.br` (que alguém pode registrar) passam a `escola.exemplo.invalid` e `instituicao.exemplo.invalid`. Nos comentários e documentos que falavam de uma instituição como "o cliente", "a instituição de origem" (o cliente técnico — o `mysql`, o HTTP, o web service, o IP do cliente — continua). Os dez CPFs de gerador das provas passam ao esquema da demonstração (000 + um número fictício, com os dígitos verificadores calculados).
+- **Decidido por conta própria (a confirmar):** o `docs/DECISIONS.md` guarda os domínios antigos onde conta a história (as decisões de antes) e a D-108/D-110 citam "o cliente" como termo do levantamento: ficam. O apelido no comentário da migration 0002 fica (anotado na correção do ensaio).
+
+**As provas:** a Onda 8, etapa 49 (os textos na tela e no banco); as provas dos CPFs trocados (Onda 2 etapa 6, Onda 7 etapas 3, 4 e 5, Onda 8 etapa 1).
+
+**Motivo:** o repositório vai a público.
+
+## D-124 — A 1.102.1, C2: as Novidades começam do zero na instalação nova
+**Decisão (1.102.1, C2):** quem instala o produto conhece o sistema agora, não o histórico de cada versão. O instalador guarda, uma vez só, a versão em que a instalação nasceu (`adms_instalacao_estado`, chave `novidades.desde`, gravada quando o tipo de instituição é escolhido); a tela de Novidades (painel e portal) mostra só as versões **depois** dela. A instalação que já existia não tem a chave e continua vendo todas. Nenhuma migration aplicada muda.
+- **Decidido por conta própria (a confirmar):** a chave nasce só pelo instalador da tela (a instalação pela linha de comando, das ferramentas, não a grava: vê o histórico, como antes). As provas que conferem a novidade de uma versão (Onda 8, etapas 20 a 25 e 33) apagam a chave antes de abrir a tela, como numa instalação que já existia.
+
+**As provas:** a Onda 8, etapa 49: a chave na instalação nova, a tela vazia, uma versão nova aparecendo, o histórico de volta sem a chave, a sabotagem pega (a lista sem o filtro) e o arquivo de volta igual.
+
+**Motivo:** a tela de Novidades de uma instalação nova abria com cem versões de histórico interno.
+
+## D-125 — A 1.102.1, C3: os textos e o vocabulário achados no ensaio
+**Decisão (1.102.1, C3):** (1) no instalador, a régua da tela do tipo de instituição diz "Tipo de instituição" (passo 6 de 7), não "Sua conta"; (2) na escola, o cartão "Conheça o sistema" fala de segmento, da coordenação de segmento e das alterações da nota; (3) na escola, o boletim do painel diz "Segmento" no filtro e no cabeçalho; (4) na escola, a dica da entrada do portal diz "Aluno: o RM"; (5) na escola, a chamada diz "Aula criada"; (6) na escola, a tela de enviar notas diz "Turma:"; (7) na escola, a tela de Faltas fala de disciplina e aula (não de oferta e encontro); (8) Minhas Disciplinas tem a coluna "Disciplina" nos três tipos; (9) o botão "Atualizar o que vai" passa a "Atualizar a prévia do envio".
+- **Decidido por conta própria (a confirmar):** o item 9 estava descrito como da tela Envios ao Moodle; o único botão com esse texto é o da tela Registrar a instalação (a prévia do que vai no registro), e foi ali que ele mudou. No item 6, a faixa da demonstração aparece na tela de enviar notas (a prova confere); não achei o caminho em que ela faltava.
+
+**As provas:** a Onda 8, etapa 50 (a escola do zero, com a demonstração): os nove itens e a sabotagem pega (a tela de Faltas sem o ramo da escola) com o arquivo de volta igual. A Onda 8, etapa 1 confere a dica nova do portal.
+
+**Motivo:** as palavras do ensino superior na frente da plateia da escola.
+
+## D-126 — A 1.102.1, C5: o professor entra no Moodle também na escola e no ensino superior
+**Decisão (1.102.1, C5):** a entrada do professor no Moodle (D-121: as páginas 599 e 600, a ação 111) vale nos três tipos (a migration 0101 tira a marca das duas páginas, que passam ao núcleo: a marca dos três tipos não cabe na coluna). Na escola e no ensino superior, a Página Inicial do professor ganha um cartão só do Moodle ("Entrar no Moodle" e "Abrir no Moodle" em cada disciplina enviada), e só quando dá para entrar (a conexão feita e o professor no Moodle): as disciplinas dele já estão em "O meu dia" e em Minhas Disciplinas. No curso livre, o cartão continua o da D-121.
+
+**As provas:** a Onda 8, etapa 51 (a escola do zero, com o Moodle de teste): sem o Moodle, nada de cartão; com o Moodle conectado e "Enviar tudo", o professor inscrito, o cartão e o redirecionamento 303; a sabotagem pega (o cartão só no curso livre) e o arquivo de volta igual.
+
+**Motivo:** o professor da escola e da faculdade também dá aula no Moodle.
+
+## D-127 — A 1.102.1, C6 (itens 2, 3 e 4): a instalação no Linux
+**Decisão (1.102.1, C6):** (2) a pasta `portal/assets/img/usuario` vai no pacote (um `.gitkeep` versionado; as pastas de cada usuário continuam fora), e a criação da pasta da foto passa a criar as de cima, se faltarem (painel e portal); (3) o README e o `docs/IMPLANTACAO.md` dizem o que o instalador confere de verdade: PHP 8.1 com `pdo_mysql`, `mbstring`, `gd`, `dom` e `iconv` (o `zip`, só as ferramentas de linha de comando); (4) o guia novo "Instalar no Linux, ao lado do Moodle" (o `mod_rewrite`, o `AllowOverride`, a collation, as permissões das pastas e o aviso sobre a subpasta sob `Alias`), sem nada do ambiente do ensaio.
+- **Fica para a 1.103.0:** o campo da porta do banco no instalador (C6, item 1), com o financeiro opcional nos três tipos (C4) e a compensação pelo professor (C7).
+
+**Motivo:** o ensaio no Linux.
+
+## D-128 — A 1.102.1, C8: o nome fictício do administrador na demonstração da faculdade
+**Decisão (1.102.1, C8):** a demonstração da faculdade dá ao administrador o nome "Administração da demonstração (fictícia)" (antes, "Alice Administradora (fictícia)", que se confundia com a aluna Alice do curso livre). O nome dele continua guardado e volta na remoção. O retrato do superior foi regravado: a única diferença do nome é essa linha.
+
+**As provas:** a Onda 3, etapa 5 (o nome no canto do usuário) e a régua do superior.
+
+**Motivo:** a palestra mostra as duas demonstrações.

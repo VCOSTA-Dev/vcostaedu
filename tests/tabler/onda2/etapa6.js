@@ -162,9 +162,9 @@ async function sabotar(nome, estragar, consertar, conferir) {
     L.ok(r.status === 404 && formatoErro(r, 'nao_encontrado') && r.json.erro.campo === 'ra', 'aluno inexistente: 404 (nao_encontrado, campo ra)');
 
     /* D. criar pela API e pela tela: as mesmas colunas */
-    const corpo = { ra: '930001', nome: 'Aluna Via Integração Exemplo', sexo: 'feminino', cpf: '529.982.247-25', email: 'aluna.api@exemplo.invalid', nascimento: '2001-04-09', telefone: '(11) 3333-4444' };
+    const corpo = { ra: '930001', nome: 'Aluna Via Integração Exemplo', sexo: 'feminino', cpf: '000.930.101-17', email: 'aluna.api@exemplo.invalid', nascimento: '2001-04-09', telefone: '(11) 3333-4444' };
     r = await api('POST', '/alunos', { chave: kEscrita, corpo });
-    L.ok(r.status === 201 && r.json.criado === true && r.json.dados.ra === '930001' && r.json.dados.cpf === '52998224725' && /api\/v1\/alunos\/930001$/.test(r.h.get('location') || ''), 'POST /alunos: 201, o aluno criado (e o Location)');
+    L.ok(r.status === 201 && r.json.criado === true && r.json.dados.ra === '930001' && r.json.dados.cpf === '00093010117' && /api\/v1\/alunos\/930001$/.test(r.h.get('location') || ''), 'POST /alunos: 201, o aluno criado (e o Location)');
     await p.goto(L.BASE + 'painel/academicos/cadastrar');
     await p.fill('#rm', '930002');
     await p.fill('#nome', corpo.nome);

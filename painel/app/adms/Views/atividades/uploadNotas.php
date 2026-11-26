@@ -39,7 +39,7 @@ if (isset($this->dados['dados_info'][0])) {
                 <input type="hidden" name="atividade_id" id="atividade_id" value="<?= htmlspecialchars((string) ($info['id']), ENT_QUOTES, 'UTF-8') ?>">
                 <input type="hidden" name="rm_prof_mat_id" id="rm_prof_mat_id" value="<?= htmlspecialchars((string) ($info['rm_prof_mat_id']), ENT_QUOTES, 'UTF-8') ?>">
                 <div class="card-body">
-                  <p><strong>Atividade: </strong><?= htmlspecialchars((string) ($info['nomeAtividade']), ENT_QUOTES, 'UTF-8') ?><br><strong>Disciplina: </strong><?= htmlspecialchars((string) ("{$info['rm_prof_mat_id']} - {$info['materia']}"), ENT_QUOTES, 'UTF-8') ?><br><strong>Curso: </strong><?= htmlspecialchars((string) ("{$info['nomeCurso']} - {$info['codtur']}"), ENT_QUOTES, 'UTF-8') ?></p>
+                  <p><strong>Atividade: </strong><?= htmlspecialchars((string) ($info['nomeAtividade']), ENT_QUOTES, 'UTF-8') ?><br><strong>Disciplina: </strong><?= htmlspecialchars((string) ("{$info['rm_prof_mat_id']} - {$info['materia']}"), ENT_QUOTES, 'UTF-8') ?><br><strong><?= \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola() ? 'Turma' : 'Curso' /* D-125 (C3.6) */ ?>: </strong><?= htmlspecialchars((string) ("{$info['nomeCurso']} - {$info['codtur']}"), ENT_QUOTES, 'UTF-8') ?></p>
                   <div class="row g-2">
                     <div class="mb-3 col-md-12">
                       <label class="form-label"> Arquivo CSV</label>

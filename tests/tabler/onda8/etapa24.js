@@ -98,6 +98,7 @@ function cli() {
       'o guia curto (docs/IMPLANTACAO.md) e o exemplo (docs/nginx/) entram no pacote; o resto de docs/ continua fora');
 
     /* 5. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/O Nginx e as pastas protegidas/.test(await p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "O Nginx e as pastas protegidas"');
 

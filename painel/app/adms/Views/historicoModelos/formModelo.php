@@ -157,7 +157,7 @@ $config = ['blocos' => E::BLOCOS + E::condicionais()]; // Onda 3, Etapa 3: sem o
                     <input type="hidden" name="quadro[emCurso]" value="<?= $h($ed['quadro']['emCurso'] ?? E::EM_CURSO) ?>">
                     <small class="text-muted d-block mt-2">No histórico FINAL, cada disciplina sai só com a tentativa vigente (sem as atividades).</small>
                   <?php endif; ?>
-                  <?php /* E5 (D-369, D-370): opções do modelo do cliente; desligadas, o quadro sai como sempre */ $qd = $ed['quadro'] ?? []; ?>
+                  <?php /* E5 (D-369, D-370): opções do modelo da instituição de origem; desligadas, o quadro sai como sempre */ $qd = $ed['quadro'] ?? []; ?>
                   <div class="border rounded p-1 mt-2" id="opcoesQuadroCliente">
                     <div class="form-check"><input type="checkbox" class="form-check-input" id="quadroChNoNome" name="quadro[chNoNome]" value="1" <?= htmlspecialchars((string) (!empty($qd['chNoNome']) ? 'checked' : ''), ENT_QUOTES, 'UTF-8') ?>><label class="form-check-label small" for="quadroChNoNome">Carga horária dentro do nome: "Disciplina (<b>18</b> …)"</label></div>
                     <input type="text" class="form-control form-control-sm mt-1" name="quadro[textoCh]" id="quadroTextoCh" maxlength="20" value="<?= $h($qd['textoCh'] ?? E::TEXTO_CH) ?>" aria-label="Texto depois da carga horária" title="Texto depois do número (ex.: horas aula)">

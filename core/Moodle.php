@@ -40,7 +40,7 @@ final class VcMoodle
     {
         $p = parse_url(trim($url));
         if (!$p || empty($p['scheme']) || empty($p['host']) || !in_array(strtolower($p['scheme']), ['http', 'https'], true)) {
-            return 'O endereço precisa começar com https:// (por exemplo, https://moodle.suainstituicao.edu.br).';
+            return 'O endereço precisa começar com https:// (por exemplo, https://moodle.instituicao.exemplo.invalid).';
         }
         if (isset($p['query']) || isset($p['fragment']) || isset($p['user']) || isset($p['pass'])) {
             return 'Informe só o endereço do Moodle, sem "?", "#" nem usuário.';
@@ -201,7 +201,7 @@ final class VcMoodle
         'aviso_email' => ['O Moodle gravou a inscrição, mas não conseguiu mandar o e-mail de aviso ("Message was not sent.").', 'Nada a fazer no VCOSTAEDU: a inscrição está certa. Quem cuida do Moodle confere o envio de e-mail dele.'],
         'sem_email' => ['O aluno não tem e-mail cadastrado: o Moodle exige um.', 'Cadastre o e-mail na ficha do aluno; o envio vai sozinho. Ou, em Conectar ao Moodle, escolha um modo com o e-mail da escola.'],
         'email_repetido' => ['O e-mail do cadastro do aluno é o mesmo de outro aluno (irmãos com o e-mail da família, por exemplo): a conta do Moodle é de uma pessoa só.', 'Cadastre um e-mail só do aluno na ficha; o envio vai sozinho. Ou, em Conectar ao Moodle, escolha um modo com o e-mail da escola.'],
-        'sem_dominio' => ['O modo de e-mail usa o e-mail da escola, mas o domínio dele não foi informado.', 'Em Conectar ao Moodle, informe o domínio do e-mail da escola (por exemplo, alunos.suaescola.edu.br) e salve.'],
+        'sem_dominio' => ['O modo de e-mail usa o e-mail da escola, mas o domínio dele não foi informado.', 'Em Conectar ao Moodle, informe o domínio do e-mail da escola (por exemplo, alunos.escola.exemplo.invalid) e salve.'],
         'email_varias_contas' => ['O e-mail está em mais de uma conta do Moodle: o VCOSTAEDU não escolhe sozinho qual é a da pessoa.', 'Em Envios ao Moodle, na linha do envio, escolha a conta (o número de cada uma no Moodle aparece ali); o envio segue com ela.'],
         'conta_suspensa' => ['Ligado a uma conta que já existia no Moodle, mas que está SUSPENSA lá: a pessoa não entra no Moodle enquanto a conta não for reativada.', 'Quem cuida do Moodle reativa a conta (Administração do site → Usuários). Nada a fazer no VCOSTAEDU.'],
         'nao_conectado' => ['O Moodle não está conectado.', 'O Administrador conecta em Integrações → Conectar ao Moodle.'],

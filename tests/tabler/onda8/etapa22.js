@@ -75,6 +75,7 @@ async function especificacao(p) {
       `o guia na Ajuda: "as etapas de uma disciplina", "os quatro módulos como disciplinas"; "componente" só nos guias da regra de média (${comComponente.join(', ')})${fora.length ? ' — fora: ' + fora.join(', ') : ''}`);
 
     /* 4. o registro das mudanças */
+    require('./_escola').sql("DELETE FROM adms_instalacao_estado WHERE chave = 'novidades.desde'"); // D-124 (1.102.1): as Novidades com o histórico, como numa instalação que já existia (a nova começa do zero)
     await p.goto(L.BASE + 'painel/novidades/listar');
     L.ok(/"Disciplina" nos guias e na documentação da API/.test(await p.evaluate(() => document.body.innerText)), 'o registro das mudanças diz "Disciplina" nos guias e na documentação da API');
 
