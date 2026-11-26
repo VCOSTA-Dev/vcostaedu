@@ -3,7 +3,7 @@
 <p>O sistema atende três tipos de instituição, e cada instalação é de um deles:</p>
 <ul>
 <li><strong>Ensino superior</strong> — cursos de graduação e pós-graduação: a matriz com módulos, as disciplinas ofertadas, uma média por disciplina, o histórico e o TCC.</li>
-<li><strong>Escola (educação básica)</strong> — Ensino Fundamental (anos finais) e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.</li>
+<li><strong>Escola (educação básica)</strong> — Ensino Fundamental 1 e 2 e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.</li>
 <li><strong>Curso livre (curso on-line)</strong> — o curso, a turma com vagas, as disciplinas no Moodle e a inscrição pelo site; sem boletim, etapas, horário, conselho nem documentos. O financeiro e a matrícula pela secretaria são de ligar e desligar (veja <a class="guia-interno" data-guia="instalar-como-curso-livre" href="{{GUIA}}instalar-como-curso-livre">Instalar como curso livre</a>).</li>
 </ul>
 <p>O tipo decide as telas que aparecem, as palavras da tela (na escola, &quot;Segmentos&quot; no lugar de &quot;Cursos&quot;, &quot;Séries&quot; no lugar de &quot;Módulos&quot;; a disciplina é &quot;disciplina&quot; nos dois) e as regras que vêm prontas. As telas de um tipo não aparecem no outro.</p>

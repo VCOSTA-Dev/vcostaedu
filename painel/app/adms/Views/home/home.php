@@ -31,6 +31,7 @@ $btnMenuRapido = "col-12 col-sm-6 col-md-3 col-lg-2"
       }
       include __DIR__ . '/_comecar.php'; /* Onda 2, Etapa 4: começar, conhecer, primeiros passos */
       include __DIR__ . '/_diaProfessor.php'; /* Onda 8, correção, Parte 4 (D-82): na escola, o dia a dia do professor */
+      include __DIR__ . '/_livreProfessor.php'; /* D-121 (a correção do ensaio, B2.7): no curso livre, as disciplinas e o Moodle */
       ?>
       <?php
       /* E8b (D-256): os atalhos da Página Inicial saem dos MESMOS itens do menu do usuário (rótulo, ícone, link e

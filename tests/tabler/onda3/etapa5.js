@@ -29,7 +29,7 @@ const um = (q) => +sql(q);
 let cred = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'saida', 'credenciais.json'), 'utf8'));
 const ETAPA = 'onda3/etapa5';
 const SENHA = process.env.VCOSTAEDU_ADMIN_SENHA || 'chave-somente-local-123';
-const PENDENTE = path.join(L.RAIZ, 'database', 'migrations', '0098_prova_pendente.sql');
+const PENDENTE = path.join(L.RAIZ, 'database', 'migrations', '9997_prova_pendente.sql');
 const VIEW = path.join(L.RAIZ, 'painel', 'core', 'ConfigView.php');
 const AVISO = path.join(L.RAIZ, 'painel', 'app', 'adms', 'Views', 'include_tabler', '_aviso_atualizacao.php');
 const CSS = path.join(L.RAIZ, 'assets', 'css', 'vcostaedu-tabler.css');

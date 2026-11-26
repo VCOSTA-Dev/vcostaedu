@@ -28,4 +28,10 @@ if ($moodle['entrar']) : ?>
       </div>
     </div>
   </div>
+<?php elseif (\App\adms\Models\helper\AdmsTipoPortal::ehLivre()) : /* D-121 (B2.8): no curso livre, a Página Inicial diz por que o botão ainda não está */ ?>
+  <div class="row justify-content-center mt-3">
+    <div class="col-12 col-sm-8 col-md-6">
+      <p class="text-secondary small text-center" id="moodleAlunoIndisponivel">O botão "Entrar no Moodle" aparece aqui quando o seu acesso ao Moodle estiver pronto. Se demorar, procure a secretaria.</p>
+    </div>
+  </div>
 <?php endif;

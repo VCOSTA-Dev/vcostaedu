@@ -76,6 +76,26 @@ class AdmsMoodlePortal
     }
 
     /**
+     * D-121 (a correção do ensaio, B2.8): no curso livre, o curso em que o aluno está (a matrícula cursando) e a turma
+     * aberta dele nesse curso. Não chama o Moodle. @return list<array{curso: string, turma: string, ano: int}>
+     */
+    public static function cursosDoAluno(int $alunoId): array
+    {
+        if ($alunoId <= 0) {
+            return [];
+        }
+        $st = self::pdo()->prepare("SELECT c.nome AS curso,
+                   (SELECT t.nome FROM esc_turma_alunos ta JOIN esc_turmas t ON t.id = ta.turma_id
+                     WHERE ta.usuario_id = m.usuario_id AND t.curso_id = m.curso_id AND ta.saida IS NULL ORDER BY t.ano DESC, t.id DESC LIMIT 1) AS turma,
+                   (SELECT t.ano FROM esc_turma_alunos ta JOIN esc_turmas t ON t.id = ta.turma_id
+                     WHERE ta.usuario_id = m.usuario_id AND t.curso_id = m.curso_id AND ta.saida IS NULL ORDER BY t.ano DESC, t.id DESC LIMIT 1) AS ano
+              FROM rm_matriculas_curso m JOIN rm_cursos c ON c.id = m.curso_id
+             WHERE m.usuario_id = ? AND m.situacao_id = 1 ORDER BY m.id DESC");
+        $st->execute([$alunoId]);
+        return array_map(static fn($r) => ['curso' => (string) $r['curso'], 'turma' => (string) ($r['turma'] ?? ''), 'ano' => (int) ($r['ano'] ?? 0)], $st->fetchAll());
+    }
+
+    /**
      * O que o aluno pode abrir: ['entrar' => bool, 'disciplinas' => [[id, materia, codtur, ano]]]. Vazio quando não há
      * conexão, o aluno não está no Moodle, está inativo ou não tem matrícula cursando.
      */

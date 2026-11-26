@@ -79,6 +79,24 @@ $livreHome = \App\adms\Models\helper\AdmsTipoPortal::ehLivre();
         </div>
       </div>
       <?php endif; ?>
+      <?php if ($livreHome) : /* D-121 (a correção do ensaio, B2.8): no curso livre, o curso em que o aluno está */
+        $cursosLivre = \App\adms\Models\moodle\AdmsMoodlePortal::cursosDoAluno((int) ($_SESSION['academico_id'] ?? 0)); ?>
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6">
+          <div class="card shadow" id="cartaoCursoLivre">
+            <div class="card-body text-center">
+              <i class="fas fa-book-open fa-3x mb-3" aria-hidden="true"></i>
+              <h5>O seu curso</h5>
+              <?php if (!$cursosLivre) : ?>
+                <p class="text-secondary mb-0" id="semCursoLivre">Você ainda não está matriculado num curso. Procure a secretaria.</p>
+              <?php else : foreach ($cursosLivre as $cl) : ?>
+                <p class="mb-1 vc-curso-livre"><strong><?= htmlspecialchars($cl['curso'], ENT_QUOTES, 'UTF-8') ?></strong><?php if ($cl['turma'] !== '') : ?><br><span class="text-secondary small">Turma <?= htmlspecialchars($cl['turma'], ENT_QUOTES, 'UTF-8') ?><?= $cl['ano'] ? ' · ' . (int) $cl['ano'] : '' ?></span><?php endif; ?></p>
+              <?php endforeach; endif; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
       <?php include __DIR__ . '/_moodle.php'; /* Onda 3, Etapa 8: Entrar no Moodle e Abrir no Moodle */ ?>
     </div>
   </section>

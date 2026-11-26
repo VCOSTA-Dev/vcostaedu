@@ -369,15 +369,18 @@ class AdmsMoodleEnvio
             throw new FalhaMoodle('sem_email');
         }
         [$primeiro, $sobrenome] = self::partirNome((string) $u['nome']);
+        $usuarioProf = self::usuarioMoodle($this->prefixo . 'prof' . $usuarioId);
         $d = $this->chamar('core_user_create_users', ['users' => [[
-            'username' => self::usuarioMoodle($this->prefixo . 'prof' . $usuarioId), 'password' => self::senhaAleatoria(), 'auth' => 'manual',
+            'username' => $usuarioProf, 'password' => self::senhaAleatoria(), 'auth' => 'manual',
             'idnumber' => $idnumber, 'firstname' => $primeiro, 'lastname' => $sobrenome, 'email' => $email,
         ]]], $ref);
         $id = (int) ($d[0]['id'] ?? 0);
         if (!$id) {
             throw new FalhaMoodle('resposta_invalida');
         }
-        $this->gravarVinculo('professor', $usuarioId, $id);
+        /* D-121 (a correção do ensaio, B2.6): o nome de usuário fica no vínculo, como o do aluno: é com ele que o professor
+           entra no Moodle pelo link de entrada, sem a segunda senha */
+        $this->gravarVinculo('professor', $usuarioId, $id, $usuarioProf);
         return $id;
     }
 

@@ -62,7 +62,7 @@ if (isset($this->dados['dados_info'][0])) {
                 <strong>Atualização de Notas - Preenchimento da Planilha</strong>
                 <p>Para facilitar a atualização de notas de forma eficiente, disponibilizamos uma planilha CSV padrão que você pode preencher com os dados necessários. Siga as instruções abaixo para garantir um preenchimento correto:</p>
                 <strong>Passo 1: Download da Planilha Padrão</strong>
-                <p>Faça o download da planilha padrão <a href="<?= URLADM . 'faltas/modelo/0?tipo=notas' ?>" id="modeloNotas">clicando aqui</a>. <i> (Certifique-se de que você está usando a versão mais recente da planilha para evitar problemas de compatibilidade.)</i></p>
+                <p>Faça o download da planilha padrão <a href="<?= htmlspecialchars((string) (URLADM . 'faltas/modelo/' . (int) $info['rm_prof_mat_id'] . '?tipo=notas'), ENT_QUOTES, 'UTF-8') ?>" id="modeloNotas">clicando aqui</a>. <i> (Certifique-se de que você está usando a versão mais recente da planilha para evitar problemas de compatibilidade.)</i></p>
                 <strong>Passo 2: Preenchimento dos Dados</strong>
                 <ul>
                   <li>Abra a planilha em sua ferramenta de planilhas favorita (como Microsoft Excel, Google Sheets, etc.).</li>

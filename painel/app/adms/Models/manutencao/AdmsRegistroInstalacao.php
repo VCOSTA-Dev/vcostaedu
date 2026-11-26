@@ -70,7 +70,18 @@ class AdmsRegistroInstalacao
         $tipo = \App\adms\Models\helper\AdmsTipoInstituicao::atual();
         $uf = (string) ($pdo->query('SELECT uf FROM adms_empresas ORDER BY id LIMIT 1')->fetchColumn() ?: '');
         $T = \App\adms\Models\helper\AdmsTipoInstituicao::class;
-        $modulos = array_values(array_filter(array_unique(array_values($T::modulos())), fn($m) => $T::moduloLigado($m)));
+        /* D-120 (a correção do ensaio, B1.5): a marca da página pode ser uma lista ("escola,superior"; D-106) — o registro
+           leva cada valor uma vez, só os ligados nesta instalação */
+        $simples = [];
+        foreach ($T::modulos() as $marca) {
+            foreach (explode(',', (string) $marca) as $m) {
+                $m = trim($m);
+                if ($m !== '') {
+                    $simples[$m] = true;
+                }
+            }
+        }
+        $modulos = array_values(array_filter(array_keys($simples), fn($m) => $T::moduloLigado($m)));
         sort($modulos);
         $conta = fn(string $sql) => (int) $pdo->query($sql)->fetchColumn();
         $turmas = in_array($tipo, ['escola', 'livre'], true) // D-106

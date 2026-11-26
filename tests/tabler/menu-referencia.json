@@ -2,7 +2,6 @@
   "administrador": [
     "academicos/listar",
     "ajuda/index",
-    "ajuda/videos",
     "anos-letivos/listar",
     "atos-legais/listar",
     "atualizar/index",
@@ -48,7 +47,6 @@
   "direcao.demo": [
     "academicos/listar",
     "ajuda/index",
-    "ajuda/videos",
     "anos-letivos/listar",
     "atos-legais/listar",
     "auditoria/listar",
@@ -74,7 +72,6 @@
   "supervisao.demo": [
     "academicos/listar",
     "ajuda/index",
-    "ajuda/videos",
     "anos-letivos/listar",
     "auditoria/listar",
     "disciplinas/listar",
@@ -98,7 +95,6 @@
   "secretaria.demo": [
     "academicos/listar",
     "ajuda/index",
-    "ajuda/videos",
     "anos-letivos/listar",
     "disciplinas/listar",
     "fin-bandeiras/listar",
@@ -120,7 +116,6 @@
   ],
   "coord.demo": [
     "ajuda/index",
-    "ajuda/videos",
     "auditoria/listar",
     "cursos/listar",
     "disciplinas/listar",
@@ -134,7 +129,6 @@
   ],
   "prof.laura.demo": [
     "ajuda/index",
-    "ajuda/videos",
     "home/index",
     "login/logout",
     "minhas-disciplinas/listar",

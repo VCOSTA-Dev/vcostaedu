@@ -106,7 +106,10 @@ final class AdmsFinFicha
     public static function responsaveis(int $alunoId, int $ano): array
     {
         if (!\App\adms\Models\helper\AdmsTipoInstituicao::ehEscola()) {
-            $a = self::todos('SELECT id, COALESCE(NULLIF(nome_social, \'\'), nome) AS nome, celular, cpf, email FROM col_usuarios WHERE id = ?', [$alunoId])[0] ?? null;
+            /* D-120 (a correção do ensaio, B1.1): o CPF do aluno fica em col_usuarios_informacoes, não em col_usuarios */
+            $a = self::todos('SELECT u.id, COALESCE(NULLIF(u.nome_social, \'\'), u.nome) AS nome, u.celular, i.cpf, u.email
+                FROM col_usuarios u LEFT JOIN col_usuarios_informacoes i ON i.col_user_id = u.id
+                WHERE u.id = ? ORDER BY i.id DESC LIMIT 1', [$alunoId])[0] ?? null;
             return $a ? [['id' => (int) $a['id'], 'nome' => $a['nome'], 'papel' => 'O próprio aluno (pagador)', 'parentesco' => '—', 'celular' => (string) $a['celular'], 'cpf' => (string) $a['cpf'],
                 'endereco' => self::enderecoDoAluno((int) $a['id']),
                 'link' => 'academicos/visualizar/' . (int) $a['id'], 'financeiro' => true, 'aluno' => true]] : [];

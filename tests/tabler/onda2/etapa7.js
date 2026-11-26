@@ -31,7 +31,7 @@ const ETAPA = 'onda2/etapa7';
 const SENHA = process.env.VCOSTAEDU_ADMIN_SENHA || 'chave-somente-local-123';
 const CONFIG = path.join(L.RAIZ, 'painel', 'core', 'Config.php');
 const MIGRATIONS = path.join(L.RAIZ, 'database', 'migrations');
-const FALHA = path.join(MIGRATIONS, '0099_prova_falha.sql');
+const FALHA = path.join(MIGRATIONS, '9998_prova_falha.sql');
 const PAGINAS = path.join(L.RAIZ, 'painel', 'app', 'adms', 'Models', 'AdmsPaginas.php');
 const TOTAL = fs.readdirSync(MIGRATIONS).filter((f) => /^\d{4}_.*\.sql$/.test(f)).length;
 
@@ -146,7 +146,7 @@ async function sabotar(nome, estragar, consertar, conferir) {
       const passaram = await p.$$eval('#etapasAplicadas tbody tr', (t) => t.length).catch(() => 0);
       const ficaram = await p.$$eval('#listaPendentes li', (l) => l.map((x) => x.textContent.trim())).catch(() => []);
       const texto = await p.textContent('#atualizacaoParou').catch(() => '');
-      L.ok(/0099_prova_falha/.test(texto) && passaram === TOTAL - 3 && ficaram.includes('0099_prova_falha.sql') && aplicadas() === TOTAL && !/SQLSTATE|tabela_que_nao_existe/.test(texto),
+      L.ok(/9998_prova_falha/.test(texto) && passaram === TOTAL - 3 && ficaram.includes('9998_prova_falha.sql') && aplicadas() === TOTAL && !/SQLSTATE|tabela_que_nao_existe/.test(texto),
         `a falha no meio anunciada: "${texto.replace(/\s+/g, ' ').trim().slice(0, 70)}…", ${passaram} etapas passaram antes e continuam, a que falhou fica pendente (sem o erro do banco na tela)`);
       await L.print(p, ETAPA, 'parou');
       await ctx.close();

@@ -47,7 +47,16 @@ $escolaLista = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); // Onda 
         <div class="col-12">
           <div class="card shadow">
             <div class="card-body">
-              <?php $h = fn($t) => htmlspecialchars((string) $t, ENT_QUOTES, 'UTF-8'); /* E8c (R2/R3): lista padrão; atalhos para as telas da disciplina */ ?>
+              <?php $h = fn($t) => htmlspecialchars((string) $t, ENT_QUOTES, 'UTF-8'); /* E8c (R2/R3): lista padrão; atalhos para as telas da disciplina */
+              /* D-122 (a correção do ensaio, B3.9): Ativas, Encerradas e Todas; o ano escolhido continua no endereço */
+              $sitF = (string) ($this->dados['situacaoFiltro'] ?? 'ativas');
+              $baseF = URLADM . 'minhas-disciplinas/listar/' . (int) ($this->dados['listaDisciplinas']['anoPeriodo'] ?? 0) . '?situacao=';
+              ?>
+              <div class="btn-group mb-3" role="group" aria-label="Situação das disciplinas" id="filtroSituacao">
+                <?php foreach (['ativas' => 'Ativas', 'encerradas' => 'Encerradas', 'todas' => 'Todas'] as $chaveF => $rotuloF) : ?>
+                  <a href="<?= $h($baseF . $chaveF) ?>" class="btn btn-sm <?= $sitF === $chaveF ? 'btn-primary active' : 'btn-outline-primary' ?>" data-situacao="<?= $h($chaveF) ?>"<?= $sitF === $chaveF ? ' aria-current="true"' : '' ?>><?= $h($rotuloF) ?></a>
+                <?php endforeach; ?>
+              </div>
               <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Minhas disciplinas" data-ordem='[[1,"asc"]]'>
                 <thead><tr><th>Código</th><th><?= $escolaLista ? 'Disciplina' : 'Matéria' ?></th><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr></thead>
                 <tbody>

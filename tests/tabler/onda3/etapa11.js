@@ -32,7 +32,7 @@ const ETAPA = 'onda3/etapa11';
 const SENHA = process.env.VCOSTAEDU_ADMIN_SENHA || 'chave-somente-local-123';
 const CONFIG = path.join(L.RAIZ, 'painel', 'core', 'Config.php');
 const MIGRATIONS = path.join(L.RAIZ, 'database', 'migrations');
-const FALHA = path.join(MIGRATIONS, '0099_prova_falha.sql');
+const FALHA = path.join(MIGRATIONS, '9998_prova_falha.sql');
 const ATUALIZACAO = path.join(L.RAIZ, 'painel', 'app', 'adms', 'Models', 'helper', 'AdmsAtualizacao.php');
 const TOTAL = fs.readdirSync(MIGRATIONS).filter((f) => /^\d{4}_.*\.sql$/.test(f)).length;
 const SAIDA = path.join(L.PROVAS, ETAPA);
@@ -135,7 +135,7 @@ const umPorPasso = (passos, inicio) => passos.length > 1 && passos.every((x, i) 
       const parou = (await p.textContent('#atualizacaoParou').catch(() => '')).replace(/\s+/g, ' ').trim();
       const temContinuar = !!(await p.$('#continuarAtualizacao'));
       await L.print(p, ETAPA, 'parou');
-      L.ok(sitB === 'falhou' && antesDaFalha === TOTAL && /0099_prova_falha/.test(parou) && temContinuar && !/SQLSTATE|tabela_que_nao_existe/.test(parou + motivo) && temLote(),
+      L.ok(sitB === 'falhou' && antesDaFalha === TOTAL && /9998_prova_falha/.test(parou) && temContinuar && !/SQLSTATE|tabela_que_nao_existe/.test(parou + motivo) && temLote(),
         `a etapa forçada a falhar: o lote para nela ("${parou.slice(0, 80)}…"), as ${antesDaFalha - 3} de antes continuam aplicadas, sem o erro do banco na tela, e "Continuar a atualização" aparece`);
       /* a causa corrigida (a etapa ainda não aplicada pode mudar): continua pela que falhou */
       fs.writeFileSync(FALHA, '-- prova da Etapa 11: a etapa corrigida\nUPDATE `adms_parametros` SET `valor` = `valor` WHERE 1 = 0;\n');

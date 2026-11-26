@@ -5,14 +5,14 @@ perfis: administrador
 ordem: 2
 relacionados: conhecer-com-a-demonstracao, instalar-como-curso-livre, atualizar-o-sistema
 entrou: 1.38.0
-mudou: 1.100.0
+mudou: 1.102.0
 ---
 ## Para que serve
 
 O sistema atende três tipos de instituição, e cada instalação é de um deles:
 
 - **Ensino superior** — cursos de graduação e pós-graduação: a matriz com módulos, as disciplinas ofertadas, uma média por disciplina, o histórico e o TCC.
-- **Escola (educação básica)** — Ensino Fundamental (anos finais) e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.
+- **Escola (educação básica)** — Ensino Fundamental 1 e 2 e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.
 - **Curso livre (curso on-line)** — o curso, a turma com vagas, as disciplinas no Moodle e a inscrição pelo site; sem boletim, etapas, horário, conselho nem documentos. O financeiro e a matrícula pela secretaria são de ligar e desligar (veja [Instalar como curso livre](guia:instalar-como-curso-livre)).
 
 O tipo decide as telas que aparecem, as palavras da tela (na escola, "Segmentos" no lugar de "Cursos", "Séries" no lugar de "Módulos"; a disciplina é "disciplina" nos dois) e as regras que vêm prontas. As telas de um tipo não aparecem no outro.

@@ -159,7 +159,7 @@ async function sabotar(nome, estragar, consertar, conferir) {
     await abriu(coord.p, 'painel/relatorios/alunos-situacao');
     const rel = await coord.p.content();
     L.ok(!rel.includes(nomeB) && rel.includes(raA), 'coordenador: o relatório sem filtro lista só o curso que coordena');
-    await abriu(coord.p, 'painel/minhas-disciplinas/listar');
+    await abriu(coord.p, 'painel/minhas-disciplinas/listar?situacao=todas'); // D-122: a lista abre em Ativas
     const lista = await coord.p.content();
     L.ok(!lista.includes(`disciplinas/visualizar/${ofertaB}"`) && lista.includes(`disciplinas/visualizar/${ofertaA}`), 'coordenador: a LISTAGEM (Minhas disciplinas) só tem as ofertas do curso que coordena');
     await L.print(coord.p, ETAPA, 'coordenador-minhas-disciplinas');

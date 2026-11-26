@@ -289,7 +289,7 @@ async function atualizarAntiga(navegador, comPrints) {
     await sabotar('o aviso de atualização com a anotação de volta', AVISO, '<span class="d-none d-md-inline"> o sistema</span></a></span>',
       '<span class="d-none d-md-inline"> o sistema</span></a> (Onda 2, Etapa 7: a tela das etapas por aplicar)</span>',
       async () => {
-        const f = path.join(L.RAIZ, 'database', 'migrations', '0098_prova_pendente.sql');
+        const f = path.join(L.RAIZ, 'database', 'migrations', '9997_prova_pendente.sql');
         fs.writeFileSync(f, 'SELECT 1;\n');
         try { await adm.goto(L.BASE + 'painel/home/index'); const x = await L.textoDaTela(adm); return L.jargao(x.texto, x.rotulos, x.menu).length === 0; } finally { fs.unlinkSync(f); }
       });

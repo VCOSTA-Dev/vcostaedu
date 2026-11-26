@@ -30,7 +30,7 @@ const sql = (q) => execFileSync(MYSQL, ['-u', 'root', '-N', '--default-character
 let cred = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'saida', 'credenciais.json'), 'utf8'));
 const ETAPA = 'onda3/etapa6';
 const SENHA = process.env.VCOSTAEDU_ADMIN_SENHA || 'chave-somente-local-123';
-const PENDENTE = path.join(L.RAIZ, 'database', 'migrations', '0098_prova_pendente.sql');
+const PENDENTE = path.join(L.RAIZ, 'database', 'migrations', '9997_prova_pendente.sql');
 const TRAVA = path.join(L.RAIZ, 'instalar', '.htaccess');
 const VERSAO_NOVA = path.join(L.RAIZ, 'core', 'VersaoNova.php');
 const SOBRE = path.join(L.RAIZ, 'sobre.php');

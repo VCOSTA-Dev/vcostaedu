@@ -19,9 +19,8 @@ $perfil = $this->dados['perfil'];
 </style>
 <div class="vc-pagina">
   <?php ob_start(); ?><i class="fas fa-question-circle"></i> Central de ajuda<?php $paginaTitulo = ob_get_clean();
-  /* Onda 5: os botões Vídeos e Novidades (perdidos na troca de tema da Etapa 7; as rotas continuavam) */
-  $paginaAcoesHtml = (!empty($r['videos']) ? '<a href="' . $h($r['videos']) . '" class="btn btn-outline-primary btn-sm" id="linkVideos"><i class="fas fa-film me-1" aria-hidden="true"></i>Vídeos</a>' : '')
-    . '<a href="' . $h($r['novidades']) . '" class="btn btn-outline-info btn-sm" id="linkNovidades"><i class="fas fa-bullhorn me-1" aria-hidden="true"></i>Novidades</a>';
+  /* Onda 5: o botão Novidades. D-122 (a correção do ensaio, B3.11): o botão Vídeos saiu (a página continua, fora do menu) */
+  $paginaAcoesHtml = '<a href="' . $h($r['novidades']) . '" class="btn btn-outline-info btn-sm" id="linkNovidades"><i class="fas fa-bullhorn me-1" aria-hidden="true"></i>Novidades</a>';
   include 'app/adms/Views/include_tabler/_page_header.php'; ?>
   <section class="page-body">
     <div class="container-xl">

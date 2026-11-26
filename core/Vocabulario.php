@@ -19,7 +19,7 @@ final class VcVocabulario
     /** O nome e a frase de cada tipo, na escolha (o instalador e "Começar com os dados da minha instituição"). */
     public const TIPOS = [
         self::SUPERIOR => ['Ensino superior', 'Cursos de graduação e pós-graduação: a matriz com módulos, as disciplinas ofertadas, uma média por disciplina, o histórico e o TCC.'],
-        self::ESCOLA => ['Escola (educação básica)', 'Ensino Fundamental (anos finais) e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.'],
+        self::ESCOLA => ['Escola (educação básica)', 'Ensino Fundamental 1 e 2 e Ensino Médio: séries, turmas, o ano letivo em bimestres ou trimestres, a recuperação, a média anual e o conselho de classe.'],
         self::LIVRE => ['Curso livre (curso on-line)', 'Cursos livres e on-line: o curso, a turma com vagas, as disciplinas no Moodle e a inscrição pelo site. Sem boletim, etapas, horário, conselho nem documentos escolares.'],
     ];
 
