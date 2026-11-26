@@ -3,17 +3,18 @@ if (!defined('VCOSTAEDU')) {
   header("Location: /");
   die("Erro: Página não encontrada!");
 }
-/* Fechamento (D-106): os recursos do curso livre — o financeiro e a matrícula pela secretaria, de ligar e desligar. */
+/* Fechamento (D-106): os recursos do curso livre — o financeiro e a matrícula pela secretaria, de ligar e desligar.
+   D-129 (1.103.0, C4): nos três tipos; na escola e no ensino superior, só o financeiro. */
 $h = fn($x) => htmlspecialchars((string) $x, ENT_QUOTES, 'UTF-8');
 $pode = (new \App\adms\Models\AdmsBotao())->valBotao(['salvar' => ['menu_controller' => 'recursos-livre', 'menu_metodo' => 'salvar']]);
 $so = empty($pode['salvar']) ? ' disabled' : '';
 ?>
 <div class="vc-pagina">
-  <?php ob_start(); ?>Recursos do curso livre<?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
+  <?php ob_start(); ?>Recursos da instituição<?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
   <section class="page-body">
     <div class="container-xl">
       <?php if (isset($_SESSION['msg'])) { echo $_SESSION['msg']; unset($_SESSION['msg']); } ?>
-      <p class="text-secondary">O curso livre nasce enxuto. Ligue o que a sua instituição usa. Desligar não apaga nada: as telas saem do menu e não abrem; ligando de novo, tudo volta como estava.</p>
+      <p class="text-secondary"><?= !empty($this->dados['livre']) ? 'O curso livre nasce enxuto. ' : '' ?>Ligue o que a sua instituição usa. Desligar não apaga nada: as telas saem do menu e não abrem, para todos os perfis; ligando de novo, tudo volta como estava.</p>
       <form method="post" action="<?= URLADM ?>recursos-livre/salvar" class="card" id="formRecursosLivre" style="max-width: 48rem">
         <div class="card-body">
           <?php foreach ($this->dados['recursos'] as $r => $x) : ?>

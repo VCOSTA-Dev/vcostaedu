@@ -42,7 +42,7 @@ class Faltas
         $this->dados['ficha'] = \App\adms\Models\notas\AdmsOfertaInfo::ficha($ofertaId);
         $this->dados['barra'] = \App\adms\Models\notas\AdmsOfertaInfo::permissoesBarra();
         $this->dados['situacoes'] = \App\adms\Models\notas\AdmsOfertaInfo::situacoesMatricula($ofertaId);
-        $this->dados['podeCompensar'] = \App\adms\Models\faltas\AdmsCompensacoes::podeLancar();
+        $this->dados['podeCompensar'] = \App\adms\Models\faltas\AdmsCompensacoes::podeNaOferta($ofertaId); // D-130: o professor liberado, só nas disciplinas dele
         $this->dados['compensacoes'] = $this->dados['podeCompensar'] ? \App\adms\Models\faltas\AdmsCompensacoes::listar($ofertaId) : [];
         (new \Core\ConfigView('adms/Views/faltas/visFaltas', $this->dados))->renderizar('tabler');
     }

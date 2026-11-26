@@ -136,9 +136,10 @@ async function casosDoEmail(navegador, raA, raB, rotuloTipo) {
     const credSup = JSON.parse(fs.readFileSync(path.join(L.RAIZ, 'tests', 'tabler', 'saida', 'credenciais.json'), 'utf8'));
     L.ok(sql("SELECT valor FROM adms_instalacao_estado WHERE chave = 'instituicao.tipo'") === 'superior', 'A. o banco do ciclo é de ensino superior');
     const mSup = await menuPainel(navegador, 'administrador', SENHA_ADM);
-    L.ok(mSup.includes('Prévia do histórico') && mSup.includes('Polos') && mSup.includes('Regras de média') && !mSup.includes('Turmas') && !mSup.includes('Recursos do curso livre') && !mSup.includes('Estrutura da escola'),
+    L.ok(mSup.includes('Prévia do histórico') && mSup.includes('Polos') && mSup.includes('Regras de média') && !mSup.includes('Turmas') && mSup.includes('Recursos da instituição') && !mSup.includes('Estrutura da escola'),
       `superior: o menu do painel como sempre — o histórico, os polos e as regras de média; sem as turmas da escola e sem os recursos do curso livre (${mSup.length} itens)`);
-    L.ok(await abrePainel(navegador, 'administrador', SENHA_ADM, 'recursos-livre/index') === 'recusada', 'superior: a tela dos recursos do curso livre é recusada pelo endereço');
+    /* D-129 (1.103.0, C4): a tela dos recursos vale nos três tipos (no superior, só o financeiro) */
+    L.ok(await abrePainel(navegador, 'administrador', SENHA_ADM, 'recursos-livre/index') !== 'recusada', 'superior: a tela Recursos da instituição abre (D-129: o financeiro de ligar e desligar nos três tipos)');
     const supA = await entrar(navegador, '260101', credSup.portal['260101']);
     const mPortalSup = rotulos(await P.itensDoMenu(supA.s.p));
     await fechar(supA);
@@ -150,7 +151,7 @@ async function casosDoEmail(navegador, raA, raB, rotuloTipo) {
     L.ok(montar('escola', 'onda8-etapa46') === 0, 'B. a escola instalada do zero, com a demonstração do colégio pela tela');
     const cE = X.cred();
     const mEsc = await menuPainel(navegador, 'administrador', SENHA_ADM);
-    L.ok(mEsc.includes('Turmas') && mEsc.includes('Estrutura da escola') && mEsc.includes('Liberação do boletim') && mEsc.includes('Responsáveis') && !mEsc.includes('Recursos do curso livre') && !mEsc.includes('Prévia do histórico'),
+    L.ok(mEsc.includes('Turmas') && mEsc.includes('Estrutura da escola') && mEsc.includes('Liberação do boletim') && mEsc.includes('Responsáveis') && mEsc.includes('Recursos da instituição') && !mEsc.includes('Prévia do histórico'),
       `escola: o menu do painel como sempre — as turmas, a estrutura, a liberação do boletim, os responsáveis; sem o histórico do superior e sem os recursos do curso livre (${mEsc.length} itens)`);
     const ra = Object.keys(cE.portal)[0];
     const emailAlunoE = sql(`SELECT email FROM col_usuarios WHERE rm = '${ra}'`);
@@ -184,7 +185,7 @@ async function casosDoEmail(navegador, raA, raB, rotuloTipo) {
       `o padrão do curso livre (${estD}) e a demonstração: ${curso}`);
     const NAO = ['Regras de média', 'Polos', 'Estrutura da escola', 'Ano letivo e etapas', 'Liberação do boletim', 'Responsáveis', 'Prévia do histórico', 'Históricos emitidos',
       'Atos legais', 'Modelos de histórico', 'Regras da escola', 'Painel acadêmico', 'Auditoria de notas e faltas', 'Minhas Disciplinas', 'Regras financeiras', 'Planos de pagamento', 'Módulos'];
-    const SIM = ['Página Inicial', 'Usuários', 'Cursos', 'Disciplinas', 'Matriz', 'Turmas', 'Alunos', 'Importar alunos', 'Recursos do curso livre', 'Conectar ao Moodle', 'Chaves de API', 'Central de ajuda'];
+    const SIM = ['Página Inicial', 'Usuários', 'Cursos', 'Disciplinas', 'Matriz', 'Turmas', 'Alunos', 'Importar alunos', 'Recursos da instituição', 'Conectar ao Moodle', 'Chaves de API', 'Central de ajuda'];
     const pAdm = await P.painel(navegador, 'administrador', SENHA_ADM);
     const mAdm = rotulos(pAdm);
     const sobra = NAO.filter((x) => mAdm.includes(x));

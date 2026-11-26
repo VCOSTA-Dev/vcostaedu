@@ -55,7 +55,7 @@ final class VcBanco
 
     public static function daRequisicao(): \PDO
     {
-        return self::$daRequisicao ??= self::abrir('mysql:host=' . HOST . ';dbname=' . DBNAME . ';charset=utf8mb4', USER, PASS,
+        return self::$daRequisicao ??= self::abrir('mysql:host=' . HOST . ';port=' . (defined('PORTA') ? (int) constant('PORTA') : 3306) . ';dbname=' . DBNAME . ';charset=utf8mb4', USER, PASS,
             [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC]);
     }
 

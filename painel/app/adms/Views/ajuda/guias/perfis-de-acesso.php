@@ -33,3 +33,8 @@
 <li><strong>&quot;Só o administrador ou a supervisão da secretaria reabre uma oferta encerrada.&quot;</strong> — reabrir é uma ação sensível.</li>
 <li>A conferência do instalador ou a verificação do ambiente reprova com <strong>&quot;permissão acima do perfil&quot;</strong>: um perfil recebeu uma ação abaixo do limite dela (a mensagem diz qual). O sistema já recusa essa ação; peça ao suporte técnico da instalação para corrigir a permissão.</li>
 </ul>
+<h2>Ações que dá para separar</h2>
+<ul>
+<li><strong>&quot;Lançar compensação de ausência&quot;</strong>: de fábrica, só a secretaria e o administrador. Ligada para o professor, ele compensa só nas disciplinas dele (<a class="guia-interno" data-guia="compensar-faltas" href="{{GUIA}}compensar-faltas">Compensar faltas</a>).</li>
+<li><strong>Na escola, &quot;Emitir o histórico escolar (e a 2ª via)&quot; e &quot;Cancelar o histórico escolar emitido&quot;</strong> são ações separadas: um perfil pode emitir sem poder cancelar.</li>
+</ul>

@@ -103,7 +103,22 @@ function imprimirEstado(array $estado): int
         echo "     Costuma ser arquivo renomeado. Nao impede aplicar, mas confira.\n";
     }
 
-    return $contagem['DIVERGENTE'] > 0 ? 1 : 0;
+    /* D-132 (1.103.0, C9): número repetido no disco — o runner para antes de aplicar qualquer coisa */
+    $repetidas = $GLOBALS['runner']->repetidas();
+    if ($repetidas) {
+        echo "
+";
+        echo "  ## NUMERO REPETIDO: duas migrations com o mesmo numero (uma seria ignorada).
+";
+        foreach ($repetidas as $n => $arquivos) {
+            echo "     {$n}: " . implode(' e ', $arquivos) . "
+";
+        }
+        echo "     Nada e aplicado enquanto houver numero repetido.
+";
+    }
+
+    return ($contagem['DIVERGENTE'] > 0 || $repetidas) ? 1 : 0;
 }
 
 /**

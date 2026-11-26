@@ -230,6 +230,11 @@ class AdmsHistDocumento
         if ($fecho['tipo'] === 'certificado' && $dados['aluno']['rg'] === '') {
             $avisos[] = 'O RG do aluno está vazio (o certificado o usa).';
         }
+        /* D-133 (1.103.0, C10): no Médio, sem o registro da conclusão do Fundamental (o ano), a tela avisa quem emite e
+           diz onde registrar; é aviso (não impede a emissão) e o documento não muda */
+        if ($nivel === 'EM' && (int) ($a['ef_conclusao_ano'] ?? 0) === 0) {
+            $avisos[] = 'Não há registro da conclusão do Ensino Fundamental deste aluno: registre o ano e a escola em Dados do aluno para o histórico ("Conclusão do Fundamental").';
+        }
         if ($a['prova']) {
             $avisos[] = 'O aluno é dado de PROVA.';
         }

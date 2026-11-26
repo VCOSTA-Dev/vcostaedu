@@ -140,13 +140,13 @@ function telaAmbiente(): void
 // =============================================================================
 // TELA 2 — DADOS DO BANCO
 //
-// VCOSTAEDU: sem o campo Porta. O sistema de origem conecta sempre pela porta padrão (3306): a constante PORTA
-// não tem leitor nas duas aplicações, e oferecer o campo seria prometer o que a conexão não cumpre.
+// D-131 (1.103.0, C6.1): o campo Porta, com 3306 (a padrão) já preenchido. A porta vai para a constante PORTA das duas
+// Config.php, e todas as conexões a usam (sem a constante, numa instalação antiga, 3306).
 // =============================================================================
 
 function telaBanco(array $dados = [], string $erro = ''): void
 {
-    $dados += ['host' => 'localhost', 'dbname' => '', 'usuario' => '', 'senha' => ''];
+    $dados += ['host' => 'localhost', 'porta' => '3306', 'dbname' => '', 'usuario' => '', 'senha' => ''];
 
     abrirPagina('Banco de dados', 'banco');
     ?>
@@ -195,7 +195,14 @@ function telaBanco(array $dados = [], string $erro = ''): void
             <label class="form-label required" for="host">Servidor</label>
             <input type="text" id="host" name="host" class="form-control" required
                    value="<?= e($dados['host']) ?>">
-            <div class="form-hint">Na maioria das hospedagens é <code>localhost</code>. A conexão usa a porta padrão (3306).</div>
+            <div class="form-hint">Na maioria das hospedagens é <code>localhost</code>.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required" for="porta">Porta</label>
+            <input type="number" id="porta" name="porta" class="form-control" required min="1" max="65535" inputmode="numeric"
+                   value="<?= e((string) $dados['porta']) ?>">
+            <div class="form-hint">Quase sempre <code>3306</code>, a porta padrão do MySQL e do MariaDB. Mude só se a sua hospedagem informar outra.</div>
           </div>
 
           <div class="mb-3">
@@ -237,7 +244,7 @@ function processarBanco(): void
 {
     $dados = [
         'host'    => trim((string) ($_POST['host'] ?? '')),
-        'porta'   => '3306',
+        'porta'   => trim((string) ($_POST['porta'] ?? '')) === '' ? '3306' : trim((string) ($_POST['porta'] ?? '')),
         'dbname'  => trim((string) ($_POST['dbname'] ?? '')),
         'usuario' => trim((string) ($_POST['usuario'] ?? '')),
         'senha'   => (string) ($_POST['senha'] ?? ''),
@@ -245,6 +252,12 @@ function processarBanco(): void
 
     if ($dados['host'] === '' || $dados['dbname'] === '' || $dados['usuario'] === '') {
         telaBanco($dados, 'Preencha o servidor, o nome do banco e o usuário.');
+
+        return;
+    }
+
+    if (!ctype_digit($dados['porta']) || (int) $dados['porta'] < 1 || (int) $dados['porta'] > 65535) {
+        telaBanco($dados, 'A porta é um número de 1 a 65535 (quase sempre 3306).');
 
         return;
     }
@@ -776,6 +789,8 @@ function telaAdministrador(bool $envio): void
                 if ($tipo === VcVocabulario::LIVRE) { // D-106: o financeiro e a matrícula pela secretaria, como marcados
                     $recursos = (array) ($_POST['recurso'] ?? []);
                     VcTipoLivre::gravarRecursos($conexao['pdo'], array_map(static fn($r) => isset($recursos[$r]), array_combine(array_keys(VcVocabulario::RECURSOS_LIVRE), array_keys(VcVocabulario::RECURSOS_LIVRE))));
+                } else { // D-129 (1.103.0, C4): na escola e no ensino superior, o financeiro como marcado (de partida, ligado)
+                    VcTipoLivre::gravarFinanceiro($conexao['pdo'], $tipo, !empty($_POST['financeiro']));
                 }
                 $_SESSION['tipo_escolhido'] = $tipo;
             } else {
@@ -855,7 +870,7 @@ function telaTipo(string $erro = ''): void
           <?php /* Fechamento (D-106): os recursos do curso livre — ligar e desligar agora; depois, em Configurações → Recursos do curso livre */ ?>
           <fieldset class="border rounded p-3 mb-3" id="recursosLivre">
             <legend class="fs-5 fw-medium float-none w-auto px-1 mb-1">No curso livre</legend>
-            <p class="text-secondary small mb-2">O curso livre nasce enxuto. Ligue o que a sua instituição vai usar (dá para mudar depois, em Configurações → Recursos do curso livre). Nos outros tipos, estas caixas não contam.</p>
+            <p class="text-secondary small mb-2">O curso livre nasce enxuto. Ligue o que a sua instituição vai usar (dá para mudar depois, em Configurações → Recursos da instituição). Nos outros tipos, estas caixas não contam.</p>
             <?php foreach (VcVocabulario::RECURSOS_LIVRE as $r => [$nomeR, $fraseR, $padraoR]): ?>
             <label class="form-check mb-2">
               <input class="form-check-input" type="checkbox" name="recurso[<?= e($r) ?>]" value="1" id="recurso_<?= e($r) ?>"<?= $padraoR ? ' checked' : '' ?>>
@@ -863,10 +878,20 @@ function telaTipo(string $erro = ''): void
             </label>
             <?php endforeach; ?>
           </fieldset>
+          <?php /* D-129 (1.103.0, C4): na escola e no ensino superior, o financeiro — ligado de partida; depois, em
+                  Configurações → Recursos da instituição */ ?>
+          <fieldset class="border rounded p-3 mb-3" id="financeiroTipo">
+            <legend class="fs-5 fw-medium float-none w-auto px-1 mb-1">Financeiro</legend>
+            <label class="form-check mb-0">
+              <input class="form-check-input" type="checkbox" name="financeiro" value="1" id="financeiroLigado" checked>
+              <span class="form-check-label"><span class="fw-medium">Usar o financeiro</span> <span class="text-secondary small d-block">A ficha financeira do aluno, os planos de pagamento, o recebimento, o caixa e os relatórios. Desligado, some do menu e das telas para todos; dá para ligar depois, em Configurações → Recursos da instituição, sem perder nada.</span></span>
+            </label>
+          </fieldset>
           <script>
             (function () {
               var caixa = document.getElementById('recursosLivre');
-              var mostrar = function () { var l = document.getElementById('tipo_livre'); caixa.hidden = !(l && l.checked); };
+              var fin = document.getElementById('financeiroTipo');
+              var mostrar = function () { var l = document.getElementById('tipo_livre'); caixa.hidden = !(l && l.checked); fin.hidden = !caixa.hidden; };
               document.querySelectorAll('#tipoInstituicao input[name="tipo"]').forEach(function (r) { r.addEventListener('change', mostrar); });
               mostrar();
             })();

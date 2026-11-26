@@ -2,7 +2,7 @@
 /* GERADO por database/ferramentas/guias/gerar_guias.php a partir de docs/guia/tarefas/ — não editar. */
 if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); }
 return array (
-  'versao' => '1.102.1',
+  'versao' => '1.103.0',
   'gerado' => '26/11/2026',
   'guias' => 
   array (
@@ -731,10 +731,11 @@ Guia sem vídeo no servidor? O texto continua valendo — o player simplesmente 
       array (
         0 => 'secretaria',
         1 => 'administrador',
+        2 => 'professor',
       ),
       'ordem' => 33,
       'entrou' => '1.8.0',
-      'mudou' => '',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),
@@ -1616,7 +1617,7 @@ No PDF do portal, no lugar da assinatura: "Documento emitido eletronicamente em 
       ),
       'ordem' => 50,
       'entrou' => '1.101.0',
-      'mudou' => '',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),
@@ -2606,7 +2607,7 @@ Reativar devolve a matéria às listas de escolha.',
       ),
       'ordem' => 3,
       'entrou' => '1.100.0',
-      'mudou' => '',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),
@@ -2636,7 +2637,7 @@ Reativar devolve a matéria às listas de escolha.',
       ),
       'ordem' => 2,
       'entrou' => '1.102.1',
-      'mudou' => '',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),
@@ -3105,7 +3106,7 @@ Em análise, a grade trava: a faixa diz o motivo e o caminho para destravar, e o
       ),
       'ordem' => 40,
       'entrou' => '1.85.0',
-      'mudou' => '1.99.0',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),
@@ -3300,7 +3301,7 @@ Trocar de turma. Para trocar um aluno de turma: escolha a turma de destino, da m
       ),
       'ordem' => 62,
       'entrou' => '1.20.0',
-      'mudou' => '1.66.0',
+      'mudou' => '1.103.0',
       'comece' => 
       array (
       ),

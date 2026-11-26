@@ -36,9 +36,27 @@ class AdmsTipoPortal
         return self::atual() === \VcVocabulario::LIVRE;
     }
 
-    /** A página do portal vale neste tipo? (sem a marca, o núcleo: sempre) */
+    /** D-129 (1.103.0, C4): as páginas do financeiro no portal (a ficha e o recibo, do aluno e da família) */
+    public const PAGINAS_FINANCEIRO = [41, 42, 43, 44];
+
+    private static ?bool $financeiro = null;
+
+    /** D-129: o financeiro está ligado nesta instalação? (nos três tipos; desligado, some do portal) */
+    public static function financeiroLigado(): bool
+    {
+        try {
+            return self::$financeiro ??= \VcTipoLivre::financeiroLigado(\VcBanco::daRequisicao(), self::atual());
+        } catch (\Throwable $e) {
+            return true;
+        }
+    }
+
+    /** A página do portal vale neste tipo? (sem a marca, o núcleo: sempre; a do financeiro, só com ele ligado) */
     public static function paginaLigada(int $paginaId): bool
     {
+        if (in_array($paginaId, self::PAGINAS_FINANCEIRO, true) && !self::financeiroLigado()) {
+            return false;
+        }
         try {
             self::$modulos ??= \VcTipoLivre::modulosDoPortal(\VcBanco::daRequisicao());
         } catch (\Throwable $e) {

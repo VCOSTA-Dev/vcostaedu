@@ -46,7 +46,7 @@ if (!@mkdir($pasta, 0770)) {
     Saida::fim();
 }
 $cmd = escapeshellarg(vcostaedu_bin('mysqldump')) . ' --single-transaction --quick --routines --triggers --hex-blob --no-tablespaces --default-character-set=utf8mb4 -h '
-    . escapeshellarg(HOST) . ' -u ' . escapeshellarg(USER) . ' ' . escapeshellarg(DBNAME);
+    . escapeshellarg(HOST) . ' -P ' . (defined('PORTA') ? (int) constant('PORTA') : 3306) . ' -u ' . escapeshellarg(USER) . ' ' . escapeshellarg(DBNAME);
 $env = array_merge(getenv(), ['MYSQL_PWD' => PASS]);
 $p = proc_open($cmd, [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pp, null, $env);
 if (!is_resource($p)) {

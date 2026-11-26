@@ -33,7 +33,31 @@ class AdmsCompensacoes
     public static function podeLancar(): bool
     {
         /* Onda 2, Etapa 2: pelo papel (os antigos 1, 2 e 4: administrador, secretaria; e a supervisão da secretaria) */
-        return \App\adms\Models\helper\AdmsNivel::ehPapel('administrador', 'supervisao_secretaria', 'secretaria');
+        if (\App\adms\Models\helper\AdmsNivel::ehPapel('administrador', 'supervisao_secretaria', 'secretaria')) {
+            return true;
+        }
+        /* D-130 (1.103.0, C7): o professor, quando a instituição liga a ação "Lançar compensação de ausência" para o perfil
+           dele em Perfis de acesso (desligada de fábrica); só nas disciplinas dele (podeNaOferta) */
+        return self::professorLiberado();
+    }
+
+    /** O professor com a permissão da página de compensar ligada no perfil dele. */
+    private static function professorLiberado(): bool
+    {
+        if (!\App\adms\Models\helper\AdmsNivel::ehPapel('professor')) {
+            return false;
+        }
+        $p = (new \App\adms\Models\AdmsBotao())->valBotao(['c' => ['menu_controller' => 'faltas', 'menu_metodo' => 'compensar']]);
+        return !empty($p['c']);
+    }
+
+    /** Na oferta: a secretaria e o administrador em todas; o professor liberado, só nas ofertas dele (ligado, para gravar). */
+    public static function podeNaOferta(int $ofertaId): bool
+    {
+        if (!self::podeLancar()) {
+            return false;
+        }
+        return !self::professorLiberado() || \App\adms\Models\helper\AdmsEscopo::podeOferta($ofertaId, true);
     }
 
     /** Lançamentos da oferta, do mais novo para o mais antigo, com o nome de quem lançou. */
@@ -56,6 +80,9 @@ class AdmsCompensacoes
         $this->erros = [];
         if (!self::podeLancar()) {
             return $this->recusa('Só a secretaria e o administrador lançam compensação de faltas.');
+        }
+        if (!self::podeNaOferta($ofertaId)) {
+            return $this->recusa('Esta disciplina não é sua: o professor lança compensação só nas disciplinas em que dá aula.');
         }
         $oferta = \App\adms\Models\notas\AdmsCalculoNotas::dadosOferta($ofertaId);
         if (!$oferta) {
@@ -124,6 +151,9 @@ class AdmsCompensacoes
         $this->erros = [];
         if (!self::podeLancar()) {
             return $this->recusa('Só a secretaria e o administrador removem compensação de faltas.');
+        }
+        if (!self::podeNaOferta($ofertaId)) {
+            return $this->recusa('Esta disciplina não é sua: o professor lança compensação só nas disciplinas em que dá aula.');
         }
         $oferta = \App\adms\Models\notas\AdmsCalculoNotas::dadosOferta($ofertaId);
         if (!$oferta || !empty($oferta['encerrada_em'])) {

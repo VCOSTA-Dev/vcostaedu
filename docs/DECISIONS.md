@@ -660,3 +660,49 @@ A interface ganha `POST /inscricoes`: o cadastro, a matrícula e a turma (na esc
 **As provas:** a Onda 3, etapa 5 (o nome no canto do usuário) e a régua do superior.
 
 **Motivo:** a palestra mostra as duas demonstrações.
+
+## D-119 — O histórico escolar, Parte J: emitir e cancelar como ações próprias
+**Decisão (histórico escolar, segunda entrega, Parte J; a decisão 9 do responsável):** emitir (com a 2ª via, que é a reimpressão) e cancelar passam a ser **ações próprias**: a 131 fica "Emitir o histórico escolar (e a 2ª via)" (as páginas de emitir e da 2ª via); a **133**, nova, é "Cancelar o histórico escolar emitido" (a página de cancelar; a migration 0097). As duas, de fábrica, com a secretaria e a direção (a direção pela marca `consulta_grava`, como antes) — e a supervisão de secretaria e o administrador, que estão acima da secretaria; a coordenação e o professor não abrem. Cada perfil pode ter uma sem a outra pela tela "Perfis de acesso" (a linha da página na matriz das permissões); o botão de cancelar da tela segue a permissão de cancelar, não a de emitir.
+- **Decidido por conta própria (a confirmar):** a 2ª via ficou com emitir (ela é a reimpressão do emitido, sem nova emissão); a supervisão de secretaria continua com as duas (é o perfil acima da secretaria). A D-118 ficou reservada à Parte I (a chamada da turma), que não foi feita nesta entrega.
+
+**As provas:** nova, a do histórico, Parte J (`tests/tabler/historico/parteJ.js`): as duas ações nas páginas e na tela dos perfis; por envio direto (POST) de cada perfil, a secretaria, a direção e a supervisão emitem e cancelam, a coordenação e o professor nem uma nem outra (nada gravado); tirada a ação de cancelar da direção, ela emite, o cancelar por POST é recusado e o botão some (a 2ª via fica); a sabotagem pega (o botão de cancelar pela permissão de emitir) e o arquivo de volta igual. Régua do ensino superior IDÊNTICA; a da escola só muda na configuração (a ação nova e o nome da 131).
+
+**Motivo:** quem emite não é necessariamente quem pode cancelar um documento oficial.
+
+## D-132 — A 1.103.0, C9: duas migrations com o mesmo número param a atualização
+**Decisão (1.103.0, C9):** o executor das migrations conhece cada uma pelo número (o prefixo do arquivo). Com dois arquivos do mesmo número, um deles era ignorado em silêncio. Agora, antes de aplicar qualquer coisa (pela tela "Atualizar o sistema", pelo instalador, pela linha de comando e pela ferramenta de implantação, que usam o mesmo executor), ele confere a pasta: com número repetido, para, diz quais são ("Há migrations com o mesmo número: 0099 (a.sql e b.sql)") e não aplica nada. O `bin/migrar.php status` mostra a repetição e sai com erro. As provas que criam migrations de mentira usam a faixa 9997–9998.
+
+**As provas:** a Onda 8, etapa 52: o status, o aplicar da linha de comando e a tela param e dizem quais são, com o banco igual; um arquivo só volta ao normal; a sabotagem (a conferência desligada) aplica a de mentira e é pega; o arquivo volta igual.
+
+**Motivo:** na rodada ampla da 1.102.0, as migrations de mentira das provas (0098 e 0099) tomaram o lugar das de verdade sem aviso nenhum.
+
+## D-130 — A 1.103.0, C7: a compensação de ausência liberável ao professor
+**Decisão (1.103.0, C7):** lançar e remover a compensação de ausência (as páginas 410 e 411) deixam a ação 24 ("Lançar faltas e compensações") e ganham a ação própria **112**, "Lançar compensação de ausência", com o teto no professor (a migration 0103). É o administrador quem decide, na tela "Perfis de acesso": **de fábrica, o professor continua sem ela** (as linhas da matriz das permissões não mudam), e desligada fica tudo como era. Ligada, o professor lança e remove só nas disciplinas em que dá aula; na de outro professor, a recusa diz o porquê.
+
+**As provas:** a Onda 8, etapa 53 (a escola do zero, com a demonstração): de fábrica, o POST direto do professor é recusado e nada é gravado; a ação aparece em Perfis de acesso; ligada, ele lança na disciplina dele e é recusado na de outro; a sabotagem (o professor liberado em qualquer disciplina) é pega e o arquivo volta igual.
+
+**Motivo:** em muitas escolas, quem recebe o atestado é o professor da disciplina.
+
+## D-133 — A 1.103.0, C10: o aviso no histórico do Médio sem a conclusão do Fundamental
+**Decisão (1.103.0, C10):** na prévia do histórico do Ensino Médio, quando o aluno não tem o registro da conclusão do Ensino Fundamental (o ano, em Dados do aluno para o histórico), a tela avisa quem emite e diz onde registrar. É **aviso**, como os outros da prévia (quem emite confirma que leu): não impede a emissão, e o documento (o desenho do modelo) não muda.
+- **Decidido por conta própria (a confirmar):** o registro conta pelo ano da conclusão; a escola da conclusão sozinha, sem o ano, não apaga o aviso.
+
+**As provas:** a Onda 8, etapa 54 (a escola do zero, com a demonstração): o aviso no Médio, não no Fundamental; registrado o ano, some; o documento é o mesmo com e sem o aviso; a sabotagem (o aviso desligado) é pega e o arquivo volta igual.
+
+**Motivo:** o verso do histórico do Médio traz o curso anterior; sem o registro, sai em branco sem que ninguém perceba.
+
+## D-131 — A 1.103.0, C6.1: a porta do banco no instalador
+**Decisão (1.103.0, C6.1):** a tela dos dados do banco do instalador ganha o campo **Porta**, com 3306 (a padrão do MySQL e do MariaDB) já preenchida, e recusa o que não for um número de 1 a 65535. A porta vai para a constante `PORTA` das duas `Config.php` (e os modelos `Config.example.php`, da instalação pela linha de comando, já trazem 3306). Todas as conexões passam a usá-la: a das telas (`core/Banco.php`), o executor das migrations (que já a lia), as ferramentas de linha de comando, o backup (`mysqldump -P`) e a restauração. Uma instalação antiga, sem a constante, continua na 3306. O README, o `docs/IMPLANTACAO.md` e o guia "Instalar no Linux, ao lado do Moodle" dizem isso.
+- **Decidido por conta própria (a confirmar):** quando o servidor do banco é informado pelo nome local no Linux, o PHP conecta pelo socket e a porta não conta; o guia "Instalar no Linux, ao lado do Moodle" já explica a diferença.
+
+**As provas:** a Onda 8, etapa 55: a constante nas Config.php gravadas pelo instalador e nos modelos; o campo e a recusa na tela; a conexão das telas com 3306 conecta e com a porta 1 recusa; a linha de comando conecta; a sabotagem (a conexão sem a porta) é pega e o arquivo volta igual.
+
+**Motivo:** no ensaio no Linux, o banco do servidor não estava na porta padrão.
+
+## D-129 — A 1.103.0, C4: o financeiro de ligar e desligar nos três tipos
+**Decisão (1.103.0, C4):** o administrador liga ou desliga o financeiro na escola, no ensino superior e no curso livre. Vem **ligado** na escola e no ensino superior (uma instalação que já existe não muda) e **desligado** no curso livre (como em D-106). O estado fica em `adms_instalacao_estado` (`financeiro.ligado`; no curso livre, a chave de sempre, `livre.financeiro`). Desligado: o menu, as páginas, os relatórios, os cartões e os atalhos do financeiro somem para todos os perfis (pelo mesmo caminho dos módulos de outro tipo: a página marcada em `adms_paginas_recurso` não está ligada), também no portal (o cartão e a ficha do aluno e da família); o endereço direto é recusado como a página que não existe para o tipo. **Nenhum dado é apagado:** ligando de novo, tudo volta. A escolha aparece no instalador (na escola e no ensino superior, a caixa "Usar o financeiro", marcada de partida) e na tela **Configurações → Recursos da instituição** (as páginas 597 e 598, que valiam só no curso livre, passam aos três tipos pela migration 0102; fora do curso livre, a tela mostra só o financeiro). Nenhum bloqueio pedagógico por dívida, em nenhum tipo.
+- **Decidido por conta própria (a confirmar):** a recusa pelo endereço direto é a mesma da página de outro tipo (a tela "sem acesso"); o remendo guardado que trocava essa tela por uma mensagem do recurso não entrou. Os guias do financeiro continuam na Central de ajuda com o financeiro desligado.
+
+**As provas:** a Onda 8, etapa 56 (o ensino superior do ciclo): de partida ligado, a ficha abre sem erro com e sem lançamentos; desligado pela tela, o menu, a ficha pelo endereço, o botão da ficha e o portal somem, com os títulos iguais; ligado de novo, tudo volta; o instalador com a escolha; a sabotagem (a chave ignorada fora do curso livre) é pega e o arquivo volta igual.
+
+**Motivo:** nem toda escola ou faculdade usa o financeiro do sistema; quem não usa não deve ver telas que não servem.

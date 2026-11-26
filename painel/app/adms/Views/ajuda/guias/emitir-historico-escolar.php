@@ -22,7 +22,7 @@
 </ol>
 <div class="print-pendente"><i class="fas fa-camera"></i> Print a fazer antes do treinamento (D-157): a vida escolar do aluno com as séries confirmadas e digitadas</div>
 <ol>
-<li><strong>Prévia e emissão.</strong> Leia os avisos. Só &quot;o quadro não cabe&quot; e &quot;sem série no nível&quot; impedem a emissão; os outros ficam com você, que confirma que os leu. Abra a <strong>prévia em PDF</strong>: ela sai com a tarja PRÉVIA, e nada é gravado.</li>
+<li><strong>Prévia e emissão.</strong> Leia os avisos. Só &quot;o quadro não cabe&quot; e &quot;sem série no nível&quot; impedem a emissão; os outros ficam com você, que confirma que os leu. No <strong>Ensino Médio</strong>, se a conclusão do Ensino Fundamental do aluno não estiver registrada, a prévia avisa e diz onde registrar: em <strong>Dados do aluno para o histórico</strong>, no campo &quot;Conclusão do Fundamental&quot; (o ano e a escola). É só um aviso: o documento não muda e a emissão continua possível. Abra a <strong>prévia em PDF</strong>: ela sai com a tarja PRÉVIA, e nada é gravado.</li>
 <li>Confira a data do documento e, se for o caso, o número da publicação. No bloco da transferência, os dias letivos e as aulas dadas vêm propostos e podem ser corrigidos.</li>
 <li><strong>Emitir</strong>. A emissão guarda a cópia fiel do documento, o PDF e o código, e o histórico entra na lista de documentos emitidos.</li>
 </ol>

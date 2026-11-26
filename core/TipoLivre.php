@@ -35,6 +35,42 @@ final class VcTipoLivre
         }
     }
 
+    /**
+     * D-129 (1.103.0, C4): a chave do financeiro em adms_instalacao_estado — no curso livre, a de sempre (livre.financeiro,
+     * D-106); na escola e no ensino superior, financeiro.ligado.
+     */
+    public static function chaveFinanceiro(string $tipo): string
+    {
+        return $tipo === VcVocabulario::LIVRE ? 'livre.financeiro' : 'financeiro.ligado';
+    }
+
+    /** D-129: o financeiro vem ligado na escola e no ensino superior, desligado no curso livre. */
+    public static function financeiroPadrao(string $tipo): bool
+    {
+        return $tipo === VcVocabulario::LIVRE ? (bool) VcVocabulario::RECURSOS_LIVRE['financeiro'][2] : true;
+    }
+
+    /** D-129: o financeiro está ligado nesta instalação? (sem a chave, o padrão do tipo) */
+    public static function financeiroLigado(\PDO $pdo, ?string $tipo = null): bool
+    {
+        $tipo ??= self::tipo($pdo);
+        try {
+            $st = $pdo->prepare('SELECT valor FROM adms_instalacao_estado WHERE chave = ? LIMIT 1');
+            $st->execute([self::chaveFinanceiro($tipo)]);
+            $v = $st->fetchColumn();
+        } catch (\Throwable $e) {
+            $v = false;
+        }
+        return $v === false || $v === null ? self::financeiroPadrao($tipo) : (string) $v === '1';
+    }
+
+    /** D-129: liga ou desliga o financeiro (o instalador e a tela Recursos). Nada é apagado. */
+    public static function gravarFinanceiro(\PDO $pdo, string $tipo, bool $ligado): void
+    {
+        $pdo->prepare('INSERT INTO adms_instalacao_estado (chave, valor) VALUES (?, ?) ON DUPLICATE KEY UPDATE valor = VALUES(valor)')
+            ->execute([self::chaveFinanceiro($tipo), $ligado ? '1' : '0']);
+    }
+
     /** O tipo gravado (sem a chave, ensino superior). */
     public static function tipo(\PDO $pdo): string
     {

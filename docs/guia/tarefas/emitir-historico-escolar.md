@@ -7,6 +7,7 @@ tipo: escola
 relacionados: conferir-um-documento, emitir-2a-via, cancelar-uma-emissao, conhecer-com-a-demonstracao
 telas: historico-escola-vida/buscar, historico-escola-emissao/previa
 entrou: 1.101.0
+mudou: 1.103.0
 ---
 ## Para que serve
 
@@ -37,7 +38,7 @@ E, em **Matriz do histórico**, a matriz de cada ano letivo (as aulas semanais d
 
 [PRINT: a vida escolar do aluno com as séries confirmadas e digitadas]
 
-3. **Prévia e emissão.** Leia os avisos. Só "o quadro não cabe" e "sem série no nível" impedem a emissão; os outros ficam com você, que confirma que os leu. Abra a **prévia em PDF**: ela sai com a tarja PRÉVIA, e nada é gravado.
+3. **Prévia e emissão.** Leia os avisos. Só "o quadro não cabe" e "sem série no nível" impedem a emissão; os outros ficam com você, que confirma que os leu. No **Ensino Médio**, se a conclusão do Ensino Fundamental do aluno não estiver registrada, a prévia avisa e diz onde registrar: em **Dados do aluno para o histórico**, no campo "Conclusão do Fundamental" (o ano e a escola). É só um aviso: o documento não muda e a emissão continua possível. Abra a **prévia em PDF**: ela sai com a tarja PRÉVIA, e nada é gravado.
 4. Confira a data do documento e, se for o caso, o número da publicação. No bloco da transferência, os dias letivos e as aulas dadas vêm propostos e podem ser corrigidos.
 5. **Emitir**. A emissão guarda a cópia fiel do documento, o PDF e o código, e o histórico entra na lista de documentos emitidos.
 

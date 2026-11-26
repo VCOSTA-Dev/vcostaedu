@@ -16,12 +16,12 @@
 <li>Na última tela, <strong>Como você quer começar?</strong> mostra o tipo escolhido e o que ficou ligado. Escolha <strong>Conhecer com dados de demonstração</strong> (o curso fictício <strong>IA na prática para professores</strong>, com a turma aberta e os quatro módulos) ou <strong>Configurar a minha instituição agora</strong>.</li>
 <li><strong>Para configurar:</strong> os <strong>Primeiros passos</strong> levam, na ordem, à instituição, ao e-mail de envio, ao ano letivo, ao curso (com a matriz e as disciplinas), à turma do curso, aos alunos e aos alunos na turma.</li>
 <li><strong>A turma:</strong> em <strong>Ensino → Turmas → Nova turma</strong>, escolha o ano letivo e o curso, dê o nome (por exemplo, &quot;Turma aberta&quot;), a sala (&quot;On-line&quot;) e a capacidade (as vagas). As disciplinas da matriz entram na turma sozinhas.</li>
-<li><strong>O financeiro e a matrícula, depois:</strong> <strong>Configurações → Recursos do curso livre</strong> liga e desliga os dois a qualquer momento. Desligar não apaga nada: as telas saem do menu e não abrem; ligando de novo, tudo volta como estava.</li>
+<li><strong>O financeiro e a matrícula, depois:</strong> <strong>Configurações → Recursos da instituição</strong> liga e desliga os dois a qualquer momento. Desligar não apaga nada: as telas saem do menu e não abrem; ligando de novo, tudo volta como estava.</li>
 <li><strong>O portal do aluno</strong> tem a <strong>Página Inicial</strong>, o <strong>Moodle</strong> (a entrada sem segunda senha) e a <strong>Ajuda</strong>. O aluno entra com o <strong>e-mail do cadastro</strong> ou com o <strong>número de matrícula</strong>.</li>
 </ol>
 <h2>O que pode dar errado</h2>
 <ul>
-<li><strong>Uma tela do menu sumiu:</strong> ela pertence a um recurso desligado (o financeiro ou a matrícula pela secretaria). Ligue em <strong>Configurações → Recursos do curso livre</strong>.</li>
+<li><strong>Uma tela do menu sumiu:</strong> ela pertence a um recurso desligado (o financeiro ou a matrícula pela secretaria). Ligue em <strong>Configurações → Recursos da instituição</strong>.</li>
 <li><strong>O aluno diz que o e-mail não entra:</strong> se o mesmo e-mail estiver em mais de um cadastro, a tela avisa e pede o número de matrícula.</li>
 <li><strong>O endereço de uma tela que o curso livre não tem</strong> (o boletim, por exemplo) leva o aluno de volta à Página Inicial.</li>
 </ul>

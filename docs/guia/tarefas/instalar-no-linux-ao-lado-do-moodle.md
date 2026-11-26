@@ -6,7 +6,7 @@ ordem: 2
 relacionados: instalar-como-curso-livre, o-tipo-de-instituicao, conectar-ao-moodle
 telas:
 entrou: 1.102.1
-mudou: 
+mudou: 1.103.0
 ---
 ## Para que serve
 

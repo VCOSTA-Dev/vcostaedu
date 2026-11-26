@@ -60,6 +60,8 @@ abstract class Config
         define('USER', 'usuario_do_banco');
         define('PASS', 'senha_do_banco');
         define('DBNAME', 'vcostaedu');
+        /* D-131 (1.103.0, C6.1): a porta do banco (3306, a padrão do MySQL e do MariaDB) */
+        define('PORTA', 3306);
 
         /* [SERVIDOR] Nome da instituição nos documentos e cabeçalhos (boletim,
            rodapés). Os dados completos da IES (mantenedora, CNPJ, atos) são da E6. */

@@ -6,7 +6,7 @@ ordem: 62
 relacionados: usuarios-e-niveis, reabrir-uma-disciplina, polos-e-cursos
 telas: perfis-acesso/index, cursos/visualizar
 entrou: 1.20.0
-mudou: 1.66.0
+mudou: 1.103.0
 ---
 ## Para que serve
 
@@ -45,3 +45,8 @@ Os perfis vêm prontos e não se editam numa tela: mudam com a atualização do 
 - A Coordenação de curso não vê nenhuma disciplina: falta indicar a pessoa como coordenadora na tela do curso.
 - **"Só o administrador ou a supervisão da secretaria reabre uma oferta encerrada."** — reabrir é uma ação sensível.
 - A conferência do instalador ou a verificação do ambiente reprova com **"permissão acima do perfil"**: um perfil recebeu uma ação abaixo do limite dela (a mensagem diz qual). O sistema já recusa essa ação; peça ao suporte técnico da instalação para corrigir a permissão.
+
+## Ações que dá para separar
+
+- **"Lançar compensação de ausência"**: de fábrica, só a secretaria e o administrador. Ligada para o professor, ele compensa só nas disciplinas dele ([Compensar faltas](guia:compensar-faltas)).
+- **Na escola, "Emitir o histórico escolar (e a 2ª via)" e "Cancelar o histórico escolar emitido"** são ações separadas: um perfil pode emitir sem poder cancelar.

@@ -38,7 +38,7 @@ function vcostaedu_pdo(): PDO
 {
     require_once __DIR__ . '/../../core/Banco.php'; // Onda 3, Etapa 2: o modo de SQL do sistema
     $pdo = \VcBanco::abrir(
-        'mysql:host=' . HOST . ';dbname=' . DBNAME . ';charset=utf8mb4',
+        'mysql:host=' . HOST . ';port=' . (defined('PORTA') ? (int) constant('PORTA') : 3306) . ';dbname=' . DBNAME . ';charset=utf8mb4',
         USER,
         PASS,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]

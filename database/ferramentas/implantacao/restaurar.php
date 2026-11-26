@@ -71,7 +71,7 @@ if (is_dir($stDest) && count(scandir($stDest)) > 2) {
 }
 
 Saida::secao('Restauração');
-$cmd = escapeshellarg(vcostaedu_bin('mysql')) . ' --default-character-set=utf8mb4 -h ' . escapeshellarg(HOST) . ' -u ' . escapeshellarg(USER) . ' ' . escapeshellarg($banco);
+$cmd = escapeshellarg(vcostaedu_bin('mysql')) . ' --default-character-set=utf8mb4 -h ' . escapeshellarg(HOST) . ' -P ' . (defined('PORTA') ? (int) constant('PORTA') : 3306) . ' -u ' . escapeshellarg(USER) . ' ' . escapeshellarg($banco);
 $p = proc_open($cmd, [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pp, null, array_merge(getenv(), ['MYSQL_PWD' => PASS]));
 $gz = gzopen("{$orig}/banco.sql.gz", 'rb');
 while (!gzeof($gz)) {
@@ -94,7 +94,7 @@ $zip->close();
 
 Saida::secao('Conferência');
 require_once dirname(__DIR__, 3) . '/core/Banco.php'; // Onda 3, Etapa 2: o modo de SQL do sistema
-$r = VcBanco::abrir('mysql:host=' . HOST . ';dbname=' . $banco . ';charset=utf8mb4', USER, PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+$r = VcBanco::abrir('mysql:host=' . HOST . ';port=' . (defined('PORTA') ? (int) constant('PORTA') : 3306) . ';dbname=' . $banco . ';charset=utf8mb4', USER, PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
 $tabs = $r->query('SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE()')->fetchAll(PDO::FETCH_COLUMN);
 $dif = [];
 foreach ($man['tabelas'] as $t => $c) {

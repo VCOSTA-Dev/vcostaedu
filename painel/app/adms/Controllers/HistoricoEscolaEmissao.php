@@ -19,7 +19,7 @@ use App\adms\Models\historicoEscola\AdmsHistEmissao as E;
  *   previaPdf   o PDF da prévia (marcado PRÉVIA; nada é gravado)
  *   emitir      POST (a ação 131: a secretaria e a direção)
  *   segundaVia  POST
- *   cancelar    POST, com o motivo
+ *   cancelar    POST, com o motivo (Parte J; D-119: a ação própria 133, separada de emitir e da 2ª via, a 131)
  *   pdf         o PDF guardado (?via=N), só se o sha256 confere
  */
 class HistoricoEscolaEmissao

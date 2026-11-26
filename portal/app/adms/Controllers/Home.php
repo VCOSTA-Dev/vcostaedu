@@ -185,6 +185,7 @@ class Home
             /* Onda 8, financeiro, Parte 3 (D-98): o cartão "Ficha financeira" na página inicial, para o aluno com algum título */
             $M = \App\adms\Models\financeiro\AdmsFichaFinanceira::class;
             $temTitulo = (bool) \VcBanco::daRequisicao()->query('SELECT 1 FROM fin_titulos WHERE aluno_id = ' . (int) $this->dados['aluno_id'] . ' LIMIT 1')->fetchColumn();
+            $temTitulo = $temTitulo && \App\adms\Models\helper\AdmsTipoPortal::financeiroLigado(); // D-129: desligado, sem o cartão
             $this->dados['cartaoFinanceiro'] = $temTitulo ? ['vencidos' => $M::vencidos((int) $this->dados['aluno_id']), 'url' => URLACAD . 'home/financeiro-aluno'] : null;
         }
 

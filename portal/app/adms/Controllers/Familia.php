@@ -125,7 +125,8 @@ class Familia
     {
         [$resp, $a, $ano] = $this->exigir($aluno);
         /* Onda 8, financeiro, Parte 3 (D-98): o cartão "Ficha financeira" no Resumo, só para o responsável financeiro */
-        $this->dados['cartaoFinanceiro'] = $this->acesso()->podeVerFinanceiro($resp, (int) $a['id'], $ano)
+        $this->dados['cartaoFinanceiro'] = \App\adms\Models\helper\AdmsTipoPortal::financeiroLigado() // D-129: desligado, sem o cartão
+            && $this->acesso()->podeVerFinanceiro($resp, (int) $a['id'], $ano)
             ? ['vencidos' => \App\adms\Models\financeiro\AdmsFichaFinanceira::vencidos((int) $a['id']), 'url' => URLACAD . 'familia/financeiro/' . (int) $a['id'] . '?ano=' . (int) $ano]
             : null;
         $b = \App\adms\Models\notas\AdmsBoletimCurso::filtrar(\App\adms\Models\notas\AdmsBoletimCurso::doAluno((string) $a['rm']), 0, $ano);

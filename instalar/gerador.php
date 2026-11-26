@@ -48,6 +48,7 @@ function valoresDaInstalacao(array $dados): array
         'USER'             => $dados['usuario'],
         'PASS'             => $dados['senha'],
         'DBNAME'           => $dados['dbname'],
+        'PORTA'            => (int) ($dados['porta'] ?? 3306),
         'HOSTS_PERMITIDOS' => $host,
         'CAMINHO_BASE'     => '',
         'EXIGIR_HTTPS'     => acessoPorHttps(),

@@ -303,8 +303,46 @@ final class AdmsMigrations
         }
     }
 
+    /**
+     * D-132 (1.103.0, C9): as migrations do disco com número repetido, número => os arquivos (vazio = nenhuma).
+     *
+     * @return array<string, list<string>>
+     */
+    public function repetidas(): array
+    {
+        $this->repetidas = [];
+        $this->doDisco();
+        foreach ($this->repetidas as $n => $arquivos) {
+            $this->repetidas[$n] = array_values(array_unique($arquivos));
+            sort($this->repetidas[$n]);
+        }
+
+        return $this->repetidas;
+    }
+
+    /** D-132: com número repetido no disco, para antes de aplicar qualquer coisa e diz quais são. */
+    private function recusarRepetidas(): void
+    {
+        $repetidas = $this->repetidas();
+
+        if (!empty($repetidas)) {
+            $lista = [];
+            foreach ($repetidas as $n => $arquivos) {
+                $lista[] = $n . ' (' . implode(' e ', $arquivos) . ')';
+            }
+
+            throw new RuntimeException(
+                'Há migrations com o mesmo número: ' . implode('; ', $lista) . '. '
+                . 'Cada migration precisa de um número só dela (uma das duas seria ignorada). '
+                . 'Nada foi aplicado.'
+            );
+        }
+    }
+
     private function recusarDivergentes(): void
     {
+        $this->recusarRepetidas();
+
         $divergentes = $this->divergentes();
 
         if (!empty($divergentes)) {
@@ -572,6 +610,9 @@ final class AdmsMigrations
         $comando->execute([':v' => $versao, ':a' => $arquivo, ':h' => $hash, ':d' => $duracao]);
     }
 
+    /** @var array<string, list<string>> D-132: número => os arquivos com esse número (preenchido por doDisco) */
+    private array $repetidas = [];
+
     /** @return array<string, array{arquivo:string, hash:string}> */
     private function doDisco(): array
     {
@@ -587,6 +628,13 @@ final class AdmsMigrations
                no `status` — está dito aqui porque o sintoma é confuso. */
             if (!preg_match('/^(\d+)_/', $arquivo, $encontrado)) {
                 continue;
+            }
+
+            /* D-132 (1.103.0, C9): dois arquivos com o mesmo número — um deles seria ignorado em silêncio (a versão é a
+               chave). Guardados aqui; recusarRepetidas() para tudo antes de aplicar qualquer coisa. */
+            if (isset($lista[$encontrado[1]])) {
+                $this->repetidas[$encontrado[1]][] = $lista[$encontrado[1]]['arquivo'];
+                $this->repetidas[$encontrado[1]][] = $arquivo;
             }
 
             $lista[$encontrado[1]] = [

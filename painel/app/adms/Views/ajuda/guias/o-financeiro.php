@@ -1,6 +1,7 @@
 <?php if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); } ?>
 <h2>Para que serve</h2>
 <p>Controlar o que cada aluno deve e o que pagou, com o recibo de cada pagamento e o histórico de tudo. O financeiro não emite boleto nem Pix e não fala com banco: o pagamento é recebido por fora (no caixa, no Pix da escola, na maquininha do cartão) e registrado aqui.</p>
+<p><strong>Ligar e desligar:</strong> o financeiro é de ligar e desligar nos três tipos de instituição, em <strong>Configurações → Recursos da instituição</strong> (e na instalação). Vem ligado na escola e no ensino superior, e desligado no curso livre. Desligado, ele some do menu, das telas, dos relatórios, dos cartões e dos atalhos, para todos os perfis, também no portal do aluno e da família; o endereço direto responde como página que não existe. Nada é apagado: ligando de novo, tudo volta como estava. O financeiro nunca bloqueia nada da vida escolar do aluno (notas, faltas, boletim, documentos).</p>
 <p>As palavras de cada ação são as mesmas no menu, na confirmação e no histórico:</p>
 <ul>
 <li><strong>Receber</strong>: o dinheiro entrou. Um ou vários títulos num recibo só; os títulos ficam recebidos e entram no caixa de quem recebeu.</li>

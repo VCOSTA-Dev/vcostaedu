@@ -30,3 +30,10 @@ Numa subpasta (ex.: `/vcostaedu/`), ponha o nome dela na frente de cada endereç
 
 Uma versão nova pode trazer uma pasta protegida nova (um `.htaccess` novo). O registro das mudanças diz quando isso
 acontece; no Nginx, acrescente a recusa da pasta e confira de novo as Verificações de segurança.
+
+## A porta do banco (1.103.0; D-131)
+
+O instalador pede a **porta** do banco, com 3306 (a padrão do MySQL e do MariaDB) já preenchida. Ela vai para a constante
+`PORTA` das duas `Config.php`, e todas as conexões a usam: as telas, o executor das migrations, as ferramentas de linha
+de comando, o backup (`mysqldump -P`) e a restauração. Na instalação pela linha de comando, ponha a porta na constante
+`PORTA` ao copiar os modelos `Config.example.php`. Uma instalação antiga, sem a constante, continua na 3306.

@@ -20,5 +20,5 @@
 <li><strong>&quot;O aluno tem N falta(s) e C já compensada(s): dá para compensar no máximo …&quot;</strong> — não se compensa mais do que as faltas.</li>
 <li><strong>&quot;O fim do período não pode ser antes do início.&quot;</strong></li>
 <li><strong>&quot;A disciplina está ENCERRADA: não aceita compensação nova.&quot;</strong> — só o administrador reabre (<a class="guia-interno" data-guia="reabrir-uma-disciplina" href="{{GUIA}}reabrir-uma-disciplina">Reabrir uma disciplina</a>).</li>
-<li>O professor não compensa: o botão aparece desabilitado para ele.</li>
+<li>O professor não compensa, a não ser que o administrador ligue para o perfil dele a ação <strong>&quot;Lançar compensação de ausência&quot;</strong> em <a class="guia-interno" data-guia="perfis-de-acesso" href="{{GUIA}}perfis-de-acesso">Perfis de acesso</a>. Ligada, o professor compensa só nas disciplinas em que dá aula; na de outro professor, a tela recusa e diz o porquê.</li>
 </ul>

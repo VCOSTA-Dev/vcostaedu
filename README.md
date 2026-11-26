@@ -31,7 +31,9 @@ completa, com uma conta de cada perfil.
    `dom` e `iconv` (o que o instalador confere). O `zip` só é pedido pelas ferramentas de linha de comando (o backup e
    o pacote). No Linux, o guia "Instalar no Linux, ao lado do Moodle" mostra os passos. No Nginx, que não lê os
    `.htaccess`, use o exemplo `docs/nginx/vcostaedu.conf` (o guia: `docs/IMPLANTACAO.md`).
-3. Abra o endereço da pasta no navegador. O instalador aparece sozinho e guia o resto.
+3. Abra o endereço da pasta no navegador. O instalador aparece sozinho e guia o resto. Ele pede o servidor, a **porta**
+   (de partida, 3306, a padrão), o nome do banco, o usuário e a senha. Na instalação pela linha de comando, a porta é a
+   constante `PORTA` das duas `Config.php` (os modelos `Config.example.php` já trazem 3306).
 
 Para atualizar uma instalação, use **Manutenção → Atualizar o sistema**, que aplica as etapas do banco em passos curtos,
 com o backup antes. Para conferir a segurança do servidor: **Manutenção → Verificações de segurança**, ou

@@ -110,6 +110,12 @@ class AdmsTipoInstituicao extends AdmsConn
      */
     public static function recursoLigado(string $recurso): bool
     {
+        /* D-129 (1.103.0, C4): o financeiro se liga e se desliga nos três tipos (ligado de partida na escola e no ensino
+           superior; no curso livre, como em D-106) */
+        if ($recurso === 'financeiro') {
+            $v = AdmsAmbiente::estado(\VcTipoLivre::chaveFinanceiro(self::atual()), null);
+            return $v === null ? \VcTipoLivre::financeiroPadrao(self::atual()) : (string) $v === '1';
+        }
         if (!self::ehLivre() || !isset(\VcVocabulario::RECURSOS_LIVRE[$recurso])) {
             return true;
         }
@@ -120,6 +126,10 @@ class AdmsTipoInstituicao extends AdmsConn
     /** Grava os recursos do curso livre (o chamador conferiu a permissão). @param array<string, bool> $ligados */
     public static function gravarRecursos(array $ligados): void
     {
+        if (!self::ehLivre()) { // D-129: na escola e no ensino superior, só o financeiro
+            AdmsAmbiente::gravarEstado(\VcTipoLivre::chaveFinanceiro(self::atual()), !empty($ligados['financeiro']) ? '1' : '0');
+            return;
+        }
         foreach (\VcVocabulario::RECURSOS_LIVRE as $r => $x) {
             AdmsAmbiente::gravarEstado('livre.' . $r, !empty($ligados[$r]) ? '1' : '0');
         }

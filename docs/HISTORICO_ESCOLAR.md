@@ -20,6 +20,7 @@ histórico mora numa tabela própria, ligada pelo id).
 | F | A demonstração do colégio com o histórico | D-115 |
 | G | O modelo do Ensino Médio, com o itinerário da matrícula do ano | D-116 |
 | H | A saída no meio do ano e o ano letivo fechado | D-117 |
+| J | Emitir e cancelar como ações próprias | D-119 |
 
 ## Parte A — os cadastros e os textos (D-110)
 
@@ -157,8 +158,9 @@ Ensino Fundamental") e confere o PDF enviado. **Reimprimir é a 2ª via** (`rm_h
 mesmo código, o número da via no rodapé), também pela lista de documentos emitidos. **Cancelar** pede o motivo; a via
 cancelada fica guardada. O PDF só é entregue se o sha256 do arquivo confere com o gravado.
 
-**Quem:** emitir, reimprimir e cancelar são a ação 131 — a secretaria, a supervisão, o administrador e também a
-**direção** (a marca `consulta_grava`), sem a marca de sensível. O histórico do ensino superior (PARCIAL, FINAL) continua
+**Quem:** emitir e reimprimir são a ação 131; cancelar, a ação 133 (Parte J; D-119) — as duas da secretaria, da
+supervisão, do administrador e também da **direção** (a marca `consulta_grava`), sem a marca de sensível; cada perfil
+pode ter uma sem a outra pela tela "Perfis de acesso". O histórico do ensino superior (PARCIAL, FINAL) continua
 fechado na escola, pelas travas de sempre.
 
 ## Parte F — a demonstração do colégio com o histórico (D-115)
@@ -203,3 +205,10 @@ O histórico do Médio, frente e verso, em retrato:
 - **O ano letivo fechado**: Histórico escolar → "O ano letivo: fechar e reabrir" (a secretaria e a direção). Reabrir
   pede o motivo; o histórico do marcador mostra quem fechou e reabriu, quando e por quê. Sem o marcador, vale o critério
   das disciplinas encerradas.
+
+## Parte J — emitir e cancelar como ações próprias (D-119)
+
+- **Emitir** (e a 2ª via, a reimpressão): a ação 131. **Cancelar**: a ação 133.
+- De fábrica, as duas com a secretaria e a direção (e a supervisão e o administrador); a coordenação e o professor não
+  abrem. Em "Perfis de acesso", cada perfil pode ficar com uma sem a outra; o botão de cancelar segue a permissão de
+  cancelar.
