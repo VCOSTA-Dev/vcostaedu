@@ -109,7 +109,7 @@ if ($acao === 'limpar') {
     }
     $estado('demonstracao.ativa', null);
     $estado('demonstracao.credenciais', null);
-    $estado('comeco.escolhido', 'instituicao');
+    $estado('comeco.escolhido', null); // D-103: como a remoção pela tela, a escolha do começo volta a valer
     echo "A demonstração foi removida. A instalação está pronta para os dados da instituição.\nOK\n";
     exit(0);
 }

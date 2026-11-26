@@ -129,6 +129,10 @@ oferta da escola pertence a uma etapa).
 - As quantidades sem "(s)" (`AdmsUi::plural`); a prévia do encerramento e a ficha sem texto de sistema; com todas as etapas fechadas, Notas e resultado diz que falta encerrar.
 - Os Parâmetros mostram o gravado e salvam só o que mudou; remover a demonstração apaga o financeiro dela e volta ao "Como você quer começar?"; o aluno no portal da família recebe "não permitido".
 
+### 2.4.6 O histórico escolar da educação básica (D-110 em diante)
+
+- O histórico do Fundamental e do Médio, com a sua fonte (a vida escolar), os seus cadastros (os textos por nível e vigência, as observações, o logo, as escolas, as disciplinas, o nível dos segmentos e o número das séries) e a emissão guardada de sempre: o desenho e as partes em `docs/HISTORICO_ESCOLAR.md`.
+
 ### 2.5 O que fica fora desta onda
 
 Educação Infantil e anos iniciais do Fundamental (avaliam por conceito e parecer; o segmento é um curso e a série um

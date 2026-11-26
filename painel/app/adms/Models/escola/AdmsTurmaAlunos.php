@@ -180,19 +180,33 @@ class AdmsTurmaAlunos
         }
     }
 
-    /** O aluno sai da turma (de todas as ofertas dela). @return true|string */
-    public static function sair(int $turmaId, int $usuarioId)
+    /**
+     * O aluno sai da turma (de todas as ofertas dela). Histórico escolar, Parte H (D-117): a data da saída é DIGITADA (a
+     * transferência para outra escola tem a data dela; antes, era a hora do clique); vazia, hoje. Vai do começo do
+     * ano letivo da turma até hoje. @return true|string
+     */
+    public static function sair(int $turmaId, int $usuarioId, string $data = '')
     {
         $t = AdmsTurmas::ver($turmaId);
         $na = $t ? self::turmaDoAluno($usuarioId, (int) $t['ano']) : null;
         if (!$t || !$na || (int) $na['id'] !== $turmaId) {
             return 'O aluno não está nesta turma.';
         }
+        $data = trim($data) === '' ? date('Y-m-d') : trim($data);
+        $dt = \DateTime::createFromFormat('!Y-m-d', $data);
+        if (!$dt || $dt->format('Y-m-d') !== $data) {
+            return 'Informe a data da saída (dia, mês e ano).';
+        }
+        /* a entrada na turma é a hora do clique (não serve de limite): vale do começo do ano letivo da turma até hoje */
+        if ($data > date('Y-m-d') || $data < (int) $t['ano'] . '-01-01') {
+            return 'A data da saída vai do começo do ano letivo da turma (' . (int) $t['ano'] . ') até hoje.';
+        }
+        $quando = $data === date('Y-m-d') ? date('Y-m-d H:i:s') : $data . ' 12:00:00';
         $rm = (string) (self::alunoNaTurma($turmaId, $usuarioId)['rm'] ?? '');
         $T = \Core\Transacao::class;
-        $ok = $T::executar(function () use ($t, $usuarioId, $rm, $turmaId) {
+        $ok = $T::executar(function () use ($t, $usuarioId, $rm, $turmaId, $quando) {
             self::tirar($t, $usuarioId, $rm, null);
-            AdmsEscolaBanco::pdo()->prepare('UPDATE esc_turma_alunos SET saida = NOW() WHERE turma_id = ? AND usuario_id = ? AND saida IS NULL')->execute([$turmaId, $usuarioId]);
+            AdmsEscolaBanco::pdo()->prepare('UPDATE esc_turma_alunos SET saida = ? WHERE turma_id = ? AND usuario_id = ? AND saida IS NULL')->execute([$quando, $turmaId, $usuarioId]);
             return true;
         });
         return $ok ? true : 'O aluno não saiu da turma (' . $T::ultimoErro() . ').';

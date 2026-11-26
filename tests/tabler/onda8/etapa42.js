@@ -189,7 +189,7 @@ const SAIDA = path.join(L.PROVAS, ETAPA);
 
     /* sabotagem: a etapa antes da matrícula volta a contar */
     const orig = fs.readFileSync(MOTOR, 'utf8');
-    const trecho = "            if (!empty($e['antesDaMatricula'])) {";
+    const trecho = "            if (!empty($e['antesDaMatricula']) || !empty($e['depoisDaSaida'])) {"; // a Parte H do histórico (D-117) juntou a etapa depois da saída
     if (!orig.includes(trecho)) { throw new Error('a sabotagem não achou o trecho'); }
     let sab = [];
     try {

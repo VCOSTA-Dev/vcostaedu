@@ -15,7 +15,7 @@ mudado por ele. A origem do código, por pasta e por licença, está em `docs/OR
 
 ## O resumo
 
-- **457 arquivos** ainda descendem do esqueleto, com 37.831 linhas hoje; 18% dessas linhas já foram reescritas.
+- **457 arquivos** ainda descendem do esqueleto, com 37.879 linhas hoje; 18% dessas linhas já foram reescritas.
 - Por faixa: reescrito: 1; mais da metade reescrita: 16; em parte: 218; como veio: 222.
 - 80 arquivos que vinham do esqueleto saíram do repositório.
 
@@ -166,7 +166,6 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Models/helper/AdmsSlug.php` | 17 | 6% | como veio |
 | `painel/app/adms/Models/helper/AdmsTokenAcesso.php` | 125 | 6% | como veio |
 | `painel/app/adms/Models/helperApi/AdmsAlunosDisciplinas.php` | 18 | 6% | como veio |
-| `painel/app/adms/Models/historico/AdmsHistoricoEmissao.php` | 313 | 6% | como veio |
 | `painel/app/adms/Models/historico/AdmsJsonCanonico.php` | 17 | 6% | como veio |
 | `painel/app/adms/Models/horarioAula/AdmsCadastrarSala.php` | 86 | 6% | como veio |
 | `painel/app/adms/Models/horarioAula/AdmsEditarHorarioAula.php` | 88 | 6% | como veio |
@@ -196,7 +195,6 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Models/acesso/AdmsEsqueceuSenha.php` | 88 | 7% | como veio |
 | `painel/app/adms/Models/buscar/AdmsListTurmaSerie.php` | 27 | 7% | como veio |
 | `painel/app/adms/Models/configEmail/AdmsCadastrarConfigEmail.php` | 41 | 7% | como veio |
-| `painel/app/adms/Models/historico/AdmsHistoricoModelos.php` | 204 | 7% | como veio |
 | `painel/app/adms/Models/historico/AdmsHistoricoVariaveis.php` | 186 | 7% | como veio |
 | `painel/app/adms/Models/perfil/AdmsAtualizarDadosPerfil.php` | 43 | 7% | como veio |
 | `painel/app/adms/Models/polos/AdmsListarPolos.php` | 29 | 7% | como veio |
@@ -227,6 +225,7 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Models/disciplinas/AdmsAdicionarProfessor.php` | 86 | 8% | como veio |
 | `painel/app/adms/Models/disciplinas/AdmsApagarPolivalencia.php` | 37 | 8% | como veio |
 | `painel/app/adms/Models/helper/AdmsTitulacao.php` | 25 | 8% | como veio |
+| `painel/app/adms/Models/historico/AdmsHistoricoEmissao.php` | 320 | 8% | como veio |
 | `painel/app/adms/Models/materias/AdmsVerMaterias.php` | 13 | 8% | como veio |
 | `painel/app/adms/Models/notas/AdmsReabrirOferta.php` | 77 | 8% | como veio |
 | `painel/app/adms/Models/relatorios/RelDesempenhoAluno.php` | 60 | 8% | como veio |
@@ -255,6 +254,7 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Models/disciplinas/AdmsApagarDisciplina.php` | 45 | 9% | como veio |
 | `painel/app/adms/Models/helper/AdmsNovidades.php` | 90 | 9% | como veio |
 | `painel/app/adms/Models/helper/AdmsUpdate.php` | 44 | 9% | como veio |
+| `painel/app/adms/Models/historico/AdmsHistoricoModelos.php` | 206 | 9% | como veio |
 | `painel/app/adms/Models/instituicao/AdmsSalvarInstituicao.php` | 141 | 9% | como veio |
 | `painel/app/adms/Models/materias/AdmsListarMaterias.php` | 11 | 9% | como veio |
 | `painel/app/adms/Models/perfil/AdmsMeuPerfil.php` | 11 | 9% | como veio |
@@ -354,7 +354,7 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Models/notas/AdmsEncerrarOferta.php` | 132 | 20% | em parte |
 | `painel/app/adms/Models/relatorios/RelMapaNotas.php` | 122 | 20% | em parte |
 | `painel/app/adms/Views/academicos/cadAcademico.php` | 30 | 20% | em parte |
-| `painel/app/adms/Views/ajuda/guias/_indice.php` | 3937 | 20% | em parte |
+| `painel/app/adms/Views/ajuda/guias/_indice.php` | 3963 | 20% | em parte |
 | `painel/app/adms/Views/atividades/_componentePeso.php` | 44 | 20% | em parte |
 | `painel/app/adms/Views/cursos/verCurso.php` | 208 | 20% | em parte |
 | `painel/app/adms/Views/horarioAula/listHorarioAula.php` | 140 | 20% | em parte |
@@ -465,7 +465,6 @@ Do menos ao mais reescrito.
 | `painel/app/adms/Views/perfil/editPerfil.php` | 130 | 39% | em parte |
 | `painel/app/adms/Views/polos/formPolo.php` | 46 | 39% | em parte |
 | `portal/app/adms/Views/perfil/editPerfil.php` | 92 | 39% | em parte |
-| `painel/app/adms/Models/notas/AdmsCalculoNotas.php` | 511 | 40% | em parte |
 | `painel/app/adms/Models/relatorios/RelReaberturas.php` | 77 | 40% | em parte |
 | `painel/app/adms/Views/configEmail/editConfigEmail.php` | 87 | 40% | em parte |
 | `painel/app/adms/Views/cursos/_identidadeCurso.php` | 40 | 40% | em parte |
@@ -474,6 +473,7 @@ Do menos ao mais reescrito.
 | `portal/app/adms/Models/academico/AdmsNotasAtividades.php` | 78 | 40% | em parte |
 | `portal/app/adms/Models/acesso/AdmsEsqueceuSenha.php` | 57 | 40% | em parte |
 | `portal/app/adms/Models/notas/AdmsCalculoNotas.php` | 511 | 40% | em parte |
+| `painel/app/adms/Models/notas/AdmsCalculoNotas.php` | 524 | 41% | em parte |
 | `painel/app/adms/Views/instituicao/formInstituicao.php` | 133 | 41% | em parte |
 | `painel/app/adms/Views/portalAlunos/visAluno.php` | 79 | 41% | em parte |
 | `painel/app/adms/Views/usuarios/editUsuario.php` | 138 | 41% | em parte |

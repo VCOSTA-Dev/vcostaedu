@@ -42,6 +42,10 @@ foreach (['2', '3', '4', '6', '7', '8'] as $onda) { // Onda 3, Etapa 1: as prova
         $provas["onda {$onda} " . basename($js, '.js')] = "{$node} " . escapeshellarg($js);
     }
 }
+/* O histórico escolar da educação básica (D-110 em diante): uma prova por parte, cada uma monta a demonstração do colégio */
+foreach (glob("{$aqui}/historico/parte*.js") as $js) {
+    $provas['historico ' . basename($js, '.js')] = "{$node} " . escapeshellarg($js);
+}
 /* Onda 6, Etapa 10: a 1.42.0 atualizada pela tela, também numa escola (a mesma prova, com o tipo) */
 $provas['onda 6 etapa10 escola'] = "{$node} " . escapeshellarg("{$aqui}/onda6/etapa10.js") . ' escola';
 /* Onda 7, Etapa 7: a 1.50.0 atualizada pela tela, também numa escola */

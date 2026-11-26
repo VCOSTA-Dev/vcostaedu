@@ -36,7 +36,9 @@ if ($demo) :
   $perfis = [
     'direcao.demo' => ['Direção acadêmica', 'Abra os relatórios de todos os cursos e a auditoria de notas e faltas; indique um coordenador na tela do curso. Nada se altera em nota e falta.'],
     'supervisao.demo' => ['Supervisão de secretaria', 'Faça o que a secretaria faz e as ações sensíveis: reabrir uma disciplina encerrada, excluir ' . ($escolaDemo ? 'uma aula' : 'um encontro') . ' da chamada.'],
-    'secretaria.demo' => ['Secretaria', 'Cadastre um aluno, vincule ao curso, enturme nas disciplinas e emita um histórico.'],
+    'secretaria.demo' => ['Secretaria', $escolaDemo /* D-115: o histórico escolar da demonstração do colégio, pronto para emitir */
+      ? 'Cadastre um aluno e enturme. Em Histórico escolar, busque o Rui Fictício Moura e emita o histórico escolar do Fundamental pela prévia; o do Paulo Hipotético Lima já está emitido, com o código para a conferência pública.'
+      : 'Cadastre um aluno, vincule ao curso, enturme nas disciplinas e emita um histórico.'],
     'coord.demo' => ['Coordenação de curso', 'Veja as disciplinas, as notas e os relatórios só do curso que coordena; tente abrir o outro curso pelo endereço.'],
     'prof.laura.demo' => ['Professor', $escolaDemo /* D-104 (D3): a Matemática das turmas dela já está na chamada */
       ? 'Lance uma nota na tela das notas, faça a chamada de uma aula na Matemática de uma das suas turmas (em "O meu dia") e veja o histórico da nota.'

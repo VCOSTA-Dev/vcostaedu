@@ -63,7 +63,7 @@ $pdo = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME . ';charset=utf8mb4', 
    dela é conferido pela prova tests/tabler/onda2/etapa3.js. */
 /* Onda 4, Etapa 4: na escola, a hora de entrar e sair da turma e o "em" das tabelas esc_* (nenhuma tabela do superior tem essas colunas) */
 const TABELAS_FORA = ['adms_logs', 'col_logs', 'seg_tentativas', 'adms_migrations', 'adms_novidades_vistas', 'col_novidades_vistas', 'col_usuarios_tokens', 'rm_relatorios_exportacoes', 'rm_auditoria_lancamentos', 'adms_api_chamadas', 'adms_api_idempotencia'];
-const COLUNAS_VOLATEIS = '/^(created|modified|data_alt|rg|cpf|.*_em|em|entrada|saida|.*data_hora.*|ultimo_acesso|senha|senhas|recuperar_senha|chave_descadastro|token.*|hash.*|codigo|qr.*|pdf_arquivo|logo|arquivo|imagem|.*assinatura.*|html|snapshot|alertas_aceitos|ip)$/i';
+const COLUNAS_VOLATEIS = '/^(created|modified|data_alt|rg|cpf|.*_em|em|quando|entrada|saida|.*data_hora.*|ultimo_acesso|senha|senhas|recuperar_senha|chave_descadastro|token.*|hash.*|codigo|qr.*|pdf_arquivo|logo|arquivo|imagem|.*assinatura.*|html|snapshot|alertas_aceitos|ip)$/i';
 
 function canonico(mixed $v): mixed
 {

@@ -252,6 +252,14 @@ class AdmsHistoricoEmissao
             $this->erros[] = 'Emissão não encontrada.';
             return false;
         }
+        /* o histórico escolar da educação básica (D-114) tem o seu desenho e o seu rodapé: a 2ª via é a dele */
+        if (str_starts_with((string) $e['tipo'], 'ESC_')) {
+            $x = new \App\adms\Models\historicoEscola\AdmsHistEmissao();
+            $ok = $x->segundaVia($id, $usuarioId);
+            $this->erros = $x->getErros();
+            $this->via = $x->getVia();
+            return $ok;
+        }
         if ((int) $e['situacao'] !== 1) {
             $this->erros[] = 'Emissão cancelada não tem 2ª via.';
             return false;

@@ -12,7 +12,7 @@ $alertas = $e['alertas_aceitos'] ? json_decode($e['alertas_aceitos'], true) : []
 $valida = (int) $e['situacao'] === 1;
 ?>
 <div class="vc-pagina">
-  <?php ob_start(); ?><?= $e['tipo'] === 'ATESTADO' && \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola() ? 'Atestado de matrícula' : 'Histórico ' . $h($e['tipo']) /* 2.1 (D-87) */ ?> <small class="font-monospace" id="codigoEmissao"><?= $h($e['codigo']) ?></small><?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
+  <?php ob_start(); ?><?= $e['tipo'] === 'ATESTADO' && \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola() ? 'Atestado de matrícula' : (str_starts_with((string) $e['tipo'], 'ESC_') ? $h(\App\adms\Models\historico\AdmsHistoricoModelos::nomeDocumento((string) $e['tipo'])) /* D-114 */ : 'Histórico ' . $h($e['tipo'])) /* 2.1 (D-87) */ ?> <small class="font-monospace" id="codigoEmissao"><?= $h($e['codigo']) ?></small><?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
   <section class="page-body">
     <div class="container-xl">
       <?php if (isset($_SESSION['msg'])) { echo $_SESSION['msg']; unset($_SESSION['msg']); } ?>

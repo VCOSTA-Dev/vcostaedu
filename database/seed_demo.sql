@@ -108,6 +108,46 @@ SET @q := IF(@ent = 1, 'DELETE h FROM esc_notas_transferencia_hist h INNER JOIN 
 PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
 SET @q := IF(@ent = 1, 'DELETE FROM esc_notas_transferencia WHERE oferta_id IN (SELECT id FROM demo_ofertas)', 'DO 0');
 PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+-- Histórico escolar, Parte F (D-115): o histórico da demonstração sai com ela — a vida escolar e os dados dos alunos
+-- fictícios, as matrizes das grades e os níveis dos segmentos e das séries da demonstração, e os cadastros que a equipe
+-- fictícia gravou (as escolas, os textos, as observações, o logo), com o registro de alterações; as emissões dos
+-- alunos fictícios saem mais abaixo, com as outras emissões deles. O que a escola gravou com o próprio usuário fica.
+SET @hist := (SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'esc_hist_vida_serie');
+CREATE TEMPORARY TABLE demo_hist_usuarios (id INT PRIMARY KEY);
+INSERT INTO demo_hist_usuarios SELECT id FROM adms_usuarios WHERE usuario IN ('adm.escola.demo', 'direcao.demo', 'supervisao.demo', 'secretaria.demo', 'coord.demo');
+SET @q := IF(@hist = 1, 'DELETE n FROM esc_hist_vida_nota n INNER JOIN esc_hist_vida_serie s ON s.id = n.vida_serie_id WHERE s.aluno_id IN (SELECT id FROM demo_alunos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_vida_serie WHERE aluno_id IN (SELECT id FROM demo_alunos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+-- D-116 (0094): o itinerário formativo dos alunos fictícios na matrícula do ano
+SET @hist94 := (SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'esc_hist_itinerario_aluno');
+SET @q := IF(@hist94 = 1, 'DELETE i FROM esc_hist_itinerario_aluno i INNER JOIN esc_turma_alunos x ON x.id = i.turma_aluno_id WHERE x.usuario_id IN (SELECT id FROM demo_alunos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_aluno WHERE aluno_id IN (SELECT id FROM demo_alunos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE i FROM esc_hist_matriz_item i INNER JOIN esc_hist_matriz m ON m.id = i.matriz_id INNER JOIN rm_cursos_grades g ON g.id = m.grade_id WHERE g.curso_id IN (SELECT id FROM demo_cursos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE i FROM esc_hist_itinerario i INNER JOIN esc_hist_matriz m ON m.id = i.matriz_id INNER JOIN rm_cursos_grades g ON g.id = m.grade_id WHERE g.curso_id IN (SELECT id FROM demo_cursos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE m FROM esc_hist_matriz m INNER JOIN rm_cursos_grades g ON g.id = m.grade_id WHERE g.curso_id IN (SELECT id FROM demo_cursos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_serie WHERE modulo_id IN (SELECT id FROM rm_cursos_turma_series WHERE curso_id IN (SELECT id FROM demo_cursos))', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_segmento WHERE curso_id IN (SELECT id FROM demo_cursos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE e FROM esc_hist_escola e WHERE EXISTS (SELECT 1 FROM esc_hist_alteracao a WHERE a.tabela = ''esc_hist_escola'' AND a.registro_id = e.id AND a.acao = ''incluir'' AND a.usuario_id IN (SELECT id FROM demo_hist_usuarios))', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE t FROM esc_hist_texto t WHERE EXISTS (SELECT 1 FROM esc_hist_alteracao a WHERE a.tabela = ''esc_hist_texto'' AND a.registro_id = t.id AND a.acao = ''incluir'' AND a.usuario_id IN (SELECT id FROM demo_hist_usuarios))', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE o FROM esc_hist_observacao o WHERE EXISTS (SELECT 1 FROM esc_hist_alteracao a WHERE a.tabela = ''esc_hist_observacao'' AND a.registro_id = o.id AND a.acao = ''incluir'' AND a.usuario_id IN (SELECT id FROM demo_hist_usuarios))', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_logo WHERE por IN (SELECT id FROM demo_hist_usuarios)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE d FROM esc_hist_disciplina d WHERE d.materia_id = 0 AND NOT EXISTS (SELECT 1 FROM esc_hist_vida_nota n WHERE n.disciplina_id = d.id) AND EXISTS (SELECT 1 FROM esc_hist_alteracao a WHERE a.tabela = ''esc_hist_disciplina'' AND a.registro_id = d.id AND a.usuario_id IN (SELECT id FROM demo_hist_usuarios))', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+SET @q := IF(@hist = 1, 'DELETE FROM esc_hist_alteracao WHERE usuario_id IN (SELECT id FROM demo_hist_usuarios) OR aluno_id IN (SELECT id FROM demo_alunos)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
+DROP TEMPORARY TABLE demo_hist_usuarios;
 -- D-100 (0081): o histórico do conselho da demonstração sai com ele
 SET @esc81 := (SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'esc_boletim_liberacao');
 SET @q := IF(@esc81 = 1, 'DELETE h FROM esc_conselho_hist h INNER JOIN esc_conselho c ON c.id = h.conselho_id WHERE c.turma_id IN (SELECT id FROM esc_turmas WHERE curso_id IN (SELECT id FROM demo_cursos))', 'DO 0');
@@ -272,6 +312,9 @@ DELETE m FROM rm_materias m WHERE m.nome IN ('Módulo 1 — Primeiros passos com
   'Módulo 3 — Avaliar e dar retorno', 'Módulo 4 — Ética, privacidade e autoria')
   AND m.descricao = 'Módulo do curso livre da demonstração'
   AND NOT EXISTS (SELECT 1 FROM uni_rh_cursos_disciplinas_grade l WHERE l.materia_id = m.id);
+-- Histórico escolar, Parte F (D-115): as linhas do histórico das disciplinas da demonstração cujas matérias saíram
+SET @q := IF(@hist = 1, 'DELETE d FROM esc_hist_disciplina d WHERE d.materia_id > 0 AND NOT EXISTS (SELECT 1 FROM rm_materias m WHERE m.id = d.materia_id) AND NOT EXISTS (SELECT 1 FROM esc_hist_vida_nota n WHERE n.disciplina_id = d.id)', 'DO 0');
+PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
 SET @q := IF(@esc3 = 1, 'DELETE b FROM esc_boletim_liberado b INNER JOIN esc_etapas e ON e.id = b.etapa_id WHERE NOT EXISTS (SELECT 1 FROM esc_turmas t WHERE t.ano = e.ano)', 'DO 0');
 PREPARE q FROM @q; EXECUTE q; DEALLOCATE PREPARE q;
 -- D-100 (0081): a liberação do boletim (e o histórico dela) do ano que ficou sem turma

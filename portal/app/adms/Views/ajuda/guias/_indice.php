@@ -2,7 +2,7 @@
 /* GERADO por database/ferramentas/guias/gerar_guias.php a partir de docs/guia/tarefas/ — não editar. */
 if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); }
 return array (
-  'versao' => '1.100.0',
+  'versao' => '1.101.0',
   'gerado' => '25/11/2026',
   'guias' => 
   array (

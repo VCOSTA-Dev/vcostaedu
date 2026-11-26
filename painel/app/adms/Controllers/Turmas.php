@@ -145,7 +145,7 @@ class Turmas
     {
         $id = (int) $id;
         if ($this->post()) {
-            $r = A::sair($id, (int) ($_POST['usuario_id'] ?? 0));
+            $r = A::sair($id, (int) ($_POST['usuario_id'] ?? 0), (string) ($_POST['data_saida'] ?? '')); // D-117: a data digitada
             $_SESSION['msg'] = R::aviso($r === true ? 'success' : 'danger', $r === true ? 'O aluno saiu da turma (e de todas as ofertas dela). O que já tinha sido lançado ficou guardado.' : $r);
         }
         header('Location: ' . URLADM . 'turmas/ver/' . $id);

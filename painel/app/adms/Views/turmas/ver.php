@@ -88,8 +88,9 @@ $pode = (new \App\adms\Models\AdmsBotao())->valBotao([
                         <button type="submit" class="btn btn-sm btn-outline-primary">Trocar de turma</button>
                       </form>
                       <?php endif; ?>
-                      <form method="post" action="<?= URLADM ?>turmas/sair/<?= htmlspecialchars((string) ((int) $t['id']), ENT_QUOTES, 'UTF-8') ?>" class="d-inline vc-sair" data-vc-confirma="Tirar o aluno da turma?" data-vc-confirma-extra="Ele sai de todas as disciplinas da turma.">
+                      <form method="post" action="<?= URLADM ?>turmas/sair/<?= htmlspecialchars((string) ((int) $t['id']), ENT_QUOTES, 'UTF-8') ?>" class="d-inline-flex gap-1 vc-sair" data-vc-confirma="Tirar o aluno da turma?" data-vc-confirma-extra="Ele sai de todas as disciplinas da turma, na data informada (a da transferência).">
                         <input type="hidden" name="usuario_id" value="<?= htmlspecialchars((string) ((int) $a['usuario_id']), ENT_QUOTES, 'UTF-8') ?>">
+                        <input type="date" name="data_saida" class="form-control form-control-sm vc-data-saida" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>" aria-label="Data da saída" title="A data da saída (a da transferência)" style="width:9.5rem">
                         <button type="submit" class="btn btn-sm btn-outline-danger">Sair da turma</button>
                       </form>
                     </td>
@@ -102,6 +103,22 @@ $pode = (new \App\adms\Models\AdmsBotao())->valBotao([
             <?php endif; ?>
           </div>
         </div>
+        <?php /* D-116: o itinerário formativo de cada aluno na matrícula do ano (o Médio com itinerário na matriz do histórico) */
+          $itTurma = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola() ? \App\adms\Models\historicoEscola\AdmsHistVida::itinerariosDaTurma((int) $t['id']) : ['itinerarios' => []];
+          if ($itTurma['itinerarios'] && $d['alunos']) : $podeIt = \App\adms\Controllers\HistoricoEscola::pode('itinerario-turma', 'historico-escola-vida'); ?>
+        <div class="col-lg-6">
+          <form method="post" action="<?= URLADM ?>historico-escola-vida/itinerario-turma/<?= (int) $t['id'] ?>" class="card" id="itinerariosTurma">
+            <div class="card-header"><h3 class="card-title">Itinerário formativo dos alunos</h3></div>
+            <div class="table-responsive"><table class="table table-vcenter card-table"><tbody>
+              <?php foreach ($d['alunos'] as $a) : $atual = (int) ($itTurma['alunos'][(int) $a['id']] ?? 0); ?>
+                <tr data-aluno="<?= (int) $a['usuario_id'] ?>"><td><?= $h($a['nome']) ?></td><td style="width: 55%"><select class="form-select form-select-sm vc-itinerario" name="itinerario[<?= (int) $a['id'] ?>]" aria-label="Itinerário de <?= $h($a['nome']) ?>"<?= $podeIt ? '' : ' disabled' ?>>
+                  <option value="0">— sem itinerário —</option><?php foreach ($itTurma['itinerarios'] as $n => $nome) : ?><option value="<?= (int) $n ?>"<?= $atual === (int) $n ? ' selected' : '' ?>><?= (int) $n ?> — <?= $h($nome) ?></option><?php endforeach; ?></select></td></tr>
+              <?php endforeach; ?>
+            </tbody></table></div>
+            <?php if ($podeIt) : ?><div class="card-footer"><button class="btn btn-primary" id="salvarItinerarios">Salvar</button> <span class="small text-secondary ms-2">O histórico escolar lê o itinerário daqui (os da matriz do histórico do ano).</span></div><?php endif; ?>
+          </form>
+        </div>
+        <?php endif; ?>
         <?php if (!empty($pode['enturmar'])) : ?>
         <div class="col-lg-6">
           <div class="card" id="candidatosTurma">

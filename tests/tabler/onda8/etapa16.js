@@ -64,7 +64,7 @@ async function ficha(p, aluno) {
 
     /* sabotagem: a aba do superior na escola */
     const orig = fs.readFileSync(FICHA, 'utf8');
-    const trecho = "\\App\\adms\\Models\\helper\\AdmsTipoInstituicao::ehEscola() ? '/vinculoEscola.php' : '/vinculoAluno.php'";
+    const trecho = "\\App\\adms\\Models\\helper\\AdmsTipoInstituicao::porTurma() ? '/vinculoEscola.php' : '/vinculoAluno.php'";
     if (!orig.includes(trecho)) { throw new Error('a sabotagem não achou o trecho'); }
     let ach = [];
     try {

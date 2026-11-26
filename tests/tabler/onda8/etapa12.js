@@ -42,9 +42,9 @@ const faltas2026 = () => sql(`SELECT f.oferta_id, f.etapa_id, f.rm, f.faltas FRO
     const foraDaFaixa = linhas.filter((x) => x[3] < 0 || x[3] > 2).length;
     const comFalta = new Set(linhas.filter((x) => x[3] > 0).map((x) => x[2])).size;
     const mat6A = um(`SELECT COUNT(*) FROM esc_faltas_etapa f JOIN esc_turma_ofertas x ON x.oferta_id = f.oferta_id JOIN esc_turmas t ON t.id = x.turma_id
-      JOIN rm_professores_materias o ON o.id = f.oferta_id WHERE t.ano = 2026 AND t.nome = 'A' AND o.codtur LIKE '6%' AND o.materia LIKE 'Matem_tica' AND f.faltas > 0`);
+      JOIN rm_professores_materias o ON o.id = f.oferta_id WHERE t.ano = 2026 AND t.nome = 'A' AND o.codtur LIKE '6%' AND o.materia LIKE 'Matem_tica' AND f.faltas > 0 AND IFNULL(o.frequencia_fonte, 'lancamento') <> 'chamada'`); // D-104: a Matemática do fundamental na chamada tem as ausências das aulas lançadas (a fonte é a chamada)
     L.ok(linhas.length > 100 && total > 0 && foraDaFaixa === 0 && comFalta >= 15 && mat6A === 0,
-      `os alunos de 2026 têm faltas: ${total} falta(s) em ${linhas.length} lançamento(s) de etapa, todos de 0 a 2; ${comFalta} aluno(s) com falta; a Matemática do 6º ano A sem falta lançada`);
+      `os alunos de 2026 têm faltas: ${total} falta(s) em ${linhas.length} lançamento(s) de etapa, todos de 0 a 2; ${comFalta} aluno(s) com falta; a Matemática do 6º ano A sem falta lançada à mão (a da chamada conta as ausências das aulas)`);
 
     /* 3. ninguém abaixo do mínimo */
     const abaixo = um(`SELECT COUNT(*) FROM (SELECT f.oferta_id, f.rm, SUM(f.faltas) AS n, o.ch_considerada AS ch FROM esc_faltas_etapa f JOIN rm_professores_materias o ON o.id = f.oferta_id
@@ -75,13 +75,13 @@ const faltas2026 = () => sql(`SELECT f.oferta_id, f.etapa_id, f.rm, f.faltas FRO
 
     /* sabotagem: sem as faltas do ano corrente */
     const orig = fs.readFileSync(CENARIO, 'utf8');
-    const trecho = "if ($ano === self::ANO && !($k === '2026-6A' && $materia === 'Matemática')";
+    const trecho = "if ($ano === self::ANO && !($seg === self::EF && $materia === 'Matemática')"; // D-104 (1.98.0): a Matemática do fundamental inteiro fica sem falta lançada
     if (!orig.includes(trecho)) { throw new Error('a sabotagem não achou o trecho'); }
     let totalSab = -1;
     try {
-      fs.writeFileSync(CENARIO, orig.replace(trecho, "if (false && $ano === self::ANO && !($k === '2026-6A' && $materia === 'Matemática')"));
+      fs.writeFileSync(CENARIO, orig.replace(trecho, "if (false && $ano === self::ANO && !($seg === self::EF && $materia === 'Matemática')"));
       if (montar('onda8-etapa12-sabotagem').status === 0) {
-        totalSab = um("SELECT IFNULL(SUM(f.faltas), 0) FROM esc_faltas_etapa f JOIN rm_professores_materias o ON o.id = f.oferta_id WHERE o.ano = 2026 AND f.rm LIKE '265%'");
+        totalSab = um("SELECT IFNULL(SUM(f.faltas), 0) FROM esc_faltas_etapa f JOIN rm_professores_materias o ON o.id = f.oferta_id WHERE o.ano = 2026 AND f.rm LIKE '265%' AND IFNULL(o.frequencia_fonte, 'lancamento') <> 'chamada'"); // as ausências da chamada (D-104) não são as faltas lançadas
       }
     } finally {
       fs.writeFileSync(CENARIO, orig);

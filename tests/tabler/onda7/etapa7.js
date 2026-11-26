@@ -125,6 +125,10 @@ const comparar = () => php([path.join(L.RAIZ, 'tests', 'tabler', 'regua.php'), '
         'fin_bandeiras', 'fin_motivos', 'fin_recibo_formas', 'fin_recibo_titulos', 'fin_recibos', 'fin_sequencias', // o financeiro refeito (D-99): o recibo e as listas
         'esc_boletim_liberacao', 'esc_boletim_liberacao_hist', 'esc_conselho_hist', // a correção da escola (D-100): a liberação do boletim e o histórico do conselho
         'esc_notas_transferencia', 'esc_notas_transferencia_hist', // a correção da escola (D-102): as notas da escola de origem
+        'esc_hist_alteracao', 'esc_hist_aluno', 'esc_hist_dado_prova', 'esc_hist_disciplina', 'esc_hist_escola', 'esc_hist_logo', 'esc_hist_observacao',
+        'esc_hist_segmento', 'esc_hist_serie', 'esc_hist_texto', // o histórico escolar, Parte A (D-110): os cadastros e os textos
+        'esc_hist_area', 'esc_hist_itinerario', 'esc_hist_itinerario_aluno', 'esc_ano_letivo_fechamento', 'esc_ano_letivo_fechamento_hist', 'esc_hist_matriz', 'esc_hist_matriz_item', // Parte B (D-111): a matriz por ano
+        'esc_hist_vida_nota', 'esc_hist_vida_serie', // Parte C (D-112): a vida escolar
         'fin_propostas', 'fin_proposta_titulos', 'fin_proposta_parcelas', // o financeiro refeito, Parte 2 (D-105): as propostas de acordo
         'adms_paginas_recurso', 'col_paginas_modulo']; // o fechamento (D-106): as marcas do curso livre (configuração, com linhas)
       /* as regras financeiras nascem com a linha do padrão (D-98), e as listas do financeiro refeito com as delas (D-99: o

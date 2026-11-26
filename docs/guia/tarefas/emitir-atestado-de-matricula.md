@@ -32,7 +32,7 @@ Comprovar que o aluno está matriculado e cursando: curso, carga horária, mês 
 
 > Com a matrícula fora de Cursando, a ficha mostra o botão desligado e a razão: "atestado só com a matrícula em Cursando".
 
-> **Na escola:** a aba da ficha se chama **Documentos** e o painel emite só o atestado de matrícula (o histórico escolar da educação básica ainda não está no sistema). É o mesmo modelo e o mesmo código de verificação do atestado que o aluno e o responsável emitem pelo portal.
+> **Na escola:** a aba da ficha se chama **Documentos** e o painel emite o atestado de matrícula; o histórico escolar da educação básica sai pela vida escolar do aluno (veja [Emitir o histórico escolar](guia:emitir-historico-escolar)). É o mesmo modelo e o mesmo código de verificação do atestado que o aluno e o responsável emitem pelo portal.
 
 ### Aluno (portal)
 

@@ -18,7 +18,7 @@
 <li><strong>Emitir atestado de matrícula</strong>. A emissão guarda a cópia fiel dos dados do dia, o PDF e o código.</li>
 </ol>
 <blockquote>Com a matrícula fora de Cursando, a ficha mostra o botão desligado e a razão: &quot;atestado só com a matrícula em Cursando&quot;.</blockquote>
-<blockquote><strong>Na escola:</strong> a aba da ficha se chama <strong>Documentos</strong> e o painel emite só o atestado de matrícula (o histórico escolar da educação básica ainda não está no sistema). É o mesmo modelo e o mesmo código de verificação do atestado que o aluno e o responsável emitem pelo portal.</blockquote>
+<blockquote><strong>Na escola:</strong> a aba da ficha se chama <strong>Documentos</strong> e o painel emite o atestado de matrícula; o histórico escolar da educação básica sai pela vida escolar do aluno (veja <a class="guia-interno" data-guia="emitir-historico-escolar" href="{{GUIA}}emitir-historico-escolar">Emitir o histórico escolar</a>). É o mesmo modelo e o mesmo código de verificação do atestado que o aluno e o responsável emitem pelo portal.</blockquote>
 <h3>Aluno (portal)</h3>
 <ol>
 <li>Menu <strong>Acadêmico → Atestado de matrícula</strong>.</li>

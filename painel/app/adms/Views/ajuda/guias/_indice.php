@@ -2,7 +2,7 @@
 /* GERADO por database/ferramentas/guias/gerar_guias.php a partir de docs/guia/tarefas/ — não editar. */
 if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); }
 return array (
-  'versao' => '1.100.0',
+  'versao' => '1.101.0',
   'gerado' => '25/11/2026',
   'guias' => 
   array (
@@ -1115,7 +1115,7 @@ Salvar. Salvar a regra. Se ela está em uso, a tela mostra antes as disciplinas 
       ),
       'ordem' => 1,
       'entrou' => '1.22.0',
-      'mudou' => '1.100.0',
+      'mudou' => '1.101.0',
       'comece' => 
       array (
       ),
@@ -1604,6 +1604,38 @@ Na matrícula em curso, "Emitir atestado".
 Em "Atestados emitidos" ficam os do aluno e também os que a secretaria emitiu para ele.
 No PDF do portal, no lugar da assinatura: "Documento emitido eletronicamente em … Confira a autenticidade em …".',
       ),
+    ),
+    'emitir-historico-escolar' => 
+    array (
+      'titulo' => 'Emitir o histórico escolar',
+      'resumo' => 'Na escola, o histórico do Ensino Fundamental, pela vida escolar do aluno: a prévia, a 1ª via com o código de verificação, a 2ª via e o cancelamento.',
+      'perfis' => 
+      array (
+        0 => 'secretaria',
+        1 => 'administrador',
+      ),
+      'ordem' => 50,
+      'entrou' => '1.101.0',
+      'mudou' => '',
+      'comece' => 
+      array (
+      ),
+      'relacionados' => 
+      array (
+        0 => 'conferir-um-documento',
+        1 => 'emitir-2a-via',
+        2 => 'cancelar-uma-emissao',
+        3 => 'conhecer-com-a-demonstracao',
+      ),
+      'telas' => 
+      array (
+        0 => 'historico-escola-vida/buscar',
+        1 => 'historico-escola-emissao/previa',
+      ),
+      'imagens' => 
+      array (
+      ),
+      'tipo' => 'escola',
     ),
     'emitir-historico-final' => 
     array (

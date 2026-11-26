@@ -186,6 +186,11 @@ final class VcDemoEscola
         'horario_2026-8A' => ['O 8º ano e a chamada', 'passoHorario'],
         'chamada'         => ['O 8º ano e a chamada', 'passoChamada'],
         'financeiro_2026-8A' => ['O 8º ano e a chamada', 'passoFinanceiro'],
+        /* D-115: o histórico escolar, pela tela da secretaria, no fim (os números de tudo o que vem antes não mudam) */
+        'hist_cadastros'  => ['O histórico escolar', 'passoHistCadastros'],
+        'hist_matrizes'   => ['O histórico escolar', 'passoHistMatrizes'],
+        'hist_vidas'      => ['O histórico escolar', 'passoHistVidas'],
+        'hist_emissao'    => ['O histórico escolar', 'passoHistEmissao'],
     ];
 
     public static function rodar(string $chave, VcDemoContexto $c): void
@@ -1351,5 +1356,275 @@ final class VcDemoEscola
             $r = array_merge($r, array_keys($alunos));
         }
         return $r;
+    }
+
+    /* ------------------------------------------------------------- o histórico escolar (D-115) */
+    /**
+     * Histórico escolar, Parte F (D-115): a demonstração do colégio com o histórico pronto para emitir pela tela. Tudo
+     * pela tela da secretaria (os cadastros, as matrizes, a vida escolar, a emissão), no fim da montagem (os números de tudo
+     * o que vem antes não mudam). Os três casos:
+     *   - 255003 (o aluno da casa): o 6º ao 8º ano de antes do sistema, digitados com "esta escola", e o 9º de 2025 do
+     *     sistema, retido por falta — o histórico que só declara (deve cursar o 9º ano de novo);
+     *   - 255001 (o concluinte): o 6º ao 8º digitados com "esta escola" e o 9º de 2025 aprovado — o certificado de
+     *     conclusão do Ensino Fundamental; o histórico dele sai emitido na montagem (a lista e a conferência pública);
+     *   - 265044 (o que veio de outra escola): o 6º e o 7º ano digitados com a escola de origem fictícia e o 8º de 2026 em
+     *     curso, com as notas de transferência do 1º e do 2º bimestre (o "*" no bloco da transferência).
+     */
+    public const HIST_ESCOLAS = [
+        [self::INSTITUICAO, 'Cidade Exemplo', 'SC', 'particular', true],
+        ['Escola Municipal Aurora (fictícia)', 'Vila Inventada', 'SC', 'municipal', false],
+    ];
+    /** Os textos do Fundamental (a marca "(demonstração)" no ato da escola é a que a remoção procura). */
+    public const HIST_TEXTO_EF = [
+        'vigente_desde' => '2020-01-01',
+        'orgao_linha1' => 'REDE DE ENSINO FICTÍCIA',
+        'orgao_linha2' => 'Diretoria Regional Exemplo (fictícia)',
+        'ato_escola' => 'Autorização de funcionamento: Ato nº 000/2010 (demonstração)',
+        'ato_curso' => 'Ensino Fundamental autorizado pelo Ato nº 000/2010 (demonstração)',
+        'turno' => 'Diurno',
+        'escala' => 'Notas de 0 (zero) a 10 (dez); aprovado com média final 6,0 e frequência de 75% (demonstração).',
+        'secretaria_nome' => 'Marta Exemplo Souza (fictícia)',
+        'diretora_nome' => 'Clara Modelo Andrade (fictícia)',
+        'rotulo_registro' => 'R.A. Nº',
+        'rotulo_publicacao' => 'Nº da publicação',
+    ];
+    /** Os casos: RA => [o RA fictício, a certidão fictícia, [série => [ano, escola (o índice de HIST_ESCOLAS), resultado]]]. */
+    public const HIST_CASOS = [
+        255003 => ['000.000.003-X', 'Cartório Fictício de Cidade Exemplo, termo 0003 (demonstração)', [6 => [2022, 0, 'aprovado'], 7 => [2023, 0, 'aprovado'], 8 => [2024, 0, 'aprovado']]],
+        255001 => ['000.000.001-X', 'Cartório Fictício de Cidade Exemplo, termo 0001 (demonstração)', [6 => [2022, 0, 'aprovado'], 7 => [2023, 0, 'aprovado'], 8 => [2024, 0, 'aprovado']]],
+        265044 => ['000.000.044-X', 'Cartório Fictício de Vila Inventada, termo 0044 (demonstração)', [6 => [2024, 1, 'aprovado'], 7 => [2025, 1, 'aprovado']]],
+    ];
+    /** As médias digitadas dos anos de antes (em ciclo, pela ordem das disciplinas da tela). */
+    public const HIST_MEDIAS = ['8,0', '7,5', '9,0', '7,0', '8,5', '6,5', '9,5', '7,0', '8,0', '7,5'];
+
+    /** Os campos do formulário POST cuja ação contém `$acao` (o `$n`-ésimo), como o navegador mandaria. */
+    private static function formDe(string $html, string $acao, int $n = 0): array
+    {
+        $d = new DOMDocument();
+        @$d->loadHTML('<?xml encoding="utf-8"?>' . $html);
+        $x = new DOMXPath($d);
+        $achados = [];
+        foreach ($x->query('//form') as $f) {
+            if (strtolower($f->getAttribute('method')) === 'post' && str_contains($f->getAttribute('action'), $acao)) {
+                $achados[] = $f;
+            }
+        }
+        $f = $achados[$n] ?? null;
+        if (!$f) {
+            return [];
+        }
+        $o = [];
+        foreach ($x->query('.//input[@name]', $f) as $i) {
+            $t = strtolower($i->getAttribute('type'));
+            if (in_array($t, ['file', 'submit', 'button'], true) || (in_array($t, ['radio', 'checkbox'], true) && !$i->hasAttribute('checked'))) {
+                continue;
+            }
+            $o[$i->getAttribute('name')] = $i->getAttribute('value');
+        }
+        foreach ($x->query('.//select[@name]', $f) as $s) {
+            $v = null;
+            foreach ($x->query('.//option', $s) as $op) {
+                if ($v === null || $op->hasAttribute('selected')) {
+                    $v = $op->getAttribute('value');
+                    if ($op->hasAttribute('selected')) {
+                        break;
+                    }
+                }
+            }
+            $o[$s->getAttribute('name')] = (string) $v;
+        }
+        foreach ($x->query('.//textarea[@name]', $f) as $t) {
+            $o[$t->getAttribute('name')] = $t->textContent;
+        }
+        return $o;
+    }
+
+    /** As matérias da grade do Fundamental da demonstração, na ordem da grade. @return list<int> */
+    private static function histMateriasEf(VcDemoContexto $c): array
+    {
+        $s = $c->pdo->prepare('SELECT l.materia_id FROM uni_rh_cursos_disciplinas_grade l INNER JOIN rm_cursos_grades g ON g.id = l.grade_id INNER JOIN rm_cursos cu ON cu.id = g.curso_id
+            WHERE cu.nome = ? AND g.id = (SELECT MAX(g2.id) FROM rm_cursos_grades g2 WHERE g2.curso_id = cu.id) GROUP BY l.materia_id ORDER BY MIN(l.ordem), MIN(l.id)');
+        $s->execute([self::EF]);
+        return array_map('intval', $s->fetchAll(PDO::FETCH_COLUMN));
+    }
+
+    /** As aulas anuais de cada matéria da série na matriz do Fundamental do ano anterior (as que a secretaria digita nos anos de antes). @return array<int, int> */
+    private static function histAulasEf(VcDemoContexto $c, int $serie): array
+    {
+        $s = $c->pdo->prepare("SELECT l.materia_id, i.aulas_semanais * m.semanas FROM esc_hist_matriz m INNER JOIN esc_hist_matriz_item i ON i.matriz_id = m.id
+            INNER JOIN uni_rh_cursos_disciplinas_grade l ON l.id = i.linha_id INNER JOIN esc_hist_serie hs ON hs.modulo_id = l.modulo_id
+            INNER JOIN rm_cursos_grades g ON g.id = m.grade_id INNER JOIN rm_cursos cu ON cu.id = g.curso_id
+            WHERE cu.nome = ? AND m.ano = ? AND hs.numero = ? AND i.aulas_semanais > 0 ORDER BY i.ordem, l.ordem, l.id");
+        $s->execute([self::EF, self::ANO_ANTERIOR, $serie]);
+        return array_map('intval', $s->fetchAll(PDO::FETCH_KEY_PAIR));
+    }
+
+    /** Os cadastros do histórico: os níveis e as séries, as escolas, os textos do Fundamental, o logo e os dados dos alunos. */
+    public static function passoHistCadastros(VcDemoContexto $c): void
+    {
+        $sec = $c->entrar('secretaria.demo');
+        $p = $c->painel();
+        if (!$c->um("SELECT COUNT(*) FROM esc_hist_segmento WHERE nivel <> ''")) {
+            /* os níveis e os números propostos pelo nome; o curso livre fica fora do histórico */
+            $sec->req($p . 'historico-escola/cadastros?aba=series');
+            $f = self::formDe($sec->html, 'salvar-series');
+            $cl = (int) $c->um('SELECT id FROM rm_cursos WHERE nome = ?', [self::CL]);
+            if ($cl && array_key_exists("nivel[{$cl}]", $f)) {
+                $f["nivel[{$cl}]"] = '';
+            }
+            $sec->gravar($p . 'historico-escola/salvar-series', $f);
+            VcDemoPassos::confere($sec, 'os níveis dos segmentos e os números das séries do histórico');
+        }
+        $c->um("SELECT COUNT(*) FROM esc_hist_segmento WHERE nivel = 'EF'") ?: VcDemoPassos::falha('o nível do Fundamental não foi gravado: ' . $sec->alerta());
+        /* as disciplinas do Fundamental no histórico, na ordem da grade (a ordem gravada cria a linha de cada uma, que a
+           secretaria escolhe ao digitar um ano de antes) */
+        $efMaterias = self::histMateriasEf($c);
+        $efMaterias ?: VcDemoPassos::falha('a grade do Fundamental não tem disciplinas');
+        $lista = implode(',', array_map('intval', $efMaterias));
+        if ((int) $c->um("SELECT COUNT(DISTINCT materia_id) FROM esc_hist_disciplina WHERE materia_id IN ({$lista})") < count($efMaterias)) {
+            $sec->req($p . 'historico-escola/cadastros?aba=disciplinas');
+            $f = self::formDe($sec->html, 'salvar-disciplinas');
+            foreach ($efMaterias as $i => $mat) {
+                if (array_key_exists("ordem_ef[m{$mat}]", $f)) {
+                    $f["ordem_ef[m{$mat}]"] = (string) ($i + 1);
+                }
+            }
+            $sec->gravar($p . 'historico-escola/salvar-disciplinas', $f);
+            VcDemoPassos::confere($sec, 'a ordem das disciplinas do Fundamental no histórico');
+        }
+        (int) $c->um("SELECT COUNT(DISTINCT materia_id) FROM esc_hist_disciplina WHERE materia_id IN ({$lista})") === count($efMaterias)
+            ?: VcDemoPassos::falha('as disciplinas do Fundamental não entraram no histórico: ' . $sec->alerta());
+        foreach (self::HIST_ESCOLAS as [$nome, $mun, $uf, $rede, $esta]) {
+            if (!$c->um('SELECT id FROM esc_hist_escola WHERE nome = ?', [$nome])) {
+                $sec->gravar($p . 'historico-escola/salvar-escola', ['id' => '0', 'nome' => $nome, 'municipio' => $mun, 'uf' => $uf, 'rede' => $rede, 'ativo' => '1'] + ($esta ? ['esta_escola' => '1'] : []));
+                VcDemoPassos::confere($sec, "a escola {$nome}");
+            }
+            $c->um('SELECT id FROM esc_hist_escola WHERE nome = ?', [$nome]) ?: VcDemoPassos::falha("a escola {$nome} não foi gravada: " . $sec->alerta());
+        }
+        if (!$c->um("SELECT id FROM esc_hist_texto WHERE nivel = 'EF' AND ato_escola = ?", [self::HIST_TEXTO_EF['ato_escola']])) {
+            $sec->req($p . 'historico-escola/cadastros?aba=textos&nivel=EF&nova=1');
+            $f = self::formDe($sec->html, 'salvar-texto');
+            $sec->gravar($p . 'historico-escola/salvar-texto', array_merge($f, ['nivel' => 'EF', 'id' => '0'], self::HIST_TEXTO_EF));
+            VcDemoPassos::confere($sec, 'os textos do histórico do Fundamental');
+        }
+        $c->um("SELECT id FROM esc_hist_texto WHERE nivel = 'EF' AND ato_escola = ?", [self::HIST_TEXTO_EF['ato_escola']]) ?: VcDemoPassos::falha('os textos do Fundamental não foram gravados: ' . $sec->alerta());
+        if (!$c->um("SELECT COUNT(*) FROM esc_hist_logo WHERE nivel = 'EF'")) {
+            /* o logo de exemplo do histórico: o mesmo desenho neutro do logo fictício, com "histórico" */
+            $logo = imagecreatetruecolor(240, 120);
+            imagefill($logo, 0, 0, imagecolorallocate($logo, 255, 255, 255));
+            imagefilledellipse($logo, 60, 66, 70, 70, imagecolorallocate($logo, 29, 53, 87));
+            imagefilledrectangle($logo, 14, 66, 106, 104, imagecolorallocate($logo, 255, 255, 255));
+            imagestring($logo, 5, 120, 40, 'CH', imagecolorallocate($logo, 29, 53, 87));
+            imagestring($logo, 3, 120, 64, 'ficticio', imagecolorallocate($logo, 90, 110, 130));
+            $arq = (string) tempnam(sys_get_temp_dir(), 'logo');
+            imagepng($logo, $arq);
+            imagedestroy($logo);
+            $sec->req($p . 'historico-escola/logo', ['nivel' => 'EF', 'logo' => new CURLFile($arq, 'image/png', 'logo_historico_ficticio.png')], true);
+            @unlink($arq);
+            VcDemoPassos::confere($sec, 'o logo do histórico do Fundamental');
+        }
+        $c->um("SELECT COUNT(*) FROM esc_hist_logo WHERE nivel = 'EF'") ?: VcDemoPassos::falha('o logo do histórico não foi gravado: ' . $sec->alerta());
+        foreach (self::HIST_CASOS as $ra => [$rede, $certidao]) {
+            $aluno = self::um($c, 'SELECT id FROM col_usuarios WHERE rm = ?', [$ra], "o aluno {$ra}");
+            if ((string) $c->um('SELECT ra FROM esc_hist_aluno WHERE aluno_id = ?', [$aluno]) === $rede) {
+                continue;
+            }
+            $sec->req($p . "historico-escola/aluno/{$aluno}");
+            $f = self::formDe($sec->html, 'salvar-aluno');
+            $sec->gravar($p . "historico-escola/salvar-aluno/{$aluno}", array_merge($f, ['ra' => $rede, 'certidao' => $certidao]));
+            VcDemoPassos::confere($sec, "os dados do histórico de {$ra}");
+            (string) $c->um('SELECT ra FROM esc_hist_aluno WHERE aluno_id = ?', [$aluno]) === $rede ?: VcDemoPassos::falha("os dados do histórico de {$ra} não foram gravados: " . $sec->alerta());
+        }
+        $c->log('Os cadastros do histórico escolar: os níveis e as séries, as duas escolas (esta e a de origem, fictícia), os textos e o logo do Fundamental, o RA e a certidão (fictícios) de três alunos.');
+    }
+
+    /** As matrizes do Fundamental de 2025 e de 2026 (as aulas propostas pela grade); a de 2025, o ano fechado, travada. */
+    public static function passoHistMatrizes(VcDemoContexto $c): void
+    {
+        $sec = $c->entrar('secretaria.demo');
+        $p = $c->painel();
+        $curso = self::um($c, 'SELECT id FROM rm_cursos WHERE nome = ?', [self::EF], 'o segmento do Fundamental');
+        $grade = self::um($c, 'SELECT MAX(id) FROM rm_cursos_grades WHERE curso_id = ?', [$curso], 'a grade do Fundamental');
+        foreach ([self::ANO_ANTERIOR, self::ANO] as $ano) {
+            if (!$c->um('SELECT id FROM esc_hist_matriz WHERE grade_id = ? AND ano = ?', [$grade, $ano])) {
+                $sec->gravar($p . 'historico-escola-matriz/criar', ['grade_id' => (string) $grade, 'ano' => (string) $ano, 'copiar_de' => '0']);
+                VcDemoPassos::confere($sec, "a matriz do Fundamental de {$ano}");
+            }
+            $m = self::um($c, 'SELECT id FROM esc_hist_matriz WHERE grade_id = ? AND ano = ?', [$grade, $ano], "a matriz do Fundamental de {$ano}");
+            if ($ano === self::ANO_ANTERIOR && (string) $c->um('SELECT situacao FROM esc_hist_matriz WHERE id = ?', [$m]) !== 'travada') {
+                $sec->gravar($p . "historico-escola-matriz/travar/{$m}", ['travar' => '1']);
+                VcDemoPassos::confere($sec, "travar a matriz de {$ano}");
+            }
+        }
+        $c->log('As matrizes do histórico do Fundamental de ' . self::ANO_ANTERIOR . ' (travada: o ano está fechado) e de ' . self::ANO . ', com as aulas propostas pela grade.');
+    }
+
+    /** A vida escolar dos três casos: as séries do sistema confirmadas e as de antes digitadas, com as médias. */
+    public static function passoHistVidas(VcDemoContexto $c): void
+    {
+        $sec = $c->entrar('secretaria.demo');
+        $p = $c->painel();
+        $escolas = [];
+        foreach (self::HIST_ESCOLAS as $i => [$nome]) {
+            $escolas[$i] = self::um($c, 'SELECT id FROM esc_hist_escola WHERE nome = ?', [$nome], "a escola {$nome}");
+        }
+        foreach (self::HIST_CASOS as $ra => [, , $digitadas]) {
+            $aluno = self::um($c, 'SELECT id FROM col_usuarios WHERE rm = ?', [$ra], "o aluno {$ra}");
+            /* as séries que o sistema propõe (as turmas do aluno): confirmadas como estão */
+            for ($volta = 0; $volta < 3; $volta++) {
+                $sec->req($p . "historico-escola-vida/aluno/{$aluno}?nivel=EF");
+                $f = self::formDe($sec->html, "confirmar/{$aluno}");
+                if (!$f) {
+                    break;
+                }
+                $sec->gravar($p . "historico-escola-vida/confirmar/{$aluno}", $f);
+                VcDemoPassos::confere($sec, "confirmar uma série de {$ra}");
+            }
+            $c->um("SELECT COUNT(*) FROM esc_hist_vida_serie WHERE aluno_id = ? AND nivel = 'EF' AND origem = 'sistema'", [$aluno]) ?: VcDemoPassos::falha("a série do sistema de {$ra} não foi confirmada: " . $sec->alerta());
+            /* as de antes, digitadas, e as médias de cada disciplina da tela */
+            foreach ($digitadas as $serie => [$ano, $ie, $resultado]) {
+                $sid = (int) $c->um("SELECT id FROM esc_hist_vida_serie WHERE aluno_id = ? AND nivel = 'EF' AND serie = ? AND ano = ?", [$aluno, $serie, $ano]);
+                if (!$sid) {
+                    $sec->gravar($p . "historico-escola-vida/salvar-serie/{$aluno}", ['id' => '0', 'nivel' => 'EF', 'turma_id' => '0', 'serie' => (string) $serie, 'ano' => (string) $ano,
+                        'escola_id' => (string) $escolas[$ie], 'resultado' => $resultado, 'religioso' => '']);
+                    VcDemoPassos::confere($sec, "digitar o {$serie}º ano de {$ra}");
+                    $sid = self::um($c, "SELECT id FROM esc_hist_vida_serie WHERE aluno_id = ? AND nivel = 'EF' AND serie = ? AND ano = ?", [$aluno, $serie, $ano], "o {$serie}º ano de {$ra}");
+                }
+                if ($c->um('SELECT COUNT(*) FROM esc_hist_vida_nota WHERE vida_serie_id = ?', [$sid])) {
+                    continue;
+                }
+                /* a tela inclui uma disciplina por vez (a do cadastro, com a média e as aulas anuais do ano) */
+                $sec->req($p . "historico-escola-vida/notas/{$aluno}?serie={$sid}");
+                self::formDe($sec->html, "salvar-notas/{$aluno}") ?: VcDemoPassos::falha("a tela das notas do {$serie}º ano de {$ra} não abriu: " . $sec->alerta());
+                $k = 0;
+                foreach (self::histAulasEf($c, $serie) as $mat => $aulas) {
+                    $did = self::um($c, 'SELECT MIN(id) FROM esc_hist_disciplina WHERE materia_id = ?', [$mat], "a disciplina da matéria {$mat} no histórico");
+                    $sec->gravar($p . "historico-escola-vida/salvar-notas/{$aluno}", ['serie_id' => (string) $sid, 'nova_disciplina' => (string) $did, 'nova_nome' => '',
+                        'nova_media' => self::HIST_MEDIAS[($k + $serie + (int) $ra) % count(self::HIST_MEDIAS)], 'nova_aulas' => (string) $aulas]);
+                    VcDemoPassos::confere($sec, "a média de uma disciplina do {$serie}º ano de {$ra}");
+                    $k++;
+                }
+                $k ?: VcDemoPassos::falha("o {$serie}º ano não tem disciplinas na matriz de " . self::ANO_ANTERIOR);
+                (int) $c->um('SELECT COUNT(*) FROM esc_hist_vida_nota WHERE vida_serie_id = ?', [$sid]) === $k ?: VcDemoPassos::falha("as médias do {$serie}º ano de {$ra} não foram gravadas: " . $sec->alerta());
+            }
+        }
+        $c->log('A vida escolar de três alunos: o da casa (retido no 9º ano por falta), o concluinte do 9º ano e o que veio de outra escola (com as notas de transferência).');
+    }
+
+    /** Um histórico já emitido (o do concluinte), pela tela: a lista de emitidos e a conferência pública pelo código. */
+    public static function passoHistEmissao(VcDemoContexto $c): void
+    {
+        $sec = $c->entrar('secretaria.demo');
+        $p = $c->painel();
+        $aluno = self::um($c, 'SELECT id FROM col_usuarios WHERE rm = ?', [255001], 'o aluno 255001');
+        if (!$c->um("SELECT id FROM rm_historico_emissoes WHERE aluno_id = ? AND tipo = 'ESC_EF' AND situacao = 1", [$aluno])) {
+            $sec->req($p . "historico-escola-emissao/previa/{$aluno}?nivel=EF");
+            $f = self::formDe($sec->html, "emitir/{$aluno}");
+            $f ?: VcDemoPassos::falha('a tela da emissão do histórico de 255001 não trouxe o formulário: ' . $sec->alerta());
+            $sec->gravar($p . "historico-escola-emissao/emitir/{$aluno}", array_merge($f, ['nivel' => 'EF', 'confirmo' => '1']));
+            VcDemoPassos::confere($sec, 'emitir o histórico de 255001');
+        }
+        $c->um("SELECT id FROM rm_historico_emissoes WHERE aluno_id = ? AND tipo = 'ESC_EF'", [$aluno]) ?: VcDemoPassos::falha('o histórico de 255001 não foi emitido: ' . $sec->alerta());
+        $c->log('Um histórico do Fundamental emitido (o do concluinte do 9º ano): a 1ª via, com o código para a conferência pública.');
     }
 }

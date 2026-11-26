@@ -26,7 +26,9 @@ class AdmsHistoricoModelos
     /** E6 (D-371): o nome do documento por tipo — telas, verificação pública e nome do arquivo usam este. */
     public static function nomeDocumento(string $tipo): string
     {
-        return ['PARCIAL' => 'Histórico escolar parcial', 'FINAL' => 'Histórico escolar final', 'ATESTADO' => 'Atestado de matrícula'][$tipo] ?? 'Documento';
+        return ['PARCIAL' => 'Histórico escolar parcial', 'FINAL' => 'Histórico escolar final', 'ATESTADO' => 'Atestado de matrícula',
+            /* o histórico escolar da educação básica (D-114): o tipo próprio da escola, emitido pela vida escolar */
+            'ESC_EF' => 'Histórico escolar — Ensino Fundamental', 'ESC_EM' => 'Histórico escolar — Ensino Médio'][$tipo] ?? 'Documento';
     }
     public const MAX_ASSINATURA = 1048576;
 

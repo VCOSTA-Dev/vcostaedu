@@ -120,6 +120,8 @@ ensino superior IDÊNTICA em todas as baterias.
 | E5 | correção da escola, Parte 5: a demonstração da escola com o 8º ano, o responsável com o sobrenome do filho, a Matemática do professor em chamada, o aluno que entrou no meio do ano com as notas de transferência, a liberação do boletim e o guia com as etapas da demonstração | **feita** (1.98.0; D-104) |
 | L1 | fechamento, Parte 1: o curso livre, o terceiro tipo de instituição na instalação (o financeiro e a matrícula de ligar e desligar, o portal com a Página Inicial, o Moodle e a Ajuda, a demonstração do Instituto Ventoalto) e a entrada do aluno por tipo (o e-mail ou a matrícula no superior e no curso livre; o RM na escola) | **feita** (1.100.0; D-106, D-107) |
 | L2 | fechamento, Parte 2: o repositório do produto (um commit por versão, sem o histórico de trabalho: `repositorio_atualizar.php`, docs/REPOSITORIO.md), a pasta limpa sem as notas de trabalho e a higiene da exportação | **feita** (1.100.0; D-108) |
+| H1 | o histórico escolar da educação básica: os cadastros e os textos, a matriz curricular por ano, a vida escolar, os modelos do Fundamental e do Médio, a prévia, a emissão, a 2ª via e o cancelamento, a demonstração com o histórico, a saída no meio do ano e o ano letivo fechado (docs/HISTORICO_ESCOLAR.md) | **feita** (1.101.0; D-110 a D-117) |
+| H2 | o histórico escolar, o que ficou: a chamada da turma para as disciplinas cobertas (D-118, reservada) e emitir e cancelar como ações próprias (D-119, reservada) | a fazer |
 | 4 | o material regravado | a fazer |
 | 5 | o fechamento | a fazer |
 

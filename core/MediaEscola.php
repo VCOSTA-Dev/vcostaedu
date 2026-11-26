@@ -99,10 +99,12 @@ final class MediaEscola
                 $partes[] = self::v($nota) . ($conf['composicao'] === 'pesos' ? ' × ' . $peso : '');
                 continue;
             }
-            if (!empty($e['antesDaMatricula'])) {
+            if (!empty($e['antesDaMatricula']) || !empty($e['depoisDaSaida'])) {
+                /* D-117: a etapa que começou depois da saída do aluno (a transferência) fica fora da conta, como a de antes da matrícula */
+                $depois = empty($e['antesDaMatricula']);
                 $saidaEtapas[$ordem] = ['id' => (int) $e['id'], 'ordem' => $ordem, 'nome' => $nome, 'fechada' => $fechada, 'media' => null,
-                    'emRecuperacao' => false, 'recuperacao' => null, 'nota' => null, 'antesDaMatricula' => true];
-                $linhas[] = "{$nome}: antes da matrícula do aluno — sem nota, fora da média anual";
+                    'emRecuperacao' => false, 'recuperacao' => null, 'nota' => null, 'antesDaMatricula' => !$depois] + ($depois ? ['depoisDaSaida' => true] : []);
+                $linhas[] = $depois ? "{$nome}: depois da saída do aluno — sem nota, fora da média anual" : "{$nome}: antes da matrícula do aluno — sem nota, fora da média anual";
                 continue;
             }
             if ($fechada && !empty($e['gravada'])) {

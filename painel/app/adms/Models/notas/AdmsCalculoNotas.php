@@ -532,6 +532,20 @@ class AdmsCalculoNotas
         $ler = new \App\adms\Models\helper\AdmsRead();
         $ler->fullRead("SELECT rm, nome_aluno FROM portal_disciplinas_alunos WHERE rm_prof_mat_id = :o AND situacao = :s{$filtroRm} ORDER BY nome_aluno", "o={$id}&s=1{$par}");
         $alunos = $ler->getResultado() ?: [];
+        /* Histórico escolar, Parte H (D-117): o aluno que saiu da turma no meio do ano sem ir para outra turma (a
+           transferência para outra escola). Só no cálculo de um aluno (o histórico, a vida escolar): o ano parcial fica
+           legível, com as etapas até a data da saída; a etapa que começou depois dela fica fora da média (como a de antes
+           da matrícula). */
+        $saidaDe = [];
+        if (!$alunos && $soRm !== null && $turmaId > 0) {
+            $ler = new \App\adms\Models\helper\AdmsRead();
+            $ler->fullRead('SELECT x.saida, u.nome FROM esc_turma_alunos x INNER JOIN col_usuarios u ON u.id = x.usuario_id
+                WHERE x.turma_id = :t AND x.rm = :rm AND x.saida IS NOT NULL AND x.destino_turma_id IS NULL ORDER BY x.id DESC LIMIT :limit', "t={$turmaId}&rm={$soRm}&limit=1");
+            if ($sx = $ler->getResultado()[0] ?? null) {
+                $alunos = [['rm' => $soRm, 'nome_aluno' => (string) $sx['nome']]];
+                $saidaDe[$soRm] = substr((string) $sx['saida'], 0, 10);
+            }
+        }
         $notas = [];
         $ler = new \App\adms\Models\helper\AdmsRead();
         $ler->fullRead("SELECT rm, atividade_id, nota FROM rm_disciplina_atividade_notas WHERE rm_prof_mat_id = :o{$filtroRm}", "o={$id}{$par}");
@@ -655,7 +669,8 @@ class AdmsCalculoNotas
                 $forcada = self::$forcarEtapa === $eid;
                 $lista[] = ['id' => $eid, 'ordem' => (int) $e['ordem'], 'nome' => (string) $e['nome'], 'fechada' => isset($fech[$eid]) || $forcada,
                     'atividades' => $motor, 'recuperacao' => $rec[$eid][$rm] ?? null, 'gravada' => $forcada ? null : ($fech[$eid]['notas'][$rm] ?? null),
-                    'transferencia' => $transf[$eid][$rm] ?? null, 'antesDaMatricula' => isset($ingresso[$rm]) && (string) $e['fim'] < $ingresso[$rm]];
+                    'transferencia' => $transf[$eid][$rm] ?? null, 'antesDaMatricula' => isset($ingresso[$rm]) && (string) $e['fim'] < $ingresso[$rm],
+                    'depoisDaSaida' => isset($saidaDe[$rm]) && (string) $e['inicio'] > $saidaDe[$rm]]; // D-117
             }
             [$f, $c] = $faltas[$rm] ?? [0, 0];
             $calc = \Core\MediaEscola::calcular($lista, $ef['regra'], $conf, ['final' => $final, 'faltas' => $f, 'compensadas' => $c,
