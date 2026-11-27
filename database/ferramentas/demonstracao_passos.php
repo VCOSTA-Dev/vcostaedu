@@ -251,7 +251,8 @@ final class VcDemoPassos
         260107 => ['Gabriela Simulada Reis', 1], 260108 => ['Heitor Hipotético Alves', 2],
     ];
     public const SEM_SENHA = 260108;
-    /* Dados pessoais FICTÍCIOS (nascimento, naturalidade/UF, mãe e pai). CPF e RG são gerados a cada execução. */
+    /* Dados pessoais FICTÍCIOS (nascimento, naturalidade/UF, mãe e pai). O RG é gerado a cada execução; o CPF é o de
+       demonstração dos três tipos (1.103.1, D-136: 000 + a matrícula, com os dígitos verificadores calculados). */
     public const PESSOAIS = [
         260101 => ['1990-02-11', 'Cidade Exemplo', 'DF', 'Maria Exemplo da Silva', 'José Exemplo da Silva'],
         260102 => ['1987-07-23', 'Vila Imaginária', 'DF', 'Ana Fictícia Lima', 'Paulo Fictício Lima'],
@@ -380,25 +381,6 @@ final class VcDemoPassos
         return $senha;
     }
 
-    /* CPF de demonstração: 9 dígitos aleatórios + os 2 verificadores; gerado na hora, nunca gravado em arquivo. */
-    public static function cpfDemo(): string
-    {
-        do {
-            $n = '';
-            for ($i = 0; $i < 9; $i++) {
-                $n .= random_int(0, 9);
-            }
-        } while (preg_match('/^(\d)\1{8}$/', $n));
-        for ($t = 9; $t < 11; $t++) {
-            $s = 0;
-            for ($i = 0; $i < $t; $i++) {
-                $s += (int) $n[$i] * (($t + 1) - $i);
-            }
-            $n .= ((10 * $s) % 11) % 10;
-        }
-        return $n;
-    }
-
     public static function rgDemo(): string
     {
         return (string) random_int(1000000, 9999999);
@@ -478,7 +460,7 @@ final class VcDemoPassos
     private static function pessoais(int $ra): array
     {
         return isset(self::PESSOAIS[$ra]) ? ['nasc_data' => self::PESSOAIS[$ra][0], 'nasc_local' => self::PESSOAIS[$ra][1], 'nasc_uf' => self::PESSOAIS[$ra][2], 'nasc_nac' => 'Brasileira',
-            'nome_mae' => self::PESSOAIS[$ra][3], 'nome_pai' => self::PESSOAIS[$ra][4], 'cpf' => self::cpfDemo(), 'rg' => self::rgDemo(), 'rg_org' => 'SSP', 'rg_uf' => 'DF'] : [];
+            'nome_mae' => self::PESSOAIS[$ra][3], 'nome_pai' => self::PESSOAIS[$ra][4], 'cpf' => VcDemoEscola::cpfDaDemonstracao($ra), 'rg' => self::rgDemo(), 'rg_org' => 'SSP', 'rg_uf' => 'DF'] : [];
     }
 
     /* ------------------------------------------------------------- 1. administrador: polo, curso, equipe */

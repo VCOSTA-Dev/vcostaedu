@@ -5,7 +5,9 @@
  *      abre sem erro para um aluno COM lançamentos e para um SEM lançamentos; o aluno com título vê o cartão no portal;
  *   2. o administrador desliga em Configurações → Recursos da instituição (a tela só com o financeiro fora do curso livre):
  *      o menu, os relatórios do financeiro, o botão da ficha na ficha do aluno e os atalhos somem para os perfis; o
- *      endereço direto é recusado como página que não existe para o tipo; no portal, o cartão some e a ficha não abre;
+ *      endereço direto é recusado como página que não existe para o tipo, com o motivo (1.103.1, D-134): "O financeiro está
+ *      desligado nesta instalação." e, só para quem abre Recursos da instituição, "Ligue em Configurações → Recursos da
+ *      instituição."; no portal, o cartão some e a ficha não abre;
  *      nenhum dado é apagado (os títulos contados antes e depois);
  *   3. ligando de novo, tudo volta;
  *   4. a instalação: o instalador tem a escolha (ligada de partida na escola e no ensino superior; no curso livre, a de
@@ -24,6 +26,7 @@ const ETAPA = 'onda8/etapa56';
 const SENHA_ADM = process.env.VCOSTAEDU_ADMIN_SENHA || 'chave-somente-local-123';
 const TIPO = path.join(L.RAIZ, 'painel', 'app', 'adms', 'Models', 'helper', 'AdmsTipoInstituicao.php');
 const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const jaNaTela = async (p, sel) => ((await p.$(sel)) ? texto(p, sel) : ''); // 1.103.1: sem esperar o seletor que não está na tela
 const { sql, um } = X;
 const texto = async (p, sel) => ((await p.textContent(sel).catch(() => '')) || '').replace(/\s+/g, ' ').trim();
 const titulos = () => um('SELECT COUNT(*) FROM fin_titulos');
@@ -37,14 +40,18 @@ async function painel(navegador, usuario, senha, comTitulo, semTitulo) {
   const fichas = [];
   for (const id of [comTitulo, semTitulo]) {
     await s.p.goto(L.BASE + 'painel/financeiro/ficha/' + id);
-    fichas.push({ abriu: !!(await s.p.$('#fichaFinanceira')), recusada: !!(await s.p.$('#semAcesso')), erro: /Fatal error|Warning:|Exception/.test(await s.p.content()) });
+    fichas.push({ abriu: !!(await s.p.$('#fichaFinanceira')), recusada: !!(await s.p.$('#semAcesso')), erro: /Fatal error|Warning:|Exception/.test(await s.p.content()),
+      motivo: await jaNaTela(s.p, '#financeiroDesligado'), ondeLigar: await jaNaTela(s.p, '#ondeLigar'), perfilTexto: /peça ao administrador/.test(await jaNaTela(s.p, '#semAcesso')) });
   }
+  /* 1.103.1 (D-134): quem abre a tela Recursos da instituição (o caminho para ligar aparece só para ele) */
+  await s.p.goto(L.BASE + 'painel/recursos-livre/index').catch(() => {});
+  const abreRecursos = !(await s.p.$('#semAcesso'));
   await s.p.goto(L.BASE + 'painel/relatorios/listar').catch(() => {});
   const rel = await texto(s.p, 'body');
   await s.p.goto(L.BASE + 'painel/academicos/visualizar/' + comTitulo).catch(() => {});
   const botaoFicha = !!(await s.p.$('#abrirFichaFinanceira'));
   await s.ctx.close();
-  return { menuFin: /\/(fin-planos|fin-regras|fin-motivos|fin-bandeiras|financeiro)\//.test(menu), fichas, relFin: /Caixa|financeiro/i.test(rel), botaoFicha };
+  return { menuFin: /\/(fin-planos|fin-regras|fin-motivos|fin-bandeiras|financeiro)\//.test(menu), fichas, relFin: /Caixa|financeiro/i.test(rel), botaoFicha, abreRecursos };
 }
 async function portal(navegador, usuario, senha) {
   const s = await X.entrar(navegador, usuario, senha, 'portal', 1366);
@@ -113,6 +120,13 @@ async function gravar(navegador, ligado) {
     L.ok(!a2.menuFin && !s2.menuFin && a2.fichas.every((f) => !f.abriu && f.recusada) && s2.fichas.every((f) => !f.abriu) && !a2.botaoFicha,
       '2. desligado: sem o financeiro no menu (administrador e secretaria), sem o botão da ficha na ficha do aluno; o endereço direto é recusado como página que não existe');
     L.ok(!p2 || (!p2.cartao && !p2.ficha), '2. desligado, no portal: sem o cartão e sem a ficha do financeiro');
+    /* 1.103.1 (D-134): o texto da recusa diz o motivo; o caminho para ligar só para quem abre Recursos da instituição */
+    const motivoOk = (r) => r.fichas.every((f) => f.motivo === 'O financeiro está desligado nesta instalação.' && !f.perfilTexto
+      && (r.abreRecursos ? f.ondeLigar === 'Ligue em Configurações → Recursos da instituição.' : f.ondeLigar === ''));
+    const prof = Object.keys(c.painel).find((u) => /^prof/.test(u));
+    const pr2 = prof ? await painel(navegador, prof, c.painel[prof], comTitulo, semTitulo) : null;
+    L.ok(motivoOk(a2) && a2.abreRecursos && motivoOk(s2) && (!pr2 || (motivoOk(pr2) && !pr2.abreRecursos)),
+      `2. desligado, o endereço direto diz "O financeiro está desligado nesta instalação."; "Ligue em Configurações → Recursos da instituição." só para quem abre a tela (administrador: ${a2.abreRecursos}; ${sec}: ${s2.abreRecursos}${pr2 ? '; ' + prof + ': ' + pr2.abreRecursos : ''})`);
     L.ok(titulos() === t0 && t0 > 0, `2. nenhum dado apagado (${titulos()} títulos, como antes)`);
 
     /* 3. ligado de novo */

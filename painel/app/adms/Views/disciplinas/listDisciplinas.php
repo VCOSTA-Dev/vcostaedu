@@ -74,15 +74,16 @@ if (!defined('VCOSTAEDU')) {
           <div class="card shadow">
             <div class="card-body">
               <?php $ano = $this->dados['listaDisciplinas']['anoPeriodo'] ?? ''; $h = fn($t) => htmlspecialchars((string) $t, ENT_QUOTES, 'UTF-8'); /* E8c (R2/R3/R4) */ ?>
-              <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Disciplinas <?= $h($ano) ?>" data-ordem='[[1,"asc"]]'>
+              <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Disciplinas <?= $h($ano) ?>" data-ordem='[[2,"asc"]]'><?php /* 1.103.1 (D-138): "#" na primeira coluna; a ordem de partida continua pela disciplina */ ?>
                 <thead>
                   <?php $escolaLista = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); /* 2.5 (D-91): na escola, disciplina e segmento */ ?>
-                  <tr><th>Código</th><th><?= $escolaLista || \App\adms\Models\helper\AdmsTipoInstituicao::ehLivre() ? 'Disciplina' : 'Matéria' /* D-106 */ ?></th><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th>Professores</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr>
+                  <tr><th class="num">#</th><th>Código</th><th><?= $escolaLista || \App\adms\Models\helper\AdmsTipoInstituicao::ehLivre() ? 'Disciplina' : 'Matéria' /* D-106 */ ?></th><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th>Professores</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr>
                 </thead>
                 <tbody>
                   <?php foreach ($this->dados['listaDisciplinas']['disciplinas'] ?? [] as $disc) :
                     $enc = !empty($disc['encerrada_em']); $n = (int) ($disc['alunos'] ?? 0); ?>
-                    <tr>
+                    <tr data-oferta="<?= (int) $disc['id'] ?>">
+                      <td class="num"><?= (int) $disc['id'] ?></td>
                       <td><?= $h($disc['codmat']) ?></td>
                       <td><?= !empty($this->dados['botao']['vis_disc']) ? '<a href="' . URLADM . 'disciplinas/visualizar/' . (int) $disc['id'] . '">' . $h($disc['materia']) . '</a>' : $h($disc['materia']) ?></td>
                       <td><?= $h($disc['curso']) ?></td>

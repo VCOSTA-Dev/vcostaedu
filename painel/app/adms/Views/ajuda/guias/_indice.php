@@ -2,8 +2,8 @@
 /* GERADO por database/ferramentas/guias/gerar_guias.php a partir de docs/guia/tarefas/ — não editar. */
 if (!defined('VCOSTAEDU')) { header('Location: /'); die('Erro: Página não encontrada!'); }
 return array (
-  'versao' => '1.103.0',
-  'gerado' => '26/11/2026',
+  'versao' => '1.103.1',
+  'gerado' => '27/11/2026',
   'guias' => 
   array (
     'acompanhar-notas-e-resultado' => 
@@ -2920,7 +2920,7 @@ Agora o arquivo corrigido (vírgula ou ponto na nota; colunas a mais são ignora
       ),
       'ordem' => 30,
       'entrou' => '1.0.0',
-      'mudou' => '1.72.0',
+      'mudou' => '1.103.1',
       'comece' => 
       array (
         'professor' => 3,

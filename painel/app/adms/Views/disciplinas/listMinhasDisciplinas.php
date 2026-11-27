@@ -26,8 +26,16 @@ $escolaLista = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); // Onda 
                   <select name="pesqAno" id="pesqAno" class="form-select select2">
                     <option value="">Selecione o Ano</option>
                     <?php
-                    foreach ($this->dados['select']['periodos'] as $perio) {
-                      if ((isset($this->dados['listaDisciplinas']['anoPeriodo']) && !empty($this->dados['listaDisciplinas']['anoPeriodo'])) && ($this->dados['listaDisciplinas']['anoPeriodo'] == $perio['ano'])) {
+                    /* 1.103.1 (D-137): a mesma regra de Disciplinas (todas, D-483) — o ano que a lista mostra está SEMPRE no
+                       filtro, marcado (antes, com nenhum ano marcado como corrente, o filtro vinha só com "Selecione o Ano") */
+                    $periodosFiltro = (array) ($this->dados['select']['periodos'] ?? []);
+                    $anoMostrado = (int) ($this->dados['listaDisciplinas']['anoPeriodo'] ?? 0);
+                    if ($anoMostrado > 0 && !in_array($anoMostrado, array_map('intval', array_column($periodosFiltro, 'ano')), true)) {
+                      $periodosFiltro[] = ['ano' => $anoMostrado];
+                      usort($periodosFiltro, fn($a, $b) => (int) $a['ano'] <=> (int) $b['ano']);
+                    }
+                    foreach ($periodosFiltro as $perio) {
+                      if ($anoMostrado > 0 && $anoMostrado === (int) $perio['ano']) {
                         echo "<option value='{$perio['ano']}' selected>{$perio['ano']}</option>";
                       } else {
                         echo "<option value='{$perio['ano']}'>{$perio['ano']}</option>";
@@ -57,11 +65,12 @@ $escolaLista = \App\adms\Models\helper\AdmsTipoInstituicao::ehEscola(); // Onda 
                   <a href="<?= $h($baseF . $chaveF) ?>" class="btn btn-sm <?= $sitF === $chaveF ? 'btn-primary active' : 'btn-outline-primary' ?>" data-situacao="<?= $h($chaveF) ?>"<?= $sitF === $chaveF ? ' aria-current="true"' : '' ?>><?= $h($rotuloF) ?></a>
                 <?php endforeach; ?>
               </div>
-              <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Minhas disciplinas" data-ordem='[[1,"asc"]]'>
-                <thead><tr><th>Código</th><th>Disciplina</th><?php /* D-125 (C3.8): "Disciplina" nos três tipos */ ?><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr></thead>
+              <table id="tabelaDisciplinas" class="table table-sm table-striped table-hover table-compacta lista-dados" data-titulo="Minhas disciplinas" data-ordem='[[2,"asc"]]'><?php /* 1.103.1 (D-138): "#" na primeira coluna; a ordem de partida continua pela disciplina */ ?>
+                <thead><tr><th class="num">#</th><th>Código</th><th>Disciplina</th><?php /* D-125 (C3.8): "Disciplina" nos três tipos */ ?><th><?= $escolaLista ? 'Segmento' : 'Curso' ?></th><th>Turma</th><th class="num">Alunos</th><th>Situação</th><th class="nao-exportar nao-ordenar text-end">Ações</th></tr></thead>
                 <tbody>
                   <?php foreach ($this->dados['listaDisciplinas']['disciplinas'] ?? [] as $disc) : $id = (int) $disc['id']; $soConsulta = !empty($disc['so_consulta']); ?>
                     <tr data-oferta="<?= htmlspecialchars((string) ($id), ENT_QUOTES, 'UTF-8') ?>" data-so-consulta="<?= $soConsulta ? '1' : '0' ?>">
+                      <td class="num"><?= $id ?></td>
                       <td><?= $h($disc['codmat']) ?></td>
                       <td><a href="<?= URLADM . 'disciplinas/visualizar/' . $id ?>"><?= $h($disc['materia']) ?></a><?php if ($soConsulta) : ?> <span class="badge bg-azure-lt vc-so-consulta" title="<?= $escolaLista ? 'Disciplina de um segmento que você coordena' : 'Disciplina de um curso que você coordena' ?>: você consulta, não lança">só consulta</span><?php endif; ?></td>
                       <td><?= $h($disc['curso']) ?></td>

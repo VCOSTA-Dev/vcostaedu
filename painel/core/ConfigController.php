@@ -143,8 +143,15 @@ class ConfigController extends Config
             return;
         }
         $ler = new \App\adms\Models\helper\AdmsRead();
-        $ler->fullRead('SELECT nome_pagina FROM adms_paginas WHERE controller = :c AND metodo = :m LIMIT :limit', "c={$this->urlController}&m={$this->urlMetodo}&limit=1");
+        $ler->fullRead('SELECT id, nome_pagina FROM adms_paginas WHERE controller = :c AND metodo = :m LIMIT :limit', "c={$this->urlController}&m={$this->urlMetodo}&limit=1");
         $nome = (string) ($ler->getResultado()[0]['nome_pagina'] ?? '');
+        /* 1.103.1 (D-134): a página é do financeiro e o financeiro está desligado — a recusa é a mesma, o texto diz o
+           motivo; o caminho para ligar, só para quem abre Configurações → Recursos da instituição */
+        $idPagina = (int) ($ler->getResultado()[0]['id'] ?? 0);
+        $financeiroDesligado = $idPagina > 0 && (\App\adms\Models\helper\AdmsTipoInstituicao::recursos()[$idPagina] ?? null) === 'financeiro'
+            && !\App\adms\Models\helper\AdmsTipoInstituicao::recursoLigado('financeiro');
+        $podeLigar = $financeiroDesligado
+            && !empty((new \App\adms\Models\AdmsBotao())->valBotao(['ligar' => ['menu_controller' => 'recursos-livre', 'menu_metodo' => 'index']])['ligar']);
         $ler = new \App\adms\Models\helper\AdmsRead();
         $ler->fullRead('SELECT nome FROM adms_niveis_acessos WHERE id = :n LIMIT :limit', 'n=' . (int) ($_SESSION['colUsuario_nivel'] ?? 0) . '&limit=1');
         $perfil = (string) ($ler->getResultado()[0]['nome'] ?? '');
@@ -153,7 +160,8 @@ class ConfigController extends Config
         $aqui = (string) parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
         $voltar = str_starts_with($ref, URLADM) && (string) parse_url($ref, PHP_URL_PATH) !== $aqui ? $ref : '';
         $dados = ['menus' => (new \App\adms\Models\AdmsMenus())->itemMenu(), 'paginaAtiva' => 0, 'nomeTela' => $nome, 'perfil' => $perfil, 'voltar' => $voltar,
-            'tela' => strtolower((string) $this->urlController) . '/' . (string) $this->urlMetodo];
+            'tela' => strtolower((string) $this->urlController) . '/' . (string) $this->urlMetodo,
+            'financeiroDesligado' => $financeiroDesligado, 'podeLigar' => $podeLigar];
         (new \Core\ConfigView('adms/Views/erro/semAcesso', $dados))->renderizar('tabler');
     }
 

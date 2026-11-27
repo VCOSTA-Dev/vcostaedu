@@ -706,3 +706,49 @@ A interface ganha `POST /inscricoes`: o cadastro, a matrícula e a turma (na esc
 **As provas:** a Onda 8, etapa 56 (o ensino superior do ciclo): de partida ligado, a ficha abre sem erro com e sem lançamentos; desligado pela tela, o menu, a ficha pelo endereço, o botão da ficha e o portal somem, com os títulos iguais; ligado de novo, tudo volta; o instalador com a escolha; a sabotagem (a chave ignorada fora do curso livre) é pega e o arquivo volta igual.
 
 **Motivo:** nem toda escola ou faculdade usa o financeiro do sistema; quem não usa não deve ver telas que não servem.
+
+## D-134 — A 1.103.1: o financeiro desligado diz o motivo no endereço direto
+**Decisão (1.103.1):** com o financeiro desligado, quem abre uma página do financeiro pelo endereço continua recusado do mesmo jeito (a mesma resposta, HTTP 403), mas a tela diz o motivo: o título "O financeiro está desligado" e o texto "O financeiro está desligado nesta instalação."; para quem abre **Configurações → Recursos da instituição** (a mesma permissão do botão da tela), também "Ligue em Configurações → Recursos da instituição."; para os outros perfis, sem o caminho. Antes, a tela dizia que o perfil não abria a página e mandava pedir ao administrador, inclusive para o próprio administrador. Vale para todas as páginas marcadas como do financeiro (`adms_paginas_recurso`).
+- **Decidido por conta própria (a confirmar):** o título da tela também muda nesse caso (antes, "Você não tem acesso a esta tela"). A resposta em JSON (o pedido de uma tela por trás) continua a mesma.
+
+**As provas:** a Onda 8, etapa 56: desligado, a ficha pelo endereço diz o motivo, sem o texto do perfil; o caminho para ligar aparece para o administrador (que abre a tela) e, para a secretaria e o professor, só se o perfil abre a tela.
+
+**Motivo:** o administrador via "peça ao administrador para liberá-la", sem saber que o financeiro estava desligado.
+
+## D-135 — A 1.103.1: o instalador não deixa o navegador preencher o usuário e a senha do banco
+**Decisão (1.103.1):** no passo do banco do instalador, o campo Usuário tem `autocomplete="off"` e o campo Senha `autocomplete="new-password"` (o Chrome ignora o "off" num campo de senha; com "new-password", não preenche com um login salvo). Nada mais muda na tela.
+
+**As provas:** a Onda 8, etapa 55 (a tela do banco).
+
+**Motivo:** o navegador punha no usuário e na senha do banco o login salvo de outro sistema.
+
+## D-136 — A 1.103.1: o CPF de demonstração igual nos três tipos
+**Decisão (1.103.1):** a demonstração do ensino superior passa a dar aos alunos o mesmo CPF de demonstração da escola e do curso livre (D-69): 000, seguido da matrícula, com os dois dígitos verificadores calculados. Antes, eram 9 dígitos aleatórios a cada montagem, que podiam coincidir com um CPF de verdade. A escola (os alunos, os responsáveis e o Pix das formas de pagamento) e o curso livre já usavam esse esquema.
+- **A régua:** o CPF já é coluna volátil na régua (ele mudava a cada montagem); o retrato do superior não muda e não precisa de decisão de régua.
+
+**As provas:** a Onda 8, etapa 49 (o ensino superior do ciclo): todos os CPFs dos alunos no esquema.
+
+**Motivo:** nenhum CPF da demonstração deve poder ser o de uma pessoa.
+
+## D-137 — A 1.103.1: o filtro por ano de Minhas Disciplinas com a regra de Disciplinas
+**Decisão (1.103.1):** o filtro "Filtro por Ano" de Minhas Disciplinas usa a mesma regra de Disciplinas (todas): os anos vêm da mesma origem (`adms_periodos_letivos` com `situacaodisciplina = 1`; antes, Minhas Disciplinas lia `situacao = 1`) e o ano que a lista mostra está sempre no filtro, marcado (a regra da D-483, de Disciplinas). Antes, numa instalação sem nenhum ano marcado como corrente, a lista mostrava as disciplinas do ano de partida e o filtro vinha só com "Selecione o Ano". O defeito vinha da cópia do sistema de origem (a 1.18.4, o primeiro commit do produto).
+- **Decidido por conta própria (a confirmar):** com a mesma regra, o filtro oferece os anos marcados como do acadêmico e o ano mostrado; um ano com disciplinas que não está marcado nem é o mostrado não aparece (igual a Disciplinas).
+
+**As provas:** a Onda 8, etapa 50 (a escola: o administrador, a direção, a coordenação e o professor), a etapa 49 (o ensino superior, os mesmos perfis) e a etapa 46 (o curso livre, nas listas que cada perfil abre).
+
+**Motivo:** o filtro vazio com a lista cheia, na demonstração da escola.
+
+## D-138 — A 1.103.1: o número da oferta nas listas de disciplinas
+**Decisão (1.103.1):** em Disciplinas (todas) e em Minhas Disciplinas, a primeira coluna é **#**, com o número daquela oferta (o identificador da disciplina na turma, único), como nas outras listas do sistema que já usam "#". A coluna **Código** continua como está (o código da disciplina na matriz, que se repete em cada turma). A busca da lista acha pelo número, e ele sai no Excel, no CSV, no PDF e na impressão (as colunas que a lista exporta). A tela da disciplina (a que abre pelo olho) mostra o mesmo "#" no cabeçalho, para o usuário informar o número num atendimento. Vale nos três tipos; a ordem de partida da lista continua pela disciplina.
+- **Decidido por conta própria (a confirmar):** a coluna Código ficou (o pedido dava as duas leituras: "continua como está" ou "sai"; a mais conservadora é manter).
+
+**As provas:** a Onda 8, etapa 50 (a escola: os quatro perfis, a mesma disciplina em turmas diferentes com números diferentes, a busca pelo número, as colunas exportadas e o cabeçalho da tela da disciplina), a etapa 49 (o ensino superior) e a etapa 46 (o curso livre).
+
+**Motivo:** "11 Arte" se repetia em cada turma; num atendimento, não dava para dizer qual disciplina era.
+
+## D-139 — A 1.103.1: a verificação pública com o vocabulário do tipo
+**Decisão (1.103.1):** a página pública de verificação de documento (verificar/código) diz o rótulo do curso pelo vocabulário do tipo de instituição, como o boletim (D-125): "Segmento" na escola, "Curso" no ensino superior e no curso livre. O comprovante de verificação é a impressão da mesma página e leva o mesmo rótulo. Só o rótulo muda: o conteúdo e o layout do documento emitido não mudam.
+
+**As provas:** a Parte E do histórico (a escola): o rótulo na tela e na impressão; o PDF original e a 2ª via continuam conferindo.
+
+**Motivo:** "Curso: Ensino Fundamental" na verificação de um documento da escola.

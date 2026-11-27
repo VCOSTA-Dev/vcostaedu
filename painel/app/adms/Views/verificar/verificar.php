@@ -88,7 +88,7 @@ $res = [
           <div class="linha"><dt>Documento</dt><dd id="tipoDocumento"><?= $h(\App\adms\Models\historico\AdmsHistoricoModelos::nomeDocumento((string) $e['tipo'])) ?></dd></div>
           <div class="linha"><dt>Emitido em</dt><dd><?= $dt($e['emitidoEm']) ?></dd></div>
           <div class="linha"><dt>Instituição</dt><dd><?= $h($e['instituicao']) ?></dd></div>
-          <div class="linha"><dt>Curso</dt><dd><?= $h($e['curso']) ?></dd></div>
+          <div class="linha"><dt id="rotuloCurso"><?= $h(\VcVocabulario::termo('curso', \App\adms\Models\helper\AdmsTipoInstituicao::atual(), false, true)) /* 1.103.1 (D-139): na escola, "Segmento" */ ?></dt><dd><?= $h($e['curso']) ?></dd></div>
           <div class="linha"><dt>Aluno</dt><dd id="alunoVerificado"><?= $h($e['aluno']) ?></dd></div>
           <div class="linha"><dt>CPF</dt><dd id="cpfVerificado"><?= $h($e['cpf']) ?></dd></div>
         </dl>

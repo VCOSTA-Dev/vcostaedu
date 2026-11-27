@@ -92,6 +92,47 @@ const texto = async (p, sel) => ((await p.textContent(sel).catch(() => '')) || '
     L.ok(th.includes('Disciplina') && !th.includes('Matéria') && botaoReg === 'Atualizar a prévia do envio',
       `8 e 9. Minhas Disciplinas com a coluna "Disciplina"; o registro com "${botaoReg}"`);
 
+    /* 1.103.1 (D-137): o filtro por ano de Minhas Disciplinas oferece o ano que a lista mostra, marcado — o
+       administrador, a direção, a coordenação e o professor (antes, só "Selecione o Ano", com a lista cheia) */
+    const perfisLista = [['administrador', SENHA_ADM]].concat(['dire', 'coord', 'prof'].map((k) => Object.keys(c.painel).find((u) => u.includes(k)))
+      .filter(Boolean).map((u) => [u, c.painel[u]]));
+    const filtros = [];
+    for (const [u, sn] of perfisLista) {
+      const r = await X.listasDisciplinas(navegador, u, sn);
+      filtros.push({ u, ok: X.filtroAnoOk(r.minhas) && X.filtroAnoOk(r.todas), num: X.colunaNumeroOk(r.minhas) && X.colunaNumeroOk(r.todas), linhas: r.minhas ? r.minhas.linhas.length : 0, opcoes: r.minhas ? r.minhas.opcoes.join('/') : '-', marcado: r.minhas ? r.minhas.marcado : '-' });
+    }
+    L.ok(perfisLista.length === 4 && filtros.every((f) => f.ok) && filtros.some((f) => f.linhas > 0),
+      `10. na escola, o filtro por ano de Minhas Disciplinas com o ano que a lista mostra: ${filtros.map((f) => `${f.u} ${f.linhas} linha(s), ${f.opcoes || 'vazio'} (${f.marcado || 'nada marcado'})`).join('; ')}`);
+
+    /* 1.103.1 (D-138): a primeira coluna "#" com o número da oferta, único (a disciplina que se repete em cada turma tem
+       números diferentes); a busca acha pelo número; o número sai no Excel, no CSV, no PDF e na impressão (as colunas que
+       a lista exporta); o "#" no cabeçalho da tela da disciplina */
+    L.ok(filtros.every((f) => f.num), `11. na escola, a primeira coluna "#" com o número da oferta, único, antes do "Código", em Disciplinas e em Minhas Disciplinas, para os ${filtros.length} perfis`);
+    const ad = await X.entrar(navegador, 'administrador', SENHA_ADM, 'painel', 1366);
+    await ad.p.goto(L.BASE + 'painel/disciplinas/listar');
+    const lista = await ad.p.evaluate(() => {
+      const linhas = [...document.querySelectorAll('#tabelaDisciplinas tbody tr')].map((tr) => ({ n: tr.cells[0].textContent.trim(), cod: tr.cells[1].textContent.trim(), disc: tr.cells[2].textContent.trim() }));
+      const dt = window.jQuery && window.jQuery('#tabelaDisciplinas').DataTable();
+      const exp = dt ? dt.buttons.exportData({ columns: ':visible:not(.nao-exportar)' }) : null;
+      return { linhas, cabExport: exp ? exp.header : [], primeiraExport: exp && exp.body[0] ? exp.body[0][0] : '' };
+    });
+    const mesmoCodigo = lista.linhas.filter((x) => lista.linhas.some((y) => y !== x && y.cod === x.cod && y.disc === x.disc));
+    const alvo = lista.linhas[Math.floor(lista.linhas.length / 2)] || { n: '' };
+    await ad.p.fill('#tabelaDisciplinas_filter input, .dataTables_filter input, .dt-search input', alvo.n).catch(() => {});
+    await ad.p.waitForTimeout(400);
+    const achadas = await ad.p.$$eval('#tabelaDisciplinas tbody tr', (l) => l.map((tr) => tr.cells[0].textContent.trim()).filter((x) => /^[0-9]+$/.test(x)));
+    await ad.p.goto(L.BASE + 'painel/disciplinas/visualizar/' + alvo.n);
+    const cab = await texto(ad.p, '#numeroOferta');
+    await L.print(ad.p, ETAPA, 'disciplina-numero');
+    await ad.ctx.close();
+    L.ok(mesmoCodigo.length >= 2 && new Set(mesmoCodigo.map((x) => x.n)).size === mesmoCodigo.length,
+      `11. a mesma disciplina, com o mesmo código, em turmas diferentes: números diferentes (${mesmoCodigo.slice(0, 4).map((x) => '#' + x.n + ' ' + x.cod + ' ' + x.disc).join(', ')})`);
+    L.ok(alvo.n && achadas.includes(alvo.n) && achadas.length < lista.linhas.length,
+      `11. a busca da lista acha pelo número (#${alvo.n}: ${achadas.length} linha(s))`);
+    L.ok(lista.cabExport[0] === '#' && /^[0-9]+$/.test(String(lista.primeiraExport)),
+      `11. o "#" sai nas colunas exportadas (Excel, CSV, PDF e impressão usam as mesmas): ${lista.cabExport.slice(0, 3).join(' | ')}`);
+    L.ok(cab === '#' + alvo.n, `11. o "#" no cabeçalho da tela da disciplina ("${cab}")`);
+
     /* sabotagem: a tela de Faltas sem o ramo da escola */
     const orig = fs.readFileSync(FALTAS, 'utf8');
     const trecho = '$escF = \\App\\adms\\Models\\helper\\AdmsTipoInstituicao::ehEscola();';

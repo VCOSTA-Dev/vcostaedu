@@ -63,7 +63,8 @@ class AdmsListarMinhasDisciplinas
     public function listarCadastro()
     {
         $listAnoPeriodos = new \App\adms\Models\helper\AdmsRead();
-        $listAnoPeriodos->fullRead("SELECT id, ano FROM adms_periodos_letivos WHERE situacao=:sit ORDER BY ano asc", "sit=1");
+        /* 1.103.1 (D-137): a mesma origem dos anos de Disciplinas (todas) — antes, "situacao", e o filtro vinha vazio */
+        $listAnoPeriodos->fullRead("SELECT id, ano FROM adms_periodos_letivos WHERE situacaodisciplina=:sit ORDER BY ano asc", "sit=1");
         $this->resultado['periodos'] = $listAnoPeriodos->getResultado();
         
         $listProfessores = new \App\adms\Models\helper\AdmsRead();

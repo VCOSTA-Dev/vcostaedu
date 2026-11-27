@@ -29,6 +29,40 @@ async function entrar(navegador, usuario, senha, lado = 'painel', largura = 1366
   return { ctx, p };
 }
 
+/**
+ * 1.103.1 (D-137, D-138): o que um perfil vê nas listas de disciplinas — Minhas Disciplinas (todas as situações) e, se
+ * o perfil abre, Disciplinas (todas): o filtro por ano (as opções e o marcado), o cabeçalho e as linhas (a primeira
+ * célula e o número da oferta da linha).
+ */
+async function listasDisciplinas(navegador, usuario, senha) {
+  const s = await entrar(navegador, usuario, senha, 'painel', 1366);
+  const ler = async (url) => {
+    await s.p.goto(L.BASE + url);
+    if (await s.p.$('#semAcesso')) { return null; }
+    return s.p.evaluate(() => {
+      const sel = document.querySelector('#pesqAno');
+      const opcoes = sel ? [...sel.options].map((o) => o.value).filter(Boolean) : [];
+      const marcado = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].value : '';
+      const th = [...document.querySelectorAll('#tabelaDisciplinas thead th')].map((x) => x.textContent.trim());
+      const linhas = [...document.querySelectorAll('#tabelaDisciplinas tbody tr')].filter((tr) => tr.cells.length > 1)
+        .map((tr) => ({ primeira: tr.cells[0].textContent.trim(), oferta: tr.getAttribute('data-oferta') || (tr.querySelector('a[href*="disciplinas/visualizar/"]') || { href: '' }).href.replace(/.*visualizar\//, '') }));
+      const t = document.querySelector('#tabelaDisciplinas');
+      return { opcoes, marcado, th, linhas, ordem: t ? t.getAttribute('data-ordem') : '' };
+    });
+  };
+  const minhas = await ler('painel/minhas-disciplinas/listar?situacao=todas');
+  const todas = await ler('painel/disciplinas/listar');
+  await s.ctx.close();
+  return { minhas, todas };
+}
+
+/** O filtro por ano de uma lista oferece o ano que a lista mostra, marcado (D-137); uma lista vazia passa. */
+const filtroAnoOk = (l) => !l || l.linhas.length === 0 || (l.opcoes.length > 0 && /^\d{4}$/.test(l.marcado) && l.opcoes.includes(l.marcado));
+
+/** A primeira coluna "#" com o número da oferta, único, antes do "Código"; a ordem de partida pela disciplina (D-138). */
+const colunaNumeroOk = (l) => !l || (l.th[0] === '#' && l.th[1] === 'Código' && l.ordem === '[[2,"asc"]]'
+  && l.linhas.every((x) => /^[0-9]+$/.test(x.primeira) && x.primeira === x.oferta) && new Set(l.linhas.map((x) => x.primeira)).size === l.linhas.length);
+
 /** O plano (pela tela) e as parcelas dele para o aluno (pela ficha). @return {plano, titulos: [{id, parcela, vencimento}]} */
 async function arranjo(p, ra, { nome = 'Plano de prova', parcelas = 3, valor = '500,00', dia = 20, mes = 2 } = {}) {
   await p.goto(L.BASE + 'painel/fin-planos/listar');
@@ -188,4 +222,4 @@ async function desfazerRenegociacao(p, aluno, ren, { motivo = 81, observacao = '
 }
 
 module.exports = { sql, um, montar, cred, entrar, arranjo, novoTitulo, abrirAcao, enviar, receber, desfazerRecebimento, situacao, hoje, diasAntes, ymd,
-  renegociar, efetivarProposta, desfazerRenegociacao, noMes, recusaDaTela };
+  renegociar, efetivarProposta, desfazerRenegociacao, noMes, recusaDaTela, listasDisciplinas, filtroAnoOk, colunaNumeroOk };

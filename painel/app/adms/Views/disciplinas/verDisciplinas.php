@@ -17,7 +17,7 @@ if (!empty($this->dados['info_dado']['info'])) {
 
 ?>
   <div class="vc-pagina">
-    <?php ob_start(); ?><a href="<?= htmlspecialchars((string) (URLADM . "{$btnDisciplinaVoltar}{$info['info'][0]['ano']}"), ENT_QUOTES, 'UTF-8') ?>" class="btn btn-outline-primary rounded-circle" title="Voltar"><i class="fas fa-arrow-left"></i></a> <?= htmlspecialchars((string) ("{$info['info'][0]['materia']} - {$info['info'][0]['codtur']}"), ENT_QUOTES, 'UTF-8') ?><?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
+    <?php ob_start(); ?><a href="<?= htmlspecialchars((string) (URLADM . "{$btnDisciplinaVoltar}{$info['info'][0]['ano']}"), ENT_QUOTES, 'UTF-8') ?>" class="btn btn-outline-primary rounded-circle" title="Voltar"><i class="fas fa-arrow-left"></i></a> <?= htmlspecialchars((string) ("{$info['info'][0]['materia']} - {$info['info'][0]['codtur']}"), ENT_QUOTES, 'UTF-8') ?> <span class="text-secondary fw-normal" id="numeroOferta" title="O número desta disciplina (informe num atendimento)">#<?= (int) $info['info'][0]['id'] /* 1.103.1 (D-138) */ ?></span><?php $paginaTitulo = ob_get_clean(); include 'app/adms/Views/include_tabler/_page_header.php'; ?>
     <section class="page-body">
       <div class="container-xl">
         <?php

@@ -80,6 +80,7 @@ async function superior(navegador, cred) {
 (async () => {
   const { navegador } = await L.abrir();
   const shaBoletim = sha(BOLETIM);
+  const shaBoletimPortal = sha(BOLETIM_PORTAL); // 1.102.1 (D-125): o do portal pega o tipo pelo helper do portal; os dois não são mais iguais
   try {
     console.log('\n== Onda 7, Etapa 1 — os acertos da demonstração da escola');
     const cred = JSON.parse(fs.readFileSync(path.join(SAIDA, 'credenciais.json'), 'utf8'));
@@ -98,14 +99,18 @@ async function superior(navegador, cred) {
 
     /* sabotagem: a faixa volta a escrever "— grade" */
     const orig = fs.readFileSync(BOLETIM, 'utf8');
-    const ponto = "$html .= $cel('Curso', $m['curso'])";
-    if (!orig.includes(ponto)) throw new Error('a sabotagem não achou a faixa do boletim');
-    fs.writeFileSync(BOLETIM, orig.replace(ponto, "$html .= $cel('Curso', $m['curso'] . ' — grade ' . (int) $m['versao'])"));
-    fs.copyFileSync(BOLETIM, BOLETIM_PORTAL);
+    const origPortal = fs.readFileSync(BOLETIM_PORTAL, 'utf8');
+    const ponto = "$html .= $cel(self::rotuloCurso(), $m['curso'])"; // 1.102.1 (D-125): o rótulo pelo vocabulário do tipo
+    if (!orig.includes(ponto) || !origPortal.includes(ponto)) throw new Error('a sabotagem não achou a faixa do boletim');
+    const sabotar = (t) => t.replace(ponto, "$html .= $cel(self::rotuloCurso(), $m['curso'] . ' — grade ' . (int) $m['versao'])");
     let sab;
-    try { sab = await superior(navegador, cred); } finally { fs.writeFileSync(BOLETIM, orig); fs.copyFileSync(BOLETIM, BOLETIM_PORTAL); }
+    try {
+      fs.writeFileSync(BOLETIM, sabotar(orig));
+      fs.writeFileSync(BOLETIM_PORTAL, sabotar(origPortal));
+      sab = await superior(navegador, cred);
+    } finally { fs.writeFileSync(BOLETIM, orig); fs.writeFileSync(BOLETIM_PORTAL, origPortal); }
     L.ok(!semGrade(sab.tela) && !semGrade(sab.portal), 'sabotagem (a faixa do boletim com "— grade"): a prova acusa, na tela e no portal');
-    L.ok(sha(BOLETIM) === shaBoletim && sha(BOLETIM_PORTAL) === shaBoletim, 'o arquivo sabotado voltou igual (sha256), no painel e no portal');
+    L.ok(sha(BOLETIM) === shaBoletim && sha(BOLETIM_PORTAL) === shaBoletimPortal, 'o arquivo sabotado voltou igual (sha256), no painel e no portal');
 
     /* B. a demonstração da escola, do zero, pela tela */
     const r = spawnSync(process.execPath, [path.join(__dirname, '..', 'onda6', 'medir_demo.js'), 'escola', 'onda7-etapa1'], { encoding: 'utf8', maxBuffer: 1 << 24 });
@@ -175,7 +180,7 @@ async function superior(navegador, cred) {
   } catch (e) {
     L.ok(false, 'a prova parou: ' + (e.stack || e.message).slice(0, 400));
   } finally {
-    if (sha(BOLETIM) !== shaBoletim) { console.log('  [AVISO] o arquivo sabotado não voltou igual'); }
+    if (sha(BOLETIM) !== shaBoletim || sha(BOLETIM_PORTAL) !== shaBoletimPortal) { console.log('  [AVISO] o arquivo sabotado não voltou igual'); }
     await navegador.close();
   }
   process.exit(L.resumo(ETAPA) ? 0 : 1);

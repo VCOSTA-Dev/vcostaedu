@@ -8,7 +8,7 @@ comece: professor=3
 relacionados: lancar-notas, lancar-faltas, acompanhar-notas-e-resultado
 telas: minhas-disciplinas/listar, atividades/listar, atividades/cadastrar
 entrou: 1.0.0
-mudou: 1.72.0
+mudou: 1.103.1
 ---
 ## Para que serve
 
@@ -22,7 +22,7 @@ A secretaria ou o administrador ligaram você à disciplina ofertada, e os aluno
 
 **Na escola**, a lista mostra o segmento no lugar do curso e cada linha tem a ação **Etapas**. Na **Página Inicial**, o cartão **O meu dia** mostra as suas disciplinas do ano, com os atalhos **Chamada**, **Notas** e **Etapas** em cada uma.
 
-1. **Ensino → Minhas Disciplinas**: as disciplinas do ano em que você é o professor, com a quantidade de alunos, a situação (Aberta ou Encerrada) e os atalhos **Atividades**, **Notas e resultado** e **Faltas** em cada linha.
+1. **Ensino → Minhas Disciplinas**: as disciplinas do ano em que você é o professor, com o número de cada uma (a coluna **#**, que não se repete: informe-o num atendimento; ele aparece também no alto da tela da disciplina, e a busca da lista acha por ele), o código da disciplina, a quantidade de alunos, a situação (Aberta ou Encerrada) e os atalhos **Atividades**, **Notas e resultado** e **Faltas** em cada linha.
 
 ![Minhas disciplinas](img/professor_02_minhas_disciplinas.png)
 

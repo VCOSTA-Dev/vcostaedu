@@ -508,13 +508,14 @@
         "decisao": "D-128",
         "acao": "troca",
         "tabela": "adms_usuarios",
-        "motivo": "O nome fictício do administrador na demonstração da faculdade mudou de propósito (1.102.1, C8): não se confunde com a aluna Alice do curso livre.",
+        "motivo": "O nome fictício do administrador na demonstração da faculdade mudou de propósito (1.102.1, C8): não se confunde com a aluna Alice do curso livre. Só quando a demonstração de agora traz o nome novo (so_se_agora): a instalação antiga atualizada pela tela guarda o nome de antes, e compara como está.",
         "onde": {
             "id": 1,
             "nome": "Alice Administradora (fictícia)"
         },
         "fica": {
             "nome": "Administração da demonstração (fictícia)"
-        }
+        },
+        "so_se_agora": true
     }
 ]

@@ -6,7 +6,7 @@
 <h2>Passo a passo</h2>
 <p><strong>Na escola</strong>, a lista mostra o segmento no lugar do curso e cada linha tem a ação <strong>Etapas</strong>. Na <strong>Página Inicial</strong>, o cartão <strong>O meu dia</strong> mostra as suas disciplinas do ano, com os atalhos <strong>Chamada</strong>, <strong>Notas</strong> e <strong>Etapas</strong> em cada uma.</p>
 <ol>
-<li><strong>Ensino → Minhas Disciplinas</strong>: as disciplinas do ano em que você é o professor, com a quantidade de alunos, a situação (Aberta ou Encerrada) e os atalhos <strong>Atividades</strong>, <strong>Notas e resultado</strong> e <strong>Faltas</strong> em cada linha.</li>
+<li><strong>Ensino → Minhas Disciplinas</strong>: as disciplinas do ano em que você é o professor, com o número de cada uma (a coluna <strong>#</strong>, que não se repete: informe-o num atendimento; ele aparece também no alto da tela da disciplina, e a busca da lista acha por ele), o código da disciplina, a quantidade de alunos, a situação (Aberta ou Encerrada) e os atalhos <strong>Atividades</strong>, <strong>Notas e resultado</strong> e <strong>Faltas</strong> em cada linha.</li>
 </ol>
 <figure><img src="{{IMG}}professor_02_minhas_disciplinas.png" alt="Minhas disciplinas"><figcaption>Minhas disciplinas</figcaption></figure>
 <ol>

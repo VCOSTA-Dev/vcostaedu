@@ -12,7 +12,8 @@ Quem instala usa, não programa. As regras vêm prontas, com padrões, e tudo se
 - **A escola:** o ano letivo em etapas, as séries, as turmas e a avaliação por etapa, com recuperação, média anual e
   conselho de classe.
 - **O curso livre:** o curso, a turma com vagas, as disciplinas no Moodle e a inscrição pelo site, sem o que é da
-  escola; o financeiro e a matrícula pela secretaria de ligar e desligar.
+  escola; a matrícula pela secretaria de ligar e desligar. O financeiro é de ligar e desligar nos três tipos: ligado
+  de partida na escola e no ensino superior, desligado no curso livre.
 - **Atividades e notas,** com a regra de média de cada instituição.
 - **Frequência e chamada.**
 - **Documentos:** boletim, histórico escolar e atestado de matrícula, com código de verificação público.

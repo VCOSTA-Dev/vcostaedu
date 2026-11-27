@@ -4,6 +4,16 @@ O histórico completo de cada versão, com o texto para quem usa, está no próp
 versões e as novidades vêm das migrations, em `database/migrations/`). As decisões de cada mudança estão em
 `docs/DECISIONS.md`. Este arquivo resume as versões a partir da 1.103.0.
 
+## 1.103.1
+
+- **O número de cada disciplina nas listas (D-138).** A coluna **#** em Disciplinas e em Minhas Disciplinas, também no
+  alto da tela da disciplina, na busca e na exportação; a coluna Código continua.
+- **O filtro por ano de Minhas Disciplinas (D-137)** com a regra de Disciplinas: o ano da lista sempre no filtro.
+- **O financeiro desligado diz o motivo (D-134)** no endereço direto, e onde ligar, para quem pode.
+- **A verificação pública com o vocabulário do tipo (D-139):** "Segmento" na escola.
+- **O instalador** não deixa o navegador preencher o usuário e a senha do banco (D-135); **o CPF de demonstração**
+  igual nos três tipos (D-136); o README com o financeiro nos três tipos.
+
 ## 1.103.0 — a versão do lançamento
 
 - **Financeiro de ligar e desligar nos três tipos (D-129).** Em Configurações → Recursos da instituição e na

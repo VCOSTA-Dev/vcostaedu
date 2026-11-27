@@ -102,6 +102,14 @@ const pasta = () => path.join(L.RAIZ, 'storage', 'historico', 'emissoes');
       && /idêntico ao documento original/.test(conf1) && /idêntico à 2ª via/.test(conf2) && /NÃO é idêntico/.test(confX),
       `a conferência pública: "${ver.tipo}", ${ver.aluno}, válido; o PDF original e a 2ª via conferem; o alterado não`);
     await L.print(pp, ETAPA, 'verificacao-publica');
+    /* 1.103.1 (D-139): na escola, a verificação pública diz "Segmento" (o vocabulário do tipo), também no comprovante
+       que ela imprime (a impressão da mesma página: o rótulo não é escondido nela) */
+    const rotulos = await pp.$$eval('dl dt', (l) => l.map((x) => x.textContent.trim()));
+    await pp.emulateMedia({ media: 'print' });
+    const rotuloImpresso = await pp.$eval('#rotuloCurso', (x) => (getComputedStyle(x).display !== 'none' && getComputedStyle(x.parentElement).display !== 'none') ? x.textContent.trim() : '').catch(() => '');
+    await pp.emulateMedia({ media: 'screen' });
+    L.ok(rotulos.includes('Segmento') && !rotulos.includes('Curso') && rotuloImpresso === 'Segmento',
+      `a verificação pública na escola com "Segmento" (não "Curso"), na tela e no comprovante impresso (${rotulos.join(', ')})`);
 
     /* 4. cancelar */
     await p.goto(L.BASE + `painel/historico-escola-emissao/previa/${A}?nivel=EF`);

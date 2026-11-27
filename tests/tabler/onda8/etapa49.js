@@ -49,6 +49,31 @@ async function versoesNaTela(navegador) {
     L.ok(!/cliente/i.test(v16) && !/cliente/i.test(n79) && /documento oficial/.test(n79) && /exemplo\.invalid/.test(dom) && !/suaescola|suainstituicao/.test(dom)
       && /instituicao\.exemplo\.invalid/.test(conexao) && !/suaescola|suainstituicao/.test(conexao),
       `C1: a versão 1.12.0 e a novidade 79 sem "o cliente" ("${n79}"); o domínio de exemplo reservado na descrição e na tela Conectar ao Moodle`);
+    /* 1.103.1 (D-136): a demonstração do ensino superior dá aos alunos o CPF de demonstração dos três tipos — 000 + a
+       matrícula, com os dois verificadores calculados (o mesmo esquema da escola e do curso livre) */
+    const esquema = (ra) => {
+      let n = '000' + String(ra).padStart(6, '0');
+      for (let t = 9; t < 11; t++) { let s = 0; for (let i = 0; i < t; i++) { s += +n[i] * ((t + 1) - i); } n += ((10 * s) % 11) % 10; }
+      return n;
+    };
+    const cpfs = sql("SELECT u.rm, i.cpf FROM col_usuarios u INNER JOIN col_usuarios_informacoes i ON i.col_user_id = u.id WHERE i.cpf IS NOT NULL AND i.cpf <> ''")
+      .split('\n').filter(Boolean).map((l) => l.split('\t'));
+    const foraDoEsquema = cpfs.filter(([ra, cpf]) => cpf !== esquema(ra));
+    L.ok(cpfs.length > 0 && foraDoEsquema.length === 0,
+      `a demonstração do ensino superior: os ${cpfs.length} CPFs dos alunos no esquema de demonstração (000 + a matrícula, com os verificadores)${foraDoEsquema.length ? '; fora: ' + foraDoEsquema.map((x) => x[0]).join(', ') : ''}`);
+
+    /* 1.103.1 (D-137): no ensino superior, o filtro por ano de Minhas Disciplinas com o ano que a lista mostra — o
+       administrador, a direção, a coordenação e o professor da demonstração (tests/tabler/saida/credenciais.json) */
+    const credSup = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'saida', 'credenciais.json'), 'utf8')).painel || {};
+    const perfisSup = [['administrador', SENHA_ADM]].concat(['direcao.demo', 'coord.demo', 'prof.laura.demo'].filter((u) => credSup[u]).map((u) => [u, credSup[u]]));
+    const filtrosSup = [];
+    for (const [u, sn] of perfisSup) {
+      const r = await X.listasDisciplinas(navegador, u, sn);
+      filtrosSup.push({ u, ok: X.filtroAnoOk(r.minhas) && X.filtroAnoOk(r.todas), num: X.colunaNumeroOk(r.minhas) && X.colunaNumeroOk(r.todas), linhas: r.minhas ? r.minhas.linhas.length : 0, opcoes: r.minhas ? r.minhas.opcoes.join('/') : '-', marcado: r.minhas ? r.minhas.marcado : '-' });
+    }
+    L.ok(perfisSup.length === 4 && filtrosSup.every((f) => f.ok) && filtrosSup.some((f) => f.linhas > 0),
+      `no ensino superior, o filtro por ano de Minhas Disciplinas com o ano que a lista mostra: ${filtrosSup.map((f) => `${f.u} ${f.linhas} linha(s), ${f.opcoes || 'vazio'} (${f.marcado || 'nada marcado'})`).join('; ')}`);
+    L.ok(filtrosSup.every((f) => f.num), `no ensino superior, a primeira coluna "#" com o número da oferta, único, antes do "Código", nas duas listas, para os ${filtrosSup.length} perfis (D-138)`);
 
     /* C2. as Novidades do zero */
     const desde = um("SELECT valor FROM adms_instalacao_estado WHERE chave = 'novidades.desde'");

@@ -197,6 +197,15 @@ async function casosDoEmail(navegador, raA, raB, rotuloTipo) {
       r.filter((x) => !x.ok).forEach((x) => quebrados.push(`${u}: ${x.rotulo} (${x.motivo})`));
     }
     L.ok(!quebrados.length, `curso livre: cada item do menu de cada perfil abre (nenhum leva a tela que não funciona) ${quebrados.join('; ')}`);
+    /* 1.103.1 (D-137): no curso livre, o filtro por ano das listas de disciplinas (a que o perfil abre) com o ano que a
+       lista mostra — o administrador, a direção, a coordenação e o professor */
+    const filtrosLivre = [];
+    for (const [u, sn] of [['administrador', SENHA_ADM], ['direcao.demo', c.painel['direcao.demo']], ['coord.demo', c.painel['coord.demo']], ['prof.marcos.demo', c.painel['prof.marcos.demo']]]) {
+      const r = await X.listasDisciplinas(navegador, u, sn);
+      filtrosLivre.push({ u, ok: X.filtroAnoOk(r.minhas) && X.filtroAnoOk(r.todas), num: X.colunaNumeroOk(r.minhas) && X.colunaNumeroOk(r.todas), abre: (r.minhas ? 'minhas ' + r.minhas.linhas.length : '') + (r.todas ? ' todas ' + r.todas.linhas.length : '') });
+    }
+    L.ok(filtrosLivre.every((f) => f.num), `curso livre: a primeira coluna "#" com o número da oferta, único, antes do "Código", nas listas que cada perfil abre (D-138)`);
+    L.ok(filtrosLivre.every((f) => f.ok), `curso livre: o filtro por ano das listas de disciplinas com o ano que a lista mostra (${filtrosLivre.map((f) => f.u + ': ' + (f.abre.trim() || 'nenhuma')).join('; ')})`);
     const rotas = ['escola-anos/index', 'relatorios/painel-academico', 'regra-media/listar', 'polos/listar', 'historico/previa', 'escola/index', 'fin-regras/index', 'escola-liberacao/index'];
     const abertas = [];
     for (const r of rotas) { if (await abrePainel(navegador, 'administrador', SENHA_ADM, r) !== 'recusada') abertas.push(r); }

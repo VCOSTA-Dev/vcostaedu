@@ -40,6 +40,10 @@ const conecta = (porta) => (spawnSync(PHP, [path.join(__dirname, 'porta_conexao.
     L.ok(/id="porta" name="porta"[^>]*min="1" max="65535"/.test(idx.replace(/\s+/g, ' ')) && /'porta' => '3306'/.test(idx)
       && /A porta é um número de 1 a 65535/.test(idx) && /'PORTA'\s+=> \(int\)/.test(ler('instalar', 'gerador.php')),
       '2. a tela dos dados do banco tem o campo Porta (3306 de partida) e recusa porta fora de 1 a 65535; o gerador grava a constante');
+    /* 1.103.1 (D-135): o navegador não preenche o usuário e a senha do banco com um login salvo */
+    const banco = idx.slice(idx.indexOf('action="?passo=banco"'), idx.indexOf('action="?passo=banco"') + 8000).replace(/\s+/g, ' ');
+    L.ok(/id="usuario" name="usuario"[^>]*autocomplete="off"/.test(banco) && /id="senha" name="senha"[^>]*autocomplete="new-password"/.test(banco),
+      '2. no passo do banco, o usuário com autocomplete="off" e a senha com autocomplete="new-password" (o navegador não preenche com um login salvo)');
 
     /* 3. a conexão das telas */
     const c3306 = conecta(3306);

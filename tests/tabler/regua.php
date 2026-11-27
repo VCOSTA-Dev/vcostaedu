@@ -262,7 +262,13 @@ foreach ((array) json_decode((string) @file_get_contents(__DIR__ . '/regua_decis
         foreach ($antes['conteudo'][$t] as &$texto) {
             $l = json_decode($texto, true);
             if (is_array($l) && count(array_intersect_key($l, $d['onde'])) === count($d['onde']) && array_intersect_key($l, $d['onde']) === array_replace(array_intersect_key($l, $d['onde']), $d['onde'])) {
-                $texto = json_encode(array_replace($l, $d['fica']), JSON_UNESCAPED_UNICODE);
+                $trocada = json_encode(array_replace($l, $d['fica']), JSON_UNESCAPED_UNICODE);
+                /* 1.103.1: "so_se_agora" — a troca só vale se o retrato de agora tem EXATAMENTE a linha trocada (a
+                   demonstração nova); a instalação antiga atualizada, que guarda o valor de antes, compara como está */
+                if (!empty($d['so_se_agora']) && !in_array($trocada, (array) ($retrato['conteudo'][$t] ?? []), true)) {
+                    continue;
+                }
+                $texto = $trocada;
                 $n++;
             }
         }

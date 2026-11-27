@@ -214,13 +214,13 @@ function telaBanco(array $dados = [], string $erro = ''): void
 
           <div class="mb-3">
             <label class="form-label required" for="usuario">Usuário</label>
-            <input type="text" id="usuario" name="usuario" class="form-control" required
+            <input type="text" id="usuario" name="usuario" class="form-control" required autocomplete="off"
                    value="<?= e($dados['usuario']) ?>">
           </div>
 
           <div class="mb-3">
             <label class="form-label" for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" class="form-control" data-vc-senha="atual" autocomplete="off">
+            <input type="password" id="senha" name="senha" class="form-control" data-vc-senha="atual" autocomplete="new-password">
           </div>
 
           <div class="form-footer">
